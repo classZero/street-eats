@@ -1,0 +1,35 @@
+{
+  "name": "best-food-truck-app",
+  "version": "1.0.0",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chalk-cli": "^4.0.0",
+    "concurrently": "^3.5.1",
+    "rimraf": "^2.6.2",
+    "standard": "^10.0.3"
+  },
+  "scripts": {
+    "start": "concurrently \"yarn run server\" \"yarn run client\"",
+    "client": "cd client && yarn start",
+    "server": "cd server && yarn start",
+    "build": "rimraf server/public/* && cd client && yarn build && cd ../server && yarn build",
+    "prelint": "chalk cyan bold 'Running Linter'",
+    "lint": "standard",
+    "postlint": "chalk cyan bold 'Linter Finished'"
+  },
+  "standard": {
+    "ignore": [
+      "dist",
+      "client/build",
+      "server/public"
+    ]
+  },
+  "boilerplate": {
+    "name": "client-server-boilerplate",
+    "version": "0.0.0",
+    "author": "Michael Sweeney <jfmike@gmail.com> (https://github.com/overthemike)",
+    "license": "MIT"
+  },
+  "description": ""
+}
