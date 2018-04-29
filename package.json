@@ -31,5 +31,8 @@
     "author": "Michael Sweeney <jfmike@gmail.com> (https://github.com/overthemike)",
     "license": "MIT"
   },
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "nodemon": "^1.17.3"
+  }
 }
