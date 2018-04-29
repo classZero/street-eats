@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Login from './Login'
+import URegistration from '../UserRegistration/components/URegistration'
 
 import './home.css'
 
@@ -12,7 +13,7 @@ export class Home extends Component {
         <div className="home-header">
           <Login />
           <h1>Food truck</h1>
-          <Link to="truckRegistration">Vendor sign up</Link>
+          <Link to="/Uregistration">temp user reg page</Link>
         </div>
         <div className="home-body-container">
           something here
