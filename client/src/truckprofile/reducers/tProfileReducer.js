@@ -1,6 +1,5 @@
 const initialState = {
-    name : "",
-    website: ""
+    profile : {}
 }
 
 

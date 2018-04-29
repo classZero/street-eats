@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import {getProfile} from '../actions/tProfileActions'
 
 class TProfileView extends Component {
+    static defaultProps = {
+        profile : {} 
+    }
 
     componentDidMount(){
         getProfile()
@@ -11,7 +14,11 @@ class TProfileView extends Component {
     render() {
         console.log(this.props.profile)
         return (
-            <div>gfggf</div>
+            <div>
+                <div>{this.props.profile.name}</div>
+                <div>{this.props.profile.phone}</div>
+                <div>{this.props.profile.website}</div>
+            </div>
         );
     }
 }
