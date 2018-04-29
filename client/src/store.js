@@ -1,13 +1,19 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3e8c44e85719b24b26f50a75b34c7b4828b4d8b6
 import {createStore, combineReducers} from 'redux'
 
 import homeReducer from './home/homeReducer'
 import loginReducer from './home/loginReducer'
+import tProfileReducer from './truckprofile/reducers/tProfileReducer'
+
 //import reducer here
 
 const rootReducer = combineReducers({
   homeReducer,
-  loginReducer
+  loginReducer,
+  tProfileReducer
   //add your reducer here
 })
 
@@ -25,4 +31,7 @@ export default store
 =======
 
 export default store
+<<<<<<< HEAD
 >>>>>>> kkj-home
+=======
+>>>>>>> 3e8c44e85719b24b26f50a75b34c7b4828b4d8b6
