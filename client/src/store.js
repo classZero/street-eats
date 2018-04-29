@@ -1,10 +1,12 @@
 import {createStore, combineReducers} from 'redux'
 
-import  homeReducer from './components/home/homeReducer'
+import homeReducer from './home/homeReducer'
+import loginReducer from './home/loginReducer'
 //import reducer here
 
 const rootReducer = combineReducers({
   homeReducer,
+  loginReducer
   //add your reducer here
 })
 
