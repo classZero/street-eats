@@ -14,6 +14,7 @@ export class Home extends Component {
           <Login />
           <h1>Food truck</h1>
           <Link to="/Uregistration">temp user reg page</Link>
+          <Link to="/Tregistration">set link here for truck registration page</Link>
         </div>
         <div className="home-body-container">
           something here
