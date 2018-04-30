@@ -57,6 +57,10 @@ instance.logout = function() {
   this.interceptors.request.eject(this.tokenInterceptor)
   this.interceptors.request.eject(this.registerInterceptor)
   window.localStorage.removeItem('token')
+  store.dispatch({
+    type: "LOGOUT_USER",
+    payload: ''
+  })
 }
 
 instance.registration = function (username, password, email) {

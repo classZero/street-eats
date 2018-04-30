@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Login from '../login/Login'
-import Logout from '../logout/Logout'
+// import Logout from '../logout/Logout'
 import MapViewHome from '../MapView/mapviewcomponents/MapsViewHome'
+import HomeDropdown from '../dropdowns/homeDropdown/HomeDropdown'
 
 // import URegistration from '../UserRegistration/components/URegistration'
 
@@ -16,7 +17,8 @@ export class Home extends Component {
       <div className="home-container">
         <div className="home-header">
           <Login />
-          <Logout />
+          <HomeDropdown />
+          {/* <Logout /> */}
           <h1>Food truck</h1>
           <Link to="/Uregistration">temp user reg page</Link>
           <Link to="/userProfile">temp user profile page</Link>

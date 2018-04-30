@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {logoutUser} from './logoutActions'
+import api from '../lib/api'
 
 export class Logout extends Component {
   handleLogout = (e) => {
     e.preventDefault()
-    logoutUser()
+    api.logout()
   }
   render() {
     return (
