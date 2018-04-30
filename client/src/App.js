@@ -4,11 +4,7 @@ import store from './store.js'
 import TProfileView from './truckprofile/components/tprofileview'
 import URegistration from './UserRegistration/components/URegistration'
 import Home from './home/Home'
-<<<<<<< HEAD
-import UProfileView from './userprofile/components/uprofileview'
-=======
 import MapViewHome from './MapView/mapviewcomponents/MapsViewHome'
->>>>>>> master
 
 class App extends Component {
   render () {
@@ -18,11 +14,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/truckprofile" component={TProfileView} />
             <Route path="/URegistration" component={URegistration} />
-<<<<<<< HEAD
-            <Route path="/userprofile" component={UProfileView} />
-=======
             <Route path="/map" component={MapViewHome} />
->>>>>>> master
           </div>
         </Router>
     )
