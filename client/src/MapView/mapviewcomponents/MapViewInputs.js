@@ -11,6 +11,7 @@ class MapViewInputs extends Component {
         <option value="way">Way</option>
         <option value="road">Road</option>
         <option value="avenue">Avenue</option>
+        <option value="boulevard">Boulevard</option>
         <option value="drive">Drive</option>
         <option value="lane">Lane</option>
         <option value="terrace">Terrace</option>
@@ -20,7 +21,6 @@ class MapViewInputs extends Component {
       <input type="cell" placeholder="when will you close" />
       
       <h5>Optional Fields:</h5>
-      <p>this will be the icon of your marker on the map:<input type="file" /></p>
       <input style={{width:'500px'}} type="text" placeholder="special info, to be seen by customers who click on your location EX. behind the target" />
       <br/>
 
