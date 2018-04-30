@@ -4,15 +4,17 @@ import store from './store.js'
 import TProfileView from './truckprofile/components/tprofileview'
 import URegistration from './UserRegistration/components/URegistration'
 import Home from './home/Home'
+import UProfileView from './userprofile/components/uprofileview'
 
 class App extends Component {
   render () {
     return (
         <Router>
           <div>
-            <Route path="/" exact component={Home} />
+            <Route exact path="/" component={Home} />
             <Route path="/truckprofile" component={TProfileView} />
             <Route path="/URegistration" component={URegistration} />
+            <Route path="/userprofile" component={UProfileView} />
           </div>
         </Router>
     )
