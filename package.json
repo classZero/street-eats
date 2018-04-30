@@ -33,6 +33,7 @@
   },
   "description": "",
   "dependencies": {
-    "nodemon": "^1.17.3"
+    "nodemon": "^1.17.3",
+    "react-geocode": "^0.0.7"
   }
 }
