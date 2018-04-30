@@ -58,8 +58,8 @@ instance.logout = function() {
   window.localStorage.removeItem('token')
 }
 
-instance.registration = function (username, password, email) {
-    return this.post(this.getRegisterPath(), {username, password, email})
+instance.registration = function (username, password, email, type) {
+    return this.post(this.getRegisterPath(), {username, password, email, type})
         .then(resp => {
             window.localStorage.setItem('token', resp.data.token)
             //dispatch token to store 
@@ -67,10 +67,10 @@ instance.registration = function (username, password, email) {
               config.headers['Authorization'] = 'Bearer ' + resp.data.token
               return config
             })
-            store.dispatch({
-              type: "ADD_TOKEN",      //change here
-              payload:resp.data
-            })
+            // store.dispatch({
+            //   type: "ADD_TOKEN",      //change here
+            //   payload:resp.data
+            // })
         }
     )
 }
