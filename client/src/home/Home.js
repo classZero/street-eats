@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Login from '../login/Login'
 import Logout from '../logout/Logout'
+import MapViewHome from '../MapView/mapviewcomponents/MapsViewHome'
 
 // import URegistration from '../UserRegistration/components/URegistration'
 
@@ -23,7 +24,7 @@ export class Home extends Component {
           <Link to="/truckProfile">set link here for truck profile page</Link>
         </div>
         <div className="home-body-container">
-          something here
+          <MapViewHome />
           <div className="home-newsfeed">
             <h3>Coming Events</h3>
             <div>

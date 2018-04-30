@@ -20,11 +20,9 @@ class MapViewHome extends Component {
     return (
     <div>
 
-      <MapViewInputs />
-
 {/* handles displaying the map with markers allows pop up window on click of pin to be fully customizable */}
       <div className="mapstestcontainer">
-        <Map style={{width: '45%', height: '75%', position: 'relative'}} google={this.props.google} initialCenter={{lat:36.133348310973645 ,lng:-115.15630909218748 }} zoom={11}>
+        <Map style={{width: '100%', height: '75%', position: 'relative'}} google={this.props.google} initialCenter={{lat:36.133348310973645 ,lng:-115.15630909218748 }} zoom={11}>
         
         {/* Handles markers display */}
         <Marker onClick={this.onMarkerClick}
