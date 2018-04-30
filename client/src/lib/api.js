@@ -52,6 +52,7 @@ instance.login = function (username, password) {
 }
 
 instance.logout = function() {
+  console.log('api logout')
   this.token = null
   this.interceptors.request.eject(this.tokenInterceptor)
   this.interceptors.request.eject(this.registerInterceptor)

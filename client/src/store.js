@@ -1,7 +1,7 @@
 import {createStore, combineReducers} from 'redux'
 
 import homeReducer from './home/homeReducer'
-import loginReducer from './home/loginReducer'
+import loginReducer from './login/loginReducer'
 import tProfileReducer from './truckprofile/reducers/tProfileReducer'
 
 //import reducer here
