@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 import {getProfile} from '../actions/tProfileActions'
 
 class TProfileView extends Component {
-    static defaultProps = {
-        profile : {} 
-    }
 
     componentDidMount(){
         getProfile()
@@ -15,9 +12,10 @@ class TProfileView extends Component {
         console.log(this.props.profile)
         return (
             <div>
-                <div>{this.props.profile.name}</div>
-                <div>{this.props.profile.phone}</div>
-                <div>{this.props.profile.website}</div>
+                <div>Company name: {this.props.profile.companyname}</div>
+                <div>Truck picture<img src={this.props.profile.truckpic} /></div>
+                <div>About us: {this.props.profile.aboutus}</div>
+                <div>Menu <img src={this.props.profile.menuurl} /></div>
             </div>
         );
     }
@@ -25,7 +23,7 @@ class TProfileView extends Component {
 
 function mapStateToProps(state) {
     return {
-        profile : state.profile
+        profile : state.tProfileReducer.profile
     }
 }
 

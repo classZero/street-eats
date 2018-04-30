@@ -11,6 +11,55 @@ router.get('/api', (req, res, next) => {
     res.send('working')
 })
 
+
+router.get('/truckprofile', (req, res, next) => {
+  // const username = store.getState().login.username----must set username here and delete const below & must move to private routes
+  const username = 'food'
+  const sql = `
+  SELECT * 
+  FROM trucks 
+  WHERE username = ?
+  `
+  conn.query(sql, username, (err, results, fields) => {
+    const companyname = results[0].companyname
+    const aboutus = results[0].aboutus
+    const menuurl = results[0].menuurl
+    const truckpic = results[0].truckpicurl
+    
+    res.json({
+        companyname,
+        aboutus,
+        menuurl,
+        truckpic
+    })
+  })
+
+})
+
+router.get('/userprofile', (req, res, next) => {
+    // const username = store.getState().login.username----must set username here and delete const below & must move to private routes
+    const username = 'johnny5'
+
+    const sql = `
+    SELECT * 
+  FROM users 
+  WHERE username = ?
+    `
+
+    conn.query(sql, username, (err, results, fields) => {
+        const username = results[0].username
+        res.json({
+            username
+        })
+    })
+
+
+})
+
+
+
+
+
 router.post('/registration', (req, res, next) => {
     const username = req.body.username
     const password = sha512(req.body.password)
