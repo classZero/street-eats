@@ -16,6 +16,13 @@ class MapViewHome extends Component {
     activeMarker: marker,
     showingInfoWindow: true
   })
+/* handles console logging out lat and lng from address input WILL want to seperate this to post the lat and lng to database to pull into the map position to display markers*/ 
+onSubmit = Geocode.fromAddress("12278 kings eagle street las vegas 89141").then(
+    response => {
+      const { lat, lng } = response.results[0].geometry.location
+      console.log(lat, lng)
+    }
+  )
   render () {
     return (
     <div>
@@ -41,18 +48,6 @@ class MapViewHome extends Component {
         </Map>
         
       </div>
-
-{/* handles console logging out lat and lng from address input WILL want to seperate this to post the lat and lng to database to pull into the map position to display markers*/}
-      {/* <div>
-      <script>
-  {Geocode.fromAddress("12278 kings eagle street las vegas 89141").then(
-  response => {
-    const { lat, lng } = response.results[0].geometry.location
-    console.log(lat, lng)
-  }
-)}
-  </script>
-  </div> */}
 
     </div>
       

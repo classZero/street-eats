@@ -57,38 +57,66 @@ router.post('/registration', (req, res, next) => {
     const username = req.body.username
     const password = sha512(req.body.password)
     const email = req.body.email
-    // const profile_image = req.body.uploadURL     //uncomment to add images
-
     const sql = `
-        SELECT count(1) FROM users WHERE username = ?
-    `
-    conn.query(sql, [username], (err, results, fields) => {
-        if(results.count > 0) {
+            SELECT count(1) as count FROM users WHERE username=? 
+            UNION SELECT count(1) as count FROM trucks WHERE username=?
+        `
+
+    conn.query(sql, [username,username], (err, results, fields) => {
+
+        if(results.map(res => res.count).indexOf(1) !== -1){
+            console.log('username taken')
             res.status(409).json({
                 message: "Username already taken"
             })
-        } else {  //create token here
-            const token = jwt.sign({user: username}, config.get('jwt-secret'))
-            const insertSql = `
-                INSERT INTO users (username, password, email, fname, lname, profile_image) VALUES (?,?,?,?,?,?)
-            `
-            conn.query(insertSql, [username, password, email, fname, lname, profile_image], (err2, results2, fields2) => {
-                res.json({
-                    message: "User Created",
-                    token: token,
-                    user: username,
-                    email: email,
-                    profile_image: profile_image
+        } else {
+
+            if (req.body.type === "user") {
+                const token = jwt.sign({user: username}, config.get('jwt-secret'))
+
+                const insertSql = `
+                    INSERT INTO users (username, password, email) VALUES (?,?,?)
+                `
+                conn.query(insertSql, [username, password, email], (err2, results2, fields2) =>{
+                    res.json({
+                        message: "User Created",
+                        token: token,
+                        user: username,
+                        email: email
+                    })
                 })
-            })
+            }
+
+            if (req.body.type === "truck"){
+                const token = jwt.sign({user: username}, config.get('jwt-secret'))
+
+                const companyname = req.body.typedata.companyName
+                const companylogo = req.body.typedata.companyLogo
+                const menuurl = req.body.typedata.menu
+                const aboutus = req.body.typedata.aboutus
+
+                const insertSql = `
+                    INSERT INTO trucks (username, password, email, companyname, companylogo, menuurl, aboutus) VALUES (?,?,?,?,?,?,?)
+                `
+
+                conn.query(insertSql, [username, password, email, companyname, companylogo, menuurl, aboutus], (err2, results2, fields2) =>{
+                    res.json({
+                        message: "Truck Created",
+                        token: token,
+                        user: username,
+                        email: email
+                    })
+                })
+            }
         }
     })
 })
 
+
 router.post('/login', (req, res, next) => {
     const username = req.body.username
-    // const password = sha512(req.body.password)
-    const password = req.body.username
+    const password = sha512(req.body.password)
+    // const password = req.body.username
 
     const sql = `SELECT username, companyname, menuurl, aboutus, lon, lat, tempaddress, datecreated,'truck' as Source FROM trucks as truckInfo WHERE username = ? AND password = ? 
     UNION ALL
