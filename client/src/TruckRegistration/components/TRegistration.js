@@ -49,7 +49,7 @@ class TRegistration extends Component {
 			<div>
 				<fieldset>
 					<legend>Food Truck Registration</legend>
-					<form onSubmit={this.handleSubmit} enctype="multipart/form-data">
+					<form onSubmit={this.handleSubmit} encType="multipart/form-data">
 						<input onChange={this.handleChange} type="text" name="username" value={this.state.username}  placeholder="username"/>
 						<input onChange={this.handleChange} type="text" name="companyName" value={this.state.companyname} placeholder="company name" />
 						<input onChange={this.handleChange} type="text" name="email" value={this.state.email} placeholder="email"/>
