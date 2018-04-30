@@ -48,10 +48,12 @@ router.post('/login', (req, res, next) => {
     // const password = sha512(req.body.password)
     const password = req.body.username
 
-    const sql = `
-        SELECT * FROM users WHERE username = ? AND password = ?
-    `
-    conn.query(sql, [username, password], (err, results, fields) => {
+    const sql = `SELECT username, companyname, menuurl, aboutus, lon, lat, tempaddress, datecreated FROM trucks as truckInfo WHERE username = ? AND password = ? 
+                 UNION
+                 SELECT username, Null as companyname, Null as menuurl, Null as aboutus, Null as lon, Null as lat, Null as tempaddress, Null as datecreated FROM users as userInfo WHERE username = ? AND password = ?
+                `
+    conn.query(sql, [username, password, username, password], (err, results, fields) => {
+      // console.log('login results ' + JSON.stringify(results))
         if(results.length > 0) {
             console.log('username and password returned match')
             const token = jwt.sign({user: username}, config.get('jwt-secret'))
