@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {registerTruck} from '../actions/TRegistrationActions'
 
 class TRegistration extends Component {
 	state = {
@@ -19,7 +20,11 @@ class TRegistration extends Component {
 
 	handleSubmit = (e) =>{
 		e.preventDefault()
-		// registerTruck()
+		registerTruck({
+			username: this.state.username,
+			password: this.state.password,
+			email: this.state.email
+		})
 		this.setState({
 			username: '',
 			email: '',

@@ -6,9 +6,9 @@ api.new('/api')
 
 
 
-export function registerUser(userObj){
-	// console.log(userObj)
-	api.registration(userObj.username, userObj.password, userObj.email, "user").then(resp =>{
+export function registerTruck(truckObj){
+	// console.log(truckObj)
+	api.registration(truckObj.username, truckObj.password, truckObj.email, "truck").then(resp =>{
 		console.log(resp)
 		// store.dispatch({
         //   type: "ADD_TOKEN",      //change here

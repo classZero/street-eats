@@ -61,6 +61,7 @@ instance.logout = function() {
 instance.registration = function (username, password, email, type) {
     return this.post(this.getRegisterPath(), {username, password, email, type})
         .then(resp => {
+            console.log(resp)
             window.localStorage.setItem('token', resp.data.token)
             //dispatch token to store 
             this.registerInterceptor = this.interceptors.request.use(config => {
