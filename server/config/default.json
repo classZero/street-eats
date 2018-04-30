@@ -1,3 +1,9 @@
 {
-  "jwt-secret":"change your secret here"
+  "db": {
+      "user": "truckster",
+      "password": "truckster",
+      "hostname": "localhost",
+      "database": "food_truck"
+  },
+  "jwt-secret": "ac429114-45d3-11d3-812s-0td5n89f713a"
 }

@@ -33,7 +33,13 @@
   },
   "description": "",
   "dependencies": {
+<<<<<<< HEAD
     "nodemon": "^1.17.3",
     "react-geocode": "^0.0.7"
   }
+=======
+    "axios": "^0.18.0"
+  },
+  "proxy": "http://localhost:3001"
+>>>>>>> master
 }

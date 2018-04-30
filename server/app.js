@@ -12,7 +12,7 @@ import privateRouter from './routes/private'
 import clientRouter from './routes/client'
 
 const app = express()
-
+const server = require('http').Server(app)
 // Set up Express middlewares
 // After placing favicon, uncomment favicon import and usage
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
@@ -22,8 +22,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
+server.listen(3001, () => {
+  console.log('listening on port 3001')
+})
 app.use('/api', publicRouter)
 app.use('/api', ejwt({secret: config.get('jwt-secret')}), privateRouter)
+
 
 // Client needs to be the last route handled
 // ALL OTHER EXPRESS ROUTES GO ABOVE THIS LINE
