@@ -16,7 +16,3 @@ export function registerTruck(truckObj){
         // })
 	})
 }
-
-export function testCall(){
-	api.get('/testcall').then(resp => console.log(resp.data)).catch(err => console.log(err))
-}

@@ -16,7 +16,3 @@ export function registerUser(userObj){
         // })
 	})
 }
-
-export function testCall(){
-	api.get('/testcall').then(resp => console.log(resp.data)).catch(err => console.log(err))
-}
