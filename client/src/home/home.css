@@ -18,3 +18,11 @@
     width: 450px;
     border: 1px solid black;
 }
+
+.maptestcontainer {
+    width: 400px;
+    height: 450px;
+    position: relative;
+    z-index: 5;
+}
+
