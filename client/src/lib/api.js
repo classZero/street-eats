@@ -58,20 +58,16 @@ instance.logout = function() {
   window.localStorage.removeItem('token')
 }
 
-instance.registration = function (username, password, email, type) {
-    return this.post(this.getRegisterPath(), {username, password, email, type})
+instance.registration = function (username, password, email, type, typedata = {}) {
+    return this.post(this.getRegisterPath(), {username, password, email, type, typedata})
         .then(resp => {
-            console.log(resp)
-            window.localStorage.setItem('token', resp.data.token)
-            //dispatch token to store 
+            console.log('in api:', resp)
+            // window.localStorage.setItem('token', resp.data.token)
             this.registerInterceptor = this.interceptors.request.use(config => {
               config.headers['Authorization'] = 'Bearer ' + resp.data.token
               return config
             })
-            // store.dispatch({
-            //   type: "ADD_TOKEN",      //change here
-            //   payload:resp.data
-            // })
+            return resp.data
         }
     )
 }

@@ -48,11 +48,16 @@ router.post('/registration', (req, res, next) => {
             if (req.body.type === "truck"){
                 const token = jwt.sign({user: username}, config.get('jwt-secret'))
 
+                const companyname = req.body.typedata.companyName
+                const companylogo = req.body.typedata.companyLogo
+                const menuurl = req.body.typedata.menu
+                const aboutus = req.body.typedata.aboutus
+
                 const insertSql = `
-                    INSERT INTO trucks (username, password, email) VALUES (?,?,?)
+                    INSERT INTO trucks (username, password, email, companyname, companylogo, menuurl, aboutus) VALUES (?,?,?,?,?,?,?)
                 `
 
-                conn.query(insertSql, [username,password,email], (err2, results2, fields2) =>{
+                conn.query(insertSql, [username, password, email, companyname, companylogo, menuurl, aboutus], (err2, results2, fields2) =>{
                     res.json({
                         message: "Truck Created",
                         token: token,

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {registerUser, testCall} from '../actions/URegistrationActions'
+import {registerUser} from '../actions/URegistrationActions'
 
 class URegistration extends Component {
 	state = {
@@ -34,11 +34,6 @@ class URegistration extends Component {
 		})
 	}
 
-	handleTest = (e) =>{
-		e.preventDefault()
-		testCall()
-	}
-
 	render(){
 		return(
 			<div>
@@ -52,7 +47,6 @@ class URegistration extends Component {
 						<button type="submit">Register User</button>
 					</form>
 				</fieldset>
-				<button onClick={this.handleTest}>Test SQL</button>
 			</div>
 	)}
 }
