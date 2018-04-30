@@ -33,9 +33,8 @@ onSubmit = Geocode.fromAddress("12278 kings eagle street las vegas 89141").then(
         
         {/* Handles markers display */}
         <Marker onClick={this.onMarkerClick}
-          name={'Your position'}
-          position={{lat: 35.9658194, lng:-115.1891859}} />
-
+          position={{lat: 35.9658194, lng:-115.1891859}} 
+          />
             <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
