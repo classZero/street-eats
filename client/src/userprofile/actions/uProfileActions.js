@@ -1,11 +1,11 @@
 import store from '../../store'
 import axios from 'axios'
 
-export function getProfile() {
-    axios.get('/api/truckprofile').then(resp => {
+export function getUserProfile() {
+    axios.get('/api/userprofile').then(resp => {
         store.dispatch({
-            type: 'GET_PROFILE',
+            type: 'GET_USER_PROFILE',
             payload : resp.data
         })
     })
-}
+} 

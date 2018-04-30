@@ -11,6 +11,55 @@ router.get('/api', (req, res, next) => {
     res.send('working')
 })
 
+
+router.get('/truckprofile', (req, res, next) => {
+  // const username = store.getState().login.username----must set username here and delete const below & must move to private routes
+  const username = 'food'
+  const sql = `
+  SELECT * 
+  FROM trucks 
+  WHERE username = ?
+  `
+  conn.query(sql, username, (err, results, fields) => {
+    const companyname = results[0].companyname
+    const aboutus = results[0].aboutus
+    const menuurl = results[0].menuurl
+    const truckpic = results[0].truckpicurl
+    
+    res.json({
+        companyname,
+        aboutus,
+        menuurl,
+        truckpic
+    })
+  })
+
+})
+
+router.get('/userprofile', (req, res, next) => {
+    // const username = store.getState().login.username----must set username here and delete const below & must move to private routes
+    const username = 'johnny5'
+
+    const sql = `
+    SELECT * 
+  FROM users 
+  WHERE username = ?
+    `
+
+    conn.query(sql, username, (err, results, fields) => {
+        const username = results[0].username
+        res.json({
+            username
+        })
+    })
+
+
+})
+
+
+
+
+
 router.post('/registration', (req, res, next) => {
     const username = req.body.username
     const password = sha512(req.body.password)
@@ -48,10 +97,12 @@ router.post('/login', (req, res, next) => {
     // const password = sha512(req.body.password)
     const password = req.body.username
 
-    const sql = `
-        SELECT * FROM users WHERE username = ? AND password = ?
-    `
-    conn.query(sql, [username, password], (err, results, fields) => {
+    const sql = `SELECT username, companyname, menuurl, aboutus, lon, lat, tempaddress, datecreated FROM trucks as truckInfo WHERE username = ? AND password = ? 
+                 UNION
+                 SELECT username, Null as companyname, Null as menuurl, Null as aboutus, Null as lon, Null as lat, Null as tempaddress, Null as datecreated FROM users as userInfo WHERE username = ? AND password = ?
+                `
+    conn.query(sql, [username, password, username, password], (err, results, fields) => {
+      // console.log('login results ' + JSON.stringify(results))
         if(results.length > 0) {
             console.log('username and password returned match')
             const token = jwt.sign({user: username}, config.get('jwt-secret'))
