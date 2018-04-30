@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Login from '../login/Login'
-// import Logout from '../logout/Logout'
 import MapViewHome from '../MapView/mapviewcomponents/MapsViewHome'
 import HomeDropdown from '../dropdowns/homeDropdown/HomeDropdown'
 
@@ -11,6 +10,9 @@ import HomeDropdown from '../dropdowns/homeDropdown/HomeDropdown'
 import './home.css'
 
 export class Home extends Component {
+  static defaultProps = {
+    username: ''
+  }
 
   render() {
     return (
@@ -18,12 +20,11 @@ export class Home extends Component {
         <div className="home-header">
           <Login />
           <HomeDropdown />
-          {/* <Logout /> */}
           <h1>Food truck</h1>
           <Link to="/Uregistration">temp user reg page</Link>
-          <Link to="/userProfile">temp user profile page</Link>
-          <Link to="/Tregistration">set link here for truck registration page</Link>
-          <Link to="/truckProfile">set link here for truck profile page</Link>
+          <Link to="/Tregistration">temp truck registration page</Link>
+          <Link to="/userprofile">working user profile page</Link>
+          <Link to="/truckprofile">working truck profile page</Link>
         </div>
         <div className="home-body-container">
           <MapViewHome />
@@ -33,7 +34,7 @@ export class Home extends Component {
               <p>message content</p>
             </div>
           </div>
-          something here
+          <p>Current Username {this.props.username}</p>
         </div>
       </div>
     )
@@ -41,9 +42,12 @@ export class Home extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
   console.log('isAuth? ' + state.loginReducer.isAuthenticated)
+  console.log('CurrUser ' + state.loginReducer.username)
   return {
-    isAuthenticated: state.loginReducer.isAuthenticated
+    isAuthenticated: state.loginReducer.isAuthenticated,
+    username: state.loginReducer.username
   }
 }
 
