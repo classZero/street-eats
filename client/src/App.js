@@ -4,6 +4,7 @@ import store from './store.js'
 import TProfileView from './truckprofile/components/tprofileview'
 import URegistration from './UserRegistration/components/URegistration'
 import Home from './home/Home'
+import MapViewHome from './MapView/mapviewcomponents/MapsViewHome'
 
 class App extends Component {
   render () {
@@ -13,6 +14,7 @@ class App extends Component {
             <Route path="/" exact component={Home} />
             <Route path="/truckprofile" component={TProfileView} />
             <Route path="/URegistration" component={URegistration} />
+            <Route path="/map" component={MapViewHome} />
           </div>
         </Router>
     )
