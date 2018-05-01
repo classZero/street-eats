@@ -1,4 +1,4 @@
-constInitialState = {
+const initialState = {
   addy: '',
   lat: '',
   lng: ''

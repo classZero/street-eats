@@ -3,13 +3,14 @@ import {createStore, combineReducers} from 'redux'
 import homeReducer from './home/homeReducer'
 import loginReducer from './home/loginReducer'
 import tProfileReducer from './truckprofile/reducers/tProfileReducer'
-
+import mapreducer from './MapView/mapviewreducers/mapreducers'
 //import reducer here
 
 const rootReducer = combineReducers({
   homeReducer,
   loginReducer,
-  tProfileReducer
+  tProfileReducer,
+  mapreducer
   //add your reducer here
 })
 
