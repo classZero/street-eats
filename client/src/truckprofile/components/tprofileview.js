@@ -14,7 +14,7 @@ class TProfileView extends Component {
             <div>
                 <MapViewHome />
                 <div>Company name: {this.props.profile.companyname}</div>
-                <div><img src={this.props.profile.companylogo} /></div>
+                <div>Truck picture<img src={this.props.profile.logo} /></div>
                 <div>About us: {this.props.profile.aboutus}</div>
                 <div><img src={this.props.profile.menuurl} /></div>
             </div>
