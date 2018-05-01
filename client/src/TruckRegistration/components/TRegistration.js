@@ -66,10 +66,10 @@ class TRegistration extends Component {
                         .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                         .field('file', file)
 
-  //   upload.end((err, response) => {
-  //     if (err) {
-  //       console.error(err)
-  //     }
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err)
+      }
 
       if (response.body.secure_url !== '') {
         console.log('resp.body.secure_url ' + response.body.secure_url )
@@ -77,7 +77,8 @@ class TRegistration extends Component {
           uploadCloudinaryLogoUrl: response.body.secure_url
         })
       }
-    }
+    })
+  }
   
 
 	render(){

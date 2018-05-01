@@ -39,43 +39,20 @@ router.get('/userprofile/:username', (req, res, next) => {
     const username = req.params.username
     const sql = `
     SELECT * 
-    FROM trucks 
-    WHERE username = ?
+  FROM users 
+  WHERE username = ?
     `
     conn.query(sql, username, (err, results, fields) => {
-      const companyname = results[0].companyname
-      const aboutus = results[0].aboutus
-      const menuurl = results[0].menuurl
-      const companylogo = results[0].companylogo
-      
-      res.json({
-          companyname,
-          aboutus,
-          menuurl,
-          companylogo
-      })
+        const username = results[0].username
+        const email = results[0].email
+        res.json({
+            username,
+            email
+        })
     })
-  
-  })
-  
-  router.get('/userprofile/:username', (req, res, next) => {
-      const username = req.params.username
-      const sql = `
-      SELECT * 
-    FROM users 
-    WHERE username = ?
-      `
-      conn.query(sql, username, (err, results, fields) => {
-          const username = results[0].username
-          const email = results[0].email
-          res.json({
-              username,
-              email
-          })
-      })
-  
-  
-  })
+
+
+})
 
 router.post('/registration', (req, res, next) => {
   console.log('req.body public reg ' + JSON.stringify(req.body))
@@ -148,7 +125,6 @@ router.post('/login', (req, res, next) => {
                 UNION
                 SELECT username, email, Null as companyname, Null as companylogo, Null as menuurl, Null as aboutus, Null as lng, Null as lat, Null as datecreated FROM users as userInfo WHERE username = ? AND password = ?`
 
-
     conn.query(sql, [username, password, username, password], (err, results, fields) => {
       console.log('login results ' + JSON.stringify(results))
         if(results.length > 0) {
@@ -160,7 +136,6 @@ router.post('/login', (req, res, next) => {
                 user: username, //username also attached to token
                 source: results[0].Source
             })
-
         } else {
             res.status(401).json({
                 message: "Bad Username and/or Password"
