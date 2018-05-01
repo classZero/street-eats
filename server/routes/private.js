@@ -10,5 +10,4 @@ router.post('/foo', (req, res, next) => {
   })
 })
 
-
 export default router

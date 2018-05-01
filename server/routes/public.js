@@ -23,13 +23,13 @@ router.get('/truckprofile/:username', (req, res, next) => {
     const companyname = results[0].companyname
     const aboutus = results[0].aboutus
     const menuurl = results[0].menuurl
-    const truckpic = results[0].truckpicurl
+    const logo = results[0].companylogo
     
     res.json({
         companyname,
         aboutus,
         menuurl,
-        truckpic
+        logo
     })
   })
 
@@ -49,11 +49,10 @@ router.get('/userprofile/:username', (req, res, next) => {
             username
         })
     })
-
-
 })
 
 router.post('/registration', (req, res, next) => {
+  console.log('req.body public reg ' + JSON.stringify(req.body))
     const username = req.body.username
     const password = sha512(req.body.password)
     const email = req.body.email
@@ -90,21 +89,22 @@ router.post('/registration', (req, res, next) => {
             if (req.body.type === "truck"){
                 const token = jwt.sign({user: username}, config.get('jwt-secret'))
 
-                const companyname = req.body.typedata.companyName
-                const companylogo = req.body.typedata.companyLogo
-                const menuurl = req.body.typedata.menu
-                const aboutus = req.body.typedata.aboutus
+                const companyname = req.body.companyName
+                const companyLogo = req.body.companyLogo
+                const menuurl = req.body.menu
+                const aboutus = req.body.aboutus
 
                 const insertSql = `
                     INSERT INTO trucks (username, password, email, companyname, companylogo, menuurl, aboutus) VALUES (?,?,?,?,?,?,?)
                 `
 
-                conn.query(insertSql, [username, password, email, companyname, companylogo, menuurl, aboutus], (err2, results2, fields2) =>{
+                conn.query(insertSql, [username, password, email, companyname, companyLogo, menuurl, aboutus], (err2, results2, fields2) =>{
                     res.json({
                         message: "Truck Created",
                         token: token,
                         user: username,
-                        email: email
+                        email: email,
+                        companyLogo: companyLogo
                     })
                 })
             }

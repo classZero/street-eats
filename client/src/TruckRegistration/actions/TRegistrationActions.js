@@ -3,12 +3,20 @@ import api from 'lib/api'
 api.new('/api')
 
 
-export function registerTruck(truckObj){
-	api.registration(truckObj.username, truckObj.password, truckObj.email, "truck", truckObj.companyInfo).then(resp =>{
+export function registerTruck(username, password, email, companyName, companyLogo, aboutus){
+  const type = 'truck'
+	api.registration(username, password, email, type, companyName, companyLogo, aboutus).then(resp =>{
 		console.log('in tactions:', resp)
 		store.dispatch({
 			type: 'REGISTER_TRUCK',
 			payload: resp.data
 		})
 	})
+}
+
+export function addImage(url) {
+  store.dispatch({
+      type: "ADD_IMAGE_URL",
+      payload: url
+  })  
 }

@@ -13,7 +13,7 @@ class TProfileView extends Component {
         return (
             <div>
                 <div>Company name: {this.props.profile.companyname}</div>
-                <div>Truck picture<img src={this.props.profile.truckpic} /></div>
+                <div>Truck picture<img src={this.props.profile.logo} /></div>
                 <div>About us: {this.props.profile.aboutus}</div>
                 <div>Menu <img src={this.props.profile.menuurl} /></div>
             </div>
