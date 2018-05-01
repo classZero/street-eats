@@ -26,7 +26,7 @@ class MapViewInputs extends Component {
 
       <form onSubmit={this.handleSubmit}>
 
-        <input onChange={this.handleChange} autoComplete="off" type="text" placeholder="street address"  />
+        <input onChange={this.handleChange} name="addy" autoComplete="off" type="text" placeholder="street address" value={this.state.addy} />
         <select>
           <option value={this.state.addy}>Street</option>
           <option value={this.state.addy}>Way</option>
