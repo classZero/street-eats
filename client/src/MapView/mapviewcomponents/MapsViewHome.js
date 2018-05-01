@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
 import './mapviewhomestyles.css'
 import Geocode from 'react-geocode'
-import MapViewInputs from './MapViewInputs'
 
 class MapViewHome extends Component {
   state = {
@@ -16,11 +15,16 @@ class MapViewHome extends Component {
     activeMarker: marker,
     showingInfoWindow: true
   })
+  /* handles console logging out lat and lng from address input WILL want to seperate this to post the lat and lng to database to pull into the map position to display markers*/
+  onSubmit = Geocode.fromAddress("12278 kings eagle street las vegas 89141").then(
+    response => {
+      const { lat, lng } = response.results[0].geometry.location
+      console.log(lat, lng)
+    }
+  )
   render () {
     return (
     <div>
-
-      <MapViewInputs />
 
 {/* handles displaying the map with markers allows pop up window on click of pin to be fully customizable */}
       <div className="mapstestcontainer">
@@ -43,18 +47,6 @@ class MapViewHome extends Component {
         </Map>
         
       </div>
-
-{/* handles console logging out lat and lng from address input WILL want to seperate this to post the lat and lng to database to pull into the map position to display markers*/}
-      {/* <div>
-      <script>
-  {Geocode.fromAddress("12278 kings eagle street las vegas 89141").then(
-  response => {
-    const { lat, lng } = response.results[0].geometry.location
-    console.log(lat, lng)
-  }
-)}
-  </script>
-  </div> */}
 
     </div>
       
