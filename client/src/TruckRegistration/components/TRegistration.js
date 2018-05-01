@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {registerTruck} from '../actions/TRegistrationActions'
-import Dropzone from 'react-dropzone'
+// import Dropzone from 'react-dropzone'
 
 
 class TRegistration extends Component {
@@ -55,26 +55,26 @@ class TRegistration extends Component {
     this.handleImageUpload(files[0])
   }
   
-  handleImageUpload(file) {
-    const CLOUDINARY_UPLOAD_PRESET = 'bvidje9n'//'your_upload_preset_id';
-    const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/maglingkod/image/upload'                      //'https://api.cloudinary.com/v1_1/your_cloudinary_app_name/upload';
-    let upload = request.post(CLOUDINARY_UPLOAD_URL)
-                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-                        .field('file', file)
+  // handleImageUpload(file) {
+  //   const CLOUDINARY_UPLOAD_PRESET = 'bvidje9n'//'your_upload_preset_id';
+  //   const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/maglingkod/image/upload'                      //'https://api.cloudinary.com/v1_1/your_cloudinary_app_name/upload';
+  //   let upload = request.post(CLOUDINARY_UPLOAD_URL)
+  //                       .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+  //                       .field('file', file)
 
-    upload.end((err, response) => {
-      if (err) {
-        console.error(err)
-      }
+  //   upload.end((err, response) => {
+  //     if (err) {
+  //       console.error(err)
+  //     }
 
-      if (response.body.secure_url !== '') {
-        console.log('resp.body.secure_url ' + response.body.secure_url )
-        this.setState({
-          uploadCloudinaryUrl: response.body.secure_url
-        })
-      }
-    })
-  }
+  //     if (response.body.secure_url !== '') {
+  //       console.log('resp.body.secure_url ' + response.body.secure_url )
+  //       this.setState({
+  //         uploadCloudinaryUrl: response.body.secure_url
+  //       })
+  //     }
+  //   })
+  // }
 
 	render(){
 		return(
@@ -91,12 +91,12 @@ class TRegistration extends Component {
 						<input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="password"/>
 						<input onChange={this.handleChange} type="password" name="confirmPassword" value={this.state.confirmPassword} placeholder="confirm password"/>
             <div className="add-image-container">
-              <Dropzone
+              {/* <Dropzone
                 multiple={false}
                 accept="image/*"
                 onDrop={this.onImageDrop}>
                 <p>Drop an image or click to select a file to upload.</p>
-              </Dropzone>
+              </Dropzone> */}
               <div>
                 {this.state.uploadCloudinaryUrl === '' ? null :
                 <div>

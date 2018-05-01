@@ -13,45 +13,46 @@ router.get('/api', (req, res, next) => {
 
 
 router.get('/truckprofile/:username', (req, res, next) => {
-  const username = req.params.username
-  const sql = `
-  SELECT * 
-  FROM trucks 
-  WHERE username = ?
-  `
-  conn.query(sql, username, (err, results, fields) => {
-    const companyname = results[0].companyname
-    const aboutus = results[0].aboutus
-    const menuurl = results[0].menuurl
-    const truckpic = results[0].truckpicurl
-    
-    res.json({
-        companyname,
-        aboutus,
-        menuurl,
-        truckpic
-    })
-  })
-
-})
-
-router.get('/userprofile/:username', (req, res, next) => {
     const username = req.params.username
-    console.log('user ' + username)
     const sql = `
     SELECT * 
-  FROM users 
-  WHERE username = ?
+    FROM trucks 
+    WHERE username = ?
     `
     conn.query(sql, username, (err, results, fields) => {
-        const username = results[0].username
-        res.json({
-            username
-        })
+      const companyname = results[0].companyname
+      const aboutus = results[0].aboutus
+      const menuurl = results[0].menuurl
+      const companylogo = results[0].companylogo
+      
+      res.json({
+          companyname,
+          aboutus,
+          menuurl,
+          companylogo
+      })
     })
-
-
-})
+  
+  })
+  
+  router.get('/userprofile/:username', (req, res, next) => {
+      const username = req.params.username
+      const sql = `
+      SELECT * 
+    FROM users 
+    WHERE username = ?
+      `
+      conn.query(sql, username, (err, results, fields) => {
+          const username = results[0].username
+          const email = results[0].email
+          res.json({
+              username,
+              email
+          })
+      })
+  
+  
+  })
 
 router.post('/registration', (req, res, next) => {
     const username = req.body.username
