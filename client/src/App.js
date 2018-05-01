@@ -7,6 +7,7 @@ import Home from './home/Home'
 import UProfileView from './userprofile/components/uprofileview'
 import MapViewHome from './MapView/mapviewcomponents/MapsViewHome'
 import MapViewInputs from './MapView/mapviewcomponents/MapViewInputs'
+import EditProfile from './EditProfile/components/EditProfile'
 
 class App extends Component {
   render () {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route path="/userprofile" component={UProfileView} />
             <Route path="/map" component={MapViewHome} />
             <Route path="/mapinputs" component={MapViewInputs} />
+            <Route path="/editprofile" component={EditProfile} />
           </div>
         </Router>
     )
