@@ -3,29 +3,29 @@ import { connect } from 'react-redux';
 import {getProfile} from '../actions/tProfileActions'
 
 class TProfileView extends Component {
-    static defaultProps = {
-        profile : {} 
-    }
 
     componentDidMount(){
-        getProfile()
+        getProfile(this.props.username)
     }
 
     render() {
-        console.log(this.props.profile)
+        // console.log(this.props.username)
         return (
             <div>
-                <div>{this.props.profile.name}</div>
-                <div>{this.props.profile.phone}</div>
-                <div>{this.props.profile.website}</div>
+                <div>Company name: {this.props.profile.companyname}</div>
+                <div>Truck picture<img src={this.props.profile.truckpic} /></div>
+                <div>About us: {this.props.profile.aboutus}</div>
+                <div>Menu <img src={this.props.profile.menuurl} /></div>
             </div>
         );
     }
 }
 
 function mapStateToProps(state) {
+  // console.log('tprofview ' + JSON.stringify(state.loginReducer.username))
     return {
-        profile : state.profile
+        profile : state.tProfileReducer.profile,
+        username: state.loginReducer.username
     }
 }
 

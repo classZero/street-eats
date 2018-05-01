@@ -15,8 +15,12 @@ class MapViewHome extends Component {
     activeMarker: marker,
     showingInfoWindow: true
   })
+
   /* handles console logging out lat and lng from address input WILL want to seperate this to post the lat and lng to database to pull into the map position to display markers*/
   onSubmit = Geocode.fromAddress("12278 kings eagle street las vegas 89141").then(
+
+/* handles console logging out lat and lng from address input WILL want to seperate this to post the lat and lng to database to pull into the map position to display markers*/ 
+onSubmit = Geocode.fromAddress("12278 kings eagle street las vegas 89141").then(
     response => {
       const { lat, lng } = response.results[0].geometry.location
       console.log(lat, lng)
@@ -28,7 +32,7 @@ class MapViewHome extends Component {
 
 {/* handles displaying the map with markers allows pop up window on click of pin to be fully customizable */}
       <div className="mapstestcontainer">
-        <Map style={{width: '45%', height: '75%', position: 'relative'}} google={this.props.google} initialCenter={{lat:36.133348310973645 ,lng:-115.15630909218748 }} zoom={11}>
+        <Map style={{width: '100%', height: '75%', position: 'relative'}} google={this.props.google} initialCenter={{lat:36.133348310973645 ,lng:-115.15630909218748 }} zoom={11}>
         
         {/* Handles markers display */}
         <Marker onClick={this.onMarkerClick}

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import store from './store.js'
 import TProfileView from './truckprofile/components/tprofileview'
 import URegistration from './UserRegistration/components/URegistration'
+import TRegistration from './TruckRegistration/components/TRegistration'
 import Home from './home/Home'
+import UProfileView from './userprofile/components/uprofileview'
 import MapViewHome from './MapView/mapviewcomponents/MapsViewHome'
 import MapViewInputs from './MapView/mapviewcomponents/MapViewInputs'
 
@@ -12,9 +13,11 @@ class App extends Component {
     return (
         <Router>
           <div>
-            <Route path="/" exact component={Home} />
+            <Route exact path="/" component={Home} />
             <Route path="/truckprofile" component={TProfileView} />
             <Route path="/URegistration" component={URegistration} />
+            <Route path="/TRegistration" component={TRegistration} />
+            <Route path="/userprofile" component={UProfileView} />
             <Route path="/map" component={MapViewHome} />
             <Route path="/mapinputs" component={MapViewInputs} />
           </div>

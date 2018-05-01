@@ -35,18 +35,16 @@ instance.getRegisterPath = function() {
 }
 
 instance.login = function (username, password) {
-    console.log('api login ' + username)
     return this.post(this.getTokenPath(), {username, password})
         .then(resp => {
         window.localStorage.setItem('token', resp.data.token)
-        //dispatch token to store / move to index call
         this.tokenInterceptor = this.interceptors.request.use(config => {
           config.headers['Authorization'] = 'Bearer ' + resp.data.token
           return config
         })
         store.dispatch({
           type: "LOGIN_USER",
-          payload:resp.data
+          payload: resp.data
         })
     })
 }
@@ -56,21 +54,22 @@ instance.logout = function() {
   this.interceptors.request.eject(this.tokenInterceptor)
   this.interceptors.request.eject(this.registerInterceptor)
   window.localStorage.removeItem('token')
+  store.dispatch({
+    type: "LOGOUT_USER",
+    payload: ''
+  })
 }
 
-instance.registration = function (username, password, email) {
-    return this.post(this.getRegisterPath(), {username, password, email})
+instance.registration = function (username, password, email, type, typedata = {}) {
+    return this.post(this.getRegisterPath(), {username, password, email, type, typedata})
         .then(resp => {
-            window.localStorage.setItem('token', resp.data.token)
-            //dispatch token to store 
+            console.log('in api:', resp)
+            // window.localStorage.setItem('token', resp.data.token)
             this.registerInterceptor = this.interceptors.request.use(config => {
               config.headers['Authorization'] = 'Bearer ' + resp.data.token
               return config
             })
-            store.dispatch({
-              type: "ADD_TOKEN",      //change here
-              payload:resp.data
-            })
+            return resp.data
         }
     )
 }
