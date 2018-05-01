@@ -6,6 +6,7 @@ import TRegistration from './TruckRegistration/components/TRegistration'
 import Home from './home/Home'
 import UProfileView from './userprofile/components/uprofileview'
 import MapViewHome from './MapView/mapviewcomponents/MapsViewHome'
+import MapViewInputs from './MapView/mapviewcomponents/MapViewInputs'
 
 class App extends Component {
   render () {
@@ -18,6 +19,7 @@ class App extends Component {
             <Route path="/TRegistration" component={TRegistration} />
             <Route path="/userprofile" component={UProfileView} />
             <Route path="/map" component={MapViewHome} />
+            <Route path="/mapinputs" component={MapViewInputs} />
           </div>
         </Router>
     )
