@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
+import {convertAddy} from '../mapviewactions/mapactions'
 
 class MapViewInputs extends Component {
+  state = {
+    addy: ''
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
+    convertAddy(this.state.addy)
+    this.setState({
+      addy: ''
+    })
   }
 
   handleChange = (e) => {
