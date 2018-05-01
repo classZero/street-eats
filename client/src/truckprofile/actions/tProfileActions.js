@@ -1,10 +1,11 @@
 import store from '../../store'
+import axios from 'axios'
 
-export function getProfile() {
-    fetch('https://jsonplaceholder.typicode.com/users/1').then(resp => resp.json()).then(resp => {
+export function getProfile(username) {
+    axios.get('/api/truckprofile/' + username).then(resp => {
         store.dispatch({
             type: 'GET_PROFILE',
-            payload : resp
+            payload : resp.data
         })
     })
 }
