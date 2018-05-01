@@ -7,7 +7,7 @@ import {getUserProfile} from '../actions/uProfileActions'
 class UProfileView extends Component {
 
     componentDidMount(){
-        getUserProfile()
+        getUserProfile(this.props.username)
     }
 
     render() {
@@ -21,7 +21,8 @@ class UProfileView extends Component {
 
 function mapStateToProps(state) {
     return {
-        profile : state.uProfileReducer.profile
+        profile : state.uProfileReducer.profile,
+        username : state.loginReducer.username
     }
 }
 

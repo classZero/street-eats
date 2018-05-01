@@ -5,11 +5,11 @@ import {getProfile} from '../actions/tProfileActions'
 class TProfileView extends Component {
 
     componentDidMount(){
-        getProfile()
+        getProfile(this.props.username)
     }
 
     render() {
-        console.log(this.props.profile)
+        // console.log(this.props.username)
         return (
             <div>
                 <div>Company name: {this.props.profile.companyname}</div>
@@ -22,8 +22,10 @@ class TProfileView extends Component {
 }
 
 function mapStateToProps(state) {
+  // console.log('tprofview ' + JSON.stringify(state.loginReducer.username))
     return {
-        profile : state.tProfileReducer.profile
+        profile : state.tProfileReducer.profile,
+        username: state.loginReducer.username
     }
 }
 

@@ -35,24 +35,21 @@ instance.getRegisterPath = function() {
 }
 
 instance.login = function (username, password) {
-    console.log('api login ' + username)
     return this.post(this.getTokenPath(), {username, password})
         .then(resp => {
         window.localStorage.setItem('token', resp.data.token)
-        //dispatch token to store / move to index call
         this.tokenInterceptor = this.interceptors.request.use(config => {
           config.headers['Authorization'] = 'Bearer ' + resp.data.token
           return config
         })
         store.dispatch({
           type: "LOGIN_USER",
-          payload:resp.data
+          payload: resp.data
         })
     })
 }
 
 instance.logout = function() {
-  console.log('api logout')
   this.token = null
   this.interceptors.request.eject(this.tokenInterceptor)
   this.interceptors.request.eject(this.registerInterceptor)
