@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import EditTruckProfile from './EditTruckProfile'
+import EditUserProfile from './EditUserProfile'
+
+
+
+
 
 
 class EditProfile extends Component {
     
+  editType(source) {
+    if(source === 'truck') {
+      return <EditTruckProfile />
+    } else {
+      return <EditUserProfile />
+    }
+  }
 
 
     render() {
         return (
-            <div>dsfjksdjl
-
+            <div>
+              {this.editType('truck')}
 
             </div>
             
@@ -17,7 +29,10 @@ class EditProfile extends Component {
     }
 }
 
-export default EditProfile;
+
+
+export default EditProfile
+
 
 
 
