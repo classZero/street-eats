@@ -16,9 +16,6 @@ class MapViewHome extends Component {
     showingInfoWindow: true
   })
 
-  /* handles console logging out lat and lng from address input WILL want to seperate this to post the lat and lng to database to pull into the map position to display markers*/
-  onSubmit = Geocode.fromAddress("12278 kings eagle street las vegas 89141").then(
-
 /* handles console logging out lat and lng from address input WILL want to seperate this to post the lat and lng to database to pull into the map position to display markers*/ 
 onSubmit = Geocode.fromAddress("12278 kings eagle street las vegas 89141").then(
     response => {
