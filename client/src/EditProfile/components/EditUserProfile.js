@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
+import {getUserProfile} from '../../userprofile/actions/uProfileActions'
 import { connect } from 'react-redux';
-import {getUserProfile} from '../actions/uProfileActions'
 
 
 
-class UProfileView extends Component {
 
-    componentDidMount(){
-        getUserProfile()          //this.props.username --- add as argument
+
+class EditUserProfile extends Component {
+    
+    componentDidMount() {
+        getUserProfile()
     }
 
     render() {
         return (
             <div>
-              <div>Username: {this.props.profile.username}</div>
+                <div>Username: {this.props.profile.username}</div>
               <div>Email: {this.props.profile.email}</div>
             </div>
-        )
+        );
     }
 }
+
 
 function mapStateToProps(state) {
     return {
@@ -28,4 +31,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(UProfileView);
+export default connect(mapStateToProps)(EditUserProfile);

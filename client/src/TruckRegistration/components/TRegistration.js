@@ -6,6 +6,7 @@ import request from 'superagent'
 // import axios from 'axios'
 
 
+
 class TRegistration extends Component {
 	state = {
 		username: '',
@@ -65,10 +66,10 @@ class TRegistration extends Component {
                         .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                         .field('file', file)
 
-    upload.end((err, response) => {
-      if (err) {
-        console.error(err)
-      }
+  //   upload.end((err, response) => {
+  //     if (err) {
+  //       console.error(err)
+  //     }
 
       if (response.body.secure_url !== '') {
         console.log('resp.body.secure_url ' + response.body.secure_url )
@@ -76,8 +77,8 @@ class TRegistration extends Component {
           uploadCloudinaryLogoUrl: response.body.secure_url
         })
       }
-    })
-  }
+    }
+  
 
 	render(){
 		return(
@@ -103,7 +104,6 @@ class TRegistration extends Component {
               <div>
                 {this.state.uploadCloudinaryLogoUrl === '' ? null :
                 <div>
-                  {/* <p>{this.state.uploadedFile.name}</p> */}
                   <img id="upload-img" src={this.state.uploadCloudinaryLogoUrl} alt="upload"/>
                 </div>}
               </div>
