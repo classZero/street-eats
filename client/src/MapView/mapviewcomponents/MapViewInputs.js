@@ -12,6 +12,7 @@ class MapViewInputs extends Component {
     this.setState({
       addy: ''
     })
+    console.log(this.state.addy)
   }
 
   handleChange = (e) => {
@@ -27,7 +28,7 @@ class MapViewInputs extends Component {
       <form onSubmit={this.handleSubmit}>
 
         <input onChange={this.handleChange} name="addy" autoComplete="off" type="text" placeholder="street address" value={this.state.addy} />
-        <select>
+        {/* <select>
           <option value={this.state.addy}>Street</option>
           <option value={this.state.addy}>Way</option>
           <option value={this.state.addy}>Road</option>
@@ -37,7 +38,7 @@ class MapViewInputs extends Component {
           <option value={this.state.addy}>Lane</option>
           <option value={this.state.addy}>Terrace</option>
           <option value={this.state.addy}>Court</option>
-        </select>
+        </select> */}
         <input onChange={this.handleChange} autoComplete="off" type="cell" placeholder="when will you open" />
         <input onChange={this.handleChange} autoComplete="off" type="cell" placeholder="when will you close" />
         
