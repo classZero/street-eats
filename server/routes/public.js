@@ -12,9 +12,8 @@ router.get('/api', (req, res, next) => {
 })
 
 
-router.get('/truckprofile', (req, res, next) => {
-  // const username = store.getState().login.username----must set username here and delete const below & must move to private routes
-  const username = 'food'
+router.get('/truckprofile/:username', (req, res, next) => {
+  const username = req.params.username
   const sql = `
   SELECT * 
   FROM trucks 
@@ -36,16 +35,14 @@ router.get('/truckprofile', (req, res, next) => {
 
 })
 
-router.get('/userprofile', (req, res, next) => {
-    // const username = store.getState().login.username----must set username here and delete const below & must move to private routes
-    const username = 'johnny5'
-
+router.get('/userprofile/:username', (req, res, next) => {
+    const username = req.params.username
+    console.log('user ' + username)
     const sql = `
     SELECT * 
   FROM users 
   WHERE username = ?
     `
-
     conn.query(sql, username, (err, results, fields) => {
         const username = results[0].username
         res.json({
@@ -55,10 +52,6 @@ router.get('/userprofile', (req, res, next) => {
 
 
 })
-
-
-
-
 
 router.post('/registration', (req, res, next) => {
     const username = req.body.username
@@ -131,7 +124,7 @@ router.post('/login', (req, res, next) => {
 
 
     conn.query(sql, [username, password, username, password], (err, results, fields) => {
-      // console.log('login results ' + JSON.stringify(results))
+      console.log('login results ' + JSON.stringify(results))
         if(results.length > 0) {
             console.log('username and password returned match')
             const token = jwt.sign({user: username}, config.get('jwt-secret'))
@@ -139,7 +132,9 @@ router.post('/login', (req, res, next) => {
                 message: "Login Successful",
                 token: token,
                 user: username, //username also attached to token
+                source: results[0].Source
             })
+
         } else {
             res.status(401).json({
                 message: "Bad Username and/or Password"
@@ -149,4 +144,3 @@ router.post('/login', (req, res, next) => {
 })
 
 export default router
-// module.exports = router
