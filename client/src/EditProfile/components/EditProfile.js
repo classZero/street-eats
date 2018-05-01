@@ -22,7 +22,6 @@ class EditProfile extends Component {
         return (
             <div>
               {this.editType('truck')}
-
             </div>
             
         )
