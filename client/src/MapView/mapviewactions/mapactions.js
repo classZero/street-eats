@@ -8,7 +8,9 @@ export function convertAddy(addy) {
     response => {
       const { lat, lng } = response.results[0].geometry.location
       axios.post('/api/updatelocation/' + username + '/' + lat + '/' + lng).then(resp => {
-        
+
+    }).catch(err => {
+      console.log(err)
     })
   })
 }
