@@ -20,18 +20,43 @@ class URegistration extends Component {
 	handleSubmit = (e) =>{
 		e.preventDefault()
 
-		registerUser({
-			username: this.state.username,
-			email: this.state.email,
-			password: this.state.password
-		})
+		//usernames may only contain alphanumeric characters, and may use the seperators '_' and '-'
+		const userRegExp = /^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/
+		//passwords must contain at least 1 letter and 1 number, and may use characters A-Z, 0-9, as well as the special characters !,@,#,$,%,_,-
+		//lengthen password requirements for production
+		const passRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%_-]{2,}$/
 
-		this.setState({
-			username: '',
-			email: '',
-			password: '',
-			confirmPassword: ''
-		})
+		const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+		if(this.state.username && userRegExp.test(this.state.username)){
+			if(this.state.email && emailRegExp.test(this.state.email)){
+				if(this.state.password && passRegExp.test(this.state.password)){
+					if(this.state.password !== '' && this.state.password === this.state.confirmPassword){
+
+						registerUser({
+							username: this.state.username,
+							email: this.state.email,
+							password: this.state.password
+						})
+
+						this.setState({
+							username: '',
+							email: '',
+							password: '',
+							confirmPassword: ''
+						})
+					} else {
+						window.alert('Passwords must match')
+					}
+				} else {
+					window.alert('Passwords must contain at least one letter and one number, and may also contain !,@,#,$,%,_,-')
+				}
+			} else {
+				window.alert('Please enter a valid email')
+			}
+		} else {
+			window.alert('Usernames can only include characters A-Z, 0-9, and may use _ and - as seperators')
+		}
 	}
 
 	render(){
@@ -40,10 +65,10 @@ class URegistration extends Component {
 				<fieldset>
 					<legend>User Registration</legend>
 					<form onSubmit={this.handleSubmit}>
-						<input onChange={this.handleChange} type="text" name="username" value={this.state.username}  placeholder="username"/>
-						<input onChange={this.handleChange} type="text" name="email" value={this.state.email} placeholder="email"/>
-						<input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="password"/>
-						<input onChange={this.handleChange} type="password" name="confirmPassword" value={this.state.confirmPassword} placeholder="confirm password"/>
+						<input onChange={this.handleChange} type="text" name="username" value={this.state.username}  placeholder="username" required/>
+						<input onChange={this.handleChange} type="email" name="email" value={this.state.email} placeholder="john@example.com" required/>
+						<input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="password" required/>
+						<input onChange={this.handleChange} type="password" name="confirmPassword" value={this.state.confirmPassword} placeholder="confirm password" required/>
 						<button type="submit">Register User</button>
 					</form>
 				</fieldset>
