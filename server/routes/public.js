@@ -27,6 +27,56 @@ router.post('/updatelocation/:user/:lat/:lng', (req, res, next) => {
   })
 })
 
+router.post('/updatehours/:user/:opentime/:closetime', (req, res, next) => {
+  const username = req.params.user
+  const open = req.params.opentime
+  const close = req.params.closetime
+  console.log(req.params)
+  const sql = `
+  UPDATE trucks 
+  SET timeopen = ?,timeclose = ?
+  WHERE username = ?
+  `
+  conn.query(sql, [open, close, username], (err, results, fields) => {
+    console.log(JSON.stringify(results))
+  })
+})
+
+router.post('/updatespecial/:user/:specialinfo', (req, res, next) => {
+  const username = req.params.user
+  const special = req.params.specialinfo
+  console.log(req.params)
+  const sql = `
+  UPDATE trucks
+  SET specialinfo = ?
+  WHERE username = ?
+  `
+  conn.query(sql, [special, username], (err, results, fields) => {
+    console.log(JSON.stringify(results))
+  })
+})
+
+router.get('/cords/', (req, res, next) => {
+  const sql = `
+  SELECT * 
+  FROM trucks 
+  `
+  conn.query(sql, (err, results, fields) => {
+    // const companyname = results[0].companyname
+    // const truckpic = results[0].truckpicurl
+    // const lat = results[0].lat
+    // const lng = results[0].lng
+    // const open = results[0].timeopen
+    // const close = results[0].timeclose
+    // const specialinfo = results[0].specialinfo
+
+    res.json(
+        results
+    )
+  })
+
+})
+
 
 router.get('/userprofile/:username', (req, res, next) => {
     const username = req.params.username

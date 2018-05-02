@@ -14,3 +14,41 @@ export function convertAddy(addy) {
     })
   })
 }
+
+export function postHours(open, close) {
+  const username = store.getState().loginReducer.username
+  const opentime = open
+  const closetime = close
+  
+  axios.post('/api/updatehours/' + username + '/' + opentime + '/' + closetime).then(resp => {
+    store.dispatch({
+      type: 'UPDATE_HOURS',
+      payload: resp.data
+    })
+  }).catch(err => {
+    console.log(err)
+  })
+}
+
+export function postSpecial(special) {
+  const username = store.getState().loginReducer.username
+  const specialinfo = special
+  
+  axios.post('/api/updatespecial/' + username + '/' + specialinfo).then(resp => {
+    store.dispatch({
+      type: 'UPDATE_SPECIAL',
+      payload: resp.data
+    })
+  }).catch(err => {
+    console.log(err)
+  })
+}
+
+export function getCords() {
+axios.get('/api/cords/').then(resp => {
+    store.dispatch({
+        type: 'GET_CORDS',
+        payload : resp.data
+    })
+})
+}
