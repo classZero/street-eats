@@ -11,6 +11,21 @@ router.get('/api', (req, res, next) => {
     res.send('working')
 })
 
+router.post('/updatelocation/:user/:lat/:lng', (req, res, next) => {
+  const username = req.params.user
+  const lat = req.params.lat
+  const lng = req.params.lng
+  console.log(req.params)
+  const sql = `
+  UPDATE trucks 
+  SET lat = ?,lng = ? 
+  WHERE username = ?
+  `
+  conn.query(sql, [lat, lng, username], (err, results, fields) => {
+    console.log(JSON.stringify(results))
+  })
+})
+
 
 router.get('/truckprofile/:username', (req, res, next) => {
   const username = req.params.username
@@ -23,13 +38,13 @@ router.get('/truckprofile/:username', (req, res, next) => {
     const companyname = results[0].companyname
     const aboutus = results[0].aboutus
     const menuurl = results[0].menuurl
-    const truckpic = results[0].truckpicurl
+    const logo = results[0].companylogo
     
     res.json({
         companyname,
         aboutus,
         menuurl,
-        truckpic
+        logo
     })
   })
 
@@ -37,7 +52,6 @@ router.get('/truckprofile/:username', (req, res, next) => {
 
 router.get('/userprofile/:username', (req, res, next) => {
     const username = req.params.username
-    console.log('user ' + username)
     const sql = `
     SELECT * 
   FROM users 
@@ -45,8 +59,10 @@ router.get('/userprofile/:username', (req, res, next) => {
     `
     conn.query(sql, username, (err, results, fields) => {
         const username = results[0].username
+        const email = results[0].email
         res.json({
-            username
+            username,
+            email
         })
     })
 
@@ -54,6 +70,7 @@ router.get('/userprofile/:username', (req, res, next) => {
 })
 
 router.post('/registration', (req, res, next) => {
+  console.log('req.body public reg ' + JSON.stringify(req.body))
     const username = req.body.username
     const password = sha512(req.body.password)
     const email = req.body.email
@@ -90,21 +107,22 @@ router.post('/registration', (req, res, next) => {
             if (req.body.type === "truck"){
                 const token = jwt.sign({user: username}, config.get('jwt-secret'))
 
-                const companyname = req.body.typedata.companyName
-                const companylogo = req.body.typedata.companyLogo
-                const menuurl = req.body.typedata.menu
-                const aboutus = req.body.typedata.aboutus
+                const companyname = req.body.companyName
+                const companyLogo = req.body.companyLogo
+                const menuurl = req.body.menu
+                const aboutus = req.body.aboutus
 
                 const insertSql = `
                     INSERT INTO trucks (username, password, email, companyname, companylogo, menuurl, aboutus) VALUES (?,?,?,?,?,?,?)
                 `
 
-                conn.query(insertSql, [username, password, email, companyname, companylogo, menuurl, aboutus], (err2, results2, fields2) =>{
+                conn.query(insertSql, [username, password, email, companyname, companyLogo, menuurl, aboutus], (err2, results2, fields2) =>{
                     res.json({
                         message: "Truck Created",
                         token: token,
                         user: username,
-                        email: email
+                        email: email,
+                        companyLogo: companyLogo
                     })
                 })
             }
@@ -122,7 +140,6 @@ router.post('/login', (req, res, next) => {
                 UNION
                 SELECT username, email, Null as companyname, Null as companylogo, Null as menuurl, Null as aboutus, Null as lng, Null as lat, Null as datecreated FROM users as userInfo WHERE username = ? AND password = ?`
 
-
     conn.query(sql, [username, password, username, password], (err, results, fields) => {
       console.log('login results ' + JSON.stringify(results))
         if(results.length > 0) {
@@ -134,7 +151,6 @@ router.post('/login', (req, res, next) => {
                 user: username, //username also attached to token
                 source: results[0].Source
             })
-
         } else {
             res.status(401).json({
                 message: "Bad Username and/or Password"

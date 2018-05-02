@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {registerTruck} from '../actions/TRegistrationActions'
+import {registerTruck, addImage} from '../actions/TRegistrationActions'
 import Dropzone from 'react-dropzone'
+import request from 'superagent'
+// import axios from 'axios'
+
 
 
 class TRegistration extends Component {
@@ -12,7 +15,7 @@ class TRegistration extends Component {
 		aboutus: '',
 		password: '',
     confirmPassword: '',
-    uploadCloudinaryUrl: '',
+    uploadCloudinaryLogoUrl: '',
     uploadedFile: ''
 	}
 
@@ -25,19 +28,19 @@ class TRegistration extends Component {
 
 	handleSubmit = (e) =>{
 		e.preventDefault()
+    console.log(this.state.uploadCloudinaryLogoUrl)
+		registerTruck(
+			this.state.username,
+			this.state.password,
+			this.state.email,
+			this.state.companyName,
+			this.state.uploadCloudinaryLogoUrl,
+			// menu: this.state.uploadCloudinaryMenuUrl,
+			this.state.aboutus
+    )
 
-		registerTruck({
-			username: this.state.username,
-			password: this.state.password,
-			email: this.state.email,
-			companyInfo : {
-				companyName: this.state.companyName,
-				companyLogo: 'http://placehold.it/200/200',
-				menu: 'http://placehold.it/400/400',
-				aboutus: this.state.aboutus
-			}
+    // addImage(this.state.uploadCloudinaryUrl)
 
-		})
 		this.setState({
 			username: '',
 			companyName: '',
@@ -49,6 +52,7 @@ class TRegistration extends Component {
   }
 
   onImageDrop = (files) => {
+    console.log('Treg files ' + files)
     this.setState({
       uploadedFile: files[0]
     })
@@ -57,7 +61,7 @@ class TRegistration extends Component {
   
   handleImageUpload(file) {
     const CLOUDINARY_UPLOAD_PRESET = 'bvidje9n'//'your_upload_preset_id';
-    const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/maglingkod/image/upload'                      //'https://api.cloudinary.com/v1_1/your_cloudinary_app_name/upload';
+    const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/maglingkod/image/upload'                      
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
                         .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                         .field('file', file)
@@ -70,11 +74,12 @@ class TRegistration extends Component {
       if (response.body.secure_url !== '') {
         console.log('resp.body.secure_url ' + response.body.secure_url )
         this.setState({
-          uploadCloudinaryUrl: response.body.secure_url
+          uploadCloudinaryLogoUrl: response.body.secure_url
         })
       }
     })
   }
+  
 
 	render(){
 		return(
@@ -95,15 +100,15 @@ class TRegistration extends Component {
                 multiple={false}
                 accept="image/*"
                 onDrop={this.onImageDrop}>
-                <p>Drop an image or click to select a file to upload.</p>
+                <p>Drop your logo image or click to select a file to upload.</p>
               </Dropzone>
               <div>
-                {this.state.uploadCloudinaryUrl === '' ? null :
+                {this.state.uploadCloudinaryLogoUrl === '' ? null :
                 <div>
-                  {/* <p>{this.state.uploadedFile.name}</p> */}
-                  <img id="upload-img" src={this.state.uploadCloudinaryUrl} alt="upload"/>
+                  <img id="upload-img" src={this.state.uploadCloudinaryLogoUrl} alt="upload"/>
                 </div>}
               </div>
+              
             </div>
 						<button type="submit">Register</button>
 					</form>

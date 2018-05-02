@@ -60,8 +60,8 @@ instance.logout = function() {
   })
 }
 
-instance.registration = function (username, password, email, type, typedata = {}) {
-    return this.post(this.getRegisterPath(), {username, password, email, type, typedata})
+instance.registration = function (username, password, email, type, companyName, companyLogo, aboutus) {
+    return this.post(this.getRegisterPath(), {username, password, email, type, companyName, companyLogo, aboutus})
         .then(resp => {
             console.log('in api:', resp)
             // window.localStorage.setItem('token', resp.data.token)

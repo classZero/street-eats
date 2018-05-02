@@ -1,8 +1,18 @@
 import React, { Component } from 'react'
+import {convertAddy} from '../mapviewactions/mapactions'
 
 class MapViewInputs extends Component {
+  state = {
+    addy: ''
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
+    convertAddy(this.state.addy)
+    this.setState({
+      addy: ''
+    })
+    console.log(this.state.addy)
   }
 
   handleChange = (e) => {
@@ -17,18 +27,18 @@ class MapViewInputs extends Component {
 
       <form onSubmit={this.handleSubmit}>
 
-        <input onChange={this.handleChange} autoComplete="off" type="text" placeholder="street address" />
-        <select>
-          <option value="street">Street</option>
-          <option value="way">Way</option>
-          <option value="road">Road</option>
-          <option value="avenue">Avenue</option>
-          <option value="boulevard">Boulevard</option>
-          <option value="drive">Drive</option>
-          <option value="lane">Lane</option>
-          <option value="terrace">Terrace</option>
-          <option value="court">Court</option>
-        </select>
+        <input onChange={this.handleChange} name="addy" autoComplete="off" type="text" placeholder="street address" value={this.state.addy} />
+        {/* <select>
+          <option value={this.state.addy}>Street</option>
+          <option value={this.state.addy}>Way</option>
+          <option value={this.state.addy}>Road</option>
+          <option value={this.state.addy}>Avenue</option>
+          <option value={this.state.addy}>Boulevard</option>
+          <option value={this.state.addy}>Drive</option>
+          <option value={this.state.addy}>Lane</option>
+          <option value={this.state.addy}>Terrace</option>
+          <option value={this.state.addy}>Court</option>
+        </select> */}
         <input onChange={this.handleChange} autoComplete="off" type="cell" placeholder="when will you open" />
         <input onChange={this.handleChange} autoComplete="off" type="cell" placeholder="when will you close" />
         
