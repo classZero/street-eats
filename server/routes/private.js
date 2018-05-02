@@ -4,13 +4,9 @@ import conn from '../lib/conn'
 
 const router = express.Router() 
 
-router.post('/foo', (req, res, next) => {
-  res.json({
-    foo: 'bar'
-  })
-})
 
 router.get('/truckprofile/:username', (req, res, next) => {
+  // console.log(req.params.username)
   const username = req.params.username
   const sql = `
   SELECT * 

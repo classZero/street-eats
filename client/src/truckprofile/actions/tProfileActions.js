@@ -6,13 +6,7 @@ export function getProfile(username) {
     api.getTruckProfile(username).then(resp =>{
 		store.dispatch({
 			type: 'GET_PROFILE',
-			payload: resp.data
+			payload: resp
 		})
 	})
-    // axios.get('/api/truckprofile/' + username).then(resp => {
-    //     store.dispatch({
-    //         type: 'GET_PROFILE',
-    //         payload : resp.data
-    //     })
-    // })
 }

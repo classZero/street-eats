@@ -75,6 +75,7 @@ instance.registration = function (username, password, email, type, companyName, 
 }
 
 instance.getTruckProfile = function (username) {
+  // console.log(username)
   return this.get('/truckprofile/' + username)
   .then(resp => {
     return resp.data
