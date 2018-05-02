@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 import config from 'config'
 import conn from '../lib/conn'
 import sha512 from 'js-sha512'
+import {testUsername, testPassword, testEmail} from '../lib/validators'
 
 const router = express.Router() 
 
@@ -11,7 +12,22 @@ router.get('/api', (req, res, next) => {
     res.send('working')
 })
 
-  
+router.post('/updatelocation/:user/:lat/:lng', (req, res, next) => {
+  const username = req.params.user
+  const lat = req.params.lat
+  const lng = req.params.lng
+  console.log(req.params)
+  const sql = `
+  UPDATE trucks 
+  SET lat = ?,lng = ? 
+  WHERE username = ?
+  `
+  conn.query(sql, [lat, lng, username], (err, results, fields) => {
+    console.log(JSON.stringify(results))
+  })
+})
+
+
 router.get('/userprofile/:username', (req, res, next) => {
     const username = req.params.username
     const sql = `
@@ -51,42 +67,56 @@ router.post('/registration', (req, res, next) => {
         } else {
 
             if (req.body.type === "user") {
-                const token = jwt.sign({user: username}, config.get('jwt-secret'))
+                if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
+                    const token = jwt.sign({user: username}, config.get('jwt-secret'))
 
-                const insertSql = `
-                    INSERT INTO users (username, password, email) VALUES (?,?,?)
-                `
-                conn.query(insertSql, [username, password, email], (err2, results2, fields2) =>{
-                    res.json({
-                        message: "User Created",
-                        token: token,
-                        user: username,
-                        email: email
+                    const insertSql = `
+                        INSERT INTO users (username, password, email) VALUES (?,?,?)
+                    `
+                    conn.query(insertSql, [username, password, email], (err2, results2, fields2) =>{
+                        res.json({
+                            message: "User Created",
+                            token: token,
+                            user: username,
+                            email: email
+                        })
                     })
-                })
+                } else {
+                    res.status(400).json({
+                        message: "Bad Request"
+                    })
+                }
             }
 
             if (req.body.type === "truck"){
-                const token = jwt.sign({user: username}, config.get('jwt-secret'))
 
-                const companyname = req.body.companyName
-                const companyLogo = req.body.companyLogo
-                const menuurl = req.body.menu
-                const aboutus = req.body.aboutus
+                if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
+                    const token = jwt.sign({user: username}, config.get('jwt-secret'))
+                    console.log('public line 94 ' + req.body)
+                    const companyname = req.body.companyName
+                    const companyLogo = req.body.companyLogo
+                    const menuurl = req.body.menu
+                    const aboutus = req.body.aboutus
 
-                const insertSql = `
-                    INSERT INTO trucks (username, password, email, companyname, companylogo, menuurl, aboutus) VALUES (?,?,?,?,?,?,?)
-                `
+                    const insertSql = `
+                        INSERT INTO trucks (username, password, email, companyname, companylogo, menuurl, aboutus) VALUES (?,?,?,?,?,?,?)
+                    `
 
-                conn.query(insertSql, [username, password, email, companyname, companyLogo, menuurl, aboutus], (err2, results2, fields2) =>{
-                    res.json({
-                        message: "Truck Created",
-                        token: token,
-                        user: username,
-                        email: email,
-                        companyLogo: companyLogo
+                    conn.query(insertSql, [username, password, email, companyname, companyLogo, menuurl, aboutus], (err2, results2, fields2) =>{
+                        res.json({
+                            message: "Truck Created",
+                            token: token,
+                            user: username,
+                            email: email,
+                            companyLogo: companyLogo,
+                            menuurl: menuurl
+                        })
                     })
-                })
+                } else {
+                    res.status(400).json({
+                        message: "Bad Request"
+                    })
+                }
             }
         }
     })
@@ -102,7 +132,6 @@ router.post('/login', (req, res, next) => {
                 UNION
                 SELECT username, email, Null as companyname, Null as companylogo, Null as menuurl, Null as aboutus, Null as lng, Null as lat, Null as datecreated FROM users as userInfo WHERE username = ? AND password = ?`
 
-
     conn.query(sql, [username, password, username, password], (err, results, fields) => {
       console.log('login results ' + JSON.stringify(results))
         if(results.length > 0) {
@@ -114,7 +143,6 @@ router.post('/login', (req, res, next) => {
                 user: username, //username also attached to token
                 source: results[0].Source
             })
-
         } else {
             res.status(401).json({
                 message: "Bad Username and/or Password"

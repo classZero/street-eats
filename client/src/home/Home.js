@@ -25,6 +25,7 @@ export class Home extends Component {
           <Link to="/Tregistration">temp truck registration page</Link>
           <Link to="/userprofile">working user profile page</Link>
           <Link to="/truckprofile">working truck profile page</Link>
+          <Link to="/mapinputs">inputs for trucks</Link>
         </div>
         <div className="home-body-container">
           <MapViewHome />
