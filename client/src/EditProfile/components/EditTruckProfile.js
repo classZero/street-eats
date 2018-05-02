@@ -49,7 +49,7 @@ state = {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <div>Company Name: <input onChange={this.handleChange} type='text' name='name' placeholder={this.state.name} /> </div>
+                    <div>Company Name: <input onChange={this.handleChange} type='text' name='name' value={this.state.name} /> </div>
                     <div>Company logo: <input onChange={this.handleChange} type='text' name='logo' value={this.state.logo} /> </div>
                     <div><img src={this.props.profile.logo} /></div>
                     <div>About us: <textarea onChange={this.handleChange} name='aboutus' value={this.state.aboutus} /></div>
@@ -64,7 +64,8 @@ state = {
 
 function mapStateToProps(state) {
     return {
-        profile : state.tProfileReducer.profile
+        profile : state.tProfileReducer.profile,
+        username : state.loginReducer.username
     }
 }
 

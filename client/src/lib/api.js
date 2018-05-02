@@ -74,5 +74,13 @@ instance.registration = function (username, password, email, type, companyName, 
     )
 }
 
+instance.getTruckProfile = function (username) {
+  return this.get('/truckprofile/' + username)
+  .then(resp => {
+    return resp.data
+  })
+}
+
+
 
 export default instance
