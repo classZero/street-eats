@@ -82,6 +82,20 @@ instance.getTruckProfile = function (username) {
   })
 }
 
+instance.getUserProfile = function (username) {
+  // console.log(username)
+  return this.get('/userprofile/' + username)
+  .then(resp => {
+    return resp.data
+  })
+}
+
+instance.editTruckProfile = function(name, logo, aboutus, menuurl) {
+  return this.post('/editTruckProfile', {name, logo, aboutus, menuurl})
+  .then(resp => {
+    return resp.data
+  })
+}
 
 
 export default instance

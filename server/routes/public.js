@@ -27,26 +27,6 @@ router.post('/updatelocation/:user/:lat/:lng', (req, res, next) => {
   })
 })
 
-
-router.get('/userprofile/:username', (req, res, next) => {
-    const username = req.params.username
-    const sql = `
-    SELECT * 
-FROM users 
-WHERE username = ?
-    `
-    conn.query(sql, username, (err, results, fields) => {
-        const username = results[0].username
-        const email = results[0].email
-        res.json({
-            username,
-            email
-        })
-    })
-
-
-})
-
 router.post('/registration', (req, res, next) => {
   console.log('req.body public reg ' + JSON.stringify(req.body))
     const username = req.body.username
@@ -149,31 +129,6 @@ router.post('/login', (req, res, next) => {
             })
         }
     })
-})
-
-router.post('/edittruckprofile', (req, res, next) => {
-    const name = req.body.name
-    const logo = req.body.logo
-    const aboutus = req.body.aboutus
-    const menuurl = req.body.menuurl
-    // console.log(name, logo, aboutus, menuurl)
-    const sql = `
-    UPDATE users 
-    SET email = 'new' 
-    WHERE username = 'johnny5'
-    `
-
-    conn.query(sql, (err, results, fields) => {
-        res.json({
-            name,
-            logo,
-            aboutus,
-            menuurl
-        })
-    } )
-
-
-
 })
 
 export default router
