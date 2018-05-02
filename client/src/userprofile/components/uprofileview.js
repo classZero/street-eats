@@ -7,7 +7,7 @@ import {getUserProfile} from '../actions/uProfileActions'
 class UProfileView extends Component {
 
     componentDidMount(){
-        getUserProfile()          //this.props.username --- add as argument
+        getUserProfile(this.props.username)
     }
 
     render() {

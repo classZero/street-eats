@@ -91,7 +91,7 @@ router.post('/registration', (req, res, next) => {
 
             if (req.body.type === "truck"){
                 const token = jwt.sign({user: username}, config.get('jwt-secret'))
-
+                console.log('public line 94 ' + req.body)
                 const companyname = req.body.companyName
                 const companyLogo = req.body.companyLogo
                 const menuurl = req.body.menu
@@ -107,7 +107,8 @@ router.post('/registration', (req, res, next) => {
                         token: token,
                         user: username,
                         email: email,
-                        companyLogo: companyLogo
+                        companyLogo: companyLogo,
+                        menuurl: menuurl
                     })
                 })
             }
