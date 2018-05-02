@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
-import {convertAddy} from '../mapviewactions/mapactions'
+import {convertAddy , postHours} from '../mapviewactions/mapactions'
 
 class MapViewInputs extends Component {
   state = {
-    addy: ''
+    addy: '',
+    open: '',
+    close: ''
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
     convertAddy(this.state.addy)
+    postHours(this.state.open, this.state.close)
     this.setState({
-      addy: ''
+      addy: '',
+      open: '',
+      close: ''
     })
     console.log(this.state.addy)
   }
@@ -28,19 +33,9 @@ class MapViewInputs extends Component {
       <form onSubmit={this.handleSubmit}>
 
         <input onChange={this.handleChange} name="addy" autoComplete="off" type="text" placeholder="street address" value={this.state.addy} />
-        {/* <select>
-          <option value={this.state.addy}>Street</option>
-          <option value={this.state.addy}>Way</option>
-          <option value={this.state.addy}>Road</option>
-          <option value={this.state.addy}>Avenue</option>
-          <option value={this.state.addy}>Boulevard</option>
-          <option value={this.state.addy}>Drive</option>
-          <option value={this.state.addy}>Lane</option>
-          <option value={this.state.addy}>Terrace</option>
-          <option value={this.state.addy}>Court</option>
-        </select> */}
-        <input onChange={this.handleChange} autoComplete="off" type="cell" placeholder="when will you open" />
-        <input onChange={this.handleChange} autoComplete="off" type="cell" placeholder="when will you close" />
+
+        <input onChange={this.handleChange} name="open" autoComplete="off" type="cell" placeholder="when will you open" value={this.state.open} />
+        <input onChange={this.handleChange} name="close" autoComplete="off" type="cell" placeholder="when will you close" value={this.state.close} />
         
         <h5>Optional Fields:</h5>
         <input onChange={this.handleChange} autoComplete="off" style={{width:'500px'}} type="text" placeholder="special info, to be seen by customers who click on your location EX. behind the target" />

@@ -26,6 +26,48 @@ router.post('/updatelocation/:user/:lat/:lng', (req, res, next) => {
   })
 })
 
+router.post('/updatehours/:user/:opentime/:closetime', (req, res, next) => {
+  const username = req.params.user
+  const open = req.params.opentime
+  const close = req.params.closetime
+  console.log(req.params)
+  const sql = `
+  UPDATE trucks 
+  SET timeopen = ?,timeclose = ?
+  WHERE username = ?
+  `
+  conn.query(sql, [open, close, username], (err, results, fields) => {
+    console.log(JSON.stringify(results))
+  })
+})
+
+router.get('/cords/:username', (req, res, next) => {
+  const username = req.params.username
+  const sql = `
+  SELECT * 
+  FROM trucks 
+  WHERE username = ?
+  `
+  conn.query(sql, username, (err, results, fields) => {
+    const companyname = results[0].companyname
+    const truckpic = results[0].truckpicurl
+    const lat = results[0].lat
+    const lng = results[0].lng
+    const open = results[0].timeopen
+    const close = results[0].timeclose
+    
+    res.json({
+        companyname,
+        truckpic,
+        lat,
+        lng,
+        open,
+        close
+    })
+  })
+
+})
+
 
 router.get('/truckprofile/:username', (req, res, next) => {
   const username = req.params.username

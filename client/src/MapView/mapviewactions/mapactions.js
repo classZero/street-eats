@@ -14,3 +14,27 @@ export function convertAddy(addy) {
     })
   })
 }
+
+export function postHours(open, close) {
+  const username = store.getState().loginReducer.username
+  const opentime = open
+  const closetime = close
+  
+  axios.post('/api/updatehours/' + username + '/' + opentime + '/' + closetime).then(resp => {
+    store.dispatch({
+      type: 'UPDATE_HOURS',
+      payload: resp.data
+    })
+  }).catch(err => {
+    console.log(err)
+  })
+}
+
+export function getCords(username) {
+axios.get('/api/cords/' + username).then(resp => {
+    store.dispatch({
+        type: 'GET_CORDS',
+        payload : resp.data
+    })
+})
+}
