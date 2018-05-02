@@ -1,8 +1,9 @@
 const initialState = {
   addy: '',
-  profile: {},
+  mappop: [],
   open: '',
-  close: ''
+  close: '',
+  special: ''
 }
 
 export default function (state = initialState, action) {
@@ -10,9 +11,11 @@ export default function (state = initialState, action) {
     case 'ADDY_INPUT': 
       return {...state, addy: action.payload}
     case 'GET_CORDS':
-      return {...state, profile: action.payload}
+      return {...state, mappop: action.payload}
     case 'UPDATE_HOURS':
       return {...state, open: action.payload.opentime, close: action.payload.closetime}
+    case 'UPDATE_SPECIAL':
+      return {...state, special: action.payload.specialinfo}
 	default:
 		return state
 	}

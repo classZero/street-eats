@@ -9,55 +9,57 @@ class MapViewHome extends Component {
   state = {
     showingInfoWindow: false,
     activeMarker: {},
-    selectedPlace: {},
+    selectedPlace: '',
   }
 
   componentDidMount(){
     getCords(this.props.username)
   }
 
-  onMarkerClick = (props, marker, e) =>
-  this.setState({
-    selectedPlace: props,
-    activeMarker: marker,
-    showingInfoWindow: true
-  })
+  onClickMarker = (props, marker, e) => {
+    this.setState({
+      selectedPlace: props.title,
+      activeMarker: marker,
+      showingInfoWindow: true
+    })
+  }
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  }
   render () {
     return (
     <div>
 
-{/* handles displaying the map with markers allows pop up window on click of pin to be fully customizable */}
       <div className="mapstestcontainer">
-        <Map style={{width: '100%', height: '75%', position: 'relative'}} google={this.props.google} initialCenter={{lat:36.133348310973645 ,lng:-115.15630909218748 }} zoom={11}>
-        
-        {/* {data.map(stuff => ( */}
-
-        {/* Handles markers display */}
-        <Marker onClick={this.onMarkerClick}
-          position={{lat: 36.1658194, lng:-115.1891859}} 
+        <Map style={{width: '100%', height: '75%', position: 'relative'}} onClick={this.onMapClicked} google={this.props.google} initialCenter={{lat:36.133348310973645 ,lng:-115.15630909218748 }} zoom={11}>
+        {this.props.mapdata.map((truck, i) => (
+          // <div key={'key' + i}>
+          <Marker 
+          key={'key'+i}
+          onClick={this.onClickMarker}
+          title={truck.companyname}
+          position={{lat: truck.lat, lng: truck.lng}} 
           />
-
-      
-          <Marker onClick={this.onMarkerClick}
-          position={{lat: this.props.username.lat, lng: this.props.username.lng}} 
-          />
-          
-            <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
-            <div>
-              <h1>Name of Truck</h1>
-              <h4>Address of Truck</h4>
-              <h6>OPTIONAL special info</h6>
-            </div>
-        </InfoWindow>
-        
-        {/* ))} */}
-
+          // <InfoWindow
+          //   marker={this.state.activeMarker}
+          //   visible={this.state.showingInfoWindow}>
+          //     <div>
+          //       <h1>{truck.companyname}</h1>
+          //       <h4>Address of Truck</h4>
+          //       <h6>{truck.specialinfo}</h6>
+          //     </div>
+          // </InfoWindow>
+          //{/* </div> */}
+          ))}
         </Map>
         
       </div>
-
+      <p>{this.state.selectedPlace}</p>
     </div>
       
     )
@@ -66,7 +68,8 @@ class MapViewHome extends Component {
 
 function mapStateToProps(state) {
     return {
-        username: state.loginReducer.username
+        username: state.loginReducer.username,
+        mapdata: state.mapreducer.mappop
     }
 }
 

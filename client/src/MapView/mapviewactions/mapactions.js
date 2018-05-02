@@ -30,8 +30,22 @@ export function postHours(open, close) {
   })
 }
 
-export function getCords(username) {
-axios.get('/api/cords/' + username).then(resp => {
+export function postSpecial(special) {
+  const username = store.getState().loginReducer.username
+  const specialinfo = special
+  
+  axios.post('/api/updatespecial/' + username + '/' + specialinfo).then(resp => {
+    store.dispatch({
+      type: 'UPDATE_SPECIAL',
+      payload: resp.data
+    })
+  }).catch(err => {
+    console.log(err)
+  })
+}
+
+export function getCords() {
+axios.get('/api/cords/').then(resp => {
     store.dispatch({
         type: 'GET_CORDS',
         payload : resp.data

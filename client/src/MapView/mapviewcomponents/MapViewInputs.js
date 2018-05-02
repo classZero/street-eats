@@ -1,21 +1,24 @@
 import React, { Component } from 'react'
-import {convertAddy , postHours} from '../mapviewactions/mapactions'
+import {convertAddy , postHours, postSpecial} from '../mapviewactions/mapactions'
 
 class MapViewInputs extends Component {
   state = {
     addy: '',
     open: '',
-    close: ''
+    close: '',
+    special: ''
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
     convertAddy(this.state.addy)
     postHours(this.state.open, this.state.close)
+    postSpecial(this.state.special)
     this.setState({
       addy: '',
       open: '',
-      close: ''
+      close: '',
+      special: ''
     })
     console.log(this.state.addy)
   }
@@ -38,7 +41,7 @@ class MapViewInputs extends Component {
         <input onChange={this.handleChange} name="close" autoComplete="off" type="cell" placeholder="when will you close" value={this.state.close} />
         
         <h5>Optional Fields:</h5>
-        <input onChange={this.handleChange} autoComplete="off" style={{width:'500px'}} type="text" placeholder="special info, to be seen by customers who click on your location EX. behind the target" />
+        <input onChange={this.handleChange} name="special" autoComplete="off" style={{width:'500px'}} type="text" placeholder="special info, to be seen by customers who click on your location EX. behind the target" value={this.state.special} />
         <br/>
 
         <button type="submit">Submit</button>
