@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+
+import glamorous from 'glamorous'
 import Login from '../login/Login'
+import {getTruckData} from './homeActions'
 import MapViewHome from '../MapView/mapviewcomponents/MapsViewHome'
 import HomeDropdown from '../dropdowns/homeDropdown/HomeDropdown'
 
@@ -11,9 +14,13 @@ import './home.css'
 
 export class Home extends Component {
   static defaultProps = {
-    username: ''
+    username: '',
+    trucks: []
   }
-
+  componentDidMount() {
+    getTruckData()
+  }
+  
   render() {
     return (
       <div className="home-container">
@@ -27,16 +34,20 @@ export class Home extends Component {
           <Link to="/truckprofile">working truck profile page</Link>
           <Link to="/mapinputs">inputs for trucks</Link>
           <Link to="map">links to map</Link>
+          <p>{this.props.username}</p>
         </div>
         <div className="home-body-container">
           <MapViewHome />
           <div className="home-newsfeed">
-            <h3>Coming Events</h3>
-            <div>
-              <p>message content</p>
-            </div>
+            <h1>Newest Trucks</h1>
+            {this.props.trucks.map((truck, i) => {
+              return (<div key={'key' + i}>
+                        <h3>{truck.companyname}</h3>
+                        <p>{truck.formattedAddress}</p>
+                      </div>
+                      )
+            })}
           </div>
-          <p>Current Username {this.props.username}</p>
         </div>
       </div>
     )
@@ -45,11 +56,12 @@ export class Home extends Component {
 
 function mapStateToProps(state) {
   console.log(state)
+  console.log(state.homeReducer.truckData.results)
   console.log('isAuth? ' + state.loginReducer.isAuthenticated)
-  console.log('CurrUser ' + state.loginReducer.username)
   return {
     isAuthenticated: state.loginReducer.isAuthenticated,
-    username: state.loginReducer.username
+    username: state.loginReducer.username,
+    trucks: state.homeReducer.truckData
   }
 }
 

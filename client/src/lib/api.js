@@ -81,6 +81,13 @@ instance.getTruckProfile = function (username) {
   })
 }
 
+instance.getTruckData = function () {
+  console.log('api get truck data')
+  return this.get('/truckdata').then(resp => {
+    return resp.data
+  })
+}
+
 
 
 export default instance

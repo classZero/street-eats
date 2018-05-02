@@ -6,19 +6,24 @@ import {getCords} from '../mapviewactions/mapactions'
 import {connect} from 'react-redux'
 
 class MapViewHome extends Component {
+  static defaultProps = {
+    trucks: []
+  }
   state = {
     showingInfoWindow: false,
     activeMarker: {},
-    selectedPlace: '',
+    selectedName: '',
+    selectedLocation: ''
   }
 
   componentDidMount(){
-    getCords(this.props.username)
+    // getCords()  replaced with homeReducer trucks list
   }
 
   onClickMarker = (props, marker, e) => {
     this.setState({
-      selectedPlace: props.title,
+      selectedName: props.title,
+      selectedLocation: props.location,
       activeMarker: marker,
       showingInfoWindow: true
     })
@@ -35,14 +40,15 @@ class MapViewHome extends Component {
     return (
     <div>
 
-      <div className="mapstestcontainer">
-        <Map style={{width: '100%', height: '75%', position: 'relative'}} onClick={this.onMapClicked} google={this.props.google} initialCenter={{lat:36.133348310973645 ,lng:-115.15630909218748 }} zoom={11}>
-        {this.props.mapdata.map((truck, i) => (
+      <div className="mapstestcontainer" style={{width: '900px', height: '600px', marginTop: '50px'}}>
+        <Map style={{width: '100%', height: '100%', position: 'relative'}} onClick={this.onMapClicked} google={this.props.google} initialCenter={{lat:36.133348310973645 ,lng:-115.15630909218748 }} zoom={11}>
+        {this.props.trucks.map((truck, i) => (
           // <div key={'key' + i}>
           <Marker 
           key={'key'+i}
           onClick={this.onClickMarker}
           title={truck.companyname}
+          location={truck.formattedAddress}
           position={{lat: truck.lat, lng: truck.lng}} 
           />
           // <InfoWindow
@@ -59,7 +65,8 @@ class MapViewHome extends Component {
         </Map>
         
       </div>
-      <p>{this.state.selectedPlace}</p>
+      <p>{this.state.selectedName}</p>
+      <p>{this.state.selectedLocation}</p>
     </div>
       
     )
@@ -69,7 +76,8 @@ class MapViewHome extends Component {
 function mapStateToProps(state) {
     return {
         username: state.loginReducer.username,
-        mapdata: state.mapreducer.mappop
+        // mapdata: state.mapreducer.mappop,        replaced with home reducer
+        trucks: state.homeReducer.truckData
     }
 }
 
