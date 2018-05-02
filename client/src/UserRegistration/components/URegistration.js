@@ -33,11 +33,11 @@ class URegistration extends Component {
 				if(this.state.password && passRegExp.test(this.state.password)){
 					if(this.state.password !== '' && this.state.password === this.state.confirmPassword){
 
-						registerUser({
-							username: this.state.username,
-							email: this.state.email,
-							password: this.state.password
-						})
+						registerUser(
+							this.state.username,
+							this.state.password,
+							this.state.email
+						)
 
 						this.setState({
 							username: '',
