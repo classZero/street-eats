@@ -1,12 +1,23 @@
 import store from '../../store'
-import axios from 'axios'
+import api from 'lib/api'
+api.new('/api')
+
 
 export function getUserProfile(username) {
-    axios.get('/api/userprofile/' + username).then(resp => {
+    api.getUserProfile(username).then(resp =>{
+		store.dispatch({
+			type: 'GET_USER_PROFILE',
+			payload: resp
+		})
+	})
+}
+
+// export function getUserProfile(username) {
+//     axios.get('/api/userprofile/' + username).then(resp => {
         
-        store.dispatch({
-            type: 'GET_USER_PROFILE',
-            payload : resp.data
-        })
-    })
-} 
+//         store.dispatch({
+//             type: 'GET_USER_PROFILE',
+//             payload : resp.data
+//         })
+//     })
+// } 

@@ -4,11 +4,6 @@ import { connect } from 'react-redux';
 import {editTruckProfile} from '../actions/edittruckprofileaction'
 
 
-
-
-
-
-
 class EditTruckProfile extends Component {
 
 state = {
@@ -19,7 +14,7 @@ state = {
 }
     
     componentDidMount(){
-        getProfile()       ///add username as argument
+        getProfile("lt")       ///add username as argument
     }
 
     handleChange = (e) =>{

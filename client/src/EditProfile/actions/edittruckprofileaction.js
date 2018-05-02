@@ -1,11 +1,9 @@
-import axios from 'axios'
-
-
-
-
+import store from '../../store'
+import api from 'lib/api'
+api.new('/api')
 
 export function editTruckProfile(name, logo, aboutus, menuurl) {
-    axios.post('/api/edittruckprofile', {name, logo, aboutus, menuurl}).then(resp => {
-        console.log(resp.data)
+    api.editTruckProfile(name, logo, aboutus, menuurl).then(resp => {
+        // console.log(resp)
     })
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EditTruckProfile from './EditTruckProfile'
 import EditUserProfile from './EditUserProfile'
+import { connect } from 'react-redux'
 
 
 
@@ -17,8 +18,9 @@ class EditProfile extends Component {
     }
   }
 
-
+  
     render() {
+      console.log(this.props.source)
         return (
             <div>
               {this.editType('truck')}
@@ -28,9 +30,13 @@ class EditProfile extends Component {
     }
 }
 
+function mapStateToProps(state) {
+  return {
+    source : state.loginReducer
+  }
+}
 
-
-export default EditProfile
+export default connect(mapStateToProps)(EditProfile)
 
 
 

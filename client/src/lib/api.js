@@ -75,7 +75,24 @@ instance.registration = function (username, password, email, type, companyName, 
 }
 
 instance.getTruckProfile = function (username) {
+  // console.log(username)
   return this.get('/truckprofile/' + username)
+  .then(resp => {
+    return resp.data
+  })
+}
+
+
+instance.getUserProfile = function (username) {
+  // console.log(username)
+  return this.get('/userprofile/' + username)
+  .then(resp => {
+    return resp.data
+  })
+}
+
+instance.editTruckProfile = function(name, logo, aboutus, menuurl) {
+  return this.post('/editTruckProfile', {name, logo, aboutus, menuurl})
   .then(resp => {
     return resp.data
   })
@@ -84,10 +101,8 @@ instance.getTruckProfile = function (username) {
 instance.getTruckData = function () {
   console.log('api get truck data')
   return this.get('/truckdata').then(resp => {
-    return resp.data
+  return resp.data
   })
-}
-
-
+}  
 
 export default instance

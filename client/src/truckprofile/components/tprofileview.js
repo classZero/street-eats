@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {getProfile} from '../actions/tProfileActions'
 import MapViewHome from '../../MapView/mapviewcomponents/MapsViewHome'
+import {Link} from 'react-router-dom'
 
 class TProfileView extends Component {
 
     componentDidMount(){
-        getProfile(this.props.username) 
+        getProfile(this.props.username)
     }
 
     render() {
-        console.log(this.props.username)
         return (
             <div>
                 <MapViewHome />
@@ -18,6 +18,7 @@ class TProfileView extends Component {
                 <div>Truck picture<img src={this.props.profile.logo} /></div>
                 <div>About us: {this.props.profile.aboutus}</div>
                 <div><img src={this.props.profile.menuurl} /></div>
+                <Link to="/editprofile">Edit Profile</Link>
             </div>
         );
     }
