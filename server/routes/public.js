@@ -11,6 +11,21 @@ router.get('/api', (req, res, next) => {
     res.send('working')
 })
 
+router.post('/updatelocation/:user/:lat/:lng', (req, res, next) => {
+  const username = req.params.user
+  const lat = req.params.lat
+  const lng = req.params.lng
+  console.log(req.params)
+  const sql = `
+  UPDATE trucks 
+  SET lat = ?,lng = ? 
+  WHERE username = ?
+  `
+  conn.query(sql, [lat, lng, username], (err, results, fields) => {
+    console.log(JSON.stringify(results))
+  })
+})
+
 
 router.get('/truckprofile/:username', (req, res, next) => {
   const username = req.params.username
