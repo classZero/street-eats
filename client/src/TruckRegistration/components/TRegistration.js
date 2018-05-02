@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {registerTruck, addImage} from '../actions/TRegistrationActions'
-import Dropzone from 'react-dropzone'
-import request from 'superagent'
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
-// import axios from 'axios'
+// import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
 
 let images = []
 
@@ -31,7 +28,6 @@ class TRegistration extends Component {
 
 	handleSubmit = (e) =>{
 		e.preventDefault()
-    console.log(this.state.uploadCloudinaryLogoUrl)
 		registerTruck(
 			this.state.username,
 			this.state.password,
@@ -52,48 +48,16 @@ class TRegistration extends Component {
 		})
   }
 
-  // onLogoImageDrop = (files) => {
-  //   console.log('Treg files ' + files)
-  //   this.setState({
-  //     uploadedFiles: files[0]
-  //   })
-  //   this.handleImageUpload(files[0])
-  // }
-  
-  // handleImageUpload(file) {
-  //   const CLOUDINARY_UPLOAD_PRESET = 'avwvdugz'//'your_upload_preset_id';
-  //   const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/maglingkod/image/upload'                      
-  //   let upload = request.post(CLOUDINARY_UPLOAD_URL)
-  //                       .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-  //                       .field('file', file)
-
-  //   upload.end((err, response) => {
-  //     if (err) {
-  //       console.error(err)
-  //     }
-
-  //     if (response.body.secure_url !== '') {
-  //       console.log('resp.body ' + JSON.stringify(response.body))
-  //       console.log('resp.body.secure_url ' + response.body.secure_url )
-  //       this.setState({
-  //         uploadCloudinaryLogoUrl: response.body.secure_url
-  //       })
-  //     }
-  //   })
-  // }
-
   uploadWidget = (e) => {
     let type = e.target.value
     let data = {result: [{}]}
     window.cloudinary.openUploadWidget({ cloud_name: 'maglingkod', upload_preset: 'avwvdugz', tags:['foodtruck']},
       (error, result) => {
         data = {result, type}
-        images.push(data)
+        images.push(data)    //not currently using images array
         if (result[0].secure_url !== '') {
-          //this needs to be bound back to class
           if (type === 'logo') {
             this.setState({
-              // uploadedFiles: images,
               uploadCloudinaryLogoUrl: data.result[0].secure_url
             })
           }
@@ -105,20 +69,7 @@ class TRegistration extends Component {
         }
       }
     )
-  }   
-  setUrl = (type, data) => {
-    if (type === 'logo') {
-      this.setState({
-        // uploadedFiles: images,
-        uploadCloudinaryLogoUrl: data.result[0].secure_url
-      })
-    }
-    if (type === 'menu') {
-      this.setState({
-        uploadCloudinaryMenuUrl: data.result[0].secure_url
-      })
-    }
-  }
+  }  
 
 	render(){
 		return(
@@ -133,31 +84,6 @@ class TRegistration extends Component {
 						<input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="password"/>
 						<input onChange={this.handleChange} type="password" name="confirmPassword" value={this.state.confirmPassword} placeholder="confirm password"/>
             <div className="add-image-container">
-              {/* <Dropzone
-                multiple={true}
-                accept="image/*"
-                onDrop={this.onLogoImageDrop}>
-                <p>Drop your logo image or click to select a file to upload.</p>
-              </Dropzone>
-              <div>
-                {this.state.uploadCloudinaryLogoUrl === '' ? null :
-                <div>
-                  <img id="upload-img-logo" src={this.state.uploadCloudinaryLogoUrl} alt="upload"/>
-                </div>}
-              </div>
-
-              <Dropzone
-                multiple={false}
-                accept="image/*"
-                onDrop={this.onImageDrop}>
-                <p>Drop your Menu image or click to select a file to upload.</p>
-              </Dropzone>
-              <div>
-                {this.state.uploadCloudinaryMenuUrl === '' ? null :
-                <div>
-                  <img id="upload-img-menu" src={this.state.uploadCloudinaryMenuUrl} alt="upload"/>
-                </div>}
-              </div> */}
             </div>
 						<button type="submit">Register</button>
 					</form>
