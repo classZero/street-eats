@@ -108,9 +108,9 @@ router.post('/login', (req, res, next) => {
     const password = sha512(req.body.password)
     // const password = req.body.username
 
-    const sql = `SELECT username, email, companyname, companylogo, menuurl, aboutus, lng, lat, datecreated FROM trucks as truckInfo WHERE username = ? AND password = ?
+    const sql = `SELECT username, email, companyname, companylogo, menuurl, aboutus, lng, lat, datecreated, 'truck' as Source FROM trucks as truckInfo WHERE username = ? AND password = ?
                 UNION
-                SELECT username, email, Null as companyname, Null as companylogo, Null as menuurl, Null as aboutus, Null as lng, Null as lat, Null as datecreated FROM users as userInfo WHERE username = ? AND password = ?`
+                SELECT username, email, Null as companyname, Null as companylogo, Null as menuurl, Null as aboutus, Null as lng, Null as lat, Null as datecreated, 'user' as Source FROM users as userInfo WHERE username = ? AND password = ?`
 
     conn.query(sql, [username, password, username, password], (err, results, fields) => {
       console.log('login results ' + JSON.stringify(results))
