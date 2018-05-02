@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 import config from 'config'
 import conn from '../lib/conn'
 import sha512 from 'js-sha512'
+import {testUsername, testPassword, testEmail} from '../lib/validators'
 
 const router = express.Router() 
 
@@ -89,19 +90,25 @@ router.post('/registration', (req, res, next) => {
         } else {
 
             if (req.body.type === "user") {
-                const token = jwt.sign({user: username}, config.get('jwt-secret'))
+                if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
+                    const token = jwt.sign({user: username}, config.get('jwt-secret'))
 
-                const insertSql = `
-                    INSERT INTO users (username, password, email) VALUES (?,?,?)
-                `
-                conn.query(insertSql, [username, password, email], (err2, results2, fields2) =>{
-                    res.json({
-                        message: "User Created",
-                        token: token,
-                        user: username,
-                        email: email
+                    const insertSql = `
+                        INSERT INTO users (username, password, email) VALUES (?,?,?)
+                    `
+                    conn.query(insertSql, [username, password, email], (err2, results2, fields2) =>{
+                        res.json({
+                            message: "User Created",
+                            token: token,
+                            user: username,
+                            email: email
+                        })
                     })
-                })
+                } else {
+                    res.status(400).json({
+                        message: "Bad Request"
+                    })
+                }
             }
 
             if (req.body.type === "truck"){
