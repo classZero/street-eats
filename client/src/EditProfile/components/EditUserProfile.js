@@ -16,7 +16,7 @@ class EditUserProfile extends Component {
         return (
             <div>
                 <div>Username: {this.props.profile.username}</div>
-              <div>Email: {this.props.profile.email}</div>
+                <div>Email: {this.props.profile.email}</div>
             </div>
         );
     }

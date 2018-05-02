@@ -146,4 +146,29 @@ router.post('/login', (req, res, next) => {
     })
 })
 
+router.post('/edittruckprofile', (req, res, next) => {
+    const name = req.body.name
+    const logo = req.body.logo
+    const aboutus = req.body.aboutus
+    const menuurl = req.body.menuurl
+    // console.log(name, logo, aboutus, menuurl)
+    const sql = `
+    UPDATE users 
+    SET email = 'newnew' 
+    WHERE username = 'johnny5'
+    `
+
+    conn.query(sql, (err, results, fields) => {
+        res.json({
+            name,
+            logo,
+            aboutus,
+            menuurl
+        })
+    } )
+
+
+
+})
+
 export default router
