@@ -6,7 +6,7 @@ import MapViewHome from '../../MapView/mapviewcomponents/MapsViewHome'
 class TProfileView extends Component {
 
     componentDidMount(){
-        getProfile()   //this.props.username --- add as argument
+        getProfile(this.props.username) 
     }
 
     render() {
