@@ -28,27 +28,42 @@ class TRegistration extends Component {
 
 	handleSubmit = (e) =>{
 		e.preventDefault()
-    console.log(this.state.uploadCloudinaryLogoUrl)
-		registerTruck(
-			this.state.username,
-			this.state.password,
-			this.state.email,
-			this.state.companyName,
-			this.state.uploadCloudinaryLogoUrl,
-			// menu: this.state.uploadCloudinaryMenuUrl,
-			this.state.aboutus
-    )
 
-    // addImage(this.state.uploadCloudinaryUrl)
+		const userRegExp = /^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/
+		const passRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%_-]{2,}$/
+		const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+		
+    	console.log(this.state.uploadCloudinaryLogoUrl)
 
-		this.setState({
-			username: '',
-			companyName: '',
-			email: '',
-			aboutus: '',
-			password: '',
-			confirmPassword: ''
-		})
+		if(this.state.username && userRegExp.test(this.state.username)){
+			if(this.state.email && emailRegExp.test(this.state.email)){
+				if(this.state.password && passRegExp.test(this.state.password)){
+					if(this.state.password !== '' && this.state.password === this.state.confirmPassword){
+
+						registerTruck(
+							this.state.username,
+							this.state.password,
+							this.state.email,
+							this.state.companyName,
+							this.state.uploadCloudinaryLogoUrl,
+							// menu: this.state.uploadCloudinaryMenuUrl,
+							this.state.aboutus
+				    	)
+
+				    // addImage(this.state.uploadCloudinaryUrl)
+
+						this.setState({
+							username: '',
+							companyName: '',
+							email: '',
+							aboutus: '',
+							password: '',
+							confirmPassword: ''
+						})
+					} else {window.alert('Passwords must match')}
+				} else {window.alert('Passwords must contain at least one letter and one number, and may also contain !,@,#,$,%,_,-')}
+			} else {window.alert('Please enter a valid email')}
+		} else {window.alert('Usernames can only include characters A-Z, 0-9, and may use _ and - as seperators')}
   }
 
   onImageDrop = (files) => {
@@ -95,21 +110,21 @@ class TRegistration extends Component {
 						<textarea onChange={this.handleChange} name="aboutus" value={this.state.aboutus} placeholder="about us" ></textarea>
 						<input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="password"/>
 						<input onChange={this.handleChange} type="password" name="confirmPassword" value={this.state.confirmPassword} placeholder="confirm password"/>
-            <div className="add-image-container">
-              <Dropzone
-                multiple={false}
-                accept="image/*"
-                onDrop={this.onImageDrop}>
-                <p>Drop your logo image or click to select a file to upload.</p>
-              </Dropzone>
-              <div>
-                {this.state.uploadCloudinaryLogoUrl === '' ? null :
-                <div>
-                  <img id="upload-img" src={this.state.uploadCloudinaryLogoUrl} alt="upload"/>
-                </div>}
-              </div>
-              
-            </div>
+			            <div className="add-image-container">
+			              <Dropzone
+			                multiple={false}
+			                accept="image/*"
+			                onDrop={this.onImageDrop}>
+			                <p>Drop your logo image or click to select a file to upload.</p>
+			              </Dropzone>
+			              <div>
+			                {this.state.uploadCloudinaryLogoUrl === '' ? null :
+			                <div>
+			                  <img id="upload-img" src={this.state.uploadCloudinaryLogoUrl} alt="upload"/>
+			                </div>}
+			              </div>
+			              
+			            </div>
 						<button type="submit">Register</button>
 					</form>
 				</fieldset>

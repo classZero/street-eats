@@ -25,7 +25,6 @@ class URegistration extends Component {
 		//passwords must contain at least 1 letter and 1 number, and may use characters A-Z, 0-9, as well as the special characters !,@,#,$,%,_,-
 		//lengthen password requirements for production
 		const passRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%_-]{2,}$/
-
 		const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 		if(this.state.username && userRegExp.test(this.state.username)){
@@ -45,18 +44,10 @@ class URegistration extends Component {
 							password: '',
 							confirmPassword: ''
 						})
-					} else {
-						window.alert('Passwords must match')
-					}
-				} else {
-					window.alert('Passwords must contain at least one letter and one number, and may also contain !,@,#,$,%,_,-')
-				}
-			} else {
-				window.alert('Please enter a valid email')
-			}
-		} else {
-			window.alert('Usernames can only include characters A-Z, 0-9, and may use _ and - as seperators')
-		}
+					} else {window.alert('Passwords must match')}
+				} else {window.alert('Passwords must contain at least one letter and one number, and may also contain !,@,#,$,%,_,-')}
+			} else {window.alert('Please enter a valid email')}
+		} else {window.alert('Usernames can only include characters A-Z, 0-9, and may use _ and - as seperators')}
 	}
 
 	render(){

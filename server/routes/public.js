@@ -112,26 +112,32 @@ router.post('/registration', (req, res, next) => {
             }
 
             if (req.body.type === "truck"){
-                const token = jwt.sign({user: username}, config.get('jwt-secret'))
+                if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
+                    const token = jwt.sign({user: username}, config.get('jwt-secret'))
 
-                const companyname = req.body.companyName
-                const companyLogo = req.body.companyLogo
-                const menuurl = req.body.menu
-                const aboutus = req.body.aboutus
+                    const companyname = req.body.companyName
+                    const companyLogo = req.body.companyLogo
+                    const menuurl = req.body.menu
+                    const aboutus = req.body.aboutus
 
-                const insertSql = `
-                    INSERT INTO trucks (username, password, email, companyname, companylogo, menuurl, aboutus) VALUES (?,?,?,?,?,?,?)
-                `
+                    const insertSql = `
+                        INSERT INTO trucks (username, password, email, companyname, companylogo, menuurl, aboutus) VALUES (?,?,?,?,?,?,?)
+                    `
 
-                conn.query(insertSql, [username, password, email, companyname, companyLogo, menuurl, aboutus], (err2, results2, fields2) =>{
-                    res.json({
-                        message: "Truck Created",
-                        token: token,
-                        user: username,
-                        email: email,
-                        companyLogo: companyLogo
+                    conn.query(insertSql, [username, password, email, companyname, companyLogo, menuurl, aboutus], (err2, results2, fields2) =>{
+                        res.json({
+                            message: "Truck Created",
+                            token: token,
+                            user: username,
+                            email: email,
+                            companyLogo: companyLogo
+                        })
                     })
-                })
+                } else {
+                    res.status(400).json({
+                        message: "Bad Request"
+                    })
+                }
             }
         }
     })
