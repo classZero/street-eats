@@ -17,9 +17,7 @@ class EditProfile extends Component {
     } else {
       return <EditUserProfile />
     }
-  }
-
-  
+  }  
     render() {
         return (
             <div>{this.props.isAuth ? 
