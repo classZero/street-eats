@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Questrial|Paytone+One');
+
 body {
     box-sizing: border-box;
+    margin: 0;
 }
 
 *, *:before, *:after {
@@ -52,6 +55,7 @@ body {
     align-items: center;
     border-bottom: 1px solid black;
     background-color: rgb(235, 85, 73);
+    margin-top: 8px
 }
 
 .home-header-dropdown {
@@ -62,6 +66,25 @@ body {
 
 .home-header-dropdown p {
     padding-right: 10px;
+}
+
+
+.content-headers{
+    font-family: 'Paytone One', sans-serif;
+    position: relative;
+}
+.logo-container{
+    position: relative;
+    z-index: 3
+}
+.home-new-trucks{
+    font-family: 'Questrial', sans-serif;
+    padding: 0 10px;
+}
+.logo-icon{
+    position: absolute;
+    top: -40px;
+    z-index: -1
 }
 
 .home-container {
