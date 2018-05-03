@@ -64,7 +64,7 @@ instance.registration = function (username, password, email, type, companyName, 
     return this.post(this.getRegisterPath(), {username, password, email, type, companyName, companyLogo, menu, aboutus})
         .then(resp => {
             console.log('in api:', resp)
-            // window.localStorage.setItem('token', resp.data.token)
+            window.localStorage.setItem('token', resp.data.token)
             this.registerInterceptor = this.interceptors.request.use(config => {
               config.headers['Authorization'] = 'Bearer ' + resp.data.token
               return config
