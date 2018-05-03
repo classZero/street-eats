@@ -15,7 +15,7 @@ class App extends Component {
         <Router>
           <div>
             <Route exact path="/" component={Home} />
-            <Route path="/truckprofile" component={TProfileView} />
+            <Route path="/truckprofile/:companyname" component={TProfileView} />
             <Route path="/URegistration" component={URegistration} />
             <Route path="/TRegistration" component={TRegistration} />
             <Route path="/userprofile" component={UProfileView} />
