@@ -37,7 +37,7 @@ export class Home extends Component {
           <p>{this.props.username}</p>
         </div>
         <div className="home-body-container">
-          <MapViewHome />
+          <div className="map-wrapper"><MapViewHome /></div>
           <div className="home-newsfeed">
             <h1>Newest Trucks</h1>
             {/* {this.props.trucks.map((truck, i) => {
