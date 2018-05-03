@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {getProfile} from '../actions/tProfileActions'
-import {Link} from 'react-router-dom'
-import MapViewHome from '../../MapView/mapviewcomponents/MapsViewHome'
-import MapViewInputs from '../../MapView/mapviewcomponents/MapViewInputs'
+import {Link, Redirect} from 'react-router-dom'
 
 class TProfileView extends Component {
 
@@ -13,19 +11,14 @@ class TProfileView extends Component {
 
     render() {
         return (
-            <div>
-                <MapViewInputs />
-              
-              <div style={{display: 'flex'}}>
-                <MapViewHome />
+            <div>{isAuth ?
                 <div>
-                  <div>Company name: {this.props.profile.companyname}</div>
-                  <div>Truck picture<img src={this.props.profile.logo} alt=""/></div>
-                  <div>About us: {this.props.profile.aboutus}</div>
-                  <div><img src={this.props.profile.menuurl} alt=""/></div>
-                  <Link to="/editprofile">Edit Profile</Link>
-                </div>
-              </div>
+                    <div>Company name: {this.props.profile.companyname}</div>
+                    <div>Truck picture<img src={this.props.profile.logo} /></div>
+                    <div>About us: {this.props.profile.aboutus}</div>
+                    <div><img src={this.props.profile.menuurl} /></div>
+                    <Link to="/editprofile">Edit Profile</Link>
+                    </div>: <Redirect to='/' />}
             </div>
         );
     }
@@ -34,7 +27,8 @@ class TProfileView extends Component {
 function mapStateToProps(state) {
     return {
         profile : state.tProfileReducer.profile,
-        username: state.loginReducer.username
+        username: state.loginReducer.username,
+        isAuth: state.loginReducer.isAuthenticated
     }
 }
 
