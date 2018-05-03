@@ -58,9 +58,7 @@ export class Home extends Component {
               }
               return 0
             }).map((el, i) => {
-              if (i > 4) {
-                return
-              } else {
+              if (i <= 4) {
               return (<div key={'key' + i}>
                         <h3>{el.res.companyname}</h3>
                         <p>{el.res.formattedAddress}</p>

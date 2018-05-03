@@ -55,26 +55,25 @@ router.post('/updatespecial/:user/:specialinfo', (req, res, next) => {
     console.log(JSON.stringify(results))
   })
 })
-
-router.get('/cords/', (req, res, next) => {
-  const sql = `
-  SELECT * 
-  FROM trucks 
-  `
-  conn.query(sql, (err, results, fields) => {
-    // const companyname = results[0].companyname
-    // const truckpic = results[0].truckpicurl
-    // const lat = results[0].lat
-    // const lng = results[0].lng
-    // const open = results[0].timeopen
-    // const close = results[0].timeclose
-    // const specialinfo = results[0].specialinfo
-    res.json(
-        results
-    )
-  })
-})
-
+// replace by /truckdata
+// router.get('/cords/', (req, res, next) => {
+//   const sql = `
+//   SELECT * 
+//   FROM trucks 
+//   `
+//   conn.query(sql, (err, results, fields) => {
+//     // const companyname = results[0].companyname
+//     // const truckpic = results[0].truckpicurl
+//     // const lat = results[0].lat
+//     // const lng = results[0].lng
+//     // const open = results[0].timeopen
+//     // const close = results[0].timeclose
+//     // const specialinfo = results[0].specialinfo
+//     res.json(
+//         results
+//     )
+//   })
+// })
 router.get('/truckdata', (req, res, next) => {
   const sql = `
     SELECT * FROM trucks
@@ -90,8 +89,8 @@ router.get('/userprofile/:username', (req, res, next) => {
     const username = req.params.username
     const sql = `
     SELECT * 
-FROM users 
-WHERE username = ?
+    FROM users 
+    WHERE username = ?
     `
     conn.query(sql, username, (err, results, fields) => {
         const username = results[0].username
@@ -101,10 +100,7 @@ WHERE username = ?
             email
         })
     })
-
-
 })
-                   
 
 router.post('/registration', (req, res, next) => {
   console.log('req.body public reg ' + JSON.stringify(req.body))
@@ -180,7 +176,6 @@ router.post('/registration', (req, res, next) => {
         }
     })
 })
-
 
 router.post('/login', (req, res, next) => {
     const username = req.body.username

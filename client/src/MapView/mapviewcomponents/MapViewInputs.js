@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import moment from 'moment'
-import Datetime from 'react-datetime'
-import InputMoment from 'input-moment'
 import {convertAddy , postHours, postSpecial} from '../mapviewactions/mapactions'
-import TimePicker from 'react-bootstrap-time-picker'
 import TimeRange from 'react-time-range';
 
 
@@ -15,13 +12,13 @@ class MapViewInputs extends Component {
     open: '',
     close: '',
     special: '',
-    startTime: '0',
-    endTime: '0'
+    startTime: moment().startOf('day').toString(),
+    endTime: moment().startOf('day').toString()
   }
 
   handleSubmit = (e) => {
-    let startTime = new Date(this.state.startTime)
-    let endTime = new Date(this.state.endTime)
+    let startTime = this.state.startTime
+    let endTime = this.state.endTime
     e.preventDefault()
     convertAddy(this.state.addy)
     postHours(startTime, endTime)
@@ -42,26 +39,17 @@ class MapViewInputs extends Component {
 
   returnFunction = (e) => {
     console.log(new Date(e.startTime), new Date(e.endTime))
-    // if (e.startTime !== null) {
-      this.setState({
-        startTime: e.startTime,
-        endTime: e.endTime
-      })
-      
-    // }
-    // if (e.endTime !== null) {
-    //   this.setState({
-    //     endTime: e.endTime
-    //   })
-    // }
-    // console.log(this.state.startTime, this.state.endTime)
-    
+    this.setState({
+      startTime: e.startTime,
+      endTime: e.endTime
+    })
   }
 
   render () {
     return (
     <div>
       <TimeRange
+          minuteIncrement={1}
           startMoment={this.state.startTime}
           endMoment={this.state.endTime}
           onChange={this.returnFunction}
@@ -69,10 +57,8 @@ class MapViewInputs extends Component {
       <form onSubmit={this.handleSubmit}>
         <input onChange={this.handleChange} name="addy" autoComplete="off" type="text" placeholder="street address" value={this.state.addy} />
         <label>Start Time:
-        <TimePicker onChange={this.handleStartTimeChange} name="start" value={this.state.startTime} step={1}/>
         </label>
         <label>End Time:
-        <TimePicker onChange={this.handleEndTimeChange} name="end" value={this.state.endTime}/>
         </label>
         {/* <input onChange={this.handleChange} name="open" autoComplete="off" type="cell" placeholder="when will you open" value={this.state.open} /> */}
         {/* <input onChange={this.handleChange} name="close" autoComplete="off" type="cell" placeholder="when will you close" value={this.state.close} /> */}

@@ -42,26 +42,18 @@ class MapViewHome extends Component {
 
       //<div className="mapstestcontainer" style={{width: '900px', height: '100px'}}>
         <Map style={{width: '100%', height: '100%', position: 'relative'}} onClick={this.onMapClicked} google={this.props.google} initialCenter={{lat:36.133348310973645 ,lng:-115.15630909218748 }} zoom={11}>
-        {this.props.trucks.map((truck, i) => (
-          // <div key={'key' + i}>
-          <Marker 
-          key={'key'+i}
-          onClick={this.onClickMarker}
-          title={truck.companyname}
-          location={truck.formattedAddress}
-          position={{lat: truck.lat, lng: truck.lng}} 
-          />
-          // <InfoWindow
-          //   marker={this.state.activeMarker}
-          //   visible={this.state.showingInfoWindow}>
-          //     <div>
-          //       <h1>{truck.companyname}</h1>
-          //       <h4>Address of Truck</h4>
-          //       <h6>{truck.specialinfo}</h6>
-          //     </div>
-          // </InfoWindow>
-          //{/* </div> */}
-          ))}
+        {this.props.trucks.map((truck, i) => {
+          if (truck.isActive) {
+            return ( <Marker 
+                      key={'key'+i}
+                      onClick={this.onClickMarker}
+                      title={truck.companyname}
+                      location={truck.formattedAddress}
+                      position={{lat: truck.lat, lng: truck.lng}} 
+                      />
+            )
+          }
+        })}
         </Map>
         
     //  </div>
