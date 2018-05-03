@@ -35,7 +35,7 @@ class HomeDropdown extends Component {
         <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} >Dropdown menu</button>
         
         {this.state.showMenu ? 
-          (<div className="menu">
+          (<div className="menu" onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
               <Logout />
               <Link to=""> Menu item 2 </Link>
               <Link to=""> Menu item 3 </Link>
