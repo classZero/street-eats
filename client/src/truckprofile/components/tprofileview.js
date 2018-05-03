@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import {getProfile} from '../actions/tProfileActions'
 import {Link, Redirect} from 'react-router-dom'
 
@@ -11,7 +11,9 @@ class TProfileView extends Component {
 
     render() {
         return (
+
             <div>
+
                 <div>
                     <div>Company name: {this.props.profile.companyname}</div>
                     <div>Truck picture<img alt="logo" src={this.props.profile.logo} /></div>
@@ -19,8 +21,9 @@ class TProfileView extends Component {
                     <div><img alt="menu" src={this.props.profile.menuurl} /></div>
                     <Link to="/editprofile">Edit Profile</Link>
                 </div>
+
             </div>
-        );
+        )
     }
 }
 

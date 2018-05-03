@@ -42,6 +42,7 @@
     "react-bootstrap-time-picker": "^1.0.3",
     "react-geocode": "^0.0.7",
     "react-redux": "^5.0.7",
+    "react-time-range": "^1.0.2",
     "redux": "^4.0.0"
   },
   "proxy": "http://localhost:3001"

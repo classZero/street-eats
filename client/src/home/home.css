@@ -62,6 +62,7 @@ body {
     display: flex;
     align-items: center;
     margin-left: 150px;
+    z-index:50;
 }
 
 .home-header-dropdown p {
@@ -104,6 +105,7 @@ body {
     height: 600px;
     width: 450px;
     border: 1px solid black;
+    border-radius: 5px;
     background-color: rgb(235, 85, 73);
 }
 
