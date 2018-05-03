@@ -1,5 +1,5 @@
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: window.localStorage.getItem('token') ? true : false,
   username: '',
   source: ''
 }

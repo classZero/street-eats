@@ -14,9 +14,9 @@ class TProfileView extends Component {
             <div>{this.props.isAuth ?
                 <div>
                     <div>Company name: {this.props.profile.companyname}</div>
-                    <div>Truck picture<img src={this.props.profile.logo} /></div>
+                    <div>Truck picture<img alt="logo" src={this.props.profile.logo} /></div>
                     <div>About us: {this.props.profile.aboutus}</div>
-                    <div><img src={this.props.profile.menuurl} /></div>
+                    <div><img alt="menu" src={this.props.profile.menuurl} /></div>
                     <Link to="/editprofile">Edit Profile</Link>
                     </div>: <Redirect to='/' />}
             </div>
