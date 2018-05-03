@@ -40,7 +40,7 @@ class MapViewHome extends Component {
     return (
     // <div>
 
-      // <div className="mapstestcontainer" style={{width: '900px', height: '100px'}}>
+      //<div className="mapstestcontainer" style={{width: '900px', height: '100px'}}>
         <Map style={{width: '100%', height: '100%', position: 'relative'}} onClick={this.onMapClicked} google={this.props.google} initialCenter={{lat:36.133348310973645 ,lng:-115.15630909218748 }} zoom={11}>
         {this.props.trucks.map((truck, i) => (
           // <div key={'key' + i}>
@@ -64,7 +64,7 @@ class MapViewHome extends Component {
           ))}
         </Map>
         
-      // </div>
+    //  </div>
     //   <p>{this.state.selectedName}</p>
     //   <p>{this.state.selectedLocation}</p>
     // </div>
