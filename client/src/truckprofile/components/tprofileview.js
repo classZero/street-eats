@@ -11,7 +11,7 @@ class TProfileView extends Component {
 
     render() {
         return (
-            <div>{isAuth ?
+            <div>{this.props.isAuth ?
                 <div>
                     <div>Company name: {this.props.profile.companyname}</div>
                     <div>Truck picture<img src={this.props.profile.logo} /></div>
