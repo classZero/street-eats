@@ -13,7 +13,6 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
-    "react-bootstrap-time-picker": "^1.0.3",
     "react-dom": "^16.2.0",
     "react-dropzone": "^4.2.9",
     "react-geocode": "^0.0.7",
@@ -21,6 +20,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
     "react-simple-dropdown": "^3.2.0",
+    "react-time-range": "^1.0.2",
     "redux": "^4.0.0",
     "superagent": "^3.8.3"
   },

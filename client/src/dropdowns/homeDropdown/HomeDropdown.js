@@ -16,7 +16,13 @@ class HomeDropdown extends Component {
       document.addEventListener('click', this.closeMenu);
     })
   }
-  
+  hideMenu = (event) => {
+    event.preventDefault();
+    
+    this.setState({ showMenu: false }, () => {
+      document.addEventListener('click', this.closeMenu);
+    })
+  }
   closeMenu = () => {
     this.setState({ showMenu: false }, () => {
       document.removeEventListener('click', this.closeMenu);
@@ -26,10 +32,10 @@ class HomeDropdown extends Component {
   render() {
     return (
       <div className="dropdown-menu">
-        <button onClick={this.showMenu}>Dropdown menu</button>
+        <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} >Dropdown menu</button>
         
         {this.state.showMenu ? 
-          (<div className="menu">
+          (<div className="menu" onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
               <Logout />
               <Link to=""> Menu item 2 </Link>
               <Link to=""> Menu item 3 </Link>
