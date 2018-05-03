@@ -40,12 +40,32 @@ export class Home extends Component {
           <MapViewHome />
           <div className="home-newsfeed">
             <h1>Newest Trucks</h1>
-            {this.props.trucks.map((truck, i) => {
+            {/* {this.props.trucks.map((truck, i) => {
               return (<div key={'key' + i}>
                         <h3>{truck.companyname}</h3>
                         <p>{truck.formattedAddress}</p>
                       </div>
                       )
+            })} */}
+            {this.props.trucks.map((truck, i) => {
+              return {res: truck, index: i, value: truck.datecreated}
+            }).sort((prev, curr) => {
+              if (prev.value < curr.value) {
+                return 1
+              }
+              if (prev.value > curr.value) {
+                return -1
+              }
+              return 0
+            }).map((el, i) => {
+              if (i > 4) {
+                return
+              } else {
+              return (<div key={'key' + i}>
+                        <h3>{el.res.companyname}</h3>
+                        <p>{el.res.formattedAddress}</p>
+                      </div>)
+              }
             })}
           </div>
         </div>
