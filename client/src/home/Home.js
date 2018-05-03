@@ -25,16 +25,19 @@ export class Home extends Component {
     return (
       <div className="home-container">
         <div className="home-header">
-          <Login />
-          <HomeDropdown />
+          
+          <div className="home-header-loginStuff">
+            <Login />
+            <Link to="#">Register</Link>
+          </div>
+
           <h1>Food truck</h1>
-          <Link to="/Uregistration">temp user reg page</Link>
-          <Link to="/Tregistration">temp truck registration page</Link>
-          <Link to="/userprofile">working user profile page</Link>
-          <Link to="/truckprofile">working truck profile page</Link>
-          <Link to="/mapinputs">inputs for trucks</Link>
-          <Link to="map">links to map</Link>
-          <p>{this.props.username}</p>
+
+          <div className="home-header-dropdown">
+            <p>{this.props.username}</p>
+            <HomeDropdown />
+          </div>
+
         </div>
         <div className="home-body-container">
           <div className="map-wrapper"><MapViewHome /></div>
