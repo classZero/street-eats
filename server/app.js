@@ -6,6 +6,7 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import ejwt from 'express-jwt'
 import config from 'config'
+import conn from './lib/conn'
 
 import publicRouter from './routes/public'
 import privateRouter from './routes/private'
@@ -25,6 +26,40 @@ app.use(express.static(path.join(__dirname, 'public')))
 server.listen(3001, () => {
   console.log('listening on port 3001')
 })
+
+setInterval(() => {
+  const sql = `
+    SELECT id, timeopen, timeclose FROM trucks
+  `
+  conn.query(sql, (err, results, fields) => {    
+    results.map((truck, i) => {
+      let rightNow = new Date()
+      if(truck.timeopen !== null) {
+        var timeopen = new Date(truck.timeopen)
+        var timeclose = new Date(truck.timeclose)
+        console.log(timeopen, timeclose, rightNow)
+        if (timeopen < rightNow && timeclose > rightNow) {
+          console.log('starting')
+          const sqlUpdate = `
+            UPDATE trucks SET isActive = ? WHERE id = ?
+          `
+          conn.query(sqlUpdate, [true, results[i].id], (err2, results2, fields2) => {
+
+          })
+        } else {
+          console.log('closing')
+          const sqlUpdate = `
+            UPDATE trucks SET isActive = ? WHERE id = ?
+          `
+          conn.query(sqlUpdate, [false, results[i].id], (err3, results3, fields3) => {
+            
+          })
+        }
+      }  
+    })
+  })
+}, 1000) 
+
 app.use('/api', publicRouter)
 app.use('/api', ejwt({secret: config.get('jwt-secret')}), privateRouter)
 
