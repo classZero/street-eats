@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {registerTruck, addImage} from '../actions/TRegistrationActions'
+import {registerTruck} from '../actions/TRegistrationActions'
 // import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
 
 let images = []
