@@ -27,9 +27,14 @@ export class Home extends Component {
       <div className="home-container">
         <div className="home-header">
           
-          <div className="home-header-loginStuff">
-            <Login />
+          <div className="home-header-loginRegister">
+            <div className="home-header-loginStuff">
+              <p>Login:</p>
+              <Login />
+            </div>
+
             <Link to="#">Register</Link>
+            
           </div>
 
           <div className="logo-container"><h1 className="content-headers">Street Eats</h1> <img className="logo-icon" src={trucksvg}/></div>

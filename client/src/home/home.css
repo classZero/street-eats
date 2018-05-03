@@ -36,8 +36,17 @@ body {
     background-color: rgb(240, 238, 228);
 }
 
-.home-header-loginStuff {
+.home-header-loginRegister {
     align-items: center;
+}
+
+.home-header-loginStuff {
+    display: flex;
+    align-items: center;
+}
+
+.home-header-loginStuff p {
+    padding-right: 10px;
 }
 
 .home-header {
