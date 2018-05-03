@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {getProfile} from '../actions/tProfileActions'
-import MapViewHome from '../../MapView/mapviewcomponents/MapsViewHome'
 import {Link, Redirect} from 'react-router-dom'
 
 class TProfileView extends Component {
@@ -12,16 +11,14 @@ class TProfileView extends Component {
 
     render() {
         return (
-            <div>
-                {this.props.isAuth ? 
+            <div>{isAuth ?
                 <div>
-                    <MapViewHome />
                     <div>Company name: {this.props.profile.companyname}</div>
                     <div>Truck picture<img src={this.props.profile.logo} /></div>
                     <div>About us: {this.props.profile.aboutus}</div>
                     <div><img src={this.props.profile.menuurl} /></div>
                     <Link to="/editprofile">Edit Profile</Link>
-                </div>: <Redirect to='/' />}
+                    </div>: <Redirect to='/' />}
             </div>
         );
     }

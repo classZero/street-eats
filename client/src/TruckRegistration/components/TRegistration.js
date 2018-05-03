@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {registerTruck, addImage} from '../actions/TRegistrationActions'
+import {registerTruck} from '../actions/TRegistrationActions'
 // import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
 
 let images = []
@@ -71,14 +71,16 @@ class TRegistration extends Component {
     window.cloudinary.openUploadWidget({ cloud_name: 'maglingkod', upload_preset: 'avwvdugz', tags:['foodtruck']},
       (error, result) => {
         data = {result, type}
+        console.log('result:', result)
+        console.log('error:', result)
         images.push(data)    //not currently using images array
-        if (result[0].secure_url !== '') {
+        if (result && result[0].secure_url !== '') {
           if (type === 'logo') {
             this.setState({
               uploadCloudinaryLogoUrl: data.result[0].secure_url
             })
           }
-          if (type === 'menu') {
+          if (type && type === 'menu') {
             this.setState({
               uploadCloudinaryMenuUrl: data.result[0].secure_url
             })
