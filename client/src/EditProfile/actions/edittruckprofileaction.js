@@ -1,4 +1,3 @@
-import store from '../../store'
 import api from 'lib/api'
 api.new('/api')
 
