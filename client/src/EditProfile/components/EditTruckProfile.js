@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {getProfile} from '../../truckprofile/actions/tProfileActions'
 import { connect } from 'react-redux';
 import {editTruckProfile} from '../actions/edittruckprofileaction'
+import {Redirect} from 'react-router-dom'
 
 
 class EditTruckProfile extends Component {
@@ -14,7 +15,7 @@ state = {
 }
     
     componentDidMount(){
-        getProfile("lt")       ///add username as argument
+        getProfile(this.props.username)       ///add username as argument
     }
 
     handleChange = (e) =>{
@@ -42,16 +43,18 @@ state = {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <div>Company Name: <input onChange={this.handleChange} type='text' name='name' value={this.state.name} /> </div>
-                    <div>Company logo: <input onChange={this.handleChange} type='text' name='logo' value={this.state.logo} /> </div>
-                    <div><img src={this.props.profile.logo} /></div>
-                    <div>About us: <textarea onChange={this.handleChange} name='aboutus' value={this.state.aboutus} /></div>
-                    <div> Menu Url: <input onChange={this.handleChange} type='text' name='menuurl' value={this.state.menuurl} /> </div>
-                    <div><img src={this.props.profile.menuurl} /></div>
-                    <button type='submit'>Submit</button>
-                </form>
+            <div>{this.props.isAuth ? 
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        <div>Company Name: <input onChange={this.handleChange} type='text' name='name' value={this.state.name} /> </div>
+                        <div>Company logo: <input onChange={this.handleChange} type='text' name='logo' value={this.state.logo} /> </div>
+                        <div><img src={this.props.profile.logo} /></div>
+                        <div>About us: <textarea onChange={this.handleChange} name='aboutus' value={this.state.aboutus} /></div>
+                        <div> Menu Url: <input onChange={this.handleChange} type='text' name='menuurl' value={this.state.menuurl} /> </div>
+                        <div><img src={this.props.profile.menuurl} /></div>
+                        <button type='submit'>Submit</button>
+                    </form>
+                </div> : <Redirect to='/' />}
             </div>
         );
     }
@@ -60,7 +63,8 @@ state = {
 function mapStateToProps(state) {
     return {
         profile : state.tProfileReducer.profile,
-        username : state.loginReducer.username
+        username : state.loginReducer.username,
+        isAuth: state.loginReducer.isAuthenticated
     }
 }
 
