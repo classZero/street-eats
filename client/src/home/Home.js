@@ -68,10 +68,10 @@ export class Home extends Component {
               return 0
             }).map((el, i) => {
               if (i <= 4) {
-              return (<div key={'key' + i}>
+              return (<Link to={`/truckprofile/${el.res.username}`}><div key={'key' + i}>
                         <h3>{el.res.companyname}</h3>
                         <p>{el.res.formattedAddress}</p>
-                      </div>)
+                      </div></Link>)
               }
             })}
           </div>
