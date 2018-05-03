@@ -7,6 +7,7 @@ import Login from '../login/Login'
 import {getTruckData} from './homeActions'
 import MapViewHome from '../MapView/mapviewcomponents/MapsViewHome'
 import HomeDropdown from '../dropdowns/homeDropdown/HomeDropdown'
+import trucksvg from 'assets/images/truck.svg'
 
 // import URegistration from '../UserRegistration/components/URegistration'
 
@@ -25,21 +26,29 @@ export class Home extends Component {
     return (
       <div className="home-container">
         <div className="home-header">
-          <Login />
-          <HomeDropdown />
-          <h1>Food truck</h1>
-          <Link to="/Uregistration">temp user reg page</Link>
-          <Link to="/Tregistration">temp truck registration page</Link>
-          <Link to="/userprofile">working user profile page</Link>
-          <Link to="/truckprofile">working truck profile page</Link>
-          <Link to="/mapinputs">inputs for trucks</Link>
-          <Link to="map">links to map</Link>
-          <p>{this.props.username}</p>
+          
+          <div className="home-header-loginRegister">
+            <div className="home-header-loginStuff">
+              <p>Login:</p>
+              <Login />
+            </div>
+
+            <Link to="#">Register</Link>
+            
+          </div>
+
+          <div className="logo-container"><h1 className="content-headers">Street Eats</h1> <img className="logo-icon" src={trucksvg}/></div>
+
+          <div className="home-header-dropdown">
+            <p>{this.props.username}</p>
+            <HomeDropdown />
+          </div>
+
         </div>
         <div className="home-body-container">
           <div className="map-wrapper"><MapViewHome /></div>
           <div className="home-newsfeed">
-            <h1>Newest Trucks</h1>
+            <h1 className="content-headers">Newest Trucks</h1>
             {/* {this.props.trucks.map((truck, i) => {
               return (<div key={'key' + i}>
                         <h3>{truck.companyname}</h3>
