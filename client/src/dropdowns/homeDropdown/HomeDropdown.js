@@ -33,6 +33,12 @@ class HomeDropdown extends Component {
               <Logout />
               <Link to=""> Menu item 2 </Link>
               <Link to=""> Menu item 3 </Link>
+              <Link to="/Uregistration">temp user reg page</Link>
+              <Link to="/Tregistration">temp truck registration page</Link>
+              <Link to="/userprofile">working user profile page</Link>
+              <Link to="/truckprofile">working truck profile page</Link>
+              <Link to="/mapinputs">inputs for trucks</Link>
+              <Link to="map">links to map</Link>
            </div>)
             : (null)}
       </div>

@@ -15,6 +15,10 @@ export class Login extends Component {
   handleLoginSubmit = (e) => {
     e.preventDefault()
     login(this.state.username, this.state.password)
+    this.setState({
+      username: '',
+      password: ''
+    })
   }
   render() {
     return (
