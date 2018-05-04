@@ -65,7 +65,7 @@ export class Home extends Component {
             <div className="sort-bar-wrapper">
               <div className="dropdown-menu">
                 <div>
-                  <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} className="dropmenu-btn">Sort By &#9662;</button>
+                  <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} className="dropmenu-btn sort">Sort By &#9662;</button>
                   <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
                     <button onClick={this.setSortType} value="all">Show All</button>
                     <button onClick={this.setSortType} value="new">Show Newest</button>
