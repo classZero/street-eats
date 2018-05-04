@@ -22,15 +22,6 @@ export class Home extends Component {
 
         <HomeHeader username={this.props.username}/>
 
-<<<<<<< HEAD
-          <div className="home-header-dropdown">
-            {this.props.username ? <p>Username : {this.props.username}</p> : ''}
-            <HomeDropdown username={this.props.username}/>
-          </div>
-
-        </div>
-=======
->>>>>>> master
         <div className="home-body-container">
 
           <div className="map-wrapper"><MapViewHome /></div>

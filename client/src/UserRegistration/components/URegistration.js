@@ -57,7 +57,7 @@ class URegistration extends Component {
         <div className="userRegContainer">
 
          <div className="userRegHeader">
-            <h1>User</h1>
+            <h1>Foodie</h1>
           </div>
 
         <div className="userRegForm">
