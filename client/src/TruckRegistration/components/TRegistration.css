@@ -11,6 +11,11 @@
     overflow: scroll;
 }
 
+.submitButtons {
+    display: flex;
+    flex-direction: column;
+}
+
 .truckRegContainer textarea {
     background-color: inherit;
     outline: none;
@@ -19,7 +24,10 @@
     margin-left: 70px;
     margin-top: 25px;
     width: 350px;
-    height: 50px;
+    height: 75px;
+    font-size:15px;
+    padding-left: 10px;
+    padding-top: 5px;
 }
 
 .truckRegContainer textarea::placeholder {
@@ -47,6 +55,8 @@
     height: 50px;
     margin-left: 70px;
     margin-top: 20px;
+    font-size: 15px;
+    padding-left: 10px;
 }
 
 .truckRegForm button {
@@ -55,7 +65,7 @@
     background-color: inherit;
     color: white;
     outline: none;
-    margin-top: 35px;
+    margin-top: 25px;
 }
 
 .truckRegForm button:hover {
