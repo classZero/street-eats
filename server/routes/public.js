@@ -214,4 +214,24 @@ router.get('/truckprofile/:username', (req, res, next) => {
   
   })
 
+
+router.get('/userprofile/:username', (req, res, next) => {
+    const username = req.params.username
+    const sql = `
+    SELECT * 
+  FROM users 
+  WHERE username = ?
+    `
+    conn.query(sql, username, (err, results, fields) => {
+        const username = results[0].username
+        const email = results[0].email
+        res.json({
+            username,
+            email
+        })
+    })
+  
+  
+  })
+
 export default router

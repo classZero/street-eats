@@ -39,7 +39,7 @@ class HomeDropdown extends Component {
           <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
             <Link to="/Uregistration">user reg page</Link>
             <Link to="/Tregistration">truck reg page</Link>
-            {this.props.source === 'user' ? <Link to="/userprofile">user profile</Link>
+            {this.props.source === 'user' ? <Link to="/editprofile">user profile</Link>
                                           : <Link to="/truckprofile">truck profile</Link>
             }
             <Link to="/mapinputs">inputs for trucks</Link>

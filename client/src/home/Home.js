@@ -36,7 +36,7 @@ export class Home extends Component {
 
           <div className="home-header-dropdown">
             {this.props.username ? <p>Username : {this.props.username}</p> : ''}
-            <HomeDropdown />
+            <HomeDropdown username={this.props.username}/>
           </div>
 
         </div>

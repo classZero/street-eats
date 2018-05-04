@@ -4,26 +4,6 @@ import conn from '../lib/conn'
 
 const router = express.Router() 
 
-
-router.get('/userprofile/:username', (req, res, next) => {
-  const username = req.params.username
-  const sql = `
-  SELECT * 
-FROM users 
-WHERE username = ?
-  `
-  conn.query(sql, username, (err, results, fields) => {
-      const username = results[0].username
-      const email = results[0].email
-      res.json({
-          username,
-          email
-      })
-  })
-
-
-})
-
 router.post('/editTruckProfile', (req, res, next) => {
   console.log(req.body)
   const name = req.body.companyname
