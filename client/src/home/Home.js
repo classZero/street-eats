@@ -1,15 +1,9 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-
-import glamorous from 'glamorous'
-import Login from '../login/Login'
 import {getTruckData} from './homeActions'
 import MapViewHome from '../MapView/mapviewcomponents/MapsViewHome'
-import HomeDropdown from '../dropdowns/homeDropdown/HomeDropdown'
-import trucksvg from 'assets/images/truck.svg'
-
-// import URegistration from '../UserRegistration/components/URegistration'
+import HomeHeader from '../headers/HomeHeader'
 
 import './home.css'
 
@@ -25,21 +19,18 @@ export class Home extends Component {
   render() {
     return (
       <div className="home-container">
-        <div className="home-header">
-          
-          <div className="home-header-login">
-            <p>Login:</p>
-            <Login />
-          </div>
 
-          <div className="logo-container"><h1 className="content-headers-title">Street Eats</h1> <img className="logo-icon" src={trucksvg}/></div>
+        <HomeHeader username={this.props.username}/>
 
+<<<<<<< HEAD
           <div className="home-header-dropdown">
             {this.props.username ? <p>Username : {this.props.username}</p> : ''}
             <HomeDropdown username={this.props.username}/>
           </div>
 
         </div>
+=======
+>>>>>>> master
         <div className="home-body-container">
 
           <div className="map-wrapper"><MapViewHome /></div>

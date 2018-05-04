@@ -8,6 +8,7 @@ import Home from './home/Home'
 import MapViewHome from './MapView/mapviewcomponents/MapsViewHome'
 import MapViewInputs from './MapView/mapviewcomponents/MapViewInputs'
 import EditProfile from './EditProfile/components/EditProfile'
+import registrationPage from './registrationPages/registrationPage'
 
 class App extends Component {
   render () {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route path="/map" component={MapViewHome} />
             <Route path="/mapinputs" component={MapViewInputs} />
             <Route path="/editprofile" component={EditProfile} />
+            <Route path="/registrationPage" component={registrationPage} />
           </div>
         </Router>
     )
