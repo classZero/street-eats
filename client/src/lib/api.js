@@ -97,11 +97,10 @@ instance.editTruckProfile = function(name, logo, aboutus, menuurl) {
   })
 }
 
-instance.getTruckData = function () {
-  console.log('api get truck data')
-  return this.get('/truckdata').then(resp => {
-  return resp.data
+instance.changeSortView = function (sortType) {
+  return this.get('/truckdata/' + sortType).then(resp => {
+    return resp.data
   })
-}  
+}
 
 export default instance

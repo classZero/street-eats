@@ -35,7 +35,7 @@ class HomeDropdown extends Component {
       <div className="dropdown-menu">
         {window.localStorage.getItem('token') ?
         <div>
-          <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} id="dropmenu-btn">Dropdown menu &#9662;</button>
+          <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} className="dropmenu-btn">Dropdown menu &#9662;</button>
           <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
             <Link to="/Uregistration">user reg page</Link>
             <Link to="/Tregistration">truck reg page</Link>
@@ -46,8 +46,8 @@ class HomeDropdown extends Component {
             <Link to="map">links to map</Link>
             <Link to={'/editprofile'} >edit my profile</Link>
             <div><Logout /></div>
-            </div>
           </div>
+        </div>
           : 
           <div>
             <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} id="dropmenu-btn">Sign Up &#9662;</button>
