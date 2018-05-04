@@ -123,7 +123,7 @@ router.post('/registration', (req, res, next) => {
 
             if (req.body.type === "user") {
                 if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
-                    const token = jwt.sign({user: username}, config.get('jwt-secret'))
+                    const token = jwt.sign({user: username, source: req.body.type}, config.get('jwt-secret'))
 
                     const insertSql = `
                         INSERT INTO users (username, password, email) VALUES (?,?,?)
@@ -146,7 +146,7 @@ router.post('/registration', (req, res, next) => {
             if (req.body.type === "truck"){
 
                 if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
-                    const token = jwt.sign({user: username}, config.get('jwt-secret'))
+                    const token = jwt.sign({user: username, source: req.body.type}, config.get('jwt-secret'))
                     console.log('public line 94 ' + req.body)
                     const companyname = req.body.companyName
                     const companyLogo = req.body.companyLogo
@@ -190,7 +190,7 @@ router.post('/login', (req, res, next) => {
       console.log('login results ' + JSON.stringify(results))
         if(results.length > 0) {
             console.log('username and password returned match')
-            const token = jwt.sign({user: username}, config.get('jwt-secret'))
+            const token = jwt.sign({user: username, source: results[0].Source}, config.get('jwt-secret'))
             res.json({
                 message: "Login Successful",
                 token: token,
