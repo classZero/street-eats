@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {login} from './loginActions'
 
+import './login.css'
+
 export class Login extends Component {
   state = {
     username: '',
@@ -28,13 +30,15 @@ export class Login extends Component {
                  type="text" 
                  name="username" 
                  value={this.state.username}
-                 placeholder="username"/>
+                 placeholder="username"
+                 className="login-input"/>
           <input onChange={this.handleChange} 
-                 type="text" 
+                 type="password" 
                  name="password" 
                  value={this.state.password}
-                 placeholder="password"/>
-          <button type="submit">Hide submit button</button>
+                 placeholder="password"
+                 className="login-input"/>
+          <button type="submit" style={{display: 'none'}}>Hide submit button</button>
         </form>
       </div>
     )

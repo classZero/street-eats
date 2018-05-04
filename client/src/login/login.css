@@ -1,0 +1,12 @@
+.login-input {
+    height: 25px;
+    width: 45%;
+    line-height: 25px;
+    font-size: 1rem;
+    padding: 2px 0 2px 4px;
+    margin: 0 10px;
+    border-radius: 8px;
+    background-color: rgb(174, 50, 50);
+}
+
+
