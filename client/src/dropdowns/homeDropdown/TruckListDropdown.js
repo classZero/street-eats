@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import Logout from '../../logout/Logout'
 import './homeDropdown.css'
 
-class HomeDropdown extends Component {
+class TruckListDropdown extends Component {
   state = {
     showMenu: false,
   }
@@ -33,29 +33,14 @@ class HomeDropdown extends Component {
     const classes = this.state.showMenu ? 'menu' : 'menu hide'
     return (
       <div className="dropdown-menu">
-        {window.localStorage.getItem('token') ?
         <div>
           <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} id="dropmenu-btn">Dropdown menu &#9662;</button>
           <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
-            <Link to="/Uregistration">user reg page</Link>
-            <Link to="/Tregistration">truck reg page</Link>
-            {this.props.source === 'user' ? <Link to="/userprofile">user profile</Link>
-                                          : <Link to="/truckprofile">truck profile</Link>
-            }
-            <Link to="/mapinputs">inputs for trucks</Link>
-            <Link to="map">links to map</Link>
-            <div><Logout /></div>
+            <Link to={`/truckdata/${this.props.sortType}`}><button onClick={this.props.setSortType} value="all">Show All</button></Link>
+            <Link to={`/truckdata/${this.props.sortType}`}><button onClick={this.props.setSortType} value="new">Show Newest</button></Link>
+            <Link to={`/truckdata/${this.props.sortType}`}><button onClick={this.props.setSortType} value="alpha">Show By Company Name</button></Link>
           </div>
         </div>
-          : 
-          <div>
-            <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} id="dropmenu-btn">Sign Up &#9662;</button>
-            <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
-              <Link to="/Uregistration">Register as a user</Link>
-              <Link to="/Tregistration">Register as a truck</Link>
-            </div>
-          </div>
-        }
       </div>
     )
   }
@@ -67,4 +52,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(HomeDropdown)
+export default connect(mapStateToProps)(TruckListDropdown)

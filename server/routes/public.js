@@ -16,68 +16,69 @@ router.post('/updatelocation/:user/:lat/:lng', (req, res, next) => {
   const username = req.params.user
   const lat = req.params.lat
   const lng = req.params.lng
-  console.log(req.params)
   const sql = `
   UPDATE trucks 
   SET lat = ?,lng = ? 
   WHERE username = ?
   `
   conn.query(sql, [lat, lng, username], (err, results, fields) => {
-    console.log(JSON.stringify(results))
+    // console.log(JSON.stringify(results))
   })
 })
 
+//allows truck users to set their active hours
 router.post('/updatehours/:user/:opentime/:closetime', (req, res, next) => {
   const username = req.params.user
   const open = req.params.opentime
   const close = req.params.closetime
-  console.log(req.params)
   const sql = `
   UPDATE trucks 
   SET timeopen = ?,timeclose = ?
   WHERE username = ?
   `
   conn.query(sql, [open, close, username], (err, results, fields) => {
-    console.log(JSON.stringify(results))
+    // console.log(JSON.stringify(results))
   })
 })
 
 router.post('/updatespecial/:user/:specialinfo', (req, res, next) => {
   const username = req.params.user
   const special = req.params.specialinfo
-  console.log(req.params)
   const sql = `
   UPDATE trucks
   SET specialinfo = ?
   WHERE username = ?
   `
   conn.query(sql, [special, username], (err, results, fields) => {
-    console.log(JSON.stringify(results))
+    // console.log(JSON.stringify(results))
   })
 })
-// replace by /truckdata
-// router.get('/cords/', (req, res, next) => {
-//   const sql = `
-//   SELECT * 
-//   FROM trucks 
-//   `
-//   conn.query(sql, (err, results, fields) => {
-//     // const companyname = results[0].companyname
-//     // const truckpic = results[0].truckpicurl
-//     // const lat = results[0].lat
-//     // const lng = results[0].lng
-//     // const open = results[0].timeopen
-//     // const close = results[0].timeclose
-//     // const specialinfo = results[0].specialinfo
-//     res.json(
-//         results
-//     )
-//   })
-// })
-router.get('/truckdata', (req, res, next) => {
-  const sql = `
+
+//gets truck data for home page by sort param
+router.get('/truckdata/:sort', (req, res, next) => {
+  let type = req.params.sort
+  let sql = ''
+  if (type === 'all') {
+    sql = `
+      SELECT * FROM trucks
+    `
+  } else if (type === 'new') {
+    sql = `
+      SELECT * FROM trucks ORDER BY datecreated ASC
+    `
+  } else if (type === 'alpha') {
+    sql = `
+      SELECT * FROM trucks ORDER BY companyname ASC
+    `
+  } else if (type === 'active') {
+    sql = `
+      SELECT * FROM trucks WHERE isActive = 1 
+    `
+  } else {
+    sql = `
     SELECT * FROM trucks
-  `
+    `
+  }  
   conn.query(sql, (err, results, fields) => {
     res.json({
       results
@@ -103,7 +104,6 @@ router.get('/userprofile/:username', (req, res, next) => {
 })
 
 router.post('/registration', (req, res, next) => {
-  console.log('req.body public reg ' + JSON.stringify(req.body))
     const username = req.body.username
     const password = sha512(req.body.password)
     const email = req.body.email
@@ -180,7 +180,6 @@ router.post('/registration', (req, res, next) => {
 router.post('/login', (req, res, next) => {
     const username = req.body.username
     const password = sha512(req.body.password)
-    // const password = req.body.username
 
     const sql = `SELECT username, email, companyname, companylogo, menuurl, aboutus, lng, lat, datecreated, 'truck' as Source FROM trucks as truckInfo WHERE username = ? AND password = ?
                 UNION
