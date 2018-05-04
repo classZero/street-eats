@@ -12,12 +12,3 @@ export function getUserProfile(username) {
 	})
 }
 
-// export function getUserProfile(username) {
-//     axios.get('/api/userprofile/' + username).then(resp => {
-        
-//         store.dispatch({
-//             type: 'GET_USER_PROFILE',
-//             payload : resp.data
-//         })
-//     })
-// } 

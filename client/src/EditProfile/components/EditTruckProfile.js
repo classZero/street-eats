@@ -49,10 +49,10 @@ class EditTruckProfile extends Component {
                       <form onSubmit={this.handleSubmit}>
                           <div>Company Name: <input onChange={this.handleChange} type='text' name='name' value={this.state.name} /> </div>
                           <div>Company logo: <input onChange={this.handleChange} type='text' name='logo' value={this.state.logo} /> </div>
-                          <div><img src={this.props.profile.logo} /></div>
+                          <div><img  alt="logo" src={this.props.profile.logo} /></div>
                           <div>About us: <textarea onChange={this.handleChange} name='aboutus' value={this.state.aboutus} /></div>
                           <div> Menu Url: <input onChange={this.handleChange} type='text' name='menuurl' value={this.state.menuurl} /> </div>
-                          <div><img src={this.props.profile.menuurl} /></div>
+                          <div><img alt="menu" src={this.props.profile.menuurl} /></div>
                           <button type='submit'>Submit</button>
                       </form>
                   </div>
@@ -65,7 +65,6 @@ class EditTruckProfile extends Component {
 function mapStateToProps(state) {
     return {
         profile : state.tProfileReducer.profile,
-        username : state.loginReducer.username,
         isAuth: state.loginReducer.isAuthenticated
     }
 }

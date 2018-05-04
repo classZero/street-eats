@@ -56,7 +56,7 @@ export class Home extends Component {
     return (
       <div className="home-container">
 
-        <HomeHeader />
+        <HomeHeader username={this.props.username}/>
 
         <div className="home-body-container">
 

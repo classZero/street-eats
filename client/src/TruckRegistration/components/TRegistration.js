@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {registerTruck} from '../actions/TRegistrationActions'
 // import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
+import './TRegistration.css'
 
 let images = []
 
@@ -93,22 +94,30 @@ class TRegistration extends Component {
 	render(){
 		return(
 			<div>
-				<fieldset>
-					<legend>Food Truck Registration</legend>
+        <div className="truckRegContainer">
+          
+          <div className="truckRegHeader">
+            <h1>Truck</h1>
+          </div>
+
+          <div className="truckRegForm">
 					<form onSubmit={this.handleSubmit} encType="multipart/form-data">
-						<input onChange={this.handleChange} type="text" name="username" value={this.state.username}  placeholder="username"/>
-						<input onChange={this.handleChange} type="text" name="companyName" value={this.state.companyname} placeholder="company name" />
-						<input onChange={this.handleChange} type="text" name="email" value={this.state.email} placeholder="email"/>
-						<textarea onChange={this.handleChange} name="aboutus" value={this.state.aboutus} placeholder="about us" ></textarea>
-						<input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="password"/>
-						<input onChange={this.handleChange} type="password" name="confirmPassword" value={this.state.confirmPassword} placeholder="confirm password"/>
+						<input onChange={this.handleChange} type="text" name="username" value={this.state.username}  placeholder="USERNAME"/>
+						<input onChange={this.handleChange} type="text" name="companyName" value={this.state.companyname} placeholder="COMPANY NAME" />
+						<input onChange={this.handleChange} type="text" name="email" value={this.state.email} placeholder="EMAIL"/>
+						<textarea onChange={this.handleChange} name="aboutus" value={this.state.aboutus} placeholder="ABOUT YOUR TRUCK" ></textarea>
+						<input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="PASSWORD"/>
+						<input onChange={this.handleChange} type="password" name="confirmPassword" value={this.state.confirmPassword} placeholder="CONFIRM PASSWORD"/>
 			            <div className="add-image-container">
 			            </div>
-						<button type="submit">Register</button>
-					</form>
-				</fieldset>
+					
         <button onClick={this.uploadWidget} value="logo" name="logo" className="upload-button">Upload Logo</button>
         <button onClick={this.uploadWidget} value="menu" name="menu" className="upload-button">Upload Menu</button>
+        <button className="submitBold" type="submit">REGISTER</button>
+        </form>
+        </div>
+        
+        </div>
         {/* <CloudinaryContext cloudName="maglingkod">
         {this.state.uploadedFiles.map(imageArray => imageArray.map((image, i) => {
                  return <div key={'key' + i}>

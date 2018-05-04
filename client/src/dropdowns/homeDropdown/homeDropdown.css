@@ -8,6 +8,7 @@
     transition: opacity 0.4s;
     opacity: 0.9;
     z-index: 50;
+    text-shadow: none;
 }
 
 .menu a:first-child, .menu button:first-child {
@@ -48,6 +49,7 @@
     outline: none;
     border-radius: 5px;
     font-size: 1rem;
+    color: white;
 }
 
 .dropmenu-btn:hover {

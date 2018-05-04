@@ -8,6 +8,7 @@ import {Redirect} from 'react-router-dom'
 class UProfileView extends Component {
 
     componentDidMount(){
+        // console.log(this.props.username)
         getUserProfile(this.props.username)
     }
 
