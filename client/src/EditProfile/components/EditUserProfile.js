@@ -10,15 +10,20 @@ class EditUserProfile extends Component {
     
     componentDidMount() {
         getUserProfile(this.props.username)
-        console.log(this.props.username)
     }
 
     render() {
         return (
             <div>
-                <div>Username: {this.props.profile.username}</div>
-                <div>Email: {this.props.profile.email}</div>
-                <div>Profile Image: <img src="http://placehold.it/400/400" /></div>
+                <div>
+                    <div>Username: {this.props.profile.username}</div>
+                    <div>Email: {this.props.profile.email}</div>
+                    <div>Profile Image: <img src="http://placehold.it/400/400" /></div>
+                </div>
+                <div>
+                    {/* image change goes here */}
+                    Change Profile Image
+                </div>
             </div>
         );
     }
