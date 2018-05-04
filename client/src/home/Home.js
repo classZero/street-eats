@@ -15,7 +15,6 @@ export class Home extends Component {
     trucks: [],
   }
   state = {
-    sortType: '',
     showMenu: ''
   }
   componentDidMount() {
@@ -25,33 +24,11 @@ export class Home extends Component {
   setSortType = (e) => {
     e.preventDefault()
     let type = e.target.value
-    if (type === 'all') {
-      this.setState({
-        sortType: type
-      })
-      changeSortView(type)
-    } else if (type === 'new') {
-      this.setState({
-        sortType: type
-      })
-      changeSortView(type)
-    } else if (type === 'alpha') {
-      this.setState({
-        sortType: type
-      })
-      changeSortView(type)
-    } else if (type === 'active') {
-      this.setState({
-        sortType: type
-      })
-      changeSortView(type)
-    }
-    // this.setState({
-    //   sortType: e.target.value
-    // })
-    //index.js:2178 Warning: Can't call setState (or forceUpdate) on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.
+
+    changeSortView(type)
+
   }
-  
+
   //sorting dropdown menu
   showMenu = (event) => {
     event.preventDefault();
@@ -88,12 +65,12 @@ export class Home extends Component {
             <div className="sort-bar-wrapper">
               <div className="dropdown-menu">
                 <div>
-                  <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} id="dropmenu-btn">Sort By &#9662;</button>
+                  <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} className="dropmenu-btn">Sort By &#9662;</button>
                   <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
-                    <Link to={`/truckdata/${this.state.sortType}`}><button onClick={this.setSortType} value="all">Show All</button></Link>
-                    <Link to={`/truckdata/${this.state.sortType}`}><button onClick={this.setSortType} value="new">Show Newest</button></Link>
-                    <Link to={`/truckdata/${this.state.sortType}`}><button onClick={this.setSortType} value="alpha">Show By Company Name</button></Link>
-                    <Link to={`/truckdata/${this.state.sortType}`}><button onClick={this.setSortType} value="active">Show Active Only</button></Link>
+                    <button onClick={this.setSortType} value="all">Show All</button>
+                    <button onClick={this.setSortType} value="new">Show Newest</button>
+                    <button onClick={this.setSortType} value="alpha">Show By Company Name</button>
+                    <button onClick={this.setSortType} value="active">Show Active Only</button>
                   </div>
                 </div>
               </div>
@@ -103,14 +80,15 @@ export class Home extends Component {
               {this.props.sortType === 'new' ? <h1 className="content-headers">Newest Trucks</h1> :
                 this.props.sortType === 'all' ? <h1 className="content-headers">All Trucks</h1> :
                 this.props.sortType === 'alpha' ? <h1 className="content-headers">By Name  &#9662;</h1> :
+                this.props.sortType === 'active' ? <h1 className="content-headers">Active Trucks</h1> :
                 <h1 className="content-headers">All Trucks</h1>}
                                               
-              {this.props.trucks.map((truck, i) => {
+              {this.props.trucks.length > 0 ? this.props.trucks.map((truck, i) => {
                 return (<Link className="newtruck-list-item" key={'key' + i} to={`/truckprofile/${truck.username}`}>
                           <h3>{truck.companyname}</h3>
                           <p>{truck.formattedAddress}</p>
                         </Link>)
-              })}
+              }) : <h3 className="newtruck-list-item">No trucks listed</h3>} 
             </div>
           </div>
         </div>

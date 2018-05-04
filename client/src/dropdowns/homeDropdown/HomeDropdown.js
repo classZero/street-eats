@@ -35,7 +35,7 @@ class HomeDropdown extends Component {
       <div className="dropdown-menu">
         {window.localStorage.getItem('token') ?
         <div>
-          <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} id="dropmenu-btn">Dropdown menu &#9662;</button>
+          <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} className="dropmenu-btn">Dropdown menu &#9662;</button>
           <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
             <Link to="/Uregistration">user reg page</Link>
             <Link to="/Tregistration">truck reg page</Link>
