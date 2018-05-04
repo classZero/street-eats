@@ -105,7 +105,7 @@ class TRegistration extends Component {
 						<input onChange={this.handleChange} type="text" name="username" value={this.state.username}  placeholder="USERNAME"/>
 						<input onChange={this.handleChange} type="text" name="companyName" value={this.state.companyname} placeholder="COMPANY NAME" />
 						<input onChange={this.handleChange} type="text" name="email" value={this.state.email} placeholder="EMAIL"/>
-						<textarea onChange={this.handleChange} name="aboutus" value={this.state.aboutus} placeholder="ABOUT US" ></textarea>
+						<textarea onChange={this.handleChange} name="aboutus" value={this.state.aboutus} placeholder="ABOUT YOUR TRUCK" ></textarea>
 						<input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="PASSWORD"/>
 						<input onChange={this.handleChange} type="password" name="confirmPassword" value={this.state.confirmPassword} placeholder="CONFIRM PASSWORD"/>
 			            <div className="add-image-container">
@@ -113,7 +113,7 @@ class TRegistration extends Component {
 					</form>
         <button onClick={this.uploadWidget} value="logo" name="logo" className="upload-button">Upload Logo</button>
         <button onClick={this.uploadWidget} value="menu" name="menu" className="upload-button">Upload Menu</button>
-        <button type="submit">Register</button>
+        <button className="submitBold" type="submit">REGISTER</button>
         </div>
         
         </div>

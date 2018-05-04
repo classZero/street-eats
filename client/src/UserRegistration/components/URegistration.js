@@ -62,11 +62,11 @@ class URegistration extends Component {
 
         <div className="userRegForm">
 					<form onSubmit={this.handleSubmit}>
-						<input onChange={this.handleChange} type="text" name="username" value={this.state.username}  placeholder="username" required/>
-						<input onChange={this.handleChange} type="email" name="email" value={this.state.email} placeholder="john@example.com" required/>
-						<input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="password" required/>
-						<input onChange={this.handleChange} type="password" name="confirmPassword" value={this.state.confirmPassword} placeholder="confirm password" required/>
-						<button type="submit">Register</button>
+						<input onChange={this.handleChange} type="text" name="username" value={this.state.username}  placeholder="USERNAME" required/>
+						<input onChange={this.handleChange} type="email" name="email" value={this.state.email} placeholder="John@example.com" required/>
+						<input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="PASSWORD" required/>
+						<input onChange={this.handleChange} type="password" name="confirmPassword" value={this.state.confirmPassword} placeholder="CONFIRM PASSWORD" required/>
+						<button type="submit">REGISTER</button>
 					</form>
         </div>
 
