@@ -1,0 +1,38 @@
+.userRegContainer {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(235, 85, 73);
+    width: 500px;
+    height: 600px;
+    box-shadow: 0px 0px 8px 8px rgba(196, 153, 150, 0.7);
+}
+
+.userRegHeader {
+    border-bottom: 1px solid white;
+    text-align: center;
+    font-family: 'Paytone One', sans-serif;
+    text-shadow: 2px 2px rgba(196, 153, 150, 0.7);
+}
+
+.userRegForm {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Questrial', sans-serif;
+}
+
+.userRegForm input {
+    font-family: 'Questrial', sans-serif;
+}
+
+.userRegForm button {
+    font-family: 'Questrial', sans-serif;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    color: white;
+}
+
+.userRegForm button:hover {
+    color: rgb(240, 208, 32);
+    cursor: pointer;
+}

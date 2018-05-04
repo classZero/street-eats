@@ -53,6 +53,7 @@ class HomeDropdown extends Component {
             <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
               <Link to="/Uregistration">Register as a user</Link>
               <Link to="/Tregistration">Register as a truck</Link>
+              <Link to="/registrationPage">Register</Link>
             </div>
           </div>
         }
