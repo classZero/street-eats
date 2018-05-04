@@ -58,7 +58,7 @@ setInterval(() => {
       }  
     })
   })
-}, 1000) 
+}, 600000) 
 
 app.use('/api', publicRouter)
 app.use('/api', ejwt({secret: config.get('jwt-secret')}), privateRouter)

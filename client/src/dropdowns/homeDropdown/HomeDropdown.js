@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Logout from '../../logout/Logout'
 import './homeDropdown.css'
@@ -7,7 +8,6 @@ class HomeDropdown extends Component {
   state = {
     showMenu: false,
   }
-
   
   showMenu = (event) => {
     event.preventDefault();
@@ -30,26 +30,41 @@ class HomeDropdown extends Component {
   }
 
   render() {
+    const classes = this.state.showMenu ? 'menu' : 'menu hide'
     return (
       <div className="dropdown-menu">
-        <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} >Dropdown menu</button>
-        
-        {this.state.showMenu ? 
-          (<div className="menu" onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
-              <Logout />
-              <Link to=""> Menu item 2 </Link>
-              <Link to=""> Menu item 3 </Link>
-              <Link to="/Uregistration">temp user reg page</Link>
-              <Link to="/Tregistration">temp truck registration page</Link>
-              <Link to="/userprofile">working user profile page</Link>
-              <Link to="/truckprofile">working truck profile page</Link>
-              <Link to="/mapinputs">inputs for trucks</Link>
-              <Link to="map">links to map</Link>
-           </div>)
-            : (null)}
+        {window.localStorage.getItem('token') ?
+        <div>
+          <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} id="dropmenu-btn">Dropdown menu &#9662;</button>
+          <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
+            <Link to="/Uregistration">user reg page</Link>
+            <Link to="/Tregistration">truck reg page</Link>
+            {this.props.source === 'user' ? <Link to="/userprofile">user profile</Link>
+                                          : <Link to="/truckprofile">truck profile</Link>
+            }
+            <Link to="/mapinputs">inputs for trucks</Link>
+            <Link to="map">links to map</Link>
+            <div><Logout /></div>
+            </div>
+          </div>
+          : 
+          <div>
+            <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} id="dropmenu-btn">Sign Up &#9662;</button>
+            <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
+              <Link to="/Uregistration">Register as a user</Link>
+              <Link to="/Tregistration">Register as a truck</Link>
+            </div>
+          </div>
+        }
       </div>
     )
   }
 }
 
-export default HomeDropdown
+function mapStateToProps(state) {
+  return {
+    source: state.loginReducer.source
+  }
+}
+
+export default connect(mapStateToProps)(HomeDropdown)

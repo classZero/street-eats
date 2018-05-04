@@ -27,35 +27,26 @@ export class Home extends Component {
       <div className="home-container">
         <div className="home-header">
           
-          <div className="home-header-loginRegister">
-            <div className="home-header-loginStuff">
-              <p>Login:</p>
-              <Login />
-            </div>
-
-            <Link to="#">Register</Link>
-            
+          <div className="home-header-login">
+            <p>Login:</p>
+            <Login />
           </div>
 
-          <div className="logo-container"><h1 className="content-headers">Street Eats</h1> <img className="logo-icon" src={trucksvg}/></div>
+          <div className="logo-container"><h1 className="content-headers-title">Street Eats</h1> <img className="logo-icon" src={trucksvg}/></div>
 
           <div className="home-header-dropdown">
-            <p>{this.props.username}</p>
+            {this.props.username ? <p>Username : {this.props.username}</p> : ''}
             <HomeDropdown />
           </div>
 
         </div>
         <div className="home-body-container">
+
           <div className="map-wrapper"><MapViewHome /></div>
+
           <div className="home-newsfeed">
             <h1 className="content-headers">Newest Trucks</h1>
-            {/* {this.props.trucks.map((truck, i) => {
-              return (<div key={'key' + i}>
-                        <h3>{truck.companyname}</h3>
-                        <p>{truck.formattedAddress}</p>
-                      </div>
-                      )
-            })} */}
+
             {this.props.trucks.map((truck, i) => {
               return {res: truck, index: i, value: truck.datecreated}
             }).sort((prev, curr) => {
@@ -68,7 +59,7 @@ export class Home extends Component {
               return 0
             }).map((el, i) => {
               if (i <= 4) {
-              return (<Link key={'key' + i} to={`/truckprofile/${el.res.username}`}><div >
+              return (<Link className="newtruck-list-item" key={'key' + i} to={`/truckprofile/${el.res.username}`}><div >
                         <h3>{el.res.companyname}</h3>
                         <p>{el.res.formattedAddress}</p>
                       </div></Link>)
@@ -82,8 +73,6 @@ export class Home extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
-  console.log(state.homeReducer.truckData.results)
   console.log('isAuth? ' + state.loginReducer.isAuthenticated)
   return {
     isAuthenticated: state.loginReducer.isAuthenticated,
