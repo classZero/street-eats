@@ -63,6 +63,7 @@ body {
 .home-header-dropdown p {
     padding-right: 10px;
     text-shadow: none;
+    font-family: Questrial;
 }
 
 .content-headers, .content-headers-title {
@@ -91,7 +92,9 @@ body {
 .logo-icon{
     position: absolute;
     top: -40px;
-    z-index: -1
+    z-index: -1;
+    animation-duration: 3s;
+    animation-name: slidein;
 }
 
 .home-container {
@@ -150,5 +153,17 @@ body {
         display: none;
     }
 }
+
+@keyframes slidein {
+    from {
+      margin-left: 700%;
+      width: 100%; 
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
 
 

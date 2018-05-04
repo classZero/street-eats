@@ -51,8 +51,6 @@ class HomeDropdown extends Component {
           <div>
             <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} id="dropmenu-btn">Sign Up &#9662;</button>
             <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
-              <Link to="/Uregistration">Register as a user</Link>
-              <Link to="/Tregistration">Register as a truck</Link>
               <Link to="/registrationPage">Register</Link>
             </div>
           </div>
