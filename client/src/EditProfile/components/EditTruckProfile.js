@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {editTruckProfile} from '../actions/edittruckprofileaction'
 import {Redirect} from 'react-router-dom'
 import MapViewInputs from '../../MapView/mapviewcomponents/MapViewInputs';
+import MenuBuilder from 'MenuBuilder/components/MenuBuilder'
 
 class EditTruckProfile extends Component {
     state = {

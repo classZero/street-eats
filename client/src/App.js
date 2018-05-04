@@ -8,6 +8,7 @@ import UProfileView from './userprofile/components/uprofileview'
 import MapViewHome from './MapView/mapviewcomponents/MapsViewHome'
 import MapViewInputs from './MapView/mapviewcomponents/MapViewInputs'
 import EditProfile from './EditProfile/components/EditProfile'
+import MenuBuilder from 'MenuBuilder/components/MenuBuilder' //currently for testing. will move inside edit profile when ready
 
 class App extends Component {
   render () {
@@ -18,6 +19,7 @@ class App extends Component {
             <Route path="/truckprofile/:username" component={TProfileView} />
             <Route path="/URegistration" component={URegistration} />
             <Route path="/TRegistration" component={TRegistration} />
+            <Route path="/build" component={MenuBuilder} />
             <Route path="/userprofile" component={UProfileView} />
             <Route path="/map" component={MapViewHome} />
             <Route path="/mapinputs" component={MapViewInputs} />
