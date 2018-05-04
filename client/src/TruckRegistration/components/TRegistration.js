@@ -110,10 +110,11 @@ class TRegistration extends Component {
 						<input onChange={this.handleChange} type="password" name="confirmPassword" value={this.state.confirmPassword} placeholder="CONFIRM PASSWORD"/>
 			            <div className="add-image-container">
 			            </div>
-					</form>
+					
         <button onClick={this.uploadWidget} value="logo" name="logo" className="upload-button">Upload Logo</button>
         <button onClick={this.uploadWidget} value="menu" name="menu" className="upload-button">Upload Menu</button>
         <button className="submitBold" type="submit">REGISTER</button>
+        </form>
         </div>
         
         </div>
