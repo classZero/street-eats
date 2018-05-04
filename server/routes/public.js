@@ -85,22 +85,6 @@ router.get('/truckdata', (req, res, next) => {
   })
 })
 
-router.get('/userprofile/:username', (req, res, next) => {
-    const username = req.params.username
-    const sql = `
-    SELECT * 
-    FROM users 
-    WHERE username = ?
-    `
-    conn.query(sql, username, (err, results, fields) => {
-        const username = results[0].username
-        const email = results[0].email
-        res.json({
-            username,
-            email
-        })
-    })
-})
 
 router.post('/registration', (req, res, next) => {
   console.log('req.body public reg ' + JSON.stringify(req.body))
@@ -123,7 +107,7 @@ router.post('/registration', (req, res, next) => {
 
             if (req.body.type === "user") {
                 if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
-                    const token = jwt.sign({user: username}, config.get('jwt-secret'))
+                    const token = jwt.sign({user: username, source: req.body.type}, config.get('jwt-secret'))
 
                     const insertSql = `
                         INSERT INTO users (username, password, email) VALUES (?,?,?)
@@ -146,7 +130,7 @@ router.post('/registration', (req, res, next) => {
             if (req.body.type === "truck"){
 
                 if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
-                    const token = jwt.sign({user: username}, config.get('jwt-secret'))
+                    const token = jwt.sign({user: username, source: req.body.type}, config.get('jwt-secret'))
                     console.log('public line 94 ' + req.body)
                     const companyname = req.body.companyName
                     const companyLogo = req.body.companyLogo
@@ -190,7 +174,7 @@ router.post('/login', (req, res, next) => {
       console.log('login results ' + JSON.stringify(results))
         if(results.length > 0) {
             console.log('username and password returned match')
-            const token = jwt.sign({user: username}, config.get('jwt-secret'))
+            const token = jwt.sign({user: username, source: results[0].Source}, config.get('jwt-secret'))
             res.json({
                 message: "Login Successful",
                 token: token,
@@ -204,5 +188,50 @@ router.post('/login', (req, res, next) => {
         }
     })
 })
+
+
+router.get('/truckprofile/:username', (req, res, next) => {
+    // console.log(req.params.username)
+    const username = req.params.username
+    const sql = `
+    SELECT * 
+    FROM trucks 
+    WHERE username = ?
+    `
+    conn.query(sql, username, (err, results, fields) => {
+        const companyname = results[0].companyname
+        const aboutus = results[0].aboutus
+        const menuurl = results[0].menuurl
+        const logo = results[0].companylogo
+        
+        res.json({                  
+            companyname,
+            aboutus,
+            menuurl,
+            logo
+        })
+    })
+  
+  })
+
+
+router.get('/userprofile/:username', (req, res, next) => {
+    const username = req.params.username
+    const sql = `
+    SELECT * 
+  FROM users 
+  WHERE username = ?
+    `
+    conn.query(sql, username, (err, results, fields) => {
+        const username = results[0].username
+        const email = results[0].email
+        res.json({
+            username,
+            email
+        })
+    })
+  
+  
+  })
 
 export default router

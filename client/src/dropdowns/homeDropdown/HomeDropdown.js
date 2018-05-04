@@ -39,11 +39,12 @@ class HomeDropdown extends Component {
           <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
             <Link to="/Uregistration">user reg page</Link>
             <Link to="/Tregistration">truck reg page</Link>
-            {this.props.source === 'user' ? <Link to="/userprofile">user profile</Link>
+            {this.props.source === 'user' ? <Link to="/editprofile">user profile</Link>
                                           : <Link to="/truckprofile">truck profile</Link>
             }
             <Link to="/mapinputs">inputs for trucks</Link>
             <Link to="map">links to map</Link>
+            <Link to={'/editprofile'} >edit my profile</Link>
             <div><Logout /></div>
             </div>
           </div>
@@ -51,8 +52,7 @@ class HomeDropdown extends Component {
           <div>
             <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} id="dropmenu-btn">Sign Up &#9662;</button>
             <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
-              <Link to="/Uregistration">Register as a user</Link>
-              <Link to="/Tregistration">Register as a truck</Link>
+              <Link to="/registrationPage">Register</Link>
             </div>
           </div>
         }
@@ -63,7 +63,8 @@ class HomeDropdown extends Component {
 
 function mapStateToProps(state) {
   return {
-    source: state.loginReducer.source
+    source: state.loginReducer.source,
+    username: state.loginReducer.username
   }
 }
 
