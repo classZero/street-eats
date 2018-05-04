@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {getProfile} from '../actions/tProfileActions'
-import {Link, Redirect} from 'react-router-dom'
+import { getProfile } from '../actions/tProfileActions'
+import { Link } from 'react-router-dom'
 
 class TProfileView extends Component {
 

@@ -65,7 +65,6 @@ class EditTruckProfile extends Component {
 function mapStateToProps(state) {
     return {
         profile : state.tProfileReducer.profile,
-        username : state.loginReducer.username,
         isAuth: state.loginReducer.isAuthenticated
     }
 }

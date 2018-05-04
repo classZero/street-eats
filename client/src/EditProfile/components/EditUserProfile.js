@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 class EditUserProfile extends Component {
     
     componentDidMount() {
-        getUserProfile()
+        getUserProfile(this.props.match.params.username)
     }
 
     render() {

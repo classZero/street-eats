@@ -13,9 +13,9 @@ class EditProfile extends Component {
     
   editType(source) {
     if(source === 'truck') {
-      return <EditTruckProfile />
+      return <EditTruckProfile username={this.props.username} />
     } else {
-      return <EditUserProfile />
+      return <EditUserProfile username={this.props.username} />
     }
   }  
     render() {
@@ -33,7 +33,8 @@ class EditProfile extends Component {
 function mapStateToProps(state) {
   return {
     source : state.loginReducer.source,
-    isAuth: state.loginReducer.isAuthenticated
+    isAuth: state.loginReducer.isAuthenticated,
+    username: state.loginReducer.username
   }
 }
 

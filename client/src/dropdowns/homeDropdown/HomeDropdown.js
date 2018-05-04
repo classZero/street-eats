@@ -44,6 +44,7 @@ class HomeDropdown extends Component {
             }
             <Link to="/mapinputs">inputs for trucks</Link>
             <Link to="map">links to map</Link>
+            <Link to={'/editprofile'} >edit my profile</Link>
             <div><Logout /></div>
             </div>
           </div>
@@ -63,7 +64,8 @@ class HomeDropdown extends Component {
 
 function mapStateToProps(state) {
   return {
-    source: state.loginReducer.source
+    source: state.loginReducer.source,
+    username: state.loginReducer.username
   }
 }
 
