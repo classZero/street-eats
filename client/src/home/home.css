@@ -92,7 +92,7 @@ body {
     position: absolute;
     top: -40px;
     z-index: -1;
-    animation-duration: 3s;
+    animation-duration: 4s;
     animation-name: slidein;
 }
 
@@ -186,7 +186,7 @@ body {
 
 @keyframes slidein {
     from {
-      margin-left: 700%;
+      margin-left: 525%;
       width: 100%; 
     }
   
