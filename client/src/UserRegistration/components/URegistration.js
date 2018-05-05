@@ -85,11 +85,10 @@ class URegistration extends Component {
 						<input onChange={this.handleChange} type="email" name="email" value={this.state.email} placeholder="John@example.com" required/>
 						<input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="PASSWORD" required/>
 						<input onChange={this.handleChange} type="password" name="confirmPassword" value={this.state.confirmPassword} placeholder="CONFIRM PASSWORD" required/>
-						<button type="submit">REGISTER</button>
+						<button id="styleMeToo" onClick={this.uploadWidget} value="avatar" name="avatar" className="upload-button">Upload Image</button>
+            <button type="submit">REGISTER</button>
 					</form>
         </div>
-        
-        <button onClick={this.uploadWidget} value="avatar" name="avatar" className="upload-button">Upload Image</button>
 
         </div>
 			</div>
