@@ -37,7 +37,7 @@
     outline: none;
     background-color: inherit;
     color: white;
-    margin-left: 200px;
+    margin-left: 190px;
     font-weight: bold;
     font-size: 20px;
     margin-top: 35px;
@@ -46,4 +46,9 @@
 .userRegForm button:hover {
     color: rgb(240, 208, 32);
     cursor: pointer;
+}
+
+#styleMeToo {
+    font-size: 12px;
+    margin-left: 200px;
 }
