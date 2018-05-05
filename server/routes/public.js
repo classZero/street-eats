@@ -85,7 +85,6 @@ router.get('/truckdata', (req, res, next) => {
   })
 })
 
-
 router.post('/registration', (req, res, next) => {
   console.log('req.body public reg ' + JSON.stringify(req.body))
     const username = req.body.username
@@ -166,14 +165,15 @@ router.post('/login', (req, res, next) => {
     const password = sha512(req.body.password)
     // const password = req.body.username
 
-    const sql = `SELECT username, email, companyname, companylogo, menuurl, aboutus, lng, lat, datecreated, 'truck' as Source FROM trucks as truckInfo WHERE username = ? AND password = ?
+    const sql = `SELECT id, username, email, companyname, companylogo, menuurl, aboutus, lng, lat, datecreated, 'truck' as Source FROM trucks as truckInfo WHERE username = ? AND password = ?
                 UNION
-                SELECT username, email, Null as companyname, Null as companylogo, Null as menuurl, Null as aboutus, Null as lng, Null as lat, Null as datecreated, 'user' as Source FROM users as userInfo WHERE username = ? AND password = ?`
+                SELECT id, username, email, Null as companyname, Null as companylogo, Null as menuurl, Null as aboutus, Null as lng, Null as lat, Null as datecreated, 'user' as Source FROM users as userInfo WHERE username = ? AND password = ?`
 
     conn.query(sql, [username, password, username, password], (err, results, fields) => {
       console.log('login results ' + JSON.stringify(results))
         if(results.length > 0) {
             console.log('username and password returned match')
+            console.log(results[0].id)
             const token = jwt.sign({user: username, source: results[0].Source}, config.get('jwt-secret'))
             res.json({
                 message: "Login Successful",
@@ -212,6 +212,23 @@ router.get('/truckprofile/:username', (req, res, next) => {
         })
     })
   
+  })
+
+  router.get('/truckreviews/:username', (req, res, next) => {
+      const username = req.params.username
+      const sql = `
+      SELECT review 
+      FROM reviews 
+      WHERE truckusername = ?
+      `
+
+      conn.query(sql, username, (err,results, fields) => {
+          const reviews = results
+
+          res.json({
+            reviews
+          })
+      })
   })
 
 

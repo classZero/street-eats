@@ -81,6 +81,13 @@ instance.getTruckProfile = function (username) {
   })
 }
 
+instance.getTruckReviews = function(username) {
+  return this.get('/truckreviews/' + username)
+  .then(resp => {
+    return resp.data.reviews
+  })
+}
+
 
 instance.getUserProfile = function (username) {
   // console.log(username)
