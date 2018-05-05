@@ -4,6 +4,7 @@ import './mapviewhomestyles.css'
 import Geocode from 'react-geocode'
 import {getCords} from '../mapviewactions/mapactions'
 import {connect} from 'react-redux'
+import { MapModal } from '../../modals/MapModal';
 
 class MapViewHome extends Component {
   static defaultProps = {
@@ -13,21 +14,40 @@ class MapViewHome extends Component {
     showingInfoWindow: false,
     activeMarker: {},
     selectedName: '',
-    selectedLocation: ''
+    selectedLocation: '',
+    open: '',
+    close: '',
+    isModalOpen: false
+  }
+    
+  openModal = () => {
+    console.log('trying to open modal')
+    this.setState({ isModalOpen: true })
   }
 
-  componentDidMount(){
-    // getCords()  replaced with homeReducer trucks list
+  closeModal = () => {
+    this.setState({ isModalOpen: false })
   }
 
   onClickMarker = (props, marker, e) => {
+    console.log(props)
     this.setState({
       selectedName: props.title,
       selectedLocation: props.location,
+      open: this.formatISODate(props.open),
+      close: this.formatISODate(props.close),
       activeMarker: marker,
       showingInfoWindow: true
     })
+    this.openModal()
   }
+
+  formatISODate = (date) => {
+    let d = new Date(date)
+    let formattedDate = d.getDate()
+    return formattedDate
+  }
+
   onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
@@ -36,34 +56,111 @@ class MapViewHome extends Component {
       })
     }
   }
+
   render () {
     return (
-    // <div>
-
-      //<div className="mapstestcontainer" style={{width: '900px', height: '100px'}}>
+    <div>
+      {/* <div className="mapstestcontainer" style={{width: '900px', height: '100px'}}> */}
         <Map style={{width: '100%', height: '100%', position: 'relative'}} onClick={this.onMapClicked} google={this.props.google} initialCenter={{lat:36.133348310973645 ,lng:-115.15630909218748 }} zoom={11}>
-        {this.props.trucks.map((truck, i) => {
-          if (truck.isActive) {
+        {this.props.trucks.filter(truck => truck.isActive === 1 ? true : false ).map((truck, i) => {
+          console.log('open',truck.timeopen)
+          console.log('close',truck.timeclose)
             return ( <Marker 
                       key={'key'+i}
                       onClick={this.onClickMarker}
                       title={truck.companyname}
                       location={truck.formattedAddress}
                       position={{lat: truck.lat, lng: truck.lng}} 
+                      open={truck.timeopen}
+                      close={truck.timeclose}
                       />
             )
-          }
         })}
         </Map>
+        <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()} className="modal-wrapper">
+          <h1>{this.state.selectedName}</h1>
+          <p>{this.state.selectedLocation}</p>
+          <p>Open: {this.state.open}   Close: {this.state.close}</p>
+          <p><button onClick={() => this.closeModal()}>Close</button></p>
+        </Modal>
         
-    //  </div>
-    //   <p>{this.state.selectedName}</p>
+    </div>
+    //   {/* <p>{this.state.selectedName}</p>
     //   <p>{this.state.selectedLocation}</p>
-    // </div>
+    // </div> */}
       
     )
   }
 }
+
+
+class Modal extends Component {
+  render() {
+    if (this.props.isOpen === false)
+      return null
+
+    let modalStyle = {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: '9999',
+      background: 'rgb(235, 85, 73)',
+      borderRadius: '5px'
+    }
+
+    if (this.props.width && this.props.height) {
+      modalStyle.width = this.props.width + 'px'
+      modalStyle.height = this.props.height + 'px'
+      modalStyle.marginLeft = '-' + (this.props.width/2) + 'px',
+      modalStyle.marginTop = '-' + (this.props.height/2) + 'px',
+      modalStyle.transform = null
+    }
+
+    if (this.props.style) {
+      for (let key in this.props.style) {
+        modalStyle[key] = this.props.style[key]
+      }
+    }
+
+    let backdropStyle = {
+      position: 'absolute',
+      width: '100%',
+      height: '100%',
+      top: '0px',
+      left: '0px',
+      zIndex: '9998',
+      background: 'rgba(0, 0, 0, 0.3)'
+    }
+
+    if (this.props.backdropStyle) {
+      for (let key in this.props.backdropStyle) {
+        backdropStyle[key] = this.props.backdropStyle[key]
+      }
+    }
+
+    return (
+      <div className={this.props.containerClassName}>
+        <div className={this.props.className} style={modalStyle}>
+          {this.props.children}
+        </div>
+        {!this.props.noBackdrop &&
+            <div className={this.props.backdropClassName} style={backdropStyle}
+                 onClick={e => this.close(e)}/>}
+      </div>
+    )
+  }
+
+  close(e) {
+    e.preventDefault()
+
+    if (this.props.onClose) {
+      this.props.onClose()
+    }
+  }
+}
+
+
 
 function mapStateToProps(state) {
     return {

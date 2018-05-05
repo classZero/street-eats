@@ -5,6 +5,7 @@ import {getTruckData, changeSortView} from './homeActions'
 import MapViewHome from '../MapView/mapviewcomponents/MapsViewHome'
 import TruckListDropdown from '../dropdowns/homeDropdown/TruckListDropdown'
 import HomeHeader from '../headers/HomeHeader'
+import MapModal from '../modals/MapModal'
 
 import './home.css'
 import '../dropdowns/homeDropdown/homeDropdown.css'
@@ -61,6 +62,7 @@ export class Home extends Component {
         <div className="home-body-container">
 
           <div className="map-wrapper"><MapViewHome /></div>
+          
           <div>
             <div className="sort-bar-wrapper">
               <div className="dropdown-menu">
