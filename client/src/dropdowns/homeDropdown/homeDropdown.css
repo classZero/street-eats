@@ -11,6 +11,13 @@
     text-shadow: none;
 }
 
+#dropmenu-btn {
+    background-color: inherit;
+    border: none;
+    color: white;
+    font-size: 15px;
+}
+
 .menu a:first-child, .menu button:first-child {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
