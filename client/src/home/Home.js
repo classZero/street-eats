@@ -79,18 +79,21 @@ export class Home extends Component {
             </div>
 
             <div className="home-newsfeed">
-              {this.props.sortType === 'new' ? <h1 className="content-headers">Newest Trucks</h1> :
+              <div className="home-newsfeed-header">
+                {this.props.sortType === 'new' ? <h1 className="content-headers">Newest Trucks</h1> :
                 this.props.sortType === 'all' ? <h1 className="content-headers">All Trucks</h1> :
                 this.props.sortType === 'alpha' ? <h1 className="content-headers">By Name  &#9662;</h1> :
                 this.props.sortType === 'active' ? <h1 className="content-headers">Active Trucks</h1> :
                 <h1 className="content-headers">All Trucks</h1>}
-                                              
-              {this.props.trucks.length > 0 ? this.props.trucks.map((truck, i) => {
-                return (<Link className="newtruck-list-item" key={'key' + i} to={`/truckprofile/${truck.username}`}>
-                          <h3>{truck.companyname}</h3>
-                          <p>{truck.formattedAddress}</p>
-                        </Link>)
-              }) : <h3 className="newtruck-list-item">No trucks listed</h3>} 
+              </div>
+              {/* <div className="home-newsfeed-list">                                */}
+                {this.props.trucks.length > 0 ? this.props.trucks.map((truck, i) => {
+                  return (<Link className="newtruck-list-item" key={'key' + i} to={`/truckprofile/${truck.username}`}>
+                            <h3>{truck.companyname}</h3>
+                            <p>{truck.formattedAddress}</p>
+                          </Link>)
+                }) : <h3 className="newtruck-list-item">No trucks listed</h3>} 
+              {/* </div> */}
             </div>
           </div>
         </div>

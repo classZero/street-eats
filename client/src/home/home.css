@@ -75,13 +75,6 @@ body {
     /* position: relative; */
 }
 
-.content-headers {
-    position: relative;
-    height: 60px;
-    line-height: 60px;
-    margin: 0;
-}
-
 .logo-container{
     position: absolute;
     top: 8px;
@@ -114,6 +107,7 @@ body {
     margin-top: 50px;
 }
 
+/* truck list section */
 .home-newsfeed {
     display: flex;
     flex-direction: column;
@@ -125,10 +119,21 @@ body {
     overflow: auto;
 }
 
-.home-newsfeed h1 {
+.home-newsfeed-header {
     border-bottom: 1px solid white;
+}
+
+.home-newsfeed h1 {
     text-align: center;
     text-shadow: 2px 2px rgba(196, 153, 150, 0.7);
+}
+
+.content-headers {
+    /* position: fixed; 
+    top: 0;
+    height: 60px;
+    line-height: 60px;
+    margin: 0;  */
 }
 
 .newtruck-list-item {
@@ -140,6 +145,8 @@ body {
 .newtruck-list-item:hover {
     background-color: rgb(174, 50, 50);
 }
+
+/* map styles */
 
 .maptestcontainer {
     /* height: 100%; */

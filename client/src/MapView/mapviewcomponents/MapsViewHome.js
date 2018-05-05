@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
 import './mapviewhomestyles.css'
 import Geocode from 'react-geocode'
+import moment from 'moment'
 import {getCords} from '../mapviewactions/mapactions'
 import {connect} from 'react-redux'
 import { MapModal } from '../../modals/MapModal';
@@ -21,7 +22,6 @@ class MapViewHome extends Component {
   }
     
   openModal = () => {
-    console.log('trying to open modal')
     this.setState({ isModalOpen: true })
   }
 
@@ -30,7 +30,6 @@ class MapViewHome extends Component {
   }
 
   onClickMarker = (props, marker, e) => {
-    console.log(props)
     this.setState({
       selectedName: props.title,
       selectedLocation: props.location,
@@ -43,9 +42,8 @@ class MapViewHome extends Component {
   }
 
   formatISODate = (date) => {
-    let d = new Date(date)
-    let formattedDate = d.getDate()
-    return formattedDate
+    let d = moment(date).format('hh:mm:ss a')
+    return d
   }
 
   onMapClicked = (props) => {
@@ -60,11 +58,8 @@ class MapViewHome extends Component {
   render () {
     return (
     <div>
-      {/* <div className="mapstestcontainer" style={{width: '900px', height: '100px'}}> */}
         <Map style={{width: '100%', height: '100%', position: 'relative'}} onClick={this.onMapClicked} google={this.props.google} initialCenter={{lat:36.133348310973645 ,lng:-115.15630909218748 }} zoom={11}>
         {this.props.trucks.filter(truck => truck.isActive === 1 ? true : false ).map((truck, i) => {
-          console.log('open',truck.timeopen)
-          console.log('close',truck.timeclose)
             return ( <Marker 
                       key={'key'+i}
                       onClick={this.onClickMarker}
@@ -85,10 +80,6 @@ class MapViewHome extends Component {
         </Modal>
         
     </div>
-    //   {/* <p>{this.state.selectedName}</p>
-    //   <p>{this.state.selectedLocation}</p>
-    // </div> */}
-      
     )
   }
 }
@@ -165,7 +156,6 @@ class Modal extends Component {
 function mapStateToProps(state) {
     return {
         username: state.loginReducer.username,
-        // mapdata: state.mapreducer.mappop,        replaced with home reducer
         trucks: state.homeReducer.truckData
     }
 }
