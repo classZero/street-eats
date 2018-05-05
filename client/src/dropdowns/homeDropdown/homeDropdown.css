@@ -16,6 +16,13 @@
     border: none;
     color: white;
     font-size: 15px;
+    outline: none;
+}
+
+#dropmenu-btn:hover {
+    background-color: rgb(240, 208, 32);
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 .menu a:first-child, .menu button:first-child {
