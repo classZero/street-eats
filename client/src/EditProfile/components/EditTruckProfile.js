@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import {editTruckProfile} from '../actions/edittruckprofileaction'
 import {Redirect} from 'react-router-dom'
 import MapViewInputs from '../../MapView/mapviewcomponents/MapViewInputs';
+import './edittruckprofile.css'
+import HomeHeader from '../../headers/HomeHeader'
 
 class EditTruckProfile extends Component {
     state = {
@@ -44,17 +46,23 @@ class EditTruckProfile extends Component {
         return (
             <div>{this.props.isAuth ? 
                 <div>
+                  <HomeHeader />
+                  <div className="edittruck-bigContainer">
                   <MapViewInputs />
-                  <div>
+                  <div className="edittruck-container">
+                    <header>
+                      <h1>Edit Profile</h1>
+                    </header>
                       <form onSubmit={this.handleSubmit}>
-                          <div>Company Name: <input onChange={this.handleChange} type='text' name='name' value={this.state.name} /> </div>
-                          <div>Company logo: <input onChange={this.handleChange} type='text' name='logo' value={this.state.logo} /> </div>
+                          <div>Edit Truck Name: <input onChange={this.handleChange} type='text' name='name' value={this.state.name} /> </div>
+                          <div>Edit Truck logo: <input onChange={this.handleChange} type='text' name='logo' value={this.state.logo} /> </div>
                           <div><img  alt="logo" src={this.props.profile.logo} /></div>
-                          <div>About us: <textarea onChange={this.handleChange} name='aboutus' value={this.state.aboutus} /></div>
-                          <div> Menu Url: <input onChange={this.handleChange} type='text' name='menuurl' value={this.state.menuurl} /> </div>
+                          <div>Edit About Us: <textarea onChange={this.handleChange} name='aboutus' value={this.state.aboutus} /></div>
+                          <div>Edit Menu Url: <input onChange={this.handleChange} type='text' name='menuurl' value={this.state.menuurl} /> </div>
                           <div><img alt="menu" src={this.props.profile.menuurl} /></div>
                           <button type='submit'>Submit</button>
                       </form>
+                  </div>
                   </div>
                 </div> : <Redirect to='/' />}
             </div>
