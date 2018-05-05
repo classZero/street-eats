@@ -5,30 +5,24 @@ import Logout from '../../logout/Logout'
 import './homeDropdown.css'
 
 class HomeDropdown extends Component {
-  state = {
-    showMenu: false,
-  }
   
   showMenu = (event) => {
     event.preventDefault();
-    
-    this.setState({ showMenu: true }, () => {
-      document.addEventListener('click', this.closeMenu);
-    })
+    this.setState({ showMenu: true })
   }
+  
   hideMenu = (event) => {
     event.preventDefault();
-    
-    this.setState({ showMenu: false }, () => {
-      document.addEventListener('click', this.closeMenu);
-    })
+    this.setState({ showMenu: false })
   }
-  closeMenu = () => {
-    this.setState({ showMenu: false }, () => {
-      document.removeEventListener('click', this.closeMenu);
-    })
+  
+  // closeMenu = () => {
+  //   this.setState({ showMenu: false })
+  // }
+  
+  state = {
+    showMenu: false,
   }
-
   render() {
     const classes = this.state.showMenu ? 'menu' : 'menu hide'
     return (

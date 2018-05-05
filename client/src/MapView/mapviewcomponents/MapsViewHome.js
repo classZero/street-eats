@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import './mapviewhomestyles.css'
-import Geocode from 'react-geocode'
+// import Geocode from 'react-geocode'
 import moment from 'moment'
-import {getCords} from '../mapviewactions/mapactions'
 import {connect} from 'react-redux'
-import { MapModal } from '../../modals/MapModal';
 
 class MapViewHome extends Component {
   static defaultProps = {
@@ -101,8 +99,8 @@ class Modal extends Component {
     }
 
     if (this.props.width && this.props.height) {
-      modalStyle.width = this.props.width + 'px'
-      modalStyle.height = this.props.height + 'px'
+      modalStyle.width = this.props.width + 'px',
+      modalStyle.height = this.props.height + 'px',
       modalStyle.marginLeft = '-' + (this.props.width/2) + 'px',
       modalStyle.marginTop = '-' + (this.props.height/2) + 'px',
       modalStyle.transform = null
