@@ -77,6 +77,8 @@ export class Home extends Component {
               </div>
             </div>
 
+            <Link to="/payments">temp payments</Link>
+
             <div className="home-newsfeed">
               <div className="home-newsfeed-header">
                 {this.props.sortType === 'new' ? <h1 className="content-headers">Newest Trucks</h1> :
