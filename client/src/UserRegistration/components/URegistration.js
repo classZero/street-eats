@@ -8,7 +8,8 @@ class URegistration extends Component {
 		username: '',
 		email: '',
 		password: '',
-		confirmPassword: ''
+    confirmPassword: '',
+    uploadCloudinaryAvatarUrl: ''
 	}
 
 	handleChange = (e) =>{
@@ -36,7 +37,8 @@ class URegistration extends Component {
 						registerUser(
 							this.state.username,
 							this.state.password,
-							this.state.email
+              this.state.email,
+              this.state.uploadCloudinaryAvatarUrl
 						)
 
 						this.setState({
@@ -50,6 +52,23 @@ class URegistration extends Component {
 			} else {window.alert('Please enter a valid email')}
 		} else {window.alert('Usernames can only include characters A-Z, 0-9, and may use _ and - as seperators')}
 	}
+
+  uploadWidget = (e) => {
+    let type = e.target.value
+    let data = {result: [{}]}
+    window.cloudinary.openUploadWidget({ cloud_name: 'maglingkod', upload_preset: 'avwvdugz', tags:['foodtruck']},
+      (error, result) => {
+        data = {result, type}
+        console.log('result:', result)
+        console.log('error:', result)
+        if (result && result[0].secure_url !== '') {
+          this.setState({
+            uploadCloudinaryAvatarUrl: data.result[0].secure_url
+          })
+        }
+      }
+    )
+  }  
 
 	render(){
 		return(
@@ -69,6 +88,8 @@ class URegistration extends Component {
 						<button type="submit">REGISTER</button>
 					</form>
         </div>
+        
+        <button onClick={this.uploadWidget} value="avatar" name="avatar" className="upload-button">Upload Image</button>
 
         </div>
 			</div>

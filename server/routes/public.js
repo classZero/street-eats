@@ -106,13 +106,14 @@ router.post('/registration', (req, res, next) => {
         } else {
 
             if (req.body.type === "user") {
+              const avatar = req.body.avatar
                 if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
                     const token = jwt.sign({user: username, source: req.body.type}, config.get('jwt-secret'))
 
                     const insertSql = `
-                        INSERT INTO users (username, password, email) VALUES (?,?,?)
+                        INSERT INTO users (username, password, email, avatar) VALUES (?,?,?,?)
                     `
-                    conn.query(insertSql, [username, password, email], (err2, results2, fields2) =>{
+                    conn.query(insertSql, [username, password, email, avatar], (err2, results2, fields2) =>{
                         res.json({
                             message: "User Created",
                             token: token,
@@ -224,9 +225,11 @@ router.get('/userprofile/:username', (req, res, next) => {
     conn.query(sql, username, (err, results, fields) => {
         const username = results[0].username
         const email = results[0].email
+        const avatar = results[0].avatar
         res.json({
             username,
-            email
+            email,
+            avatar
         })
     })
   

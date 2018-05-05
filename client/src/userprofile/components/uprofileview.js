@@ -8,7 +8,6 @@ import {Redirect} from 'react-router-dom'
 class UProfileView extends Component {
 
     componentDidMount(){
-        // console.log(this.props.username)
         getUserProfile(this.props.username)
     }
 
@@ -25,11 +24,12 @@ class UProfileView extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
     return {
         profile : state.uProfileReducer.profile,
         username : state.loginReducer.username,
         email: state.uProfileReducer.email,
-        isAuth: state.loginReducer.isAuthenticated
+        isAuth: state.loginReducer.isAuthenticated,
     }
 }
 
