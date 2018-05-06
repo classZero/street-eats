@@ -32,7 +32,7 @@ class HomeDropdown extends Component {
   }
   
   componentWillMount = () => {
-    document.addEventListener('click', this.handleOutsideClick, false)
+    document.addEventListener('click', this.handleOutsideClickHome, false)
   }
 
   componentWillUnmount = () => {
