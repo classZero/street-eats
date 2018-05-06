@@ -105,7 +105,7 @@ instance.getFavorites = function(username) {
 instance.addFavorite = function(username, truckuser) {
   return this.post('/addfavorite/', {username, truckuser})
   .then(resp => {
-    // console.log(resp)
+    return resp.data
   })
 }
 

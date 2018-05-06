@@ -22,6 +22,9 @@ export function getReviews(username) {
 
 export function addFavorite(username, truckuser) {
 	api.addFavorite(username, truckuser).then(resp => {
-		// console.log(resp)
+		store.dispatch({
+			type: 'ADDED_FAVORITE',
+			payload: resp.message
+		})
 	})
 }

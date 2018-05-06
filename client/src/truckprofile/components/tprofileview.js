@@ -24,8 +24,16 @@ class TProfileView extends Component {
     handleFavClick = (username, truckuser) => {
         addFavorite(username, truckuser)
     }
+    favAbility(isAuth, source) {
+        if(isAuth && source === 'user') {
+            return <div onClick={() => { this.handleFavClick(this.props.username, this.props.match.params.username) }}><img  alt='add favorite' style={{width: 50, height: 50}} src={star}/></div>
+        } else {
+            return <div></div>
+        }
+    }
 
     render() {
+        console.log(this.props.message)
         return (
               <div>
               <HomeHeader />
@@ -39,7 +47,8 @@ class TProfileView extends Component {
                     <div className="tprofile-about-header">ABOUT US</div>
                     <div className="tprofile-about">{this.props.profile.aboutus}</div>
                     <div className="tprofile-menu"><img alt="menu" src={this.props.profile.menuurl} /></div>
-                    {this.props.isAuth ? <div onClick={() => { this.handleFavClick(this.props.username, this.props.match.params.username) }}><img  alt='add favorite' style={{width: 50, height: 50}} src={star}/></div>:<div></div> }
+                    {this.favAbility(this.props.isAuth, this.props.source)}
+                    {this.props.message ? <div>{this.props.message}</div>:<div></div>}
                     <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
                 </div>
 
@@ -59,7 +68,9 @@ function mapStateToProps(state) {
         profile : state.tProfileReducer.profile,
         username: state.loginReducer.username,
         isAuth: state.loginReducer.isAuthenticated,
-        reviews: state.tProfileReducer.reviews
+        reviews: state.tProfileReducer.reviews,
+        source : state.loginReducer.source,
+        message : state.tProfileReducer.message
     }
 }
 
