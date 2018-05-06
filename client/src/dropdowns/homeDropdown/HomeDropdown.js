@@ -5,32 +5,23 @@ import Logout from '../../logout/Logout'
 import './homeDropdown.css'
 
 class HomeDropdown extends Component {
-  
-  showMenu = (event) => {
-    event.preventDefault();
-    this.setState({ showMenu: true })
-  }
-  
-  hideMenu = (event) => {
-    event.preventDefault();
-    this.setState({ showMenu: false })
-  }
-  
-  // closeMenu = () => {
-  //   this.setState({ showMenu: false })
-  // }
-  
   state = {
     showMenu: false,
   }
+
+  toggleMenu = (event) => {
+    event.preventDefault()
+    this.setState({ showMenu: !this.state.showMenu })
+  }
+  
   render() {
     const classes = this.state.showMenu ? 'menu' : 'menu hide'
     return (
-      <div className="dropdown-menu">
+      <div className="dropdown-menu" >
         {window.localStorage.getItem('token') ?
         <div>
-          <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} className="dropmenu-btn">Dropdown menu &#9662;</button>
-          <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
+          <button onClick={this.toggleMenu} className="dropmenu-btn">Menu &#9662;</button>
+          <div className={classes} >
             <Link to="/Uregistration">user reg page</Link>
             <Link to="/Tregistration">truck reg page</Link>
             {this.props.source === 'user' ? <Link to="/editprofile">user profile</Link>
@@ -44,8 +35,8 @@ class HomeDropdown extends Component {
         </div>
           : 
           <div>
-            <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} id="dropmenu-btn">Sign Up &#9662;</button>
-            <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
+            <button onClick={this.toggleMenu} id="dropmenu-btn">Sign Up &#9662;</button>
+            <div className={classes}>
               <Link to="/registrationPage">Register</Link>
             </div>
           </div>

@@ -24,31 +24,27 @@ export class Home extends Component {
   setSortType = (e) => {
     e.preventDefault()
     let type = e.target.value
-
     changeSortView(type)
-
   }
 
   //sorting dropdown menu
   showMenu = (event) => {
     event.preventDefault();
     
-    this.setState({ showMenu: true }, () => {
-      document.addEventListener('click', this.closeMenu);
-    })
+    this.setState({ showMenu: !this.state.showMenu })
   }
-  hideMenu = (event) => {
-    event.preventDefault();
+  // hideMenu = (event) => {
+  //   event.preventDefault();
     
-    this.setState({ showMenu: false }, () => {
-      document.addEventListener('click', this.closeMenu);
-    })
-  }
-  closeMenu = () => {
-    this.setState({ showMenu: false }, () => {
-      document.removeEventListener('click', this.closeMenu);
-    })
-  }
+  //   this.setState({ showMenu: false }, () => {
+  //     document.addEventListener('click', this.closeMenu);
+  //   })
+  // }
+  // closeMenu = () => {
+  //   this.setState({ showMenu: false }, () => {
+  //     document.removeEventListener('click', this.closeMenu);
+  //   })
+  // }
 
   render() {
     const classes = this.state.showMenu ? 'menu' : 'menu hide'
@@ -66,8 +62,8 @@ export class Home extends Component {
             <div className="sort-bar-wrapper">
               <div className="dropdown-menu">
                 <div>
-                  <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} className="dropmenu-btn sort">Sort By &#9662;</button>
-                  <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
+                  <button onClick={this.showMenu} className="dropmenu-btn sort">Sort By &#9662;</button>
+                  <div className={classes}>
                     <button onClick={this.setSortType} value="all">Show All</button>
                     <button onClick={this.setSortType} value="new">Show Newest</button>
                     <button onClick={this.setSortType} value="alpha">Show By Company Name</button>
