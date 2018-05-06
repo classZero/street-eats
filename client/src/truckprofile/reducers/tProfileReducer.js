@@ -12,6 +12,8 @@ export default function (state = initialState, action) {
             return {...state, reviews: action.payload}
         case 'ADDED_FAVORITE':
             return {...state, message: action.payload}
+        case 'ADDED_REVIEW':
+            return {...state, reviewmessage: action.payload}
         default:
             return state
     }
