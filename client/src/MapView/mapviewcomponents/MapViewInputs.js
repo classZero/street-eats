@@ -53,20 +53,19 @@ class MapViewInputs extends Component {
       <header>
         <h1>Update Location</h1>
       </header>
+      
+      <div className="timerange">
+        <TimeRange
+            minuteIncrement={30}
+            startMoment={this.state.startTime}
+            endMoment={this.state.endTime}
+            onChange={this.returnFunction}
+        />
+      </div>
 
-      <TimeRange
-          minuteIncrement={30}
-          startMoment={this.state.startTime}
-          endMoment={this.state.endTime}
-          onChange={this.returnFunction}
-      />
       <form onSubmit={this.handleSubmit}>
-        <label>Update Address:</label><input onChange={this.handleChange} name="addy" autoComplete="off" type="text" placeholder="street address" value={this.state.addy} />
-        <label>Open Time:
-        </label>
-        <label>Close Time:
-        </label>
-        <h5>Optional Fields:</h5>
+        <h4>Update Address:</h4><input onChange={this.handleChange} name="addy" autoComplete="off" type="text" placeholder="street address" value={this.state.addy} />
+        <h4>Optional Fields:</h4>
         <input onChange={this.handleChange} name="special" autoComplete="off" style={{width:'500px'}} type="text" placeholder="special info, to be seen by customers who click on your location EX. behind the target" value={this.state.special} />
         <br/>
 
