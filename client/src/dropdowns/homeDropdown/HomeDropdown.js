@@ -40,13 +40,13 @@ class HomeDropdown extends Component {
     document.removeEventListener('click', this.handleOutsideClickHome, false)
   }
   
-  viewProfile(source, username) {
-    if(source === 'truck') {
-      return <Link to={'/truckprofile/' + username}>View My Profile</Link>
-    } else if(source === 'user') {
-      return <Link to={'/userprofile/' + username}>View My Profile</Link>
-    }
-  }
+  // viewProfile(source, username) {
+  //   if(source === 'truck') {
+  //     return <Link to={'/truckprofile/' + username}>View My Profile</Link>
+  //   } else if(source === 'user') {
+  //     return <Link to={'/userprofile/' + username}>View My Profile</Link>
+  //   }
+  // }
 
   render() {
     const classesHome = this.state.showMenuHome ? 'menu' : 'menu hide'
@@ -62,7 +62,11 @@ class HomeDropdown extends Component {
             <Link to="/Tregistration">truck reg page</Link>
             <Link to="/mapinputs">inputs for trucks</Link>
             <Link to="map">links to map</Link>
-            {this.viewProfile(this.props.source, this.props.username)}
+            {this.props.source === 'user' ?
+              <Link to={'/userprofile/' + this.props.username}>View My Profile</Link> :
+              <Link to={'/truckprofile/' + this.props.username}>View My Profile</Link>
+            }
+            {/* {this.viewProfile(this.props.source, this.props.username)} */}
             <div><Logout /></div>
           </div>
           )}
