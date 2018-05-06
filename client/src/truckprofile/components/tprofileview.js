@@ -38,9 +38,11 @@ class TProfileView extends Component {
               <div>
               <HomeHeader />
 
+              <div className="biggestContainer">
+
                 <div className="tprofile-container">
                     <div className="tprofile-header">
-                    <Link to="/" className="tprofile-back">Back</Link>
+                    {/* <Link to="/" className="tprofile-back">Back</Link> */}
                     <p>{this.props.profile.companyname}</p>
                     </div>
                     <div className="tprofile-img-container"><img alt="logo" src={this.props.profile.logo} /></div>
@@ -52,10 +54,15 @@ class TProfileView extends Component {
                     <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
                 </div>
 
-                <div>
+                <div className="tprofile-review-container">
+                <div className="tprofile-header">
+                  <p>Reviews</p>
+                </div>
                     {this.props.reviews.map((review, index) => {
-                        return <div key={'review ' + index } ><p>{review.review}</p></div>
+                        return <div key={'review ' + index } className="actual-review"><p>{review.review}</p></div>
                     })}
+                </div>
+
                 </div>
 
             </div>

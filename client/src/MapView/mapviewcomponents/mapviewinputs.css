@@ -2,6 +2,9 @@
     background-color: rgb(235, 85, 73);
     border: 1px solid black;
     border-radius: 5px;
+    font-family: Questrial;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .mapinputs-container button {
@@ -11,4 +14,24 @@
     background-color: inherit;
     color: white;
     font-size: 20px;
+    margin-left: 200px;
+    margin-top: 25px;
+}
+
+.mapinputs-container button:hover {
+    color: rgb(240, 208, 32);
+}
+
+.timerange select{
+    border: none;
+    outline: none;
+}
+
+.timerange {
+    margin-left: 125px;
+}
+
+.mapinputs-container input {
+    word-wrap: wrap;
+    margin-bottom: 25px;
 }
