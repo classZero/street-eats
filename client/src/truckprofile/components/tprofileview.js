@@ -7,8 +7,12 @@ import { getReviews } from '../actions/tProfileActions'
 import { addFavorite } from '../actions/tProfileActions'
 import './tprofile.css'
 import HomeHeader from '../../headers/HomeHeader'
+import { submitReview } from '../actions/tProfileActions'
 
 class TProfileView extends Component {
+    state = {
+        reviewtext : ''
+    }
 
     componentDidMount(){
         getProfile(this.props.match.params.username)
@@ -24,6 +28,7 @@ class TProfileView extends Component {
     handleFavClick = (username, truckuser) => {
         addFavorite(username, truckuser)
     }
+
     favAbility(isAuth, source) {
         if(isAuth && source === 'user') {
             return <div onClick={() => { this.handleFavClick(this.props.username, this.props.match.params.username) }}><img  alt='add favorite' style={{width: 50, height: 50}} src={star}/></div>
@@ -32,8 +37,21 @@ class TProfileView extends Component {
         }
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault()
+        submitReview(this.props.username, this.props.match.params.username,this.state.reviewtext)
+        this.setState({
+            reviewtext : ''
+        })
+    }
+    handleChange = (e) => {
+        e.preventDefault()
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
     render() {
-        console.log(this.props.message)
         return (
               <div>
               <HomeHeader />
@@ -61,6 +79,12 @@ class TProfileView extends Component {
                     {this.props.reviews.map((review, index) => {
                         return <div key={'review ' + index } className="actual-review"><p>{review.review}</p></div>
                     })}
+                    <div>
+                        <form onSubmit={this.handleSubmit}>
+                        <div>Leave A Review: <input onChange={this.handleChange} type='text' name='reviewtext' value={this.state.reviewtext} /> </div>
+                            <button type='submit'>Submit</button>
+                        </form>
+                    </div>
                 </div>
 
                 </div>
