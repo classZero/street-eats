@@ -13,7 +13,14 @@ class HomeDropdown extends Component {
     event.preventDefault()
     this.setState({ showMenu: !this.state.showMenu })
   }
-  
+  viewProfile(source, username) {
+    if(source === 'truck') {
+      return <Link to={'/truckprofile/' + username}>View My Profile</Link>
+    } else if(source === 'user') {
+      return <Link to={'/userprofile/' + username}>View My Profile</Link>
+    }
+  }
+
   render() {
     const classes = this.state.showMenu ? 'menu' : 'menu hide'
     return (
@@ -24,9 +31,6 @@ class HomeDropdown extends Component {
           <div className={classes} >
             <Link to="/Uregistration">user reg page</Link>
             <Link to="/Tregistration">truck reg page</Link>
-            {this.props.source === 'user' ? <Link to="/editprofile">user profile</Link>
-                                          : <Link to="/truckprofile">truck profile</Link>
-            }
             <Link to="/mapinputs">inputs for trucks</Link>
             <Link to="map">links to map</Link>
             {this.viewProfile(this.props.source, this.props.username)}
