@@ -8,50 +8,39 @@ class HomeDropdown extends Component {
   state = {
     showMenu: false,
   }
-  
-  showMenu = (event) => {
-    event.preventDefault();
-    
-    this.setState({ showMenu: true }, () => {
-      document.addEventListener('click', this.closeMenu);
-    })
+
+  toggleMenu = (event) => {
+    event.preventDefault()
+    this.setState({ showMenu: !this.state.showMenu })
   }
-  hideMenu = (event) => {
-    event.preventDefault();
-    
-    this.setState({ showMenu: false }, () => {
-      document.addEventListener('click', this.closeMenu);
-    })
-  }
-  closeMenu = () => {
-    this.setState({ showMenu: false }, () => {
-      document.removeEventListener('click', this.closeMenu);
-    })
+  viewProfile(source, username) {
+    if(source === 'truck') {
+      return <Link to={'/truckprofile/' + username}>View My Profile</Link>
+    } else if(source === 'user') {
+      return <Link to={'/userprofile/' + username}>View My Profile</Link>
+    }
   }
 
   render() {
     const classes = this.state.showMenu ? 'menu' : 'menu hide'
     return (
-      <div className="dropdown-menu">
+      <div className="dropdown-menu" >
         {window.localStorage.getItem('token') ?
         <div>
-          <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} id="dropmenu-btn">Dropdown menu &#9662;</button>
-          <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
+          <button onClick={this.toggleMenu} className="dropmenu-btn">Menu &#9662;</button>
+          <div className={classes} >
             <Link to="/Uregistration">user reg page</Link>
             <Link to="/Tregistration">truck reg page</Link>
-            {this.props.source === 'user' ? <Link to="/editprofile">user profile</Link>
-                                          : <Link to="/truckprofile">truck profile</Link>
-            }
             <Link to="/mapinputs">inputs for trucks</Link>
             <Link to="map">links to map</Link>
-            <Link to={'/editprofile'} >edit my profile</Link>
+            {this.viewProfile(this.props.source, this.props.username)}
             <div><Logout /></div>
-            </div>
           </div>
+        </div>
           : 
           <div>
-            <button onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu} id="dropmenu-btn">Sign Up &#9662;</button>
-            <div className={classes} onMouseEnter={this.showMenu} onMouseLeave={this.hideMenu}>
+            <button onClick={this.toggleMenu} id="dropmenu-btn">Sign Up &#9662;</button>
+            <div className={classes}>
               <Link to="/registrationPage">Register</Link>
             </div>
           </div>

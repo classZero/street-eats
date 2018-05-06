@@ -4,9 +4,9 @@ api.new('/api')
 
 
 
-export function registerUser(username, password, email){
+export function registerUser(username, password, email, avatar){
 	const type = 'user'
-	api.registration(username, password, email, type).then(resp =>{
+	api.registration(username, password, email, avatar, type).then(resp =>{
 		console.log('in actions:', resp)
 		store.dispatch({
 			type: 'REGISTER_USER',

@@ -30,8 +30,22 @@ router.post('/editTruckProfile', (req, res, next) => {
           menuurl
       })
   } )
+})
 
+router.post('/addfavorite', (req, res, next) => {
+    const username = req.body.username
+    const truckuser = req.body.truckuser
+    
+    const sql = `
+    INSERT INTO favorites (username, truckusername) 
+    VALUES (?, ?)
+    `
 
+    conn.query(sql, [username, truckuser], (err, results, fields) => {
+        res.json({
+            message : 'Truck added to favorites'
+        })
+    })
 
 })
 

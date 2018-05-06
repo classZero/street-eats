@@ -1,0 +1,28 @@
+.stripe-wrapper {
+    color: black;
+    background: rgb(235, 85, 73);
+}
+/* addres section */
+.address-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.address-wrapper label {
+    display: flex;
+    flex-direction: column;
+}
+
+.address-wrapper input {
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    color: black;
+    background: rgb(174, 50, 50);
+}
+/* card section */
+.card-wrapper {
+    width: 500px;
+    height: 100px;
+}

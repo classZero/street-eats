@@ -27,12 +27,14 @@ export class Login extends Component {
       <div className="home-login-container">
         <form onSubmit={this.handleLoginSubmit} >
           <input onChange={this.handleChange} 
+                 autoComplete="off"
                  type="text" 
                  name="username" 
                  value={this.state.username}
                  placeholder="username"
                  className="login-input"/>
           <input onChange={this.handleChange} 
+                 autoComplete="off"
                  type="password" 
                  name="password" 
                  value={this.state.password}

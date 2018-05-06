@@ -60,8 +60,8 @@ instance.logout = function() {
   })
 }
 
-instance.registration = function (username, password, email, type, companyName, companyLogo, menu, aboutus) {
-    return this.post(this.getRegisterPath(), {username, password, email, type, companyName, companyLogo, menu, aboutus})
+instance.registration = function (username, password, email, avatar, type, companyName, companyLogo, menu, aboutus) {
+    return this.post(this.getRegisterPath(), {username, password, email, avatar, type, companyName, companyLogo, menu, aboutus})
         .then(resp => {
             console.log('in api:', resp)
             window.localStorage.setItem('token', resp.data.token)
@@ -75,33 +75,57 @@ instance.registration = function (username, password, email, type, companyName, 
 }
 
 instance.getTruckProfile = function (username) {
-  return this.get('/truckprofile/' + username)
-  .then(resp => {
+  return this.get('/truckprofile/' + username).then(resp => {
     return resp.data
+  })
+}
+
+instance.getTruckReviews = function(username) {
+  return this.get('/truckreviews/' + username)
+  .then(resp => {
+    return resp.data.reviews
   })
 }
 
 
 instance.getUserProfile = function (username) {
   // console.log(username)
-  return this.get('/userprofile/' + username)
+  return this.get('/userprofile/' + username).then(resp => {
+    return resp.data
+  })
+}
+
+instance.getFavorites = function(username) {
+  return this.get('/userfavorites/' + username)
+  .then(resp => {
+    return resp.data
+  })
+}
+
+instance.addFavorite = function(username, truckuser) {
+  return this.post('/addfavorite/', {username, truckuser})
   .then(resp => {
     return resp.data
   })
 }
 
 instance.editTruckProfile = function(name, logo, aboutus, menuurl) {
-  return this.post('/editTruckProfile', {name, logo, aboutus, menuurl})
-  .then(resp => {
+  return this.post('/editTruckProfile', {name, logo, aboutus, menuurl}).then(resp => {
     return resp.data
   })
 }
 
-instance.getTruckData = function () {
-  console.log('api get truck data')
-  return this.get('/truckdata').then(resp => {
-  return resp.data
+instance.changeSortView = function (sortType) {
+  return this.get('/truckdata/' + sortType).then(resp => {
+    return resp.data
   })
-}  
+}
+
+instance.payments = function (description, token, currency, amount) {
+  return this.post('/payments', {description, token, currency, amount}).then(resp => {
+    console.log('api resp',resp.data)
+    return resp.data
+  })
+}
 
 export default instance

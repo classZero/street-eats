@@ -10,7 +10,6 @@ class EditUserProfile extends Component {
     
     componentDidMount() {
         getUserProfile(this.props.username)
-        console.log(this.props.username)
     }
 
     render() {
@@ -18,7 +17,7 @@ class EditUserProfile extends Component {
             <div>
                 <div>Username: {this.props.profile.username}</div>
                 <div>Email: {this.props.profile.email}</div>
-                <div>Profile Image: <img src="http://placehold.it/400/400" /></div>
+                <div>Profile Image: <img src={this.props.profile.avatar} /></div>
             </div>
         );
     }
@@ -26,6 +25,7 @@ class EditUserProfile extends Component {
 
 
 function mapStateToProps(state) {
+  console.log('editUserProfile state', state)
     return {
         profile : state.uProfileReducer.profile,
         username : state.loginReducer.username,

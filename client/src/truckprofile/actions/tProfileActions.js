@@ -10,3 +10,21 @@ export function getProfile(username) {
 		})
 	})
 }
+
+export function getReviews(username) {
+	api.getTruckReviews(username).then(resp => {
+		store.dispatch({
+			type: 'GET_REVIEWS',
+			payload: resp
+		})
+	})
+}
+
+export function addFavorite(username, truckuser) {
+	api.addFavorite(username, truckuser).then(resp => {
+		store.dispatch({
+			type: 'ADDED_FAVORITE',
+			payload: resp.message
+		})
+	})
+}

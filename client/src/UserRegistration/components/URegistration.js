@@ -8,7 +8,8 @@ class URegistration extends Component {
 		username: '',
 		email: '',
 		password: '',
-		confirmPassword: ''
+    confirmPassword: '',
+    uploadCloudinaryAvatarUrl: ''
 	}
 
 	handleChange = (e) =>{
@@ -36,7 +37,8 @@ class URegistration extends Component {
 						registerUser(
 							this.state.username,
 							this.state.password,
-							this.state.email
+              this.state.email,
+              this.state.uploadCloudinaryAvatarUrl
 						)
 
 						this.setState({
@@ -51,13 +53,30 @@ class URegistration extends Component {
 		} else {window.alert('Usernames can only include characters A-Z, 0-9, and may use _ and - as seperators')}
 	}
 
+  uploadWidget = (e) => {
+    let type = e.target.value
+    let data = {result: [{}]}
+    window.cloudinary.openUploadWidget({ cloud_name: 'maglingkod', upload_preset: 'avwvdugz', tags:['foodtruck']},
+      (error, result) => {
+        data = {result, type}
+        console.log('result:', result)
+        console.log('error:', result)
+        if (result && result[0].secure_url !== '') {
+          this.setState({
+            uploadCloudinaryAvatarUrl: data.result[0].secure_url
+          })
+        }
+      }
+    )
+  }  
+
 	render(){
 		return(
 			<div>
         <div className="userRegContainer">
 
          <div className="userRegHeader">
-            <h1>User</h1>
+            <h1>Foodie</h1>
           </div>
 
         <div className="userRegForm">
@@ -66,7 +85,8 @@ class URegistration extends Component {
 						<input onChange={this.handleChange} type="email" name="email" value={this.state.email} placeholder="John@example.com" required/>
 						<input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="PASSWORD" required/>
 						<input onChange={this.handleChange} type="password" name="confirmPassword" value={this.state.confirmPassword} placeholder="CONFIRM PASSWORD" required/>
-						<button type="submit">REGISTER</button>
+						<button id="styleMeToo" onClick={this.uploadWidget} value="avatar" name="avatar" className="upload-button">Upload Image</button>
+            <button type="submit">REGISTER</button>
 					</form>
         </div>
 

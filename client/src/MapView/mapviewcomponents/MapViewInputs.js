@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import moment from 'moment'
 import {convertAddy , postHours, postSpecial} from '../mapviewactions/mapactions'
-import TimeRange from 'react-time-range';
+import TimeRange from 'react-time-range'
+import '../mapviewcomponents/mapviewinputs.css'
 
 
 
@@ -47,20 +48,24 @@ class MapViewInputs extends Component {
 
   render () {
     return (
-    <div>
-      <TimeRange
-          minuteIncrement={30}
-          startMoment={this.state.startTime}
-          endMoment={this.state.endTime}
-          onChange={this.returnFunction}
-      />
+    <div className="mapinputs-container">
+      
+      <header>
+        <h1>Update Location</h1>
+      </header>
+      
+      <div className="timerange">
+        <TimeRange
+            minuteIncrement={30}
+            startMoment={this.state.startTime}
+            endMoment={this.state.endTime}
+            onChange={this.returnFunction}
+        />
+      </div>
+
       <form onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} name="addy" autoComplete="off" type="text" placeholder="street address" value={this.state.addy} />
-        <label>Start Time:
-        </label>
-        <label>End Time:
-        </label>
-        <h5>Optional Fields:</h5>
+        <h4>Update Address:</h4><input onChange={this.handleChange} name="addy" autoComplete="off" type="text" placeholder="street address" value={this.state.addy} />
+        <h4>Optional Fields:</h4>
         <input onChange={this.handleChange} name="special" autoComplete="off" style={{width:'500px'}} type="text" placeholder="special info, to be seen by customers who click on your location EX. behind the target" value={this.state.special} />
         <br/>
 
