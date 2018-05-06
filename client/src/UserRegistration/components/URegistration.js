@@ -27,6 +27,7 @@ class URegistration extends Component {
 		//passwords must contain at least 1 letter and 1 number, and may use characters A-Z, 0-9, as well as the special characters !,@,#,$,%,_,-
 		//lengthen password requirements for production
 		const passRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%_-]{2,}$/
+		// eslint-disable-next-line
 		const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 		if(this.state.username && userRegExp.test(this.state.username)){

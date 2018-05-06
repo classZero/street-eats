@@ -33,6 +33,7 @@ class TRegistration extends Component {
 
 		const userRegExp = /^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/
 		const passRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%_-]{2,}$/
+		// eslint-disable-next-line
 		const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 		
     	console.log(this.state.uploadCloudinaryLogoUrl)
@@ -103,7 +104,7 @@ class TRegistration extends Component {
           <div className="truckRegForm">
 					<form onSubmit={this.handleSubmit} encType="multipart/form-data">
 						<input onChange={this.handleChange} type="text" name="username" value={this.state.username}  placeholder="USERNAME"/>
-						<input onChange={this.handleChange} type="text" name="companyName" value={this.state.companyname} placeholder="TRUCK NAME" />
+						<input onChange={this.handleChange} type="text" name="companyName" value={this.state.companyName} placeholder="TRUCK NAME" />
 						<input onChange={this.handleChange} type="text" name="email" value={this.state.email} placeholder="EMAIL"/>
 						<textarea onChange={this.handleChange} name="aboutus" value={this.state.aboutus} placeholder="ABOUT YOUR TRUCK" ></textarea>
 						<input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="PASSWORD"/>

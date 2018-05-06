@@ -7,6 +7,6 @@ export function addItem(menuObj){
 	api.post('/addmenuitem', menuObj).then(resp => console.log(resp.data))
 }
 
-export function getMenu(truckID){
-	return api.get('/getmenu/' + truckID)
+export function getMenu(username){
+	return api.get('/getmenu/' + username)
 }

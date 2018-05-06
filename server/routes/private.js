@@ -49,4 +49,25 @@ router.post('/addfavorite', (req, res, next) => {
 
 })
 
+router.post('/addmenuitem', (req,res,next) => {
+  console.log('in public: ', req.body)
+  const getID = `
+    SELECT id AS truckid FROM trucks WHERE username = ?
+  `
+  conn.query(getID, req.body.username, (err, results, fields) => {
+
+    const sql = `
+      INSERT INTO menu (itemName, itemPrice, itemDescription, itemType, itemTruckId) VALUES (?,?,?,?,?)
+    `
+
+    conn.query(sql, [req.body.itemName, req.body.itemPrice, req.body.itemDescription, req.body.itemType, results[0].truckid], (err2, results2, fields2) => {
+      console.log(results)
+      res.json({
+        message: 'item added'
+      })
+    })
+
+  })
+})
+
 export default router

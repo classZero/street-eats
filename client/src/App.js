@@ -25,7 +25,7 @@ class App extends Component {
             <Route path="/map" component={MapViewHome} />
             <Route path="/mapinputs" component={MapViewInputs} />
             <Route path="/editprofile" component={EditProfile} />
-            <Route path="/build" component={MenuBuilder} />
+            <Route path="/build/:username" component={MenuBuilder} />
             <Route path="/registrationPage" component={registrationPage} />
             <Route path="/payments" component={Stripe} />
           </div>
