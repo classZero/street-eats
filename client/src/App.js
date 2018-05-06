@@ -21,7 +21,7 @@ class App extends Component {
             <Route path="/URegistration" component={URegistration} />
             <Route path="/TRegistration" component={TRegistration} />
             <Route path="/build" component={MenuBuilder} />
-            <Route path="/userprofile" component={UProfileView} />
+            {/*<Route path="/userprofile" component={UProfileView} />*/}
             {/* <Route path="/userprofile/:username" component={UProfileView} /> */}
             <Route path="/map" component={MapViewHome} />
             <Route path="/mapinputs" component={MapViewInputs} />

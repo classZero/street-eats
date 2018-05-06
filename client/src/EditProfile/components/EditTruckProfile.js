@@ -46,6 +46,7 @@ class EditTruckProfile extends Component {
             <div>{this.props.isAuth ? 
                 <div>
                   <MapViewInputs />
+                  <MenuBuilder />
                   <div>
                       <form onSubmit={this.handleSubmit}>
                           <div>Company Name: <input onChange={this.handleChange} type='text' name='name' value={this.state.name} /> </div>

@@ -3,6 +3,10 @@ import api from 'lib/api'
 
 api.new('/api')
 
-export function addItem(){
-	api.post('/addmenuitem').then
+export function addItem(menuObj){
+	api.post('/addmenuitem', menuObj).then(resp => console.log(resp.data))
+}
+
+export function getMenu(truckID){
+	return api.get('/getmenu/' + truckID)
 }

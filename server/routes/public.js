@@ -234,4 +234,35 @@ router.get('/userprofile/:username', (req, res, next) => {
   
   })
 
+//move to private once working
+router.post('/addmenuitem', (req,res,next) => {
+  console.log('in public: ', req.body)
+  const sql = `
+    INSERT INTO menu (itemName, itemPrice, itemDescription, itemType, itemTruckId) VALUES (?,?,?,?,?)
+  `
+
+  conn.query(sql, [req.body.itemName, req.body.itemPrice, req.body.itemDescription, req.body.itemType, 21], (err, results, fields) => {
+    console.log(results)
+    res.json({
+      message: 'item added'
+    })
+  })
+})
+
+router.get('/getmenu/:truckid', (req,res,next) => {
+  const sql = `
+    SELECT * FROM menu WHERE itemTruckId = ?
+  `
+  
+
+  conn.query(sql, req.params.truckid, (err, results, fields) => {
+    // console.log(results.map(r => r))
+    console.log(results)
+    res.json({
+      menu: results
+    })
+  })
+})
+
+
 export default router

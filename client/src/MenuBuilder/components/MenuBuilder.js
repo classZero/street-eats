@@ -1,4 +1,7 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
+
+import {addItem, getMenu} from '../actions/MenuBuilderActions'
 import './temp.css'
 
 class MenuBuilder extends Component{
@@ -7,12 +10,9 @@ class MenuBuilder extends Component{
 		itemPrice: '',
 		itemDescription: '',
 		itemType: 'entree',
-		newItemArr: []
+		displayArr: []
 	}
 
-	componentDidMount(){
-		console.clear()
-	}
 
 	handleChange = (e) => {
 		e.preventDefault()
@@ -23,18 +23,22 @@ class MenuBuilder extends Component{
 
 	handleSubmit = (e) => {
 		e.preventDefault()
-		const newItemObj = {
-				itemName: this.state.itemName,
-				itemPrice: this.state.itemPrice,
-				itemDescription: this.state.itemDescription,
-				itemType: this.state.itemType
-			}
-
-		this.setState({
-			newItemArr: [...this.state.newItemArr, newItemObj]
+		addItem({
+			itemName: this.state.itemName,
+			itemPrice: this.state.itemPrice,
+			itemDescription: this.state.itemDescription,
+			itemType: this.state.itemType
 		})
 	}
 
+	displayMenu = () => {
+		getMenu(21).then(resp => {
+			this.setState({
+				displayArr: resp.data.menu
+			})
+			console.log('response: ', resp.data) 
+		})
+	}
 	
 
 	render(){
@@ -55,7 +59,14 @@ class MenuBuilder extends Component{
 					</label>
 					<button type="submit">Add Item</button>
 				</form>
-				{this.state.newItemArr.map((itemObj, i)=> console.log(itemObj) )}
+				<button onClick={this.displayMenu}>get menu test</button>
+				{this.state.displayArr.map((item, i) => (
+						<div>
+							<h3>{item.itemName}</h3>
+						</div>
+					)
+				)}
+				<Link to="/">Home</Link>
 			</div>
 		)
 	}
