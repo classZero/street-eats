@@ -2,26 +2,54 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Logout from '../../logout/Logout'
-import './homeDropdown.css'
+import './dropdown.css'
 
 class HomeDropdown extends Component {
   state = {
-    showMenu: false,
+    showMenuHome: false
   }
 
-  toggleMenu = (event) => {
-    event.preventDefault()
-    this.setState({ showMenu: !this.state.showMenu })
+  handleClickHome = (event) => {
+    if (!this.state.showMenuHome) {
+      // attach/remove event handler
+      document.addEventListener('click', this.handleOutsideClickHome, false)
+    } else {
+      //remove event handler and stay on page
+      document.removeEventListener('click', this.handleOutsideClickHome, false)
+    }
+
+    this.setState(prevState => ({
+      showMenuHome: !prevState.showMenuHome,
+   }))
+  }
+
+  handleOutsideClickHome = (event) => {
+    // ignore clicks on the component itself
+    if (this.nodeH.contains(event.target)) {
+      return
+    }
+    this.handleClickHome()
   }
   
+  componentWillMount = () => {
+    document.addEventListener('click', this.handleOutsideClick, false)
+  }
+
+  componentWillUnmount = () => {
+    //remove event handler before navigating away
+    document.removeEventListener('click', this.handleOutsideClickHome, false)
+  }
+
   render() {
-    const classes = this.state.showMenu ? 'menu' : 'menu hide'
+    const classesHome = this.state.showMenuHome ? 'menu' : 'menu hide'
+    const btnColorHome = this.state.showMenuHome ? 'dropmenu-btn color' : 'dropmenu-btn noColor'
     return (
-      <div className="dropdown-menu" >
+      <div className="dropdown-menu" ref={node => { this.nodeH = node }} >
         {window.localStorage.getItem('token') ?
         <div>
-          <button onClick={this.toggleMenu} className="dropmenu-btn">Menu &#9662;</button>
-          <div className={classes} >
+          <button onClick={this.handleClickHome} className={btnColorHome}>Menu &#9662;</button>
+          {this.state.showMenuHome && (
+          <div className={classesHome} >
             <Link to="/Uregistration">user reg page</Link>
             <Link to="/Tregistration">truck reg page</Link>
             {this.props.source === 'user' ? <Link to="/editprofile">user profile</Link>
@@ -32,11 +60,12 @@ class HomeDropdown extends Component {
             <Link to={'/editprofile'} >edit my profile</Link>
             <div><Logout /></div>
           </div>
+          )}
         </div>
           : 
           <div>
-            <button onClick={this.toggleMenu} id="dropmenu-btn">Sign Up &#9662;</button>
-            <div className={classes}>
+            <button onClick={this.handleClickHome} id="dropmenu-btn">Sign Up &#9662;</button>
+            <div className={classesHome}>
               <Link to="/registrationPage">Register</Link>
             </div>
           </div>
