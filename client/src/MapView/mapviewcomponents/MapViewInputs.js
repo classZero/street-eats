@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import moment from 'moment'
 import {convertAddy , postHours, postSpecial} from '../mapviewactions/mapactions'
-import TimeRange from 'react-time-range';
+import TimeRange from 'react-time-range'
+import '../mapviewcomponents/mapviewinputs.css'
 
 
 
@@ -47,7 +48,12 @@ class MapViewInputs extends Component {
 
   render () {
     return (
-    <div>
+    <div className="mapinputs-container">
+      
+      <header>
+        <h1>Update Location</h1>
+      </header>
+
       <TimeRange
           minuteIncrement={30}
           startMoment={this.state.startTime}
@@ -55,10 +61,10 @@ class MapViewInputs extends Component {
           onChange={this.returnFunction}
       />
       <form onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} name="addy" autoComplete="off" type="text" placeholder="street address" value={this.state.addy} />
-        <label>Start Time:
+        <label>Update Address:</label><input onChange={this.handleChange} name="addy" autoComplete="off" type="text" placeholder="street address" value={this.state.addy} />
+        <label>Open Time:
         </label>
-        <label>End Time:
+        <label>Close Time:
         </label>
         <h5>Optional Fields:</h5>
         <input onChange={this.handleChange} name="special" autoComplete="off" style={{width:'500px'}} type="text" placeholder="special info, to be seen by customers who click on your location EX. behind the target" value={this.state.special} />

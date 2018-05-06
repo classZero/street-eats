@@ -1,0 +1,14 @@
+.mapinputs-container {
+    background-color: rgb(235, 85, 73);
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.mapinputs-container button {
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background-color: inherit;
+    color: white;
+    font-size: 20px;
+}
