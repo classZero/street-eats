@@ -67,6 +67,7 @@
     margin: auto;
     margin-top: 10px;
     border: 1px solid white;
+    background-color: white;
 }
 
 .tprofile-img-container img {
@@ -101,6 +102,7 @@
     height: 402px;
     margin: auto;
     margin-top: 10px;
+    background-color: white;
 }
 
 .tprofile-menu img {
