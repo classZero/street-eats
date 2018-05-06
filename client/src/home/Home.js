@@ -52,10 +52,10 @@ export class Home extends Component {
               </div>
               <div className="home-newsfeed-list">                               
                 {this.props.trucks.length > 0 ? this.props.trucks.map((truck, i) => {
-                  return (<Link className="newtruck-list-item" key={'key' + i} to={`/truckprofile/${truck.username}`}>
+                  return (<div className="newtruck-list-item" key={'key' + i}><Link to={`/truckprofile/${truck.username}`}>
                             <h3>{truck.companyname}</h3>
                             <p>{truck.formattedAddress}</p>
-                          </Link>)
+                          </Link></div>)
                 }) : <h3 className="newtruck-list-item">No trucks listed</h3>} 
               </div>
             </div>
