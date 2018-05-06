@@ -57,6 +57,8 @@ class TProfileView extends Component {
         this.setState({
             reviewtext : ''
         })
+        getReviews(this.props.match.params.username)
+
     }
     handleChange = (e) => {
         e.preventDefault()
