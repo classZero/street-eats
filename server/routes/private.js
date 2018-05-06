@@ -30,9 +30,6 @@ router.post('/editTruckProfile', (req, res, next) => {
           menuurl
       })
   } )
-
-
-
 })
 
 router.post('/addfavorite', (req, res, next) => {

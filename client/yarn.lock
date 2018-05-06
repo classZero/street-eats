@@ -6622,6 +6622,16 @@ react-simple-dropdown@^3.2.0:
     classnames "^2.1.2"
     prop-types "^15.5.8"
 
+react-stripe-checkout@^2.6.3:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/react-stripe-checkout/-/react-stripe-checkout-2.6.3.tgz#3173a870b04e5a3c321a06d24cd53c6030111c45"
+
+react-stripe-elements@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/react-stripe-elements/-/react-stripe-elements-1.6.0.tgz#1433bf6b7a83479f2cdb9ba459bf36fb201b97be"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-time-range@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-time-range/-/react-time-range-1.0.2.tgz#4edb55101b3d8143388bc1f9c4f39eed1ef58f1e"

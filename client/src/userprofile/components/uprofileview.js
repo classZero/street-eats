@@ -33,6 +33,7 @@ class UProfileView extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
     return {
         profile : state.uProfileReducer.profile,
         username : state.loginReducer.username,

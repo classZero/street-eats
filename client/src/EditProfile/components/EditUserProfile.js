@@ -15,15 +15,9 @@ class EditUserProfile extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <div>Username: {this.props.profile.username}</div>
-                    <div>Email: {this.props.profile.email}</div>
-                    <div>Profile Image: <img alt='Profile' src="http://placehold.it/400/400" /></div>
-                </div>
-                <div>
-                    {/* image change goes here */}
-                    Change Profile Image
-                </div>
+                <div>Username: {this.props.profile.username}</div>
+                <div>Email: {this.props.profile.email}</div>
+                <div>Profile Image: <img src={this.props.profile.avatar} /></div>
             </div>
         );
     }
@@ -31,6 +25,7 @@ class EditUserProfile extends Component {
 
 
 function mapStateToProps(state) {
+  console.log('editUserProfile state', state)
     return {
         profile : state.uProfileReducer.profile,
         username : state.loginReducer.username,

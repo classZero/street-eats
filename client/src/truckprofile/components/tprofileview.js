@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import star from '../../assets/images/star.svg'
 import { getReviews } from '../actions/tProfileActions'
 import { addFavorite } from '../actions/tProfileActions'
+import './tprofile.css'
+import HomeHeader from '../../headers/HomeHeader'
 
 class TProfileView extends Component {
 
@@ -25,15 +27,20 @@ class TProfileView extends Component {
 
     render() {
         return (
-            <div>
+              <div>
+              <HomeHeader />
 
-                <div>
-                    <div>Company name: {this.props.profile.companyname}</div>
-                    <div>Truck picture<img alt="logo" src={this.props.profile.logo} /></div>
-                    <div>About us: {this.props.profile.aboutus}</div>
-                    <div><img alt="menu" src={this.props.profile.menuurl} /></div>
+                <div className="tprofile-container">
+                    <div className="tprofile-header">
+                    <Link to="/" className="tprofile-back">Back</Link>
+                    <p>{this.props.profile.companyname}</p>
+                    </div>
+                    <div className="tprofile-img-container"><img alt="logo" src={this.props.profile.logo} /></div>
+                    <div className="tprofile-about-header">ABOUT US</div>
+                    <div className="tprofile-about">{this.props.profile.aboutus}</div>
+                    <div className="tprofile-menu"><img alt="menu" src={this.props.profile.menuurl} /></div>
                     {this.props.isAuth ? <div onClick={() => { this.handleFavClick(this.props.username, this.props.match.params.username) }}><img  alt='add favorite' style={{width: 50, height: 50}} src={star}/></div>:<div></div> }
-                    {this.editTruckProfile(this.props.username)}
+                    <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
                 </div>
 
                 <div>
