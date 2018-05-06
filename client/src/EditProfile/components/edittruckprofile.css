@@ -53,3 +53,17 @@ header {
     margin-left: 50px;
     margin-top: 15px;
 }
+
+.edittruck-container button {
+    background-color: inherit;
+    border: none;
+    color: white;
+    font-size: 20px;
+    margin-left: 215px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.edittruck-container button:hover {
+    color: rgb(240, 208, 32);
+}
