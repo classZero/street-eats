@@ -4,6 +4,7 @@
     position: absolute;
     background: rgb(240, 238, 228);
     border: 1px solid black;
+    font-family: 'Questrial', sans-serif;
     border-radius: 5px;
     border-top-left-radius: 0;
     transition: opacity 0.5s;

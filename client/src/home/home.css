@@ -67,7 +67,7 @@ body {
 .home-header-dropdown p {
     padding-right: 10px;
     text-shadow: none;
-    font-family: Questrial;
+    font-family: 'Questrial', sans-serif;
 }
 
 .content-headers, .content-headers-title {
