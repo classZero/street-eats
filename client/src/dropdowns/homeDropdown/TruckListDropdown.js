@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import {changeSortView} from '../../home/homeActions'
-import Logout from '../../logout/Logout'
 import './dropdown.css'
 
 class TruckListDropdown extends Component {
