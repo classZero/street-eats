@@ -18,7 +18,7 @@ class EditUserProfile extends Component {
                 <div>
                     <div>Username: {this.props.profile.username}</div>
                     <div>Email: {this.props.profile.email}</div>
-                    <div>Profile Image: <img src="http://placehold.it/400/400" /></div>
+                    <div>Profile Image: <img alt='Profile' src="http://placehold.it/400/400" /></div>
                 </div>
                 <div>
                     {/* image change goes here */}

@@ -23,7 +23,6 @@ class TProfileView extends Component {
     }
 
     render() {
-        console.log(this.props.reviews)
         return (
             <div>
 
@@ -32,7 +31,7 @@ class TProfileView extends Component {
                     <div>Truck picture<img alt="logo" src={this.props.profile.logo} /></div>
                     <div>About us: {this.props.profile.aboutus}</div>
                     <div><img alt="menu" src={this.props.profile.menuurl} /></div>
-                    <div onClick={this.addFavorite}><img style={{width: 50, height: 50}} src={star}/></div>
+                    <div onClick={this.addFavorite}><img  alt='add favorite' style={{width: 50, height: 50}} src={star}/></div>
                     {this.editTruckProfile(this.props.username)}
                 </div>
 

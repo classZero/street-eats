@@ -12,3 +12,12 @@ export function getUserProfile(username) {
 	})
 }
 
+export function getFavorites(username) {
+	api.getFavorites(username).then(resp => {
+		store.dispatch({
+			type: 'GET_FAVORITES',
+			payload: resp.favorites
+		})
+	})
+}
+

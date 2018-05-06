@@ -251,4 +251,22 @@ router.get('/userprofile/:username', (req, res, next) => {
   
   })
 
+  router.get('/userfavorites/:username', (req, res, next) => {
+      const username = req.params.username
+      const sql = `
+      SELECT t.companyname, t.companylogo 
+      FROM users u 
+      LEFT JOIN favorites f on u.username = f.username 
+      LEFT JOIN trucks t on f.truckusername = t.username WHERE u.username = ?
+      `
+
+      conn.query(sql, username, (err, results, fields) => {
+          const favorites = results
+          res.json({
+             favorites
+          })
+      })
+
+  })
+
 export default router

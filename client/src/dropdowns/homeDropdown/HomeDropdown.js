@@ -28,6 +28,13 @@ class HomeDropdown extends Component {
       document.removeEventListener('click', this.closeMenu);
     })
   }
+  viewProfile(source, username) {
+    if(source === 'truck') {
+      return <Link to={'/truckprofile/' + username}>View My Profile</Link>
+    } else if(source === 'user') {
+      return <Link to={'/userprofile/' + username}>View My Profile</Link>
+    }
+  }
 
   render() {
     const classes = this.state.showMenu ? 'menu' : 'menu hide'
@@ -44,7 +51,7 @@ class HomeDropdown extends Component {
             }
             <Link to="/mapinputs">inputs for trucks</Link>
             <Link to="map">links to map</Link>
-            <Link to={'/editprofile'} >edit my profile</Link>
+            {this.viewProfile(this.props.source, this.props.username)}
             <div><Logout /></div>
             </div>
           </div>
