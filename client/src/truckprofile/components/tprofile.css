@@ -69,6 +69,11 @@
     border: 1px solid white;
 }
 
+.tprofile-img-container img {
+    width: 200px;
+    height: 200px;
+}
+
 .tprofile-about-header {
     text-align: center;
     font-size: 20px;
@@ -96,6 +101,11 @@
     height: 402px;
     margin: auto;
     margin-top: 10px;
+}
+
+.tprofile-menu img {
+    width: 400px;
+    height: 400px;
 }
 
 .tprofile-edit {
