@@ -1,3 +1,9 @@
+.biggestContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .tprofile-container {
     border: 1px solid black;
     border-radius: 5px;
@@ -8,6 +14,19 @@
     width: 600px;
     height: 735px;
     box-shadow: 0px 0px 8px 8px rgba(196, 153, 150, 0.7);
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.tprofile-review-container {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(235, 85, 73);
+    width: 600px;
+    height: 735px;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
     overflow: hidden;
     overflow-y: scroll;
 }
@@ -24,7 +43,6 @@
     height: 60px;
     text-align: center;
     font-family: Paytone One;
-    padding-left: 100px;
 }
 
 .tprofile-header p {
@@ -86,4 +104,11 @@
     margin-top: 10px;
     margin-bottom: 10px;
     font-family: Questrial;
+}
+
+.actual-review {
+    border-bottom: 1px solid white;
+    font-family: Questrial;
+    margin-left: 10px;
+    margin-right: 10px;
 }
