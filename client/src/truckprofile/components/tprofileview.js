@@ -37,6 +37,20 @@ class TProfileView extends Component {
         }
     }
 
+    reviewForm(auth, source){
+        if(auth && source === 'user') {
+            return <div>
+            <form onSubmit={this.handleSubmit}>
+            <div>Leave A Review: <input onChange={this.handleChange} type='text' name='reviewtext' value={this.state.reviewtext} /> </div>
+                <button type='submit'>Submit</button>
+            </form>
+            {this.props.reviewmessage ? <div>{this.props.reviewmessage}</div>:<div></div>}
+        </div>
+        } else if(auth === false) {
+            return <div><p>Login or create account to leave a review</p></div>
+        }
+    }
+
     handleSubmit = (e) => {
         e.preventDefault()
         submitReview(this.props.username, this.props.match.params.username,this.state.reviewtext)
@@ -53,42 +67,35 @@ class TProfileView extends Component {
 
     render() {
         return (
-              <div>
+            <div>
               <HomeHeader />
 
-              <div className="biggestContainer">
+                <div className="biggestContainer">
 
-                <div className="tprofile-container">
-                    <div className="tprofile-header">
-                    {/* <Link to="/" className="tprofile-back">Back</Link> */}
-                    <p>{this.props.profile.companyname}</p>
+                    <div className="tprofile-container">
+                        <div className="tprofile-header">
+                        {/* <Link to="/" className="tprofile-back">Back</Link> */}
+                        <p>{this.props.profile.companyname}</p>
+                        </div>
+                        <div className="tprofile-img-container"><img alt="logo" src={this.props.profile.logo} /></div>
+                        <div className="tprofile-about-header">ABOUT US</div>
+                        <div className="tprofile-about">{this.props.profile.aboutus}</div>
+                        <div className="tprofile-menu"><img alt="menu" src={this.props.profile.menuurl} /></div>
+                        {this.favAbility(this.props.isAuth, this.props.source)}
+                        {this.props.message ? <div>{this.props.message}</div>:<div></div>}
+                        <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
                     </div>
-                    <div className="tprofile-img-container"><img alt="logo" src={this.props.profile.logo} /></div>
-                    <div className="tprofile-about-header">ABOUT US</div>
-                    <div className="tprofile-about">{this.props.profile.aboutus}</div>
-                    <div className="tprofile-menu"><img alt="menu" src={this.props.profile.menuurl} /></div>
-                    {this.favAbility(this.props.isAuth, this.props.source)}
-                    {this.props.message ? <div>{this.props.message}</div>:<div></div>}
-                    <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
-                </div>
 
-                <div className="tprofile-review-container">
-                <div className="tprofile-header">
-                  <p>Reviews</p>
-                </div>
-                    {this.props.reviews.map((review, index) => {
-                        return <div key={'review ' + index } className="actual-review"><p>{review.review}</p></div>
-                    })}
-                    <div>
-                        <form onSubmit={this.handleSubmit}>
-                        <div>Leave A Review: <input onChange={this.handleChange} type='text' name='reviewtext' value={this.state.reviewtext} /> </div>
-                            <button type='submit'>Submit</button>
-                        </form>
+                    <div className="tprofile-review-container">
+                        <div className="tprofile-header">
+                            <p>Reviews</p>
+                        </div>
+                            {this.props.reviews.map((review, index) => {
+                                return <div key={'review ' + index } className="actual-review"><p>{review.review}</p></div>
+                            })}
+                        {this.reviewForm(this.props.isAuth, this.props.source)}
                     </div>
                 </div>
-
-                </div>
-
             </div>
         )
     }
@@ -101,7 +108,8 @@ function mapStateToProps(state) {
         isAuth: state.loginReducer.isAuthenticated,
         reviews: state.tProfileReducer.reviews,
         source : state.loginReducer.source,
-        message : state.tProfileReducer.message
+        message : state.tProfileReducer.message,
+        reviewmessage : state.tProfileReducer.reviewmessage
     }
 }
 

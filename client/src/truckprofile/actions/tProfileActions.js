@@ -31,10 +31,9 @@ export function addFavorite(username, truckuser) {
 
 export function submitReview(username, truckuser, reviewtext) {
 	api.addReview(username, truckuser, reviewtext).then(resp => {
-		// console.log(resp)
-		// store.dispatch({
-		// 	type: 'ADDED_REVIEW',
-		// 	payload
-		// })
+		store.dispatch({
+			type: 'ADDED_REVIEW',
+			payload: resp
+		})
 	})
 }

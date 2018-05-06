@@ -61,7 +61,7 @@ router.post('/addreview', (req, res, next) => {
     conn.query(sql, [username, truckuser, reviewtext], (err, results, fields) => {
         console.log(results)
         res.json({
-            message: 'Review added'
+            message: 'Thanks for your Feedback!'
         })
     })
 
