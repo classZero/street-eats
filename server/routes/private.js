@@ -30,9 +30,6 @@ router.post('/editTruckProfile', (req, res, next) => {
           menuurl
       })
   } )
-
-
-
 })
 
 export default router

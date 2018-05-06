@@ -75,8 +75,7 @@ instance.registration = function (username, password, email, avatar, type, compa
 }
 
 instance.getTruckProfile = function (username) {
-  return this.get('/truckprofile/' + username)
-  .then(resp => {
+  return this.get('/truckprofile/' + username).then(resp => {
     return resp.data
   })
 }
@@ -84,21 +83,26 @@ instance.getTruckProfile = function (username) {
 
 instance.getUserProfile = function (username) {
   // console.log(username)
-  return this.get('/userprofile/' + username)
-  .then(resp => {
+  return this.get('/userprofile/' + username).then(resp => {
     return resp.data
   })
 }
 
 instance.editTruckProfile = function(name, logo, aboutus, menuurl) {
-  return this.post('/editTruckProfile', {name, logo, aboutus, menuurl})
-  .then(resp => {
+  return this.post('/editTruckProfile', {name, logo, aboutus, menuurl}).then(resp => {
     return resp.data
   })
 }
 
 instance.changeSortView = function (sortType) {
   return this.get('/truckdata/' + sortType).then(resp => {
+    return resp.data
+  })
+}
+
+instance.payments = function (description, token, currency, amount) {
+  return this.post('/payments', {description, token, currency, amount}).then(resp => {
+    console.log('api resp',resp.data)
     return resp.data
   })
 }

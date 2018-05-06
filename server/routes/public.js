@@ -232,8 +232,35 @@ router.get('/userprofile/:username', (req, res, next) => {
             avatar
         })
     })
-  
-  
   })
+
+const stripe = require('stripe')('sk_test_zGrjspkLXtCEX59BW1kQjVE6')
+
+// const stripe = configureStripe('sk_test_zGrjspkLXtCEX59BW1kQjVE6');
+
+const postStripeCharge = res => (stripeErr, stripeRes) => {
+  if (stripeErr) {
+    res.status(500).send({ error: stripeErr });
+  } else {
+    res.status(200).send({ success: stripeRes });
+  }
+}
+
+router.post('/payments', (req, res, next) => {
+  console.log('public',JSON.stringify(req.body))
+  // stripe.charges.create({amount: req.body.amount,
+  //                        currency: req.body.CURRENCY,
+  //                        source: req.body.token,
+  //                        description: req.body.description}, postStripeCharge(res));
+  const charge = stripe.charges.create({
+    amount: req.body.amount,
+    currency: req.body.currency,
+    description: req.body.description,
+    source: req.body.token,
+  }, postStripeCharge(res));
+  res.json({
+    data: charge
+  })
+})
 
 export default router

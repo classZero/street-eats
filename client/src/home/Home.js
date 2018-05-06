@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {getTruckData, changeSortView} from './homeActions'
+import {changeSortView} from './homeActions'
 import MapViewHome from '../MapView/mapviewcomponents/MapsViewHome'
 import TruckListDropdown from '../dropdowns/homeDropdown/TruckListDropdown'
 import HomeHeader from '../headers/HomeHeader'
