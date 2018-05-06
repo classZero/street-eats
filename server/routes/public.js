@@ -86,7 +86,6 @@ router.get('/truckdata/:sort', (req, res, next) => {
   })
 })
 
-
 router.post('/registration', (req, res, next) => {
     const username = req.body.username
     const password = sha512(req.body.password)
@@ -166,14 +165,15 @@ router.post('/login', (req, res, next) => {
     const username = req.body.username
     const password = sha512(req.body.password)
 
-    const sql = `SELECT username, email, companyname, companylogo, menuurl, aboutus, lng, lat, datecreated, 'truck' as Source FROM trucks as truckInfo WHERE username = ? AND password = ?
+    const sql = `SELECT id, username, email, companyname, companylogo, menuurl, aboutus, lng, lat, datecreated, 'truck' as Source FROM trucks as truckInfo WHERE username = ? AND password = ?
                 UNION
-                SELECT username, email, Null as companyname, Null as companylogo, Null as menuurl, Null as aboutus, Null as lng, Null as lat, Null as datecreated, 'user' as Source FROM users as userInfo WHERE username = ? AND password = ?`
+                SELECT id, username, email, Null as companyname, Null as companylogo, Null as menuurl, Null as aboutus, Null as lng, Null as lat, Null as datecreated, 'user' as Source FROM users as userInfo WHERE username = ? AND password = ?`
 
     conn.query(sql, [username, password, username, password], (err, results, fields) => {
       console.log('login results ' + JSON.stringify(results))
         if(results.length > 0) {
             console.log('username and password returned match')
+            console.log(results[0].id)
             const token = jwt.sign({user: username, source: results[0].Source}, config.get('jwt-secret'))
             res.json({
                 message: "Login Successful",
@@ -214,6 +214,23 @@ router.get('/truckprofile/:username', (req, res, next) => {
   
   })
 
+  router.get('/truckreviews/:username', (req, res, next) => {
+      const username = req.params.username
+      const sql = `
+      SELECT review 
+      FROM reviews 
+      WHERE truckusername = ?
+      `
+
+      conn.query(sql, username, (err,results, fields) => {
+          const reviews = results
+
+          res.json({
+            reviews
+          })
+      })
+  })
+
 
 router.get('/userprofile/:username', (req, res, next) => {
     const username = req.params.username
@@ -234,6 +251,25 @@ router.get('/userprofile/:username', (req, res, next) => {
     })
   })
 
+  router.get('/userfavorites/:username', (req, res, next) => {
+      const username = req.params.username
+      const sql = `
+      SELECT t.companyname, t.companylogo 
+      FROM users u 
+      LEFT JOIN favorites f on u.username = f.username 
+      LEFT JOIN trucks t on f.truckusername = t.username WHERE u.username = ?
+      `
+
+      conn.query(sql, username, (err, results, fields) => {
+          const favorites = results
+          res.json({
+             favorites
+          })
+      })
+
+  })
+
+  
 const stripe = require('stripe')('sk_test_zGrjspkLXtCEX59BW1kQjVE6')
 
 // const stripe = configureStripe('sk_test_zGrjspkLXtCEX59BW1kQjVE6');

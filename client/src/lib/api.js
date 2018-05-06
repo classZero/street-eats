@@ -80,10 +80,31 @@ instance.getTruckProfile = function (username) {
   })
 }
 
+instance.getTruckReviews = function(username) {
+  return this.get('/truckreviews/' + username)
+  .then(resp => {
+    return resp.data.reviews
+  })
+}
+
 
 instance.getUserProfile = function (username) {
   // console.log(username)
   return this.get('/userprofile/' + username).then(resp => {
+    return resp.data
+  })
+}
+
+instance.getFavorites = function(username) {
+  return this.get('/userfavorites/' + username)
+  .then(resp => {
+    return resp.data
+  })
+}
+
+instance.addFavorite = function(username, truckuser) {
+  return this.post('/addfavorite/', {username, truckuser})
+  .then(resp => {
     return resp.data
   })
 }

@@ -10,7 +10,6 @@ class EditUserProfile extends Component {
     
     componentDidMount() {
         getUserProfile(this.props.username)
-        console.log(this.props.username)
     }
 
     render() {
