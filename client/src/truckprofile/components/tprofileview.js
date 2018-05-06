@@ -4,6 +4,7 @@ import { getProfile } from '../actions/tProfileActions'
 import { Link } from 'react-router-dom'
 import star from '../../assets/images/star.svg'
 import { getReviews } from '../actions/tProfileActions'
+import { addFavorite } from '../actions/tProfileActions'
 
 class TProfileView extends Component {
 
@@ -18,8 +19,8 @@ class TProfileView extends Component {
         }
     }
 
-    addFavorite() {
-        console.log("div clicked")
+    handleFavClick = (username, truckuser) => {
+        addFavorite(username, truckuser)
     }
 
     render() {
@@ -31,7 +32,7 @@ class TProfileView extends Component {
                     <div>Truck picture<img alt="logo" src={this.props.profile.logo} /></div>
                     <div>About us: {this.props.profile.aboutus}</div>
                     <div><img alt="menu" src={this.props.profile.menuurl} /></div>
-                    <div onClick={this.addFavorite}><img  alt='add favorite' style={{width: 50, height: 50}} src={star}/></div>
+                    {this.props.isAuth ? <div onClick={() => { this.handleFavClick(this.props.username, this.props.match.params.username) }}><img  alt='add favorite' style={{width: 50, height: 50}} src={star}/></div>:<div></div> }
                     {this.editTruckProfile(this.props.username)}
                 </div>
 

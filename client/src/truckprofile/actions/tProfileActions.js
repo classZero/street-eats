@@ -19,3 +19,9 @@ export function getReviews(username) {
 		})
 	})
 }
+
+export function addFavorite(username, truckuser) {
+	api.addFavorite(username, truckuser).then(resp => {
+		// console.log(resp)
+	})
+}
