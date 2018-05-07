@@ -78,7 +78,7 @@ class URegistration extends Component {
 	render(){
 		return(
 			<div>
-        <RegistrationHeader />
+        {/* <RegistrationHeader /> */}
         <div className="userRegContainer">
 
          <div className="userRegHeader">
