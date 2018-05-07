@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {registerUser} from '../actions/URegistrationActions'
 import RegistrationHeader from '../../headers/registrationHeader'
 import './URegistration.css'
+import {withRouter} from 'react-router'
 
 class URegistration extends Component {
 	state = {
@@ -105,4 +106,4 @@ function mapStateToProps(state) {
 	return {}
 }
 
-export default connect(mapStateToProps)(URegistration)
+export default withRouter(connect(mapStateToProps)(URegistration))
