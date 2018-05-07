@@ -23,14 +23,14 @@ class UProfileView extends Component {
     checkUser(auth, current, user) {
         if(auth && current === user) {
             return <div>
-            <div>Username: {this.props.profile.username}</div>
+            {/* <div>Username: {this.props.profile.username}</div>
             <div>Email: {this.props.profile.email}</div>
             My Favorites:
             <div>
             {this.props.favorites.map((favorite, index) => {
-                    return <div key={'favorite' + index} >{favorite.companylogo} {favorite.companyname}</div>
+                    return <div key={'favorite' + index} ><img src={favorite.companylogo} alt="logo"/>{favorite.companyname}</div>
                 })}
-            </div>
+            </div> */}
             <Link to='/editprofile'>Edit My Profile</Link>
             </div>
         } else {
@@ -52,15 +52,13 @@ class UProfileView extends Component {
                 <p>My Favorites:</p>
                 <div className="uprofile-favcontainer">
                 {this.props.favorites.map((favorite, index) => {
-                        return <div key={'favorite' + index} >{favorite.companylogo} {favorite.companyname}</div>
+                        return <div key={'favorite' + index} ><img src={favorite.companylogo} alt="logo"/> {favorite.companyname}</div>
                     })}
                 </div>
-                </div>: <Redirect to='/' />}
-
-            <div>
+                <div className="uprofile-editbutton">
                 {this.checkUser(this.props.isAuth, this.props.username, this.props.match.params.username)}
-
-            </div>
+              </div>
+                </div>: <Redirect to='/' />}
           </div>
           </div>
         )
