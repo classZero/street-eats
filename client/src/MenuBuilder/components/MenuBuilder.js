@@ -6,7 +6,7 @@ import {HomeHeader} from 'headers/HomeHeader'
 
 import {getMenu} from 'MenuView/actions/MenuViewActions'
 import {addItem, removeItem} from '../actions/MenuBuilderActions'
-import './temp.css'
+import './MenuBuilder.css'
 
 class MenuBuilder extends Component{
 	state = {
@@ -49,7 +49,7 @@ class MenuBuilder extends Component{
 		}
 	}
 	handleRemove = (e, itemID) => {
-		e.preventDefault
+		e.preventDefault()
 		// console.log(itemID)
 		removeItem(itemID).then(resp => getMenu(this.props.username))
 	}
@@ -57,9 +57,9 @@ class MenuBuilder extends Component{
 	render(){
 		return(
 			<div className="editmenu-container">
-				<header>
+				<header className="menubuilder-header">
                     <h1>Edit Menu</h1>
-                    <button onClick={ e => this.props.toggle(e)}>Edit Profile</button>
+                    <button onClick={ e => this.props.toggle(e)} className="menubuilder-toggle">Edit Profile</button>
                 </header>
 				<form onSubmit={this.handleSubmit} id="menuBuilderForm">
 					<label>Item Name <input onChange={this.handleChange} type="text" name="itemName"/></label>
@@ -81,7 +81,7 @@ class MenuBuilder extends Component{
         					<h3>${item.itemPrice}</h3>
         					<h4>{item.itemType}</h4>
         					<p>{item.itemDescription}</p>
-        					<button onClick={ e => this.handleRemove(e, item.id)}>Remove Item</button>
+        					<button onClick={ e => this.handleRemove(e, item.id)} className="menubuilder-remove-button">X</button>
         				</div>	
 					)
 				)}

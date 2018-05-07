@@ -68,7 +68,7 @@ class EditTruckProfile extends Component {
                         <div className="edittruck-container">
                           <header>
                             <h1>Edit Profile</h1>
-                            <button onClick={this.toggleProfileMenu}>Edit Menu</button>
+                            <button onClick={this.toggleProfileMenu} className="menubuilder-toggle">Edit Menu</button>
                           </header>
                             <form onSubmit={this.handleSubmit}>
                                 <div>Edit Truck Name: <input onChange={this.handleChange} type='text' name='name' value={this.state.name} /> </div>

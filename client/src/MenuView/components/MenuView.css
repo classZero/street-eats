@@ -1,7 +1,7 @@
 .menuview-menu-item {
 	padding: 8px;
 	font-family: Questrial;
-
+	position: relative;
 }
 
 .menuview-menu-item p, .menuview-menu-item h3, .menuview-menu-item h4 {
