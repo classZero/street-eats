@@ -11,6 +11,9 @@ import HomeHeader from '../../headers/HomeHeader'
 import MenuView from 'MenuView/components/MenuView'
 
 class TProfileView extends Component {
+    state = {
+        reviewMenuToggle: 'review'
+    }
 
     componentDidMount(){
         getProfile(this.props.match.params.username)
@@ -31,6 +34,19 @@ class TProfileView extends Component {
             return <div onClick={() => { this.handleFavClick(this.props.username, this.props.match.params.username) }}><img  alt='add favorite' style={{width: 50, height: 50}} src={star}/></div>
         } else {
             return <div></div>
+        }
+    }
+
+    toggleReviewMenu = (e) => {
+        e.preventDefault()
+        if (this.state.reviewMenuToggle !== 'menu'){
+            this.setState({
+                reviewMenuToggle: 'menu'
+            })
+        } else {
+            this.setState({
+                reviewMenuToggle: 'review'
+            })
         }
     }
 
@@ -56,15 +72,17 @@ class TProfileView extends Component {
                         <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
                     </div>
 
-                    <div className="tprofile-review-container">
-                        <div className="tprofile-header">
-                          <p>Reviews</p>
+                    { this.state.reviewMenuToggle === 'menu' ? <MenuView toggle={this.toggleReviewMenu} /> :
+                        <div className="tprofile-review-container">
+                            <div className="tprofile-header">
+                              <p>Reviews</p>
+                              <button onClick={this.toggleReviewMenu}>View Menu</button>
+                            </div>
+                            {this.props.reviews.map((review, index) => {
+                                return <div key={'review ' + index } className="actual-review"><p>{review.review}</p></div>
+                            })}
                         </div>
-                        {this.props.reviews.map((review, index) => {
-                            return <div key={'review ' + index } className="actual-review"><p>{review.review}</p></div>
-                        })}
-                    </div>
-                    <MenuView />
+                    }
                   </div>
 
             </div>
