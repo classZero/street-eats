@@ -4,7 +4,8 @@ const initialState = {
   isAuthenticated: window.localStorage.getItem('token') ? true : false,
   username: getTokenUsername(),
   source: getTokenSource(),
-  avatar: getTokenAvatar()
+  avatar: getTokenAvatar(),
+  logo: getTokenAvatar()
 }
 
 function getTokenUsername() {
@@ -35,13 +36,24 @@ function getTokenAvatar() {
   }
 }
 
+function getTokenAvatar() {
+  if(window.localStorage.getItem('token')) {
+    const logo = jwt.decode(window.localStorage.getItem('token')).logo
+    console.log(logo)
+    return logo
+  } else {
+    return ""
+  }
+}
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case "LOGIN_USER":
       return {...state, isAuthenticated: true,
                         username: action.payload.user,
                         source: action.payload.source,
-                        avatar: action.payload.avatar
+                        avatar: action.payload.avatar,
+                        logo: action.payload.logo
                       }
     case "LOGOUT_USER":
       return {...state, isAuthenticated: false,

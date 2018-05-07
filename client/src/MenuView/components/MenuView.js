@@ -8,7 +8,11 @@ import './MenuView.css'
 
 class MenuView extends Component{
 	state = {
-	}
+  }
+  
+  static defaultProps = {
+    menu: []
+  }
 
 	componentDidMount(){
 		getMenu(this.props.match.params.username).then(resp => console.log(this.props.menu))

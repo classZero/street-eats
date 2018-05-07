@@ -46,10 +46,6 @@ class HomeDropdown extends Component {
           <button onClick={this.handleClickHome} className={btnColorHome}>Menu &#9662;</button>
           {this.state.showMenuHome && (
           <div className={classesHome} >
-            <Link to="/Uregistration">user reg page</Link>
-            <Link to="/Tregistration">truck reg page</Link>
-            <Link to="/mapinputs">inputs for trucks</Link>
-            <Link to="map">links to map</Link>
             {this.props.source === 'user' ?
               <Link to={'/userprofile/' + this.props.username}>View My Profile</Link> :
               <Link to={'/truckprofile/' + this.props.username}>View My Profile</Link>

@@ -31,15 +31,16 @@ setInterval(() => {
   const sql = `
     SELECT id, timeopen, timeclose FROM trucks
   `
-  conn.query(sql, (err, results, fields) => {    
+  conn.query(sql, (err, results, fields) => {   
+     
     results.map((truck, i) => {
+      
       let rightNow = new Date()
       if(truck.timeopen !== null) {
         var timeopen = new Date(truck.timeopen)
         var timeclose = new Date(truck.timeclose)
         console.log(timeopen, timeclose, rightNow)
         if (timeopen < rightNow && timeclose > rightNow) {
-          console.log('starting')
           const sqlUpdate = `
             UPDATE trucks SET isActive = ? WHERE id = ?
           `
@@ -58,7 +59,7 @@ setInterval(() => {
       }  
     })
   })
-}, 50000) 
+}, 5000) 
 
 app.use('/api', publicRouter)
 app.use('/api', ejwt({secret: config.get('jwt-secret')}), privateRouter)

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
 import moment from 'moment'
 import {convertAddy , postHours, postSpecial} from '../mapviewactions/mapactions'
 import TimeRange from 'react-time-range'
@@ -18,9 +19,9 @@ class MapViewInputs extends Component {
   }
 
   handleSubmit = (e) => {
+    e.preventDefault()
     let startTime = this.state.startTime
     let endTime = this.state.endTime
-    e.preventDefault()
     convertAddy(this.state.addy)
     postHours(startTime, endTime)
     postSpecial(this.state.special)
@@ -30,6 +31,7 @@ class MapViewInputs extends Component {
       close: '',
       special: ''
     })
+    this.props.history.push('/')
   }
 
   handleChange = (e) => {
@@ -85,4 +87,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(MapViewInputs)
+export default withRouter(connect(mapStateToProps)(MapViewInputs))

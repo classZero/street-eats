@@ -22,7 +22,8 @@ export class HomeHeader extends Component {
         <div className="home-header-dropdown">
           {this.props.username ? <div className="header-user-info">
                                   <span>{this.props.username}</span>
-                                  <img src={this.props.avatar} alt="avatar"/>
+                                  {this.props.source === 'user' ? <img src={this.props.avatar} alt="avatar"/> :
+                                                                  <img src={this.props.companyLogo} alt=""/>}
                                 </div> : ''}
           <HomeDropdown />
         </div>
@@ -36,7 +37,9 @@ function mapStateToProps(state) {
   console.log(state)
   return {
     username: state.loginReducer.username,
-    avatar: state.loginReducer.avatar
+    avatar: state.loginReducer.avatar,
+    source: state.loginReducer.source,
+    companyLogo: state.loginReducer.logo
   }
 }
 

@@ -40,7 +40,7 @@ export class Home extends Component {
               </div>
             </div>
 
-            <Link to="/payments">temp payments</Link>
+            {/* <Link to="/payments">temp payments</Link> */}
 
             <div className="home-newsfeed">
               <div className="home-newsfeed-header">

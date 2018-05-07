@@ -8,3 +8,7 @@
 .modal-wrapper {
     padding: 5px;
 }
+
+.mapinputs-container {
+    box-shadow: 0px 0px 8px 8px rgba(196, 153, 150, 0.7);
+}

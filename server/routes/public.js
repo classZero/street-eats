@@ -37,7 +37,7 @@ router.post('/updatehours/:user/:opentime/:closetime', (req, res, next) => {
   WHERE username = ?
   `
   conn.query(sql, [open, close, username], (err, results, fields) => {
-    // console.log(JSON.stringify(results))
+    // console.log('results',JSON.stringify(results))
   })
 })
 
@@ -174,13 +174,14 @@ router.post('/login', (req, res, next) => {
         if(results.length > 0) {
             console.log('username and password returned match')
             console.log(results[0].id)
-            const token = jwt.sign({user: username, source: results[0].Source, avatar: results[0].avatar}, config.get('jwt-secret'))
+            const token = jwt.sign({user: username, source: results[0].Source, avatar: results[0].avatar, logo: results[0].companylogo}, config.get('jwt-secret'))
             res.json({
                 message: "Login Successful",
                 token: token,
                 user: username, //username also attached to token
                 source: results[0].Source,
-                avatar: results[0].avatar
+                avatar: results[0].avatar,
+                logo: results[0].companylogo
             })
         } else {
             res.status(401).json({
