@@ -30,10 +30,6 @@ class TruckListDropdown extends Component {
     this.handleClickList()
   }
 
-  componentWillMount = () => {
-    document.addEventListener('click', this.handleOutsideClick, false)
-  }
-  
   componentWillUnmount = () => {
     //remove event handler before navigating away
     document.removeEventListener('click', this.handleOutsideClick, false)
