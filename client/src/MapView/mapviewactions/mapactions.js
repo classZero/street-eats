@@ -19,9 +19,7 @@ export function postHours(open, close) {
   const username = store.getState().loginReducer.username
   const opentime = open
   const closetime = close
-  console.log('actions',opentime)
   axios.post('/api/updatehours/' + username + '/' + opentime + '/' + closetime).then(resp => {
-    console.log('map actions line 24')
     store.dispatch({
       type: 'UPDATE_HOURS',
       payload: resp.data

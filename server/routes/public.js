@@ -22,7 +22,7 @@ router.post('/updatelocation/:user/:lat/:lng', (req, res, next) => {
   WHERE username = ?
   `
   conn.query(sql, [lat, lng, username], (err, results, fields) => {
-    // console.log(JSON.stringify(results))
+    console.log('update location results', JSON.stringify(results))
   })
 })
 
@@ -37,7 +37,7 @@ router.post('/updatehours/:user/:opentime/:closetime', (req, res, next) => {
   WHERE username = ?
   `
   conn.query(sql, [open, close, username], (err, results, fields) => {
-    // console.log('results',JSON.stringify(results))
+    // console.log('update hours results',JSON.stringify(results))
   })
 })
 
@@ -80,6 +80,7 @@ router.get('/truckdata/:sort', (req, res, next) => {
     `
   }  
   conn.query(sql, (err, results, fields) => {
+    console.log('truckdata sort results' , JSON.stringify(results))
     res.json({
       results
     })

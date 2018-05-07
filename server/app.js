@@ -39,7 +39,7 @@ setInterval(() => {
       if(truck.timeopen !== null) {
         var timeopen = new Date(truck.timeopen)
         var timeclose = new Date(truck.timeclose)
-        console.log(timeopen, timeclose, rightNow)
+        // console.log(timeopen, timeclose, rightNow)
         if (timeopen < rightNow && timeclose > rightNow) {
           const sqlUpdate = `
             UPDATE trucks SET isActive = ? WHERE id = ?

@@ -8,6 +8,7 @@ export default function(state = initialState, action) {
     case "GET_TRUCK_DATA":
       return {...state, truckData: action.payload}
     case "SORTED_TRUCK_DATA":
+    // console.log('homeReducer action.payload', action.payload)
       return {...state, truckData: action.payload.values,
                         sortType: action.payload.type}
     default:

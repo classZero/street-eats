@@ -35,17 +35,33 @@
 .menu button {
     border: none;
     outline: none;
+    width: 100%;
     background: rgb(240, 238, 228);
 }
 
-.menu a, .menu div, .menu button {
+/* .menu a, .menu button {
     text-decoration: none;
     color: black;
     padding: 8px;
-    font-weight: 600;
+} */
+
+.profile-link-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    
 }
 
-.menu a:hover, .menu div:hover, .menu button:hover {
+.profile-link-group a, .profile-link-group button {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    padding: 5px;
+    
+}
+
+.profile-link-group a:hover, .profile-link-group button:hover {
     background-color: rgb(213, 213, 213);
 }
 

@@ -47,10 +47,16 @@ class HomeDropdown extends Component {
           {this.state.showMenuHome && (
           <div className={classesHome} >
             {this.props.source === 'user' ?
-              <Link to={'/userprofile/' + this.props.username}>View My Profile</Link> :
-              <Link to={'/truckprofile/' + this.props.username}>View My Profile</Link>
+              <div className="profile-link-group">
+                <Link to={'/userprofile/' + this.props.username}>View My Profile</Link>
+                <Logout />
+              </div> :
+              <div className="profile-link-group">
+                <Link to={'/truckprofile/' + this.props.username}>View My Profile</Link>
+                <Link to="/editprofile">Edit Profile</Link>
+                <Logout />
+              </div>
             }
-            <div><Logout /></div>
           </div>
           )}
         </div>
