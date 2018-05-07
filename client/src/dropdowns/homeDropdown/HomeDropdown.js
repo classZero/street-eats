@@ -31,23 +31,11 @@ class HomeDropdown extends Component {
     this.handleClickHome()
   }
   
-  componentWillMount = () => {
-    document.addEventListener('click', this.handleOutsideClickHome, false)
-  }
-
   componentWillUnmount = () => {
     //remove event handler before navigating away
     document.removeEventListener('click', this.handleOutsideClickHome, false)
   }
   
-  // viewProfile(source, username) {
-  //   if(source === 'truck') {
-  //     return <Link to={'/truckprofile/' + username}>View My Profile</Link>
-  //   } else if(source === 'user') {
-  //     return <Link to={'/userprofile/' + username}>View My Profile</Link>
-  //   }
-  // }
-
   render() {
     const classesHome = this.state.showMenuHome ? 'menu' : 'menu hide'
     const btnColorHome = this.state.showMenuHome ? 'dropmenu-btn color' : 'dropmenu-btn noColor'
@@ -66,14 +54,13 @@ class HomeDropdown extends Component {
               <Link to={'/userprofile/' + this.props.username}>View My Profile</Link> :
               <Link to={'/truckprofile/' + this.props.username}>View My Profile</Link>
             }
-            {/* {this.viewProfile(this.props.source, this.props.username)} */}
             <div><Logout /></div>
           </div>
           )}
         </div>
           : 
           <div>
-            <button onClick={this.handleClickHome} id="dropmenu-btn">Sign Up &#9662;</button>
+            <button onClick={this.handleClickHome} className={btnColorHome}>Sign Up &#9662;</button>
             <div className={classesHome}>
               <Link to="/registrationPage">Register</Link>
             </div>

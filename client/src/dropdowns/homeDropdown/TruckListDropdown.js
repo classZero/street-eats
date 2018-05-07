@@ -30,10 +30,6 @@ class TruckListDropdown extends Component {
     this.handleClickList()
   }
 
-  componentWillMount = () => {
-    document.addEventListener('click', this.handleOutsideClick, false)
-  }
-  
   componentWillUnmount = () => {
     //remove event handler before navigating away
     document.removeEventListener('click', this.handleOutsideClick, false)
@@ -60,7 +56,7 @@ class TruckListDropdown extends Component {
           <div className={classesList}  >
               <button onClick={this.setSortType} value="all">Show All</button>
               <button onClick={this.setSortType} value="new">Show Newest</button>
-              <button onClick={this.setSortType} value="alpha">Show By Company Name</button>
+              <button onClick={this.setSortType} value="alpha">Show By Truck Name A-Z</button>
               <button onClick={this.setSortType} value="active">Show Active Only</button>
           </div>
           )}

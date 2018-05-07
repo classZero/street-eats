@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken'
 
-
 const initialState = {
   isAuthenticated: window.localStorage.getItem('token') ? true : false,
   username: getTokenUsername(),
-  source: getTokenSource()
+  source: getTokenSource(),
+  avatar: getTokenAvatar()
 }
 
 function getTokenUsername() {
@@ -16,7 +16,6 @@ function getTokenUsername() {
   }
 }
 
-
 function getTokenSource() {
   if(window.localStorage.getItem('token')) {
     const source = jwt.decode(window.localStorage.getItem('token')).source
@@ -26,13 +25,23 @@ function getTokenSource() {
   }
 }
 
+function getTokenAvatar() {
+  if(window.localStorage.getItem('token')) {
+    const avatar = jwt.decode(window.localStorage.getItem('token')).avatar
+    console.log(avatar)
+    return avatar
+  } else {
+    return ""
+  }
+}
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case "LOGIN_USER":
       return {...state, isAuthenticated: true,
                         username: action.payload.user,
-                        source: action.payload.source
+                        source: action.payload.source,
+                        avatar: action.payload.avatar
                       }
     case "LOGOUT_USER":
       return {...state, isAuthenticated: false,

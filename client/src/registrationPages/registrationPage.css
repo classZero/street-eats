@@ -31,7 +31,7 @@
 .twoRegContainer {
     display: flex;
     justify-content: space-evenly;
-    margin-top: 50px;
+    margin-top: 25px;
     margin-left:50px;
     margin-right:50px;
 }

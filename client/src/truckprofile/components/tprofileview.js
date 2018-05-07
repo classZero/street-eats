@@ -70,22 +70,24 @@ class TProfileView extends Component {
     render() {
         return (
             <div>
-              <HomeHeader />
+                <HomeHeader />
 
                 <div className="biggestContainer">
 
                     <div className="tprofile-container">
                         <div className="tprofile-header">
-                        {/* <Link to="/" className="tprofile-back">Back</Link> */}
-                        <p>{this.props.profile.companyname}</p>
+                          <Link to="/" className="tprofile-back">Back</Link>
+                          <p>{this.props.profile.companyname}</p>
                         </div>
-                        <div className="tprofile-img-container"><img alt="logo" src={this.props.profile.logo} /></div>
-                        <div className="tprofile-about-header">ABOUT US</div>
-                        <div className="tprofile-about">{this.props.profile.aboutus}</div>
-                        <div className="tprofile-menu"><img alt="menu" src={this.props.profile.menuurl} /></div>
-                        {this.favAbility(this.props.isAuth, this.props.source)}
-                        {this.props.message ? <div>{this.props.message}</div>:<div></div>}
-                        <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
+                        <div className="tprofile-body-container">
+                          <div className="tprofile-img-container"><img alt="logo" src={this.props.profile.logo} /></div>
+                          <div className="tprofile-about-header">ABOUT US</div>
+                          <div className="tprofile-about">{this.props.profile.aboutus}</div>
+                          <div className="tprofile-menu"><img alt="menu" src={this.props.profile.menuurl} /></div>
+                          {this.favAbility(this.props.isAuth, this.props.source)}
+                          {this.props.message ? <div>{this.props.message}</div>:<div></div>}
+                          <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
+                        </div>
                     </div>
 
                     <div className="tprofile-review-container">
@@ -104,6 +106,7 @@ class TProfileView extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
     return {
         profile : state.tProfileReducer.profile,
         username: state.loginReducer.username,
