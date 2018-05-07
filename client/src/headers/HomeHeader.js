@@ -22,7 +22,7 @@ export class HomeHeader extends Component {
         <div className="home-header-dropdown">
           {this.props.username ? <div className="header-user-info">
                                   <span>{this.props.username}</span>
-                                  <img src={this.props.avatar} />
+                                  <img src={this.props.avatar} alt="avatar"/>
                                 </div> : ''}
           <HomeDropdown />
         </div>
