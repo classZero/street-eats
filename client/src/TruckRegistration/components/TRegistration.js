@@ -95,7 +95,7 @@ class TRegistration extends Component {
 	render(){
 		return(
 			<div>
-        <RegistrationHeader />
+        {/* <RegistrationHeader /> */}
         <div className="truckRegContainer">
           
           <div className="truckRegHeader">
