@@ -1,0 +1,17 @@
+.menuview-menu-item {
+	padding: 8px;
+	font-family: Questrial;
+
+}
+
+.menuview-menu-item p, .menuview-menu-item h3, .menuview-menu-item h4 {
+	margin: 0;
+}
+.menuview-menu-item h3 {
+	display: inline-block;
+	text-align: right;
+}
+
+.menuview-menu-item:hover {
+	background-color: rgb(174, 50, 50)
+}

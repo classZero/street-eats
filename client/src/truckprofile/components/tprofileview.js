@@ -8,6 +8,8 @@ import { addFavorite } from '../actions/tProfileActions'
 import './tprofile.css'
 import HomeHeader from '../../headers/HomeHeader'
 
+import MenuView from 'MenuView/components/MenuView'
+
 class TProfileView extends Component {
 
     componentDidMount(){
@@ -36,34 +38,34 @@ class TProfileView extends Component {
         console.log(this.props.message)
         return (
               <div>
-              <HomeHeader />
+                  <HomeHeader />
 
-              <div className="biggestContainer">
+                  <div className="biggestContainer">
 
-                <div className="tprofile-container">
-                    <div className="tprofile-header">
-                    {/* <Link to="/" className="tprofile-back">Back</Link> */}
-                    <p>{this.props.profile.companyname}</p>
+                    <div className="tprofile-container">
+                        <div className="tprofile-header">
+                        {/* <Link to="/" className="tprofile-back">Back</Link> */}
+                        <p>{this.props.profile.companyname}</p>
+                        </div>
+                        <div className="tprofile-img-container"><img alt="logo" src={this.props.profile.logo} /></div>
+                        <div className="tprofile-about-header">ABOUT US</div>
+                        <div className="tprofile-about">{this.props.profile.aboutus}</div>
+                        <div className="tprofile-menu"><img alt="menu" src={this.props.profile.menuurl} /></div>
+                        {this.favAbility(this.props.isAuth, this.props.source)}
+                        {this.props.message ? <div>{this.props.message}</div>:<div></div>}
+                        <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
                     </div>
-                    <div className="tprofile-img-container"><img alt="logo" src={this.props.profile.logo} /></div>
-                    <div className="tprofile-about-header">ABOUT US</div>
-                    <div className="tprofile-about">{this.props.profile.aboutus}</div>
-                    <div className="tprofile-menu"><img alt="menu" src={this.props.profile.menuurl} /></div>
-                    {this.favAbility(this.props.isAuth, this.props.source)}
-                    {this.props.message ? <div>{this.props.message}</div>:<div></div>}
-                    <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
-                </div>
 
-                <div className="tprofile-review-container">
-                <div className="tprofile-header">
-                  <p>Reviews</p>
-                </div>
-                    {this.props.reviews.map((review, index) => {
-                        return <div key={'review ' + index } className="actual-review"><p>{review.review}</p></div>
-                    })}
-                </div>
-
-                </div>
+                    <div className="tprofile-review-container">
+                        <div className="tprofile-header">
+                          <p>Reviews</p>
+                        </div>
+                        {this.props.reviews.map((review, index) => {
+                            return <div key={'review ' + index } className="actual-review"><p>{review.review}</p></div>
+                        })}
+                    </div>
+                    <MenuView />
+                  </div>
 
             </div>
         )

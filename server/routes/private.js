@@ -61,7 +61,7 @@ router.post('/addmenuitem', (req,res,next) => {
     `
 
     conn.query(sql, [req.body.itemName, req.body.itemPrice, req.body.itemDescription, req.body.itemType, results[0].truckid], (err2, results2, fields2) => {
-      console.log(results)
+      console.log('private:', results2)
       res.json({
         message: 'item added'
       })
