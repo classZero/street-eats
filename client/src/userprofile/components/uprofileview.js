@@ -25,7 +25,7 @@ class UProfileView extends Component {
             My Favorites:
             <div>
             {this.props.favorites.map((favorite, index) => {
-                    return <div key={'favorite' + index} >{favorite.companylogo} {favorite.companyname}</div>
+                    return <div key={'favorite' + index} ><img src={favorite.companylogo} alt="logo"/>{favorite.companyname}</div>
                 })}
             </div>
             <Link to='/editprofile'>Edit My Profile</Link>
