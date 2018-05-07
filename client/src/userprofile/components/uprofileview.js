@@ -41,7 +41,6 @@ class UProfileView extends Component {
     render() {
         console.log(this.props)
         return (
-
           <div>
             <div>
               <HomeHeader />
@@ -63,6 +62,7 @@ class UProfileView extends Component {
                 {this.checkUser(this.props.isAuth, this.props.username, this.props.match.params.username)}
 
             </div>
+          </div>
           </div>
         )
     }
