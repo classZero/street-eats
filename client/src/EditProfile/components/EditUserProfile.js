@@ -17,7 +17,7 @@ class EditUserProfile extends Component {
             <div>
                 <div>Username: {this.props.profile.username}</div>
                 <div>Email: {this.props.profile.email}</div>
-                <div>Profile Image: <img src={this.props.profile.avatar} /></div>
+                <div>Profile Image: <img  alt="profile" src={this.props.profile.avatar} /></div>
             </div>
         );
     }

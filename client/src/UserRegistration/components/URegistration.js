@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {registerUser} from '../actions/URegistrationActions'
+import RegistrationHeader from '../../headers/registrationHeader'
 import './URegistration.css'
 
 class URegistration extends Component {
@@ -45,15 +46,18 @@ class URegistration extends Component {
 							username: '',
 							email: '',
 							password: '',
-							confirmPassword: ''
+              confirmPassword: '',
+              uploadCloudinaryAvatarUrl: ''
 						})
 					} else {window.alert('Passwords must match')}
 				} else {window.alert('Passwords must contain at least one letter and one number, and may also contain !,@,#,$,%,_,-')}
 			} else {window.alert('Please enter a valid email')}
-		} else {window.alert('Usernames can only include characters A-Z, 0-9, and may use _ and - as seperators')}
+    } else {window.alert('Usernames can only include characters A-Z, 0-9, and may use _ and - as seperators')}
+    this.props.history.push('/')
 	}
 
   uploadWidget = (e) => {
+    e.preventDefault()
     let type = e.target.value
     let data = {result: [{}]}
     window.cloudinary.openUploadWidget({ cloud_name: 'maglingkod', upload_preset: 'avwvdugz', tags:['foodtruck']},
@@ -62,6 +66,7 @@ class URegistration extends Component {
         console.log('result:', result)
         console.log('error:', result)
         if (result && result[0].secure_url !== '') {
+          console.log('setting state')
           this.setState({
             uploadCloudinaryAvatarUrl: data.result[0].secure_url
           })
@@ -73,6 +78,7 @@ class URegistration extends Component {
 	render(){
 		return(
 			<div>
+        <RegistrationHeader />
         <div className="userRegContainer">
 
          <div className="userRegHeader">

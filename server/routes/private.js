@@ -49,4 +49,22 @@ router.post('/addfavorite', (req, res, next) => {
 
 })
 
+router.post('/addreview', (req, res, next) => {
+    const username = req.body.username
+    const truckuser = req.body.truckuser
+    const reviewtext = req.body.reviewtext
+
+    const sql = `
+    INSERT INTO reviews (username, truckusername, review) 
+    VALUES (?, ?, ?)
+    `
+    conn.query(sql, [username, truckuser, reviewtext], (err, results, fields) => {
+        console.log(results)
+        res.json({
+            message: 'Thanks for your Feedback!'
+        })
+    })
+
+})
+
 export default router

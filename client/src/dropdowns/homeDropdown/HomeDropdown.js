@@ -2,45 +2,66 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Logout from '../../logout/Logout'
-import './homeDropdown.css'
+import './dropdown.css'
 
 class HomeDropdown extends Component {
   state = {
-    showMenu: false,
+    showMenuHome: false
   }
 
-  toggleMenu = (event) => {
-    event.preventDefault()
-    this.setState({ showMenu: !this.state.showMenu })
-  }
-  viewProfile(source, username) {
-    if(source === 'truck') {
-      return <Link to={'/truckprofile/' + username}>View My Profile</Link>
-    } else if(source === 'user') {
-      return <Link to={'/userprofile/' + username}>View My Profile</Link>
+  handleClickHome = (event) => {
+    if (!this.state.showMenuHome) {
+      // attach/remove event handler
+      document.addEventListener('click', this.handleOutsideClickHome, false)
+    } else {
+      //remove event handler and stay on page
+      document.removeEventListener('click', this.handleOutsideClickHome, false)
     }
+
+    this.setState(prevState => ({
+      showMenuHome: !prevState.showMenuHome,
+   }))
   }
 
+  handleOutsideClickHome = (event) => {
+    // ignore clicks on the component itself
+    if (this.nodeH.contains(event.target)) {
+      return
+    }
+    this.handleClickHome()
+  }
+  
+  componentWillUnmount = () => {
+    //remove event handler before navigating away
+    document.removeEventListener('click', this.handleOutsideClickHome, false)
+  }
+  
   render() {
-    const classes = this.state.showMenu ? 'menu' : 'menu hide'
+    const classesHome = this.state.showMenuHome ? 'menu' : 'menu hide'
+    const btnColorHome = this.state.showMenuHome ? 'dropmenu-btn color' : 'dropmenu-btn noColor'
     return (
-      <div className="dropdown-menu" >
+      <div className="dropdown-menu" ref={node => { this.nodeH = node }} >
         {window.localStorage.getItem('token') ?
         <div>
-          <button onClick={this.toggleMenu} className="dropmenu-btn">Menu &#9662;</button>
-          <div className={classes} >
+          <button onClick={this.handleClickHome} className={btnColorHome}>Menu &#9662;</button>
+          {this.state.showMenuHome && (
+          <div className={classesHome} >
             <Link to="/Uregistration">user reg page</Link>
             <Link to="/Tregistration">truck reg page</Link>
             <Link to="/mapinputs">inputs for trucks</Link>
             <Link to="map">links to map</Link>
-            {this.viewProfile(this.props.source, this.props.username)}
+            {this.props.source === 'user' ?
+              <Link to={'/userprofile/' + this.props.username}>View My Profile</Link> :
+              <Link to={'/truckprofile/' + this.props.username}>View My Profile</Link>
+            }
             <div><Logout /></div>
           </div>
+          )}
         </div>
           : 
           <div>
-            <button onClick={this.toggleMenu} id="dropmenu-btn">Sign Up &#9662;</button>
-            <div className={classes}>
+            <button onClick={this.handleClickHome} className={btnColorHome}>Sign Up &#9662;</button>
+            <div className={classesHome}>
               <Link to="/registrationPage">Register</Link>
             </div>
           </div>

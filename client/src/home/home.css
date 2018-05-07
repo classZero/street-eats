@@ -67,12 +67,11 @@ body {
 .home-header-dropdown p {
     padding-right: 10px;
     text-shadow: none;
-    font-family: Questrial;
+    font-family: 'Questrial', sans-serif;
 }
 
 .content-headers, .content-headers-title {
     font-family: 'Paytone One', sans-serif;
-    /* position: relative; */
 }
 
 .logo-container{
@@ -116,6 +115,9 @@ body {
     border: 1px solid black;
     border-radius: 5px;
     background-color: rgb(235, 85, 73);
+}
+
+.home-newsfeed-list {
     overflow: auto;
 }
 
@@ -128,18 +130,21 @@ body {
     text-shadow: 2px 2px rgba(196, 153, 150, 0.7);
 }
 
-.content-headers {
-    /* position: fixed; 
-    top: 0;
-    height: 60px;
-    line-height: 60px;
-    margin: 0;  */
+.newtruck-list-item {
+    padding: 8px;
 }
 
-.newtruck-list-item {
+.newtruck-list-item a{
     color: white;
     text-decoration: none;
-    padding-left: 8px;
+}
+
+.newtruck-list-item p {
+    margin: 0;
+}
+
+.newtruck-list-item h3 {
+    margin: 0;
 }
 
 .newtruck-list-item:hover {

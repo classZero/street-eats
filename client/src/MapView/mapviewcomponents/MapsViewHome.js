@@ -99,10 +99,10 @@ class Modal extends Component {
     }
 
     if (this.props.width && this.props.height) {
-      modalStyle.width = this.props.width + 'px',
-      modalStyle.height = this.props.height + 'px',
-      modalStyle.marginLeft = '-' + (this.props.width/2) + 'px',
-      modalStyle.marginTop = '-' + (this.props.height/2) + 'px',
+      modalStyle.width = this.props.width + 'px'
+      modalStyle.height = this.props.height + 'px'
+      modalStyle.marginLeft = '-' + (this.props.width/2) + 'px'
+      modalStyle.marginTop = '-' + (this.props.height/2) + 'px'
       modalStyle.transform = null
     }
 
