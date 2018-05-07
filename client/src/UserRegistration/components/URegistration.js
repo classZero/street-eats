@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {registerUser} from '../actions/URegistrationActions'
+import RegistrationHeader from '../../headers/registrationHeader'
 import './URegistration.css'
 
 class URegistration extends Component {
@@ -77,6 +78,7 @@ class URegistration extends Component {
 	render(){
 		return(
 			<div>
+        <RegistrationHeader />
         <div className="userRegContainer">
 
          <div className="userRegHeader">
