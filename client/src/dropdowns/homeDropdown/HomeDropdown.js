@@ -60,7 +60,7 @@ class HomeDropdown extends Component {
         </div>
           : 
           <div>
-            <button onClick={this.handleClickHome} id="dropmenu-btn">Sign Up &#9662;</button>
+            <button onClick={this.handleClickHome} className={btnColorHome}>Sign Up &#9662;</button>
             <div className={classesHome}>
               <Link to="/registrationPage">Register</Link>
             </div>
