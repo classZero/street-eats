@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import {getUserProfile} from '../../userprofile/actions/uProfileActions'
 import { connect } from 'react-redux';
-
-
-
+import '../../EditProfile/components/edituserprofile.css'
+import HomeHeader from '../../headers/HomeHeader'
 
 
 class EditUserProfile extends Component {
@@ -14,12 +13,15 @@ class EditUserProfile extends Component {
 
     render() {
         return (
-            <div>
-                <div>Username: {this.props.profile.username}</div>
-                <div>Email: {this.props.profile.email}</div>
-                <div>Profile Image: <img  alt="profile" src={this.props.profile.avatar} /></div>
+          <div>
+            <HomeHeader />
+            <div className="edituser-container">
+                <div className="edituser-username">Username: {this.props.profile.username}</div>
+                <div className="edituser-email">Email: {this.props.profile.email}</div>
+                <div className="edituser-img">Profile Image: <img  alt="profile" src={this.props.profile.avatar} /></div>
             </div>
-        );
+          </div>
+        )
     }
 }
 
@@ -33,4 +35,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(EditUserProfile);
+export default connect(mapStateToProps)(EditUserProfile)

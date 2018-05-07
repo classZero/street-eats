@@ -36,3 +36,13 @@
     overflow: hidden;
     overflow-y: scroll;
 }
+
+.uprofile-editbutton {
+   margin-top: 25px;
+   margin-left: 220px;
+}
+
+.uprofile-editbutton a {
+    color: inherit;
+    text-decoration: none;
+}
