@@ -74,9 +74,9 @@ class TProfileView extends Component {
 
                     { this.state.reviewMenuToggle === 'menu' ? <MenuView toggle={this.toggleReviewMenu} /> :
                         <div className="tprofile-review-container">
-                            <div className="tprofile-header">
+                            <div className="tprofile-header menuview-header">
                               <p>Reviews</p>
-                              <button onClick={this.toggleReviewMenu}>View Menu</button>
+                              <button onClick={this.toggleReviewMenu} className="menuview-toggle">View Menu</button>
                             </div>
                             {this.props.reviews.map((review, index) => {
                                 return <div key={'review ' + index } className="actual-review"><p>{review.review}</p></div>

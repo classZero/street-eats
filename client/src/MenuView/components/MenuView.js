@@ -17,9 +17,9 @@ class MenuView extends Component{
 	render(){
 		return(
 			<div className="tprofile-menu-container">
-				<div className="tprofile-header">
+				<div className="tprofile-header menuview-header">
             		<p>Menu</p>
-            		<button onClick={ e => this.props.toggle(e)}>View Reviews</button>
+            		<button onClick={ e => this.props.toggle(e)} className="menuview-toggle">View Reviews</button>
                 </div>
                 {this.props.menu.map((item, i) => (
             				<div key={"menuitem-" + i} className="menuview-menu-item">
