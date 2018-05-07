@@ -29,7 +29,7 @@ export class Home extends Component {
 
           <div className="map-wrapper"><MapViewHome /></div>
           
-          <div>
+          <div className="list-wrapper">
             <div className="sort-bar-wrapper">
               <div className="dropdown-menu">
                 <div>

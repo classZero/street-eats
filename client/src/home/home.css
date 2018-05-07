@@ -107,6 +107,9 @@ body {
 }
 
 /* truck list section */
+.list-wrapper {
+    width: 35%;
+}
 .home-newsfeed {
     display: flex;
     flex-direction: column;
