@@ -4,29 +4,26 @@
     position: absolute;
     background: rgb(240, 238, 228);
     border: 1px solid black;
+    font-family: 'Questrial', sans-serif;
     border-radius: 5px;
-    transition: opacity 0.4s;
-    opacity: 0.9;
+    border-top-left-radius: 0;
+    transition: opacity 0.5s;
+    opacity: 1;
     z-index: 50;
     text-shadow: none;
 }
 
-#dropmenu-btn {
-    background-color: inherit;
-    border: none;
-    color: white;
-    font-size: 15px;
-    outline: none;
+.menu.hide {
+    opacity: 0;
+    pointer-events:none;
 }
 
-#dropmenu-btn:hover {
-    background-color: rgb(240, 208, 32);
-    cursor: pointer;
-    border-radius: 5px;
+.dropdown-menu {
+    transition: opacity 0.5s;
+    opacity: 1;
 }
 
 .menu a:first-child, .menu button:first-child {
-    border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
 
@@ -38,11 +35,7 @@
 .menu button {
     border: none;
     outline: none;
-}
-
-.menu.hide {
-    opacity: 0;
-    pointer-events:none;
+    background: rgb(240, 238, 228);
 }
 
 .menu a, .menu div, .menu button {
@@ -58,15 +51,28 @@
 
 .dropmenu-btn {
     height: 25px;
-    background-color: inherit;
     border: none;
     outline: none;
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     font-size: 1rem;
     color: white;
 }
 
-.dropmenu-btn:hover {
+.dropmenu-btn-sort {
+    height: 25px;
+    border: none;
+    outline: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 1rem;
+    color: black;
+}
+
+.color {
     background-color: rgb(240, 208, 32);
-    opacity: 0.7
+}
+
+.noColor {
+    background-color: transparent;
 }

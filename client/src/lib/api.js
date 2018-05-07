@@ -128,4 +128,11 @@ instance.payments = function (description, token, currency, amount) {
   })
 }
 
+instance.addReview = function (username, truckuser, reviewtext) {
+  return this.post('/addreview', {username, truckuser, reviewtext})
+  .then(resp => {
+    return resp.data.message
+  })
+}
+
 export default instance

@@ -49,6 +49,7 @@ router.post('/addfavorite', (req, res, next) => {
 
 })
 
+
 router.post('/addmenuitem', (req,res,next) => {
   const getID = `
     SELECT id AS truckid FROM trucks WHERE username = ?
@@ -79,6 +80,23 @@ router.post('/removeitem', (req,res,next) => {
       message: 'item deleted'
     })
   })
+})
+
+router.post('/addreview', (req, res, next) => {
+    const username = req.body.username
+    const truckuser = req.body.truckuser
+    const reviewtext = req.body.reviewtext
+
+    const sql = `
+    INSERT INTO reviews (username, truckusername, review) 
+    VALUES (?, ?, ?)
+    `
+    conn.query(sql, [username, truckuser, reviewtext], (err, results, fields) => {
+        console.log(results)
+        res.json({
+            message: 'Thanks for your Feedback!'
+        })
+    })
 })
 
 export default router

@@ -1,0 +1,17 @@
+.header-user-info {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.header-user-info img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.header-user-info span {
+    padding: 0 20px 0 0;
+    font-family: 'Questrial', sans-serif;
+    text-shadow: none;
+}

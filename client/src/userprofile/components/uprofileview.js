@@ -7,6 +7,9 @@ import {getFavorites} from '../actions/uProfileActions'
 
 
 class UProfileView extends Component {
+    static defaultProps = {
+      favorites: []
+    }
 
     componentDidMount(){
         getUserProfile(this.props.username)

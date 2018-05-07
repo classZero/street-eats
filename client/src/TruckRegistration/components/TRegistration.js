@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {registerTruck} from '../actions/TRegistrationActions'
+import RegistrationHeader from '../../headers/registrationHeader'
 // import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
 import './TRegistration.css'
 
@@ -95,6 +96,7 @@ class TRegistration extends Component {
 	render(){
 		return(
 			<div>
+        {/* <RegistrationHeader /> */}
         <div className="truckRegContainer">
           
           <div className="truckRegHeader">

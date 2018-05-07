@@ -107,7 +107,7 @@ router.post('/registration', (req, res, next) => {
             if (req.body.type === "user") {
               const avatar = req.body.avatar
                 if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
-                    const token = jwt.sign({user: username, source: req.body.type}, config.get('jwt-secret'))
+                    const token = jwt.sign({user: username, source: req.body.type, avatar: results[0].avatar}, config.get('jwt-secret'))
 
                     const insertSql = `
                         INSERT INTO users (username, password, email, avatar) VALUES (?,?,?,?)
@@ -130,7 +130,7 @@ router.post('/registration', (req, res, next) => {
             if (req.body.type === "truck"){
 
                 if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
-                    const token = jwt.sign({user: username, source: req.body.type}, config.get('jwt-secret'))
+                    const token = jwt.sign({user: username, source: req.body.type, avatar: results[0].avatar}, config.get('jwt-secret'))
                     console.log('public line 94 ' + req.body)
                     const companyname = req.body.companyName
                     const companyLogo = req.body.companyLogo
@@ -165,21 +165,22 @@ router.post('/login', (req, res, next) => {
     const username = req.body.username
     const password = sha512(req.body.password)
 
-    const sql = `SELECT id, username, email, companyname, companylogo, menuurl, aboutus, lng, lat, datecreated, 'truck' as Source FROM trucks as truckInfo WHERE username = ? AND password = ?
+    const sql = `SELECT id, username, email, NULL as avatar, companyname, companylogo, menuurl, aboutus, lng, lat, datecreated, 'truck' as Source FROM trucks as truckInfo WHERE username = ? AND password = ?
                 UNION
-                SELECT id, username, email, Null as companyname, Null as companylogo, Null as menuurl, Null as aboutus, Null as lng, Null as lat, Null as datecreated, 'user' as Source FROM users as userInfo WHERE username = ? AND password = ?`
+                SELECT id, username, email, avatar, Null as companyname, Null as companylogo, Null as menuurl, Null as aboutus, Null as lng, Null as lat, Null as datecreated, 'user' as Source FROM users as userInfo WHERE username = ? AND password = ?`
 
     conn.query(sql, [username, password, username, password], (err, results, fields) => {
       console.log('login results ' + JSON.stringify(results))
         if(results.length > 0) {
             console.log('username and password returned match')
             console.log(results[0].id)
-            const token = jwt.sign({user: username, source: results[0].Source}, config.get('jwt-secret'))
+            const token = jwt.sign({user: username, source: results[0].Source, avatar: results[0].avatar}, config.get('jwt-secret'))
             res.json({
                 message: "Login Successful",
                 token: token,
                 user: username, //username also attached to token
-                source: results[0].Source
+                source: results[0].Source,
+                avatar: results[0].avatar
             })
         } else {
             res.status(401).json({
