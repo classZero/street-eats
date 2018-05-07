@@ -5,7 +5,8 @@ api.new('/api')
 
 export function registerTruck(username, password, email, companyName, companyLogo, menu, aboutus){
   const type = 'truck'
-	api.registration(username, password, email, type, companyName, companyLogo, menu, aboutus).then(resp =>{
+  const avatar = null
+	api.registration(username, password, email, avatar, type, companyName, companyLogo, menu, aboutus).then(resp =>{
 		console.log('in tactions:', resp)
 		store.dispatch({
 			type: 'REGISTER_TRUCK',

@@ -9,8 +9,11 @@ import './tprofile.css'
 import HomeHeader from '../../headers/HomeHeader'
 import { submitReview } from '../actions/tProfileActions'
 
+import MenuView from 'MenuView/components/MenuView'
+
 class TProfileView extends Component {
     state = {
+        reviewMenuToggle: 'review',
         reviewtext : ''
     }
 
@@ -36,6 +39,21 @@ class TProfileView extends Component {
             return <div></div>
         }
     }
+
+
+    toggleReviewMenu = (e) => {
+        e.preventDefault()
+        if (this.state.reviewMenuToggle !== 'menu'){
+            this.setState({
+                reviewMenuToggle: 'menu'
+            })
+        } else {
+            this.setState({
+                reviewMenuToggle: 'review'
+            })
+        }
+    }
+
 
     reviewForm(auth, source){
         if(auth && source === 'user') {
@@ -69,10 +87,10 @@ class TProfileView extends Component {
 
     render() {
         return (
-            <div>
-                <HomeHeader />
+              <div>
+                  <HomeHeader />
 
-                <div className="biggestContainer">
+                  <div className="biggestContainer">
 
                     <div className="tprofile-container">
                         <div className="tprofile-header">
@@ -90,16 +108,19 @@ class TProfileView extends Component {
                         </div>
                     </div>
 
-                    <div className="tprofile-review-container">
-                        <div className="tprofile-header">
-                            <p>Reviews</p>
-                        </div>
+                    { this.state.reviewMenuToggle === 'menu' ? <MenuView toggle={this.toggleReviewMenu} /> :
+                        <div className="tprofile-review-container">
+                            <div className="tprofile-header menuview-header">
+                              <p>Reviews</p>
+                              <button onClick={this.toggleReviewMenu} className="menuview-toggle">View Menu</button>
+                            </div>
                             {this.props.reviews.map((review, index) => {
-                                return <div key={'review ' + index } className="actual-review"><p>{review.review}</p></div>
-                            })}
-                        {this.reviewForm(this.props.isAuth, this.props.source)}
-                    </div>
-                </div>
+                                  return <div key={'review ' + index } className="actual-review"><p>{review.review}</p></div>
+                              })}
+                            {this.reviewForm(this.props.isAuth, this.props.source)}
+                        </div>
+                    }
+                  </div>
             </div>
         )
     }

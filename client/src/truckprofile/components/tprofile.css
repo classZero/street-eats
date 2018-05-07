@@ -1,7 +1,7 @@
 .biggestContainer {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     height: 50vw;
 }
 
@@ -9,25 +9,20 @@
     border: 1px solid black;
     border-radius: 5px;
     background-color: rgb(235, 85, 73);
-    margin-top: 25px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 25px 10px 0 10px;
     width: 600px;
-    height: 95%;
+    height: 100%;
     box-shadow: 0px 0px 8px 8px rgba(196, 153, 150, 0.7);
-    /* overflow-y: scroll; */
 }
 
-.tprofile-review-container {
+.tprofile-review-container, .tprofile-menu-container {
     border: 1px solid black;
     border-radius: 5px;
     background-color: rgb(235, 85, 73);
     width: 600px;
-    height: 95%;
-    margin-top: 25px;
+    height: 100%;
+    margin: 25px 10px 0 10px;
     box-shadow: 0px 0px 8px 8px rgba(196, 153, 150, 0.7);
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .tprofile-container a {
@@ -41,7 +36,7 @@
     position: relative;
     font-size: 35px;
     border-bottom: 1px solid white;
-    height: 8%;
+    height: 70px;
     font-family: 'Paytone One';
 }
 
@@ -67,9 +62,6 @@
     width: 202px;
     height: 202px;
     margin: auto;
-    margin-top: 10px;
-    border: 1px solid white;
-    background-color: white;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -93,7 +85,7 @@
 }
 
 .tprofile-body-container {
-    height: 92%;
+    height: 85%;
     overflow: auto;
 }
 
@@ -106,21 +98,20 @@
 }
 
 .tprofile-menu {
-    border: 1px solid white;
+    /* border: 1px solid white; */
     width: 402px;
     height: 402px;
     margin: auto;
     margin-top: 10px;
-    background-color: white;
+    /* background-color: white; */
     display: flex;
     justify-content: space-around;
-    width: 100%;
+    width: 90%;
 }
 
 .tprofile-menu img {
-    width: 90%;
     height: 100%;
-    /* overflow: auto; */
+    width: 100%;
 }
 
 .tprofile-edit {

@@ -107,11 +107,14 @@ body {
 }
 
 /* truck list section */
+.list-wrapper {
+    width: 35%;
+}
 .home-newsfeed {
     display: flex;
     flex-direction: column;
     height: 600px;
-    width: 450px;
+    width: 100%;
     border: 1px solid black;
     border-radius: 5px;
     background-color: rgb(235, 85, 73);
