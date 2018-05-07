@@ -11,7 +11,7 @@ class MenuView extends Component{
 	}
 
 	componentDidMount(){
-		getMenu(this.props.match.params.username)
+		getMenu(this.props.match.params.username).then(resp => console.log(this.props.menu))
 	}
 
 	render(){
@@ -38,7 +38,6 @@ class MenuView extends Component{
 function mapStateToProps(state) {
   return {
   	menu: state.MenuViewReducer.activeMenu
-
   }
 }
 

@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 
 import {HomeHeader} from 'headers/HomeHeader'
 
-
-import {addItem, getMenu} from '../actions/MenuBuilderActions'
+import {getMenu} from 'MenuView/actions/MenuViewActions'
+import {addItem, removeItem} from '../actions/MenuBuilderActions'
 import './temp.css'
 
 class MenuBuilder extends Component{
@@ -14,9 +14,10 @@ class MenuBuilder extends Component{
 		itemPrice: '',
 		itemDescription: '',
 		itemType: 'entree',
-		displayArr: []
 	}
-
+	componentDidMount(){
+		getMenu(this.props.username).then(console.log('menuprop: ',this.props.menu))
+	}
 
 	handleChange = (e) => {
 		e.preventDefault()
@@ -27,55 +28,63 @@ class MenuBuilder extends Component{
 
 	handleSubmit = (e) => {
 		e.preventDefault()
-		const username = this.props.match.params.username
-		addItem({
-			itemName: this.state.itemName,
-			itemPrice: this.state.itemPrice,
-			itemDescription: this.state.itemDescription,
-			itemType: this.state.itemType,
-			username: this.props.username
-		})
-	}
-
-	displayMenu = () => {
-		getMenu(this.props.match.params.username).then(resp => {
-			this.setState({
-				displayArr: resp.data.menu
+		if (this.state.itemName && this.state.itemPrice && this.state.itemDescription && this.state.itemType){
+			addItem({
+				itemName: this.state.itemName,
+				itemPrice: this.state.itemPrice,
+				itemDescription: this.state.itemDescription,
+				itemType: this.state.itemType,
+				username: this.props.username
+			}).then(resp => {
+				getMenu(this.props.username)
 			})
-			console.log('response: ', resp.data) 
-		})
+			this.setState({
+				itemName: '',
+				itemPrice: '',
+				itemDescription: '',
+				itemType: 'entree',
+			})
+		} else{
+			window.alert('Please fill out all fields before adding an item')
+		}
 	}
-	
+	handleRemove = (e, itemID) => {
+		e.preventDefault
+		// console.log(itemID)
+		removeItem(itemID).then(resp => getMenu(this.props.username))
+	}
 
 	render(){
 		return(
-			<div>
-				<HomeHeader />
-				<div className="testzone">
-					<h1 className="content-headers"> Hello World </h1>
-					<form onSubmit={this.handleSubmit} id="menuBuilderForm">
-						<label>Item Name <input onChange={this.handleChange} type="text" name="itemName"/></label>
-						<label>Item Price <input onChange={this.handleChange} type="text" name="itemPrice"/></label>
-						<label>Item Description <input onChange={this.handleChange} type="text" name="itemDescription" /></label>
-						<label>Item Type 
-							<select onChange={this.handleChange} value={this.state.itemType} name="itemType">
-								<option value="drink">Drink</option>
-								<option value="side">Side</option>
-								<option value="entree" >Entree</option>
-								<option value="dessert">Dessert</option>
-							</select>
-						</label>
-						<button type="submit">Add Item</button>
-					</form>
-					<button onClick={this.displayMenu}>get menu test</button>
-					{this.state.displayArr.map((item, i) => (
-							<div>
-								<h3>{item.itemName}</h3>
-							</div>
-						)
-					)}
-					<Link to="/">Home</Link>
-				</div>
+			<div className="editmenu-container">
+				<header>
+                    <h1>Edit Menu</h1>
+                    <button onClick={ e => this.props.toggle(e)}>Edit Profile</button>
+                </header>
+				<form onSubmit={this.handleSubmit} id="menuBuilderForm">
+					<label>Item Name <input onChange={this.handleChange} type="text" name="itemName"/></label>
+					<label>Item Price <input onChange={this.handleChange} type="text" name="itemPrice"/></label>
+					<label>Item Description <input onChange={this.handleChange} type="text" name="itemDescription" /></label>
+					<label>Item Type 
+						<select onChange={this.handleChange} value={this.state.itemType} name="itemType">
+							<option value="drink">Drink</option>
+							<option value="side">Side</option>
+							<option value="entree" >Entree</option>
+							<option value="dessert">Dessert</option>
+						</select>
+					</label>
+					<button type="submit">Add Item</button>
+				</form>
+				{this.props.menu.map((item, i) => (
+						<div key={"menuitem-" + i} className="menuview-menu-item">
+        					<h3>{item.itemName}</h3>
+        					<h3>${item.itemPrice}</h3>
+        					<h4>{item.itemType}</h4>
+        					<p>{item.itemDescription}</p>
+        					<button onClick={ e => this.handleRemove(e, item.id)}>Remove Item</button>
+        				</div>	
+					)
+				)}
 			</div>
 		)
 	}
@@ -85,7 +94,8 @@ function mapStateToProps(state) {
   return {
     source : state.loginReducer.source,
     isAuth: state.loginReducer.isAuthenticated,
-    username: state.loginReducer.username
+    username: state.loginReducer.username,
+    menu: state.MenuViewReducer.activeMenu
   }
 }
 

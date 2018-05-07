@@ -8,7 +8,6 @@ import UProfileView from './userprofile/components/uprofileview'
 import MapViewHome from './MapView/mapviewcomponents/MapsViewHome'
 import MapViewInputs from './MapView/mapviewcomponents/MapViewInputs'
 import EditProfile from './EditProfile/components/EditProfile'
-import MenuBuilder from 'MenuBuilder/components/MenuBuilder' //currently for testing. will move inside edit profile when ready
 import registrationPage from './registrationPages/registrationPage'
 import Stripe from './stripe/Stripe'
 
@@ -25,7 +24,6 @@ class App extends Component {
             <Route path="/map" component={MapViewHome} />
             <Route path="/mapinputs" component={MapViewInputs} />
             <Route path="/editprofile" component={EditProfile} />
-            <Route path="/build/:username" component={MenuBuilder} />
             <Route path="/registrationPage" component={registrationPage} />
             <Route path="/payments" component={Stripe} />
           </div>

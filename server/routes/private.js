@@ -50,7 +50,6 @@ router.post('/addfavorite', (req, res, next) => {
 })
 
 router.post('/addmenuitem', (req,res,next) => {
-  console.log('in public: ', req.body)
   const getID = `
     SELECT id AS truckid FROM trucks WHERE username = ?
   `
@@ -67,6 +66,18 @@ router.post('/addmenuitem', (req,res,next) => {
       })
     })
 
+  })
+})
+
+router.post('/removeitem', (req,res,next) => {
+  console.log('body: ',req.body.itemID)
+  const sql = `
+    DELETE FROM menu WHERE id = ?
+  `
+  conn.query(sql, req.body.itemID, (err, results, fields) => {
+    res.json({
+      message: 'item deleted'
+    })
   })
 })
 
