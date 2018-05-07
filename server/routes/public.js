@@ -300,4 +300,28 @@ router.post('/payments', (req, res, next) => {
   })
 })
 
+
+router.get('/getmenu/:truckuser', (req,res,next) => {
+  const getID = `
+    SELECT id AS truckid FROM trucks WHERE username = ?
+  `
+
+  conn.query(getID, req.params.truckuser, (err, results, next) => {
+    console.log('getmenu: ', results)
+
+    const sql = `
+      SELECT * FROM menu WHERE itemTruckId = ?
+    `
+    conn.query(sql, results[0].truckid, (err2, results2, fields2) => {
+      console.log(results)
+      res.json({
+        menu: results2
+      })
+    })
+  })
+
+
+})
+
+
 export default router

@@ -1,0 +1,46 @@
+#menuBuilderForm {
+	padding: 8px;
+}
+
+#menuBuilderForm label{
+	display: block;
+	margin: 5px 0;
+}
+
+#menuBuilderForm input{
+    width: 70%;
+    padding: 2px 0 2px 4px;
+    margin: 0 10px;
+    border-radius: 8px;
+    background-color: rgb(174, 50, 50);
+    float: right;
+}
+
+.menubuilder-remove-button, .menubuilder-toggle, .edittruck-container .menubuilder-toggle{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 5px;
+	background-color: inherit;
+    border: none;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#menuBuilderForm::after{
+	clear: both;
+}
+.menubuilder-header{
+	position: relative;
+}
+.menubuilder-toggle{
+	position: absolute;
+	top: -12px;
+	bottom: 0;
+	right: 0;
+}
+
+.menubuilder-remove-button:hover, .menubuilder-toggle:hover {
+    color: rgb(240, 208, 32);
+}

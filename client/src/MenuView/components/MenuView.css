@@ -1,0 +1,34 @@
+.menuview-menu-item {
+	padding: 8px;
+	font-family: Questrial;
+	position: relative;
+}
+
+.menuview-menu-item p, .menuview-menu-item h3, .menuview-menu-item h4 {
+	margin: 0;
+}
+.menuview-menu-item h3 {
+	display: inline-block;
+	text-align: right;
+}
+
+.menuview-menu-item:hover {
+	background-color: rgb(174, 50, 50)
+}
+.menuview-header{
+	position: relative;
+}
+.menuview-toggle {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 5px;
+	background-color: inherit;
+    border: none;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+.menuview-toggle:hover {
+    color: rgb(240, 208, 32);
+}
