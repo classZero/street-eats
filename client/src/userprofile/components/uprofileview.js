@@ -6,6 +6,7 @@ import {getFavorites} from '../actions/uProfileActions'
 import '../../userprofile/components/uprofile.css'
 import HomeHeader from '../../headers/HomeHeader'
 import { Link } from 'react-router-dom'
+import RemoveFavorite from './removeFavorite'
 
 
 
@@ -28,7 +29,8 @@ class UProfileView extends Component {
                 My Favorites:
                 <div className="uprofile-favcontainer">
                 {this.props.favorites.map((favorite, index) => {
-                        return <div key={'favorite' + index} ><img src={favorite.companylogo} alt="logo"/><br/>{favorite.companyname}</div>
+                        return <div key={'favorite' + index} ><img src={favorite.companylogo} alt="logo"/><br/>{favorite.companyname}
+                        <RemoveFavorite name={favorite.username}/></div>
                     })}
                 </div>
                 <div className="uprofile-editbutton">
