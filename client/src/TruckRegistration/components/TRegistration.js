@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
 import {registerTruck} from '../actions/TRegistrationActions'
 // import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
 import alttruck from '../../assets/images/alttruck.svg'
@@ -62,7 +63,9 @@ class TRegistration extends Component {
 							aboutus: '',
 							password: '',
 							confirmPassword: ''
-						})
+            })
+            this.props.history.push('/')
+            
 					} else {window.alert('Passwords must match')}
 				} else {window.alert('Passwords must contain at least one letter and one number, and may also contain !,@,#,$,%,_,-')}
 			} else {window.alert('Please enter a valid email')}
@@ -130,4 +133,4 @@ function mapStateToProps(state) {
 	return {}
 }
 
-export default connect(mapStateToProps)(TRegistration)
+export default withRouter(connect(mapStateToProps)(TRegistration))
