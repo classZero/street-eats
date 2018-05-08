@@ -59,7 +59,7 @@ class TProfileView extends Component {
         if(auth && source === 'user') {
             return <div>
             <form onSubmit={this.handleSubmit}>
-            <div>Leave A Review: <input onChange={this.handleChange} type='text' name='reviewtext' value={this.state.reviewtext} /> </div>
+            <div>Leave A Review: <textarea onChange={this.handleChange} name='reviewtext' value={this.state.reviewtext} /> </div>
                 <button type='submit'>Submit</button>
             </form>
             {this.props.reviewmessage ? <div>{this.props.reviewmessage}</div>:<div></div>}
