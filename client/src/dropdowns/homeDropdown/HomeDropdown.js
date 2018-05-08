@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {updateLocation} from '../../home/homeActions'
 import Logout from '../../logout/Logout'
 import './dropdown.css'
 
 class HomeDropdown extends Component {
   state = {
-    showMenuHome: false
+    showMenuHome: false,
+    response: ''
   }
-
+  // dropdown functions
   handleClickHome = (event) => {
     if (!this.state.showMenuHome) {
       // attach/remove event handler
@@ -35,6 +37,37 @@ class HomeDropdown extends Component {
     //remove event handler before navigating away
     document.removeEventListener('click', this.handleOutsideClickHome, false)
   }
+
+  //location update functions
+  geoFindMe = () => {
+    if (!navigator.geolocation){
+      this.setState({
+        response: 'Geolocation is not supported by your browser'
+      })
+      return
+    }
+  
+    this.setState({
+      response: 'Locating…'
+    })
+  
+    navigator.geolocation.getCurrentPosition(this.success, this.error)
+  }
+
+  success = (position) => {
+    var latitude  = position.coords.latitude
+    var longitude = position.coords.longitude
+    this.setState({
+      response: ''
+    })
+    updateLocation(latitude, longitude, this.props.username)
+  }
+
+  error = () => {
+    this.setState({
+      response: "Unable to retrieve your location"
+    })
+  }
   
   render() {
     const classesHome = this.state.showMenuHome ? 'menu' : 'menu hide'
@@ -54,9 +87,11 @@ class HomeDropdown extends Component {
               <div className="profile-link-group">
                 <Link to={'/truckprofile/' + this.props.username}>View My Profile</Link>
                 <Link to="/editprofile">Edit Profile</Link>
+                <button onClick={() => this.geoFindMe()}>Update my location</button>
                 <Logout />
               </div>
             }
+            <span>{this.state.response}</span>
           </div>
           )}
         </div>

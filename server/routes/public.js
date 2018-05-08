@@ -80,7 +80,7 @@ router.get('/truckdata/:sort', (req, res, next) => {
     `
   }  
   conn.query(sql, (err, results, fields) => {
-    console.log('truckdata sort results' , JSON.stringify(results))
+    // console.log('truckdata sort results' , JSON.stringify(results))
     res.json({
       results
     })

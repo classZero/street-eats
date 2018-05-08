@@ -99,4 +99,21 @@ router.post('/addreview', (req, res, next) => {
     })
 })
 
+router.post('/uplocale', (req, res, next) => {
+  const lat = req.body.lat
+  const long = req.body.long
+  const username = req.body.username
+
+  const sql = `
+    UPDATE trucks
+    SET lat = ?, lng = ?
+    WHERE username = ?
+  `
+  conn.query(sql, [lat, long, username], (err, results, fields) => {
+    res.json({
+      message: 'Location Updated'
+    })
+  })
+})
+
 export default router

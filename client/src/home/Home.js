@@ -6,6 +6,7 @@ import MapViewHome from '../MapView/mapviewcomponents/MapsViewHome'
 import TruckListDropdown from '../dropdowns/homeDropdown/TruckListDropdown'
 import HomeHeader from '../headers/HomeHeader'
 
+import skyline from '../assets/images/skyline.svg'
 import './home.css'
 import '../dropdowns/homeDropdown/dropdown.css'
 
@@ -13,6 +14,10 @@ export class Home extends Component {
   static defaultProps = {
     username: '',
     trucks: [],
+  }
+
+  state = {
+    response: ''
   }
 
   componentDidMount() {
@@ -26,7 +31,6 @@ export class Home extends Component {
         <HomeHeader username={this.props.username}/>
 
         <div className="home-body-container">
-
           <div className="map-wrapper"><MapViewHome /></div>
           
           <div className="list-wrapper">
@@ -43,7 +47,7 @@ export class Home extends Component {
             {/* <Link to="/payments">temp payments</Link> */}
 
             <div className="home-newsfeed">
-              <div className="home-newsfeed-header">
+              <div className="home-newsfeed-header" >
                 {this.props.sortType === 'new' ? <h1 className="content-headers">Newest Trucks</h1> :
                 this.props.sortType === 'all' ? <h1 className="content-headers">All Trucks</h1> :
                 this.props.sortType === 'alpha' ? <h1 className="content-headers">By Name</h1> :

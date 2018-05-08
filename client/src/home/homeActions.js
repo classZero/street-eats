@@ -5,14 +5,12 @@ import Geocode from 'react-geocode'
 api.new('/api')
 
 export function changeSortView(type) {
-  // console.log('in sort view')
-  api.get('/truckdata/' + type).then(resp => {
-    console.log('in truck data actions ')
+  api.get(`/truckdata/${type}`).then(resp => {
     const promises = resp.data.results.map(truck => {
       return new Promise((resolve, reject) => {
         Geocode.fromLatLng(truck.lat, truck.lng).then(response => {
           truck.formattedAddress = response.results[0].formatted_address
-          console.log(truck.formattedAddress)
+          // console.log(truck.formattedAddress)
           resolve(truck)
         })
       })
@@ -24,5 +22,11 @@ export function changeSortView(type) {
         payload : {values: values, type: type}
       })
     })
+  })
+}
+
+export function updateLocation(lat, long, username) {
+  api.updateLocation(lat, long, username).then(resp => {
+    
   })
 }
