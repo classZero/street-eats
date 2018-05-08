@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import remove from '../../assets/images/remove.svg'
 import { removeFavorite } from '../actions/uProfileActions' 
 import {getFavorites} from '../actions/uProfileActions'
 

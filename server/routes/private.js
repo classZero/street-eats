@@ -5,12 +5,11 @@ import conn from '../lib/conn'
 const router = express.Router() 
 
 router.post('/editTruckProfile', (req, res, next) => {
-  console.log(req.body)
   const name = req.body.companyname
   const logo = req.body.logo
   const aboutus = req.body.aboutus
   const menuurl = req.body.menuurl
-  const username = "lt"
+  const username = req.body.username
   
   const sql = `
   UPDATE trucks 

@@ -109,8 +109,8 @@ instance.addFavorite = function(username, truckuser) {
   })
 }
 
-instance.editTruckProfile = function(name, logo, aboutus, menuurl) {
-  return this.post('/editTruckProfile', {name, logo, aboutus, menuurl}).then(resp => {
+instance.editTruckProfile = function(name, logo, aboutus, menuurl, username) {
+  return this.post('/editTruckProfile', {name, logo, aboutus, menuurl, username}).then(resp => {
     return resp.data
   })
 }

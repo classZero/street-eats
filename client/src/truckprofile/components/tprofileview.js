@@ -127,7 +127,6 @@ class TProfileView extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
     return {
         profile : state.tProfileReducer.profile,
         username: state.loginReducer.username,
