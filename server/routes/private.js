@@ -5,7 +5,6 @@ import conn from '../lib/conn'
 const router = express.Router() 
 
 router.post('/editTruckProfile', (req, res, next) => {
-  console.log(req.body)
   const name = req.body.companyname
   const logo = req.body.logo
   const aboutus = req.body.aboutus
@@ -27,7 +26,8 @@ router.post('/editTruckProfile', (req, res, next) => {
           name,
           logo,
           aboutus,
-          menuurl
+          menuurl,
+          message : 'Saved your changes'
       })
   } )
 })
@@ -61,9 +61,8 @@ router.post('/addmenuitem', (req,res,next) => {
     `
 
     conn.query(sql, [req.body.itemName, req.body.itemPrice, req.body.itemDescription, req.body.itemType, results[0].truckid], (err2, results2, fields2) => {
-      console.log('private:', results2)
       res.json({
-        message: 'item added'
+        message: 'Item added'
       })
     })
 
@@ -71,13 +70,12 @@ router.post('/addmenuitem', (req,res,next) => {
 })
 
 router.post('/removeitem', (req,res,next) => {
-  console.log('body: ',req.body.itemID)
   const sql = `
     DELETE FROM menu WHERE id = ?
   `
   conn.query(sql, req.body.itemID, (err, results, fields) => {
     res.json({
-      message: 'item deleted'
+      message: 'Item deleted'
     })
   })
 })
@@ -92,7 +90,6 @@ router.post('/addreview', (req, res, next) => {
     VALUES (?, ?, ?)
     `
     conn.query(sql, [username, truckuser, reviewtext], (err, results, fields) => {
-        console.log(results)
         res.json({
             message: 'Thanks for your Feedback!'
         })
@@ -121,7 +118,7 @@ router.post('/uplocale', (req, res, next) => {
       //update location and activate
       conn.query(sqlUpdateLocAndActive, [lat, long, 1, username], (err3, results3, fields3) => {
         res.json({
-          message: 'Location updated and now active'
+          message: 'Location updated. Your truck is now active. Be sure to set a time in your profile'
         })
       })
     }

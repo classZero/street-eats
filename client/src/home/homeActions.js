@@ -27,12 +27,31 @@ export function changeSortView(type) {
 
 export function updateLocation(lat, long, username) {
   api.updateLocation(lat, long, username).then(resp => {
-    
+    store.dispatch({
+      type: "UPDATE_LOCATION",
+      payload: resp
+    })
+    setTimeout(function() {
+      store.dispatch({
+        type: "UPDATE_LOCATION",
+        payload: ''
+      })
+    },3000)
   })
 }
 
 export function removeLocation(username) {
   api.removeLocation(username).then(resp => {
-
+    console.log('home actions rasp.data',resp)
+    store.dispatch({
+      type: "REMOVE_TRUCK",
+      payload: resp
+    })
+    setTimeout(function() {
+      store.dispatch({
+        type: "REMOVE_TRUCK",
+        payload: ''
+      })
+    },3000)
   })
 }
