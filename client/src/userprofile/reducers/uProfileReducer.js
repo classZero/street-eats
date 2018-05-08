@@ -10,6 +10,8 @@ export default function (state = initialState, action) {
             return {...state, profile: action.payload}
         case 'GET_FAVORITES':
             return {...state, favorites: action.payload}
+        case 'REMOVE_FAVORITE':
+            return {...state, removeMessage: action.payload}
         default:
             return state
     }

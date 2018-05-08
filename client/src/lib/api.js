@@ -135,4 +135,11 @@ instance.addReview = function (username, truckuser, reviewtext) {
   })
 }
 
+instance.removeFavorite = function (user, truck) {
+  return this.post('/removefavorite', {user, truck})
+  .then(resp => {
+    return resp.data.message
+  })
+}
+
 export default instance

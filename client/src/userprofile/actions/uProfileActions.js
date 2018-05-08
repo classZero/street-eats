@@ -21,3 +21,12 @@ export function getFavorites(username) {
 	})
 }
 
+export function removeFavorite(user, truck) {
+	api.removeFavorite(user, truck).then(resp => {
+		store.dispatch({
+			type: 'REMOVE_FAVORITE',
+			payload: resp
+		})
+	})
+}
+

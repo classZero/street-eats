@@ -30,7 +30,7 @@ class UProfileView extends Component {
                 <div className="uprofile-favcontainer">
                 {this.props.favorites.map((favorite, index) => {
                         return <div key={'favorite' + index} ><img src={favorite.companylogo} alt="logo"/><br/>{favorite.companyname}
-                        <RemoveFavorite name={favorite.username}/></div>
+                        <RemoveFavorite truck={favorite.username} user={this.props.username} /></div>
                     })}
                 </div>
                 <div className="uprofile-editbutton">
@@ -57,7 +57,6 @@ class UProfileView extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
     return {
         profile : state.uProfileReducer.profile,
         username : state.loginReducer.username,
