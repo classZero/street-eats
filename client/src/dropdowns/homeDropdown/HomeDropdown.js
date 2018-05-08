@@ -83,7 +83,8 @@ class HomeDropdown extends Component {
               </div> :
               <div className="profile-link-group">
                 <Link to={'/truckprofile/' + this.props.username}>View My Profile</Link>
-                <Link to="/editprofile">Edit Profile</Link>
+                <Link to='/editprofile'>Edit Profile</Link>
+                <Link to='/orders'>View orders</Link>
                 <button onClick={() => this.geoFindMe()}>Update my location</button>
                 {this.state.response ? <img src={this.state.response} id="loading-gif" alt="loading..."/> : ''}
                 <button onClick={this.handleRemoval}>Remove my truck</button>
