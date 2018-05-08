@@ -4,8 +4,7 @@
     height: 85px;
     display: inline-block;
     width: 100%;
-    border-bottom: 1px solid black;
-    background-color: rgb(235, 85, 73);
+    background-color: inherit;
     font-family: 'Paytone One', sans-serif;
 }
 
@@ -25,7 +24,7 @@
 }
 
 .registrationHeader a:hover {
-    color: rgb(240, 208, 32);
+    color: #c9c9c9;
 }
 
 .twoRegContainer {
