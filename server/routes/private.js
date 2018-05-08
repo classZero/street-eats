@@ -104,14 +104,36 @@ router.post('/uplocale', (req, res, next) => {
   const long = req.body.long
   const username = req.body.username
 
-  const sql = `
-    UPDATE trucks
-    SET lat = ?, lng = ?
-    WHERE username = ?
-  `
-  conn.query(sql, [lat, long, username], (err, results, fields) => {
+  const sqlGetActiveStatus = `SELECT isActive FROM trucks WHERE username = ? `
+  const sqlUpdateLocOnly = `UPDATE trucks SET lat = ?, lng = ? WHERE username = ? `
+  const sqlUpdateLocAndActive = `UPDATE trucks SET lat = ?, lng = ?, isActive = ? WHERE username = ?`
+
+  //check if currently active
+  conn.query(sqlGetActiveStatus, username, (err, results, fields) => {
+    //if active, update location only
+    if (results[0].isActive === 1) {
+      conn.query(sqlUpdateLocOnly, [lat, long, username], (err2, results2, fields2) => {
+        res.json({
+          message: 'Location Updated'
+        })
+      })
+    } else {
+      //update location and activate
+      conn.query(sqlUpdateLocAndActive, [lat, long, 1, username], (err3, results3, fields3) => {
+        res.json({
+          message: 'Location updated and now active'
+        })
+      })
+    }
+  })                             
+})
+
+router.post('/removelocale', (req, res, next) => {
+  const username = req.body.username
+  const sqlRemoveLoc = `UPDATE trucks SET lat = DEFAULT, lng = DEFAULT, isActive = DEFAULT WHERE username = ?`
+  conn.query(sqlRemoveLoc, [username], (err, results, fields) => {
     res.json({
-      message: 'Location Updated'
+      message: 'Closing up shop'
     })
   })
 })

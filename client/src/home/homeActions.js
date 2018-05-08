@@ -30,3 +30,9 @@ export function updateLocation(lat, long, username) {
     
   })
 }
+
+export function removeLocation(username) {
+  api.removeLocation(username).then(resp => {
+
+  })
+}

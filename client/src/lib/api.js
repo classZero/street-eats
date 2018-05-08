@@ -141,4 +141,10 @@ instance.updateLocation = function (lat, long, username) {
   })
 }
 
+instance.removeLocation = function (username) {
+  return this.post('/removelocale', {username}).then(resp => {
+
+  })
+}
+
 export default instance

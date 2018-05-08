@@ -77,7 +77,7 @@ class MapViewHome extends Component {
         <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()} className="modal-wrapper">
           <Link to={`/truckprofile/${this.state.name}`}><h1>{this.state.selectedName}</h1></Link>
           <p>{this.state.selectedLocation}</p>
-          <p>Open: {this.state.open}   Close: {this.state.close}</p>
+          {this.state.open === 'Invalid date' || this.state.close === 'Invalid date' ? <Link to={`/truckprofile/${this.state.name}`}>Please check <span className="highlight">here</span> for hours</Link> : <p>Open: {this.state.open}   Close: {this.state.close}</p>}
           <p><button onClick={() => this.closeModal()}>Close</button></p>
         </Modal>
         
