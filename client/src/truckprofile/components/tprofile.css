@@ -14,6 +14,8 @@
     height: 100%;
     box-shadow: 0px 0px 8px 8px #445e69;
     color: black;
+    animation-duration: 1s;
+    animation-name: onin;
 }
 
 .tprofile-review-container, .tprofile-menu-container {
@@ -26,6 +28,11 @@
     box-shadow: 0px 0px 8px 8px #445e69;
     color: black;
 }
+
+/* .tprofile-review-container {
+    animation-duration: 1s;
+    animation-name: inin;
+} */
 
 .tprofile-container a {
     color: inherit;
@@ -131,3 +138,28 @@
     margin-right: 10px;
     overflow: auto;
 }
+
+
+@keyframes onin {
+    from {
+      margin-left: -125%;
+      width: 25%; 
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 36%;
+    }
+  }
+
+  @keyframes inin {
+    from {
+      margin-left: 400%;
+      width: 25%; 
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 36%;
+    }
+  }
