@@ -11,3 +11,10 @@ export function getMenu(username){
 		})
 	})
 }
+
+export function addToCart(itemObj){
+	store.dispatch({
+		type: 'ADD_TO_CART',
+		payload: itemObj
+	})
+}

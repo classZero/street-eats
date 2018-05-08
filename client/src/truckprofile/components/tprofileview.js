@@ -13,7 +13,7 @@ import MenuView from 'MenuView/components/MenuView'
 
 class TProfileView extends Component {
     state = {
-        reviewMenuToggle: 'review',
+        reviewMenuToggle: 'menu',
         reviewtext : ''
     }
 
@@ -127,7 +127,7 @@ class TProfileView extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
+  // console.log(state)
     return {
         profile : state.tProfileReducer.profile,
         username: state.loginReducer.username,

@@ -22,8 +22,9 @@ export class HomeHeader extends Component {
         <div className="home-header-dropdown">
           {this.props.username ? <div className="header-user-info">
                                   <span>{this.props.username}</span>
-                                  {this.props.source === 'user' ? <img src={this.props.avatar} alt="avatar"/> :
-                                                                  <img src={this.props.companyLogo} alt=""/>}
+                                  {this.props.source === 'user' ? 
+                                    <img src={this.props.avatar} alt="avatar"/> :
+                                    <img src={this.props.companyLogo} alt=""/>}
                                 </div> : ''}
           <HomeDropdown />
         </div>

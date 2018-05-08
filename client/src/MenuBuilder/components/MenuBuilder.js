@@ -37,12 +37,12 @@ class MenuBuilder extends Component{
 				username: this.props.username
 			}).then(resp => {
 				getMenu(this.props.username)
-			})
-			this.setState({
-				itemName: '',
-				itemPrice: '',
-				itemDescription: '',
-				itemType: 'entree',
+				this.setState({
+					itemName: '',
+					itemPrice: '',
+					itemDescription: '',
+					itemType: 'entree',
+				})
 			})
 		} else{
 			window.alert('Please fill out all fields before adding an item')
@@ -62,9 +62,9 @@ class MenuBuilder extends Component{
                     <button onClick={ e => this.props.toggle(e)} className="menubuilder-toggle">Edit Profile</button>
                 </header>
 				<form onSubmit={this.handleSubmit} id="menuBuilderForm">
-					<label>Item Name <input onChange={this.handleChange} type="text" name="itemName"/></label>
-					<label>Item Price <input onChange={this.handleChange} type="text" name="itemPrice"/></label>
-					<label>Item Description <input onChange={this.handleChange} type="text" name="itemDescription" /></label>
+					<label>Item Name <input onChange={this.handleChange} type="text" name="itemName" value={this.state.itemName} /></label>
+					<label>Item Price <input onChange={this.handleChange} type="text" name="itemPrice" value={this.state.itemPrice} /></label>
+					<label>Item Description <input onChange={this.handleChange} type="text" name="itemDescription" value={this.state.itemDescription} /></label>
 					<label>Item Type 
 						<select onChange={this.handleChange} value={this.state.itemType} name="itemType">
 							<option value="drink">Drink</option>
