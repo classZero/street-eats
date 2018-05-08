@@ -1,8 +1,8 @@
 import api from 'lib/api'
 api.new('/api')
 
-export function editTruckProfile(name, logo, aboutus, menuurl) {
-    api.editTruckProfile(name, logo, aboutus, menuurl).then(resp => {
+export function editTruckProfile(name, logo, aboutus, menuurl, username) {
+    api.editTruckProfile(name, logo, aboutus, menuurl, username).then(resp => {
         // console.log(resp)
     })
 }
