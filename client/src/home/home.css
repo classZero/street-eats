@@ -3,8 +3,11 @@
 body {
     box-sizing: border-box;
     margin: 0;
-    background-image: url("https://las-vegas-real-estate-authority.com/wp-content/uploads/2016/12/Las-Vegas-Homes-Strip-View.jpg");   background-position: center;
-    background-repeat: no-repeat;
+    background: url("https://las-vegas-real-estate-authority.com/wp-content/uploads/2016/12/Las-Vegas-Homes-Strip-View.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 *, *:before, *:after {
@@ -41,7 +44,8 @@ body {
 
 .home-header {
     display: flex;
-    justify-content: space-between;
+    position: relative;
+    /* justify-content: space-between; */
     align-items: center;
     height: 85px;
     padding: 0 80px 0 30px;
@@ -50,14 +54,19 @@ body {
     text-shadow: 2px 2px rgba(196, 153, 150, 0.7);
 }
 
+
 .home-login-container {
-    width: 100%;
+    position: absolute;
+    top: 50%;
+    width: 40%;
 }
 
 .home-header-dropdown {
+    position: absolute;
+    right: 100px;
+    top: 50%;
     display: flex;
     align-items: center;
-    margin-left: 150px;
     z-index:50;
 }
 
