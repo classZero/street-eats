@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import TProfileView from './truckprofile/components/tprofileview'
 import Home from './home/Home'
@@ -7,9 +8,16 @@ import EditProfile from './EditProfile/components/EditProfile'
 import registrationPage from './registrationPages/registrationPage'
 import Stripe from './stripe/Stripe'
 
+import './App.css'
+
 class App extends Component {
+  static defaultProps = {
+    message: ''
+  }
   render () {
     return (
+      <div style={{position: 'relative'}}>
+              {this.props.message === '' ? '' : <div className="popup-container"><h3 className="popup-message">{this.props.message}</h3></div>}
         <Router>
           <div>
             <Route exact path="/" component={Home} />
@@ -20,9 +28,17 @@ class App extends Component {
             <Route path="/payments" component={Stripe} />
           </div>
         </Router>
+      </div>
     )
   }
 }
 
-export default App
+function mapStateToProps(state) {
+  console.log(state)
+  return {
+    message: state.homeReducer.message.message
+  }
+}
+
+export default connect(mapStateToProps)(App)
 
