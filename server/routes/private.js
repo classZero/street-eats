@@ -9,7 +9,7 @@ router.post('/editTruckProfile', (req, res, next) => {
   const logo = req.body.logo
   const aboutus = req.body.aboutus
   const menuurl = req.body.menuurl
-  const username = "lt"
+  const username = req.body.username
   
   const sql = `
   UPDATE trucks 
@@ -94,6 +94,54 @@ router.post('/addreview', (req, res, next) => {
             message: 'Thanks for your Feedback!'
         })
     })
+})
+
+router.post('/removefavorite', (req, res, next) => {
+  const user = req.body.user
+  const truck = req.body.truck
+  
+  const sql = `
+  DELETE FROM favorites 
+  WHERE truckusername = ? AND username = ?
+  `
+
+  conn.query(sql, [truck, user], (err, results, fields) => {
+    res.json({
+      message : "Truck removed from your favorites"
+    })
+  })
+
+})
+
+router.post('/deleteReview/:id', (req, res, next) => {
+  const id = req.params.id
+
+  const sql = `
+  DELETE FROM reviews WHERE id = ?
+  `
+
+  conn.query(sql, id, (err, results, fields) => {
+    res.json({
+      message: "Review Deleted"
+    })
+  })
+
+})
+
+router.post('/editReview', (req, res, next) => {
+  const id = req.body.id
+  const text = req.body.text
+
+  const sql = `
+  UPDATE reviews 
+  SET review = ? WHERE id = ?
+  `
+
+  conn.query(sql, [text, id], (err, results, fields) => {
+    res.json({
+      message: "Review changed"
+    })
+  })
 })
 
 router.post('/uplocale', (req, res, next) => {

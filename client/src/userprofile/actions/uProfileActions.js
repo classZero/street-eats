@@ -21,3 +21,38 @@ export function getFavorites(username) {
 	})
 }
 
+export function removeFavorite(user, truck) {
+	api.removeFavorite(user, truck).then(resp => {
+		store.dispatch({
+			type: 'REMOVE_FAVORITE',
+			payload: resp
+		})
+	})
+}
+
+export function getUsersReviews(username) {
+	api.getUsersReviews(username).then(resp => {
+		store.dispatch({
+			type: 'GET_USERS_REVIEWS',
+			payload: resp
+		})
+	})
+}
+
+export function deleteReview(id) {
+	api.deleteReview(id).then(resp => {
+		store.dispatch({
+			type: 'DELETE_REVIEW',
+			payload: resp
+		})
+	})
+}
+
+export function editUserReview(id, text) {
+	api.editUserReview(id, text).then(resp => {
+		store.dispatch({
+			type: 'EDIT_REVIEW',
+			payload: resp
+		})
+	})
+}
