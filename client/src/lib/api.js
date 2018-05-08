@@ -123,14 +123,13 @@ instance.changeSortView = function (sortType) {
 
 instance.payments = function (description, token, currency, amount) {
   return this.post('/payments', {description, token, currency, amount}).then(resp => {
-    console.log('api resp',resp.data)
+    // console.log('api resp',resp.data)
     return resp.data
   })
 }
 
 instance.addReview = function (username, truckuser, reviewtext) {
-  return this.post('/addreview', {username, truckuser, reviewtext})
-  .then(resp => {
+  return this.post('/addreview', {username, truckuser, reviewtext}).then(resp => {
     return resp.data.message
   })
 }
@@ -161,6 +160,19 @@ instance.editUserReview = function(id, text) {
   return this.post('/editReview', {id, text})
   .then(resp => {
     return resp.message
+  })
+}
+
+instance.updateLocation = function (lat, long, username) {
+  return this.post('/uplocale', {lat, long, username}).then(resp => {
+    // console.log('resp in api', resp.data)
+    return resp.data
+  })
+}
+
+instance.removeLocation = function (username) {
+  return this.post('/removelocale', {username}).then(resp => {
+    return resp.data
   })
 }
 

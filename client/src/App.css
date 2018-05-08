@@ -1,0 +1,18 @@
+.popup-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    height: 10%;
+    width: 30%;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: rgb(159, 176, 201);
+    z-index: 99999;
+}
+
+.popup-message {
+    padding-left: 8px;
+}

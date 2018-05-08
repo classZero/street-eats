@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {registerUser} from '../actions/URegistrationActions'
-import RegistrationHeader from '../../headers/registrationHeader'
+// import RegistrationHeader from '../../headers/registrationHeader'
 import './URegistration.css'
 import {withRouter} from 'react-router'
 

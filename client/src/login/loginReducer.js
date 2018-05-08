@@ -26,20 +26,18 @@ function getTokenSource() {
   }
 }
 
-function getTokenAvatar() {
-  if(window.localStorage.getItem('token')) {
-    const avatar = jwt.decode(window.localStorage.getItem('token')).avatar
-    console.log(avatar)
-    return avatar
-  } else {
-    return ""
-  }
-}
+// function getTokenAvatar() {
+//   if(window.localStorage.getItem('token')) {
+//     const avatar = jwt.decode(window.localStorage.getItem('token')).avatar
+//     return avatar
+//   } else {
+//     return ""
+//   }
+// }
 
 function getTokenAvatar() {
   if(window.localStorage.getItem('token')) {
     const logo = jwt.decode(window.localStorage.getItem('token')).logo
-    console.log(logo)
     return logo
   } else {
     return ""

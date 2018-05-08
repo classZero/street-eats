@@ -1,18 +1,27 @@
 .userRegContainer {
-    border: 1px solid black;
+    border: 1px solid rgb(172, 230, 255);
     border-radius: 5px;
-    background-color: rgb(235, 85, 73);
+    background-color: rgb(176, 199, 201);
     width: 500px;
     margin: 0 auto;
     margin-top: 50px;
-    box-shadow: 0px 0px 8px 8px rgba(196, 153, 150, 0.7);
+    box-shadow: 0px 0px 8px 8px #445e69;
+    color: black;
+    overflow: hidden;
 }
 
 .userRegHeader {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #697778;
     text-align: center;
     font-family: 'Paytone One', sans-serif;
-    text-shadow: 2px 2px rgba(196, 153, 150, 0.7);
+    text-shadow: 2px 2px grey;
+    color: white;
+    background-image: url('../../assets/images/foodie.svg');
+    background-repeat: repeat-x;
+    background-size: 40% 125%;
+    background-position: 50% 35%;
+    animation-duration: 2s;
+    animation-name: rightin;
 }
 
 .userRegForm {
@@ -23,15 +32,20 @@
 
 .userRegForm input {
     font-family: 'Questrial', sans-serif;
-    border: 1px solid white;
+    border: 1px solid #697778;
     border-radius: 5px;
-    background-color: rgb(174, 50, 50);
+    background-color: #8c9fa0;
     width: 350px;
     height: 50px;
     margin-left: 70px;
     margin-top: 20px;
     font-size: 15px;
     padding-left: 10px;
+    color: black;
+}
+
+.userRegForm input::placeholder {
+    color: black;
 }
 
 .userRegForm button {
@@ -40,14 +54,14 @@
     border: none;
     outline: none;
     background-color: inherit;
-    color: white;
+    color: black;
     margin: 35px auto;
     font-weight: bold;
     font-size: 20px;
 }
 
 .userRegForm button:hover {
-    color: rgb(240, 208, 32);
+    color: #445e69;
     cursor: pointer;
 }
 
@@ -55,3 +69,15 @@
     font-size: 16px;
     margin: 30px auto;
 }
+
+@keyframes rightin {
+    from {
+      margin-left: 100%;
+      width: 100%; 
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }

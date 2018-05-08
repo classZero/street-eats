@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import Login from '../login/Login'
 import {connect} from 'react-redux'
-import HomeDropdown from '../dropdowns/homeDropdown/HomeDropdown'
 import trucksvg from 'assets/images/truck.svg'
 import {Link} from 'react-router-dom'
 

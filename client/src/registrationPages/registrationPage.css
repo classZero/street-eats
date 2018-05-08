@@ -4,9 +4,10 @@
     height: 85px;
     display: inline-block;
     width: 100%;
-    border-bottom: 1px solid black;
-    background-color: rgb(235, 85, 73);
+    background-color: inherit;
     font-family: 'Paytone One', sans-serif;
+    animation-duration: 1s;
+    animation-name: dropin;
 }
 
 .registrationHeader h1 {
@@ -25,7 +26,7 @@
 }
 
 .registrationHeader a:hover {
-    color: rgb(240, 208, 32);
+    color: #c9c9c9;
 }
 
 .twoRegContainer {
@@ -35,3 +36,16 @@
     margin-left:50px;
     margin-right:50px;
 }
+
+
+@keyframes dropin {
+    from {
+      margin-top: 15%;
+      width: 25%; 
+    }
+  
+    to {
+      margin-top: 0%;
+      width: 100%;
+    }
+  }

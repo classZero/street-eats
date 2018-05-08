@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     position: absolute;
+    width: 150px;
     background: rgb(240, 238, 228);
     border: 1px solid black;
     font-family: 'Questrial', sans-serif;
@@ -39,18 +40,11 @@
     background: rgb(240, 238, 228);
 }
 
-/* .menu a, .menu button {
-    text-decoration: none;
-    color: black;
-    padding: 8px;
-} */
-
 .profile-link-group {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 10px;
-    
 }
 
 .profile-link-group a, .profile-link-group button {
@@ -58,7 +52,6 @@
     color: black;
     font-weight: 600;
     padding: 5px;
-    
 }
 
 .profile-link-group a:hover, .profile-link-group button:hover {
@@ -91,4 +84,8 @@
 
 .noColor {
     background-color: transparent;
+}
+
+#loading-gif {
+    width: 32px;
 }

@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {registerTruck} from '../actions/TRegistrationActions'
-import RegistrationHeader from '../../headers/registrationHeader'
 // import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
+import alttruck from '../../assets/images/alttruck.svg'
 import './TRegistration.css'
+
 
 let images = []
 
@@ -96,7 +97,6 @@ class TRegistration extends Component {
 	render(){
 		return(
 			<div>
-        {/* <RegistrationHeader /> */}
         <div className="truckRegContainer">
           
           <div className="truckRegHeader">
@@ -122,18 +122,6 @@ class TRegistration extends Component {
         </div>
         
         </div>
-        {/* <CloudinaryContext cloudName="maglingkod">
-        {this.state.uploadedFiles.map(imageArray => imageArray.map((image, i) => {
-                 return <div key={'key' + i}>
-                        <a target="_blank" href={`https://res.cloudinary.com/maglingkod/image/upload/${image.public_id}.jpg`}>
-                        <Image publicId={image.public_id}>
-                          
-                        </Image>
-                        </a>
-                        </div>
-          })
-        )}
-        </CloudinaryContext> */}
 			</div>
 	)}
 }

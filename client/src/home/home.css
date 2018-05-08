@@ -3,6 +3,11 @@
 body {
     box-sizing: border-box;
     margin: 0;
+    background: url("https://las-vegas-real-estate-authority.com/wp-content/uploads/2016/12/Las-Vegas-Homes-Strip-View.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 *, *:before, *:after {
@@ -22,7 +27,7 @@ input::placeholder {
 
 body {
     color: white;
-    background-color: rgb(240, 238, 228);
+    background-color: rgb(227, 227, 227);
 }
 
 .home-header-login {
@@ -39,24 +44,29 @@ body {
 
 .home-header {
     display: flex;
-    justify-content: space-between;
+    position: relative;
+    /* justify-content: space-between; */
     align-items: center;
     height: 85px;
     padding: 0 80px 0 30px;
-    border-bottom: 1px solid black;
-    background-color: rgb(235, 85, 73);
-    margin-top: 8px;
+    background-color: inherit;
+    /* margin-top: 8px; */
     text-shadow: 2px 2px rgba(196, 153, 150, 0.7);
 }
 
+
 .home-login-container {
-    width: 100%;
+    position: absolute;
+    top: 50%;
+    width: 40%;
 }
 
 .home-header-dropdown {
+    position: absolute;
+    right: 100px;
+    top: 50%;
     display: flex;
     align-items: center;
-    margin-left: 150px;
     z-index:50;
 }
 
@@ -74,7 +84,7 @@ body {
     font-family: 'Paytone One', sans-serif;
 }
 
-.logo-container{
+.logo-container {
     position: absolute;
     top: 8px;
     right: 42%;
@@ -82,12 +92,12 @@ body {
     margin: 0 auto;
 }
 
-.home-new-trucks{
+.home-new-trucks {
     font-family: 'Questrial', sans-serif;
     padding: 0 10px;
 }
 
-.logo-icon{
+.logo-icon {
     position: absolute;
     top: -40px;
     z-index: -1;
@@ -115,9 +125,11 @@ body {
     flex-direction: column;
     height: 600px;
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid rgb(172, 230, 255);
     border-radius: 5px;
-    background-color: rgb(235, 85, 73);
+    background-color: rgb(176, 199, 201);
+    color: black;
+    box-shadow: 0px 0px 8px 8px #445e69;
 }
 
 .home-newsfeed-list {
@@ -126,15 +138,21 @@ body {
 
 .home-newsfeed-header {
     border-bottom: 1px solid white;
+    background-image: url('../assets/images/skyline.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .home-newsfeed h1 {
     text-align: center;
-    text-shadow: 2px 2px rgba(196, 153, 150, 0.7);
+    text-shadow: 2px 2px grey;
+    color: white;
 }
 
 .newtruck-list-item {
     padding: 8px;
+    font-family: 'Questrial', sans-serif;
 }
 
 .newtruck-list-item a{
@@ -144,14 +162,16 @@ body {
 
 .newtruck-list-item p {
     margin: 0;
+    color: black;
 }
 
 .newtruck-list-item h3 {
     margin: 0;
+    color: black;
 }
 
 .newtruck-list-item:hover {
-    background-color: rgb(174, 50, 50);
+    background-color: rgb(169, 169, 169);
 }
 
 /* map styles */
@@ -161,7 +181,7 @@ body {
 }
 
 .map-wrapper {
-    box-shadow: 5px 5px 8px 5px rgba(196, 153, 150, 0.7);
+    box-shadow: 0px 0px 8px 8px #445e69;
     width: 50%;
     height: 600px;
     position: relative; 

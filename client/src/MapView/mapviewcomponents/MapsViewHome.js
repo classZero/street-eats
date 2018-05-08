@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import './mapviewhomestyles.css'
 // import Geocode from 'react-geocode'
@@ -10,6 +11,7 @@ class MapViewHome extends Component {
     trucks: []
   }
   state = {
+    name: '',
     showingInfoWindow: false,
     activeMarker: {},
     selectedName: '',
@@ -29,6 +31,7 @@ class MapViewHome extends Component {
 
   onClickMarker = (props, marker, e) => {
     this.setState({
+      name: props.name,
       selectedName: props.title,
       selectedLocation: props.location,
       open: this.formatISODate(props.open),
@@ -62,6 +65,7 @@ class MapViewHome extends Component {
                       key={'key'+i}
                       onClick={this.onClickMarker}
                       title={truck.companyname}
+                      name={truck.username}
                       location={truck.formattedAddress}
                       position={{lat: truck.lat, lng: truck.lng}} 
                       open={truck.timeopen}
@@ -71,9 +75,9 @@ class MapViewHome extends Component {
         })}
         </Map>
         <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()} className="modal-wrapper">
-          <h1>{this.state.selectedName}</h1>
+          <Link to={`/truckprofile/${this.state.name}`}><h1>{this.state.selectedName}</h1></Link>
           <p>{this.state.selectedLocation}</p>
-          <p>Open: {this.state.open}   Close: {this.state.close}</p>
+          {this.state.open === 'Invalid date' || this.state.close === 'Invalid date' ? <Link to={`/truckprofile/${this.state.name}`}>Please check <span className="highlight">here</span> for hours</Link> : <p>Open: {this.state.open}   Close: {this.state.close}</p>}
           <p><button onClick={() => this.closeModal()}>Close</button></p>
         </Modal>
         

@@ -1,0 +1,44 @@
+.order-view-container {
+    position: relative;
+    height: 90vw;
+    width: 90vw;
+    margin: 0 auto;
+    background-color: rgb(227, 227, 227);
+    color: black;
+    font-family: 'Questrial', sans-serif;
+}
+/* header */
+.order-header-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.order-header-title {
+
+}
+
+/* orders */
+.order-body-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.order-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    min-width: 300px;
+    padding: 20px;
+}
+
+.order-container:nth-child(odd) {
+    border-right: 2px solid black;
+}
+
+.order-complete-btn {
+    width: 50%;
+    height: 60px;
+    border-radius: 8px;
+}
+
