@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import {getUserProfile} from '../actions/uProfileActions'
 import {Redirect} from 'react-router-dom'
 import {getFavorites} from '../actions/uProfileActions'
+import { getUsersReviews } from '../actions/uProfileActions'
 import '../../userprofile/components/uprofile.css'
 import HomeHeader from '../../headers/HomeHeader'
 import { Link } from 'react-router-dom'
 import RemoveFavorite from './removeFavorite'
+import ChangeReview from './changeReview'
 
 
 
@@ -19,6 +21,7 @@ class UProfileView extends Component {
     componentDidMount(){
         getUserProfile(this.props.username)
         getFavorites(this.props.username)
+        getUsersReviews(this.props.username)
     }
 
     checkUser(auth, current, user) {
@@ -35,6 +38,15 @@ class UProfileView extends Component {
                 </div>
                 <div className="uprofile-editbutton">
                     <Link to='/editprofile'>Edit My Profile</Link>
+                </div>
+                <div>
+                    My Reviews:
+                    <div>
+                        {this.props.reviews.map((review, index) => {
+                            return <ChangeReview key={'review' + index} companyname={review.companyname} review={review.review} id={review.id} username={this.props.username}/>
+                        })}
+                    </div>
+
                 </div>
             </div>
         } else {
@@ -62,7 +74,8 @@ function mapStateToProps(state) {
         username : state.loginReducer.username,
         email: state.uProfileReducer.email,
         isAuth: state.loginReducer.isAuthenticated,
-        favorites: state.uProfileReducer.favorites
+        favorites: state.uProfileReducer.favorites,
+        reviews: state.uProfileReducer.reviews
     }
 }
 

@@ -1,6 +1,7 @@
 const initialState = {
     profile : {},
-    favorites: []
+    favorites: [],
+    reviews: []
 }
 
 
@@ -12,6 +13,12 @@ export default function (state = initialState, action) {
             return {...state, favorites: action.payload}
         case 'REMOVE_FAVORITE':
             return {...state, removeMessage: action.payload}
+        case 'GET_USERS_REVIEWS':
+            return {...state, reviews: action.payload}
+        case 'DELETE_REVIEW':
+            return {...state, deleteReviewMessage: action.payload}
+        case 'EDIT_REVIEW':
+            return {...state, editReviewMessage: action.payload}
         default:
             return state
     }

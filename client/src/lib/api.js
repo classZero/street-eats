@@ -142,4 +142,26 @@ instance.removeFavorite = function (user, truck) {
   })
 }
 
+instance.getUsersReviews = function(username) {
+  // console.log(username)
+  return this.get('/getUsersReviews/' + username)
+  .then(resp => {
+    return resp.data.reviews
+  })
+}
+
+instance.deleteReview = function(id) {
+  return this.post('/deleteReview/' + id)
+  .then(resp => {
+    return resp.message
+  })
+}
+
+instance.editUserReview = function(id, text) {
+  return this.post('/editReview', {id, text})
+  .then(resp => {
+    return resp.message
+  })
+}
+
 export default instance

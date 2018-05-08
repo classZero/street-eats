@@ -48,7 +48,7 @@ setInterval(() => {
 
           })
         } else {
-          console.log('closing')
+          // console.log('closing')
           const sqlUpdate = `
             UPDATE trucks SET isActive = ? WHERE id = ?
           `

@@ -115,4 +115,35 @@ router.post('/removefavorite', (req, res, next) => {
 
 })
 
+router.post('/deleteReview/:id', (req, res, next) => {
+  const id = req.params.id
+
+  const sql = `
+  DELETE FROM reviews WHERE id = ?
+  `
+
+  conn.query(sql, id, (err, results, fields) => {
+    res.json({
+      message: "Review Deleted"
+    })
+  })
+
+})
+
+router.post('/editReview', (req, res, next) => {
+  const id = req.body.id
+  const text = req.body.text
+
+  const sql = `
+  UPDATE reviews 
+  SET review = ? WHERE id = ?
+  `
+
+  conn.query(sql, [text, id], (err, results, fields) => {
+    res.json({
+      message: "Review changed"
+    })
+  })
+})
+
 export default router

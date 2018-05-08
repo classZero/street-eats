@@ -272,6 +272,24 @@ router.get('/userprofile/:username', (req, res, next) => {
 
   })
 
+  router.get('/getUsersReviews/:username', (req, res, next) => {
+    const username = req.params.username
+
+    const sql = `
+    SELECT t.companyname, r.review, r.id
+    From trucks t 
+    LEFT JOIN reviews r on  t.username = r.truckusername 
+    WHERE r.username = ?
+    `
+
+    conn.query(sql, username, (err, results, fields) => {
+      const reviews = results
+      res.json({
+        reviews
+      })
+    })
+  })
+
   
 const stripe = require('stripe')('sk_test_zGrjspkLXtCEX59BW1kQjVE6')
 
