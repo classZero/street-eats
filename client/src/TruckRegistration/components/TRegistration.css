@@ -10,6 +10,7 @@
     background-color: rgb(176, 199, 201);
     box-shadow: 0px 0px 8px 8px #445e69;
     color: black;
+    overflow: hidden;
 }
 
 .submitButtons {
