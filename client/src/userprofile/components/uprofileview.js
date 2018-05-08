@@ -29,8 +29,8 @@ class UProfileView extends Component {
                 My Favorites:
                 <div className="uprofile-favcontainer">
                 {this.props.favorites.map((favorite, index) => {
-                        return <div key={'favorite' + index} ><img src={favorite.companylogo} alt="logo"/><br/>{favorite.companyname}
-                        <RemoveFavorite truck={favorite.username} user={this.props.username} /></div>
+                        return <div key={'favorite' + index} ><Link to={'/truckprofile/' + favorite.username}><img src={favorite.companylogo} alt="logo"/><br/>{favorite.companyname}
+                        <RemoveFavorite truck={favorite.username} user={this.props.username} /></Link></div>
                     })}
                 </div>
                 <div className="uprofile-editbutton">
