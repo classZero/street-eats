@@ -11,9 +11,11 @@
 	display: inline-block;
 	text-align: right;
 }
-
+.menuview-menu-item p {
+	margin-right: 75px;
+}
 .menuview-menu-item:hover {
-	background-color: rgb(174, 50, 50)
+	background-color: rgb(169, 169, 169)
 }
 .menuview-header{
 	position: relative;
@@ -29,10 +31,23 @@
     font-size: 15px;
     cursor: pointer;
 }
-.menuview-toggle:hover {
+.menuview-toggle:hover, .menuview-add-to-cart-button:hover, .cart-remove-item-button:hover {
     color: rgb(240, 208, 32);
+	cursor: pointer;
 }
 
+.menuview-add-to-cart-button{
+	position: absolute;
+	font-size: 1em;
+	right: 8px;
+	top: 0;
+	bottom: 0;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+/*cart*/
 .testZone{
 	border: 2px dashed rgba(255, 0, 255, .8);
 	background-color: rgba(0,0,0, .6);
@@ -40,4 +55,34 @@
 	position: absolute;
 	left: 100px;
 	width: 500px;
+	padding: 8px;
+}
+
+.testZone * {
+	font-family: 'Questrial';
+}
+
+.cart-header {
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Paytone One';
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 2px 2px grey;
+    border-bottom: 1px solid white;
+}
+.cart-item{
+	font-size: 1.1em;
+	position: relative;
+	margin: 3px 0;
+	border-bottom: 1px solid white
+}
+.cart-remove-item-button{
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: none;
+	/*border: none;*/
+	color: #fff;
 }

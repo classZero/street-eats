@@ -19,29 +19,27 @@ class Cart extends Component{
     removeFromCart(itemIndex)
   }
 
-  handleCheckout = (e) => {
-    e.preventDefault()
-    console.log('checkout')
-  }
+  // handleCheckout = (e) => {
+  //   e.preventDefault()
+  //   console.log('checkout')
+  // }
 
   render(){
     return(
       <div className="testZone">
-        <h1>Cart</h1>
-        <h2>{this.props.companyName}</h2>
+        <p className="cart-header" >{this.props.companyName} - Cart</p>
         {this.props.cart.map((item, i) => {
           return(
-            <div key={'cartitem-'+i}>
+            <div key={'cartitem-'+i} className="cart-item" >
               {item.itemName} - ${item.itemPrice.toFixed(2)}
-              <button onClick={ e => this.handleRemove(e, i)} >-</button>
+              <button onClick={ e => this.handleRemove(e, i)} className="cart-remove-item-button" >-Remove From Cart</button>
             </div>
           )}
         )}
-        <h3>${this.total()}</h3>
-        <button onClick={this.handleCheckout} >Checkout</button>
+        <h3>Total - ${this.total()}</h3>
         <Checkout 
           name={this.props.companyName} 
-          description={'Order No: Foo'}
+          description={'foo: bar'}
           amount={this.total() * 100}
         />
       </div>

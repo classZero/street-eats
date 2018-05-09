@@ -18,7 +18,7 @@ class MenuItem extends Component{
         <h3>${this.props.item.itemPrice}</h3>
         <h4>{this.props.item.itemType}</h4>
         <p>{this.props.item.itemDescription}</p>
-        <button onClick={this.handleAdd} >+</button>
+        <button onClick={this.handleAdd} className="menuview-add-to-cart-button" >+Add to cart</button>
       </div>
     )
   }

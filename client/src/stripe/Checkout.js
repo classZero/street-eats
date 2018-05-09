@@ -14,6 +14,7 @@ const CURRENCY = 'USD';
 
 const successPayment = data => {
   alert('Payment Successful')
+
 }
 
 const errorPayment = data => {
@@ -33,6 +34,8 @@ const Checkout = ({ name, description, amount }) =>
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
     token={onToken(amount, description)}
-  />
+  > 
+  <button>Proceed To Checkout</button>
+  </StripeCheckout>
 
 export default Checkout;
