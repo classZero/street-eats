@@ -13,7 +13,7 @@ import MenuView from 'MenuView/components/MenuView'
 
 class TProfileView extends Component {
     state = {
-        reviewMenuToggle: 'review',
+        reviewMenuToggle: 'menu',
         reviewtext : ''
     }
 

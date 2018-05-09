@@ -32,3 +32,12 @@
 .menuview-toggle:hover {
     color: rgb(240, 208, 32);
 }
+
+.testZone{
+	border: 2px dashed rgba(255, 0, 255, .8);
+	background-color: rgba(0,0,0, .6);
+	color: #fff;
+	position: absolute;
+	left: 100px;
+	width: 500px;
+}

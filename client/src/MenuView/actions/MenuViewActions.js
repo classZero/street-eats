@@ -11,3 +11,23 @@ export function getMenu(username){
 		})
 	})
 }
+
+export function addToCart(itemObj){
+	store.dispatch({
+		type: 'ADD_TO_CART',
+		payload: itemObj
+	})
+}
+
+export function totalItems(){
+
+}
+
+export function removeFromCart(itemIndex){
+	const newCart = store.getState().MenuViewReducer.cart	
+
+	store.dispatch({
+		type: 'REMOVE_FROM_CART',
+		payload: newCart.filter((it, ind)=> ind !== itemIndex)
+	})
+}
