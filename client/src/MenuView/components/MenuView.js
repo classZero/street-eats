@@ -42,8 +42,6 @@ class MenuView extends Component{
 function mapStateToProps(state) {
   return {
   	menu: state.MenuViewReducer.activeMenu,
-    cart: state.MenuViewReducer.cart,
-    cartTotal:state.MenuViewReducer.cartTotal
   }
 }
 

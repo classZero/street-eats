@@ -18,3 +18,16 @@ export function addToCart(itemObj){
 		payload: itemObj
 	})
 }
+
+export function totalItems(){
+
+}
+
+export function removeFromCart(itemIndex){
+	const newCart = store.getState().MenuViewReducer.cart	
+
+	store.dispatch({
+		type: 'REMOVE_FROM_CART',
+		payload: newCart.filter((it, ind)=> ind !== itemIndex)
+	})
+}
