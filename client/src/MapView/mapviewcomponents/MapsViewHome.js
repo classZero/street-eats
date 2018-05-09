@@ -75,10 +75,18 @@ class MapViewHome extends Component {
         })}
         </Map>
         <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()} className="modal-wrapper">
-          <Link to={`/truckprofile/${this.state.name}`}><h1>{this.state.selectedName}</h1></Link>
-          <p>{this.state.selectedLocation}</p>
-          <p>Open: {this.state.open}   Close: {this.state.close}</p>
-          <p><button onClick={() => this.closeModal()}>Close</button></p>
+
+          <div className="bkgndClr"><Link to={`/truckprofile/${this.state.name}`}><h1>{this.state.selectedName}</h1></Link></div>
+
+          <div className="bkgndClr">
+            <a href={`https://www.google.com/maps/?q=${encodeURI(this.state.selectedLocation)}`}>
+              <p>{this.state.selectedLocation}</p>
+            </a>
+          </div>
+
+          {this.state.open === 'Invalid date' || this.state.close === 'Invalid date' ? 
+            <div className="bkgndClr"><Link to={`/truckprofile/${this.state.name}`}>Please check <span className="highlight">here</span> for hours</Link></div> : <div className="bkgndClr"><p>Open: {this.state.open} Close: {this.state.close}</p></div>}
+            <div><button onClick={() => this.closeModal()}>Close</button></div>
         </Modal>
         
     </div>
@@ -98,7 +106,7 @@ class Modal extends Component {
       left: '50%',
       transform: 'translate(-50%, -50%)',
       zIndex: '9999',
-      background: 'rgb(235, 85, 73)',
+      background: 'rgb(227, 127, 227)',
       borderRadius: '5px'
     }
 

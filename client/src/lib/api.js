@@ -109,8 +109,8 @@ instance.addFavorite = function(username, truckuser) {
   })
 }
 
-instance.editTruckProfile = function(name, logo, aboutus, menuurl) {
-  return this.post('/editTruckProfile', {name, logo, aboutus, menuurl}).then(resp => {
+instance.editTruckProfile = function(name, logo, aboutus, menuurl, username) {
+  return this.post('/editTruckProfile', {name, logo, aboutus, menuurl, username}).then(resp => {
     return resp.data
   })
 }
@@ -134,9 +134,44 @@ instance.addReview = function (username, truckuser, reviewtext) {
   })
 }
 
+instance.removeFavorite = function (user, truck) {
+  return this.post('/removefavorite', {user, truck})
+  .then(resp => {
+    return resp.data.message
+  })
+}
+
+instance.getUsersReviews = function(username) {
+  // console.log(username)
+  return this.get('/getUsersReviews/' + username)
+  .then(resp => {
+    return resp.data.reviews
+  })
+}
+
+instance.deleteReview = function(id) {
+  return this.post('/deleteReview/' + id)
+  .then(resp => {
+    return resp.message
+  })
+}
+
+instance.editUserReview = function(id, text) {
+  return this.post('/editReview', {id, text})
+  .then(resp => {
+    return resp.message
+  })
+}
+
 instance.updateLocation = function (lat, long, username) {
   return this.post('/uplocale', {lat, long, username}).then(resp => {
     // console.log('resp in api', resp.data)
+    return resp.data
+  })
+}
+
+instance.removeLocation = function (username) {
+  return this.post('/removelocale', {username}).then(resp => {
     return resp.data
   })
 }

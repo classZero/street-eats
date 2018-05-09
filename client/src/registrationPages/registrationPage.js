@@ -18,7 +18,6 @@ class registrationPage extends Component {
         <div className="registrationHeader">
           <Link to="/">Back</Link>
           <h1>Are You A ...</h1>
-
         </div>
 
       <div className="twoRegContainer">

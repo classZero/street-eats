@@ -14,6 +14,25 @@
     color: white;
 }
 
+.modal-wrapper h1 {
+    margin: 0;
+    padding: 10px;
+}
+
+.modal-wrapper button {
+    margin: 10px;
+}
+
+.modal-wrapper div:hover {
+    background: rgba(191, 191, 191, 0.6);
+    width: 100%;
+}
+
 .mapinputs-container {
     box-shadow: 0px 0px 8px 8px rgba(196, 153, 150, 0.7);
+}
+
+.highlight {
+    color: black;
+    font-weight: bold;
 }

@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
 import {registerTruck} from '../actions/TRegistrationActions'
-import RegistrationHeader from '../../headers/registrationHeader'
 // import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
+import alttruck from '../../assets/images/alttruck.svg'
 import './TRegistration.css'
+
 
 let images = []
 
@@ -61,7 +63,9 @@ class TRegistration extends Component {
 							aboutus: '',
 							password: '',
 							confirmPassword: ''
-						})
+            })
+            this.props.history.push('/')
+            
 					} else {window.alert('Passwords must match')}
 				} else {window.alert('Passwords must contain at least one letter and one number, and may also contain !,@,#,$,%,_,-')}
 			} else {window.alert('Please enter a valid email')}
@@ -96,7 +100,6 @@ class TRegistration extends Component {
 	render(){
 		return(
 			<div>
-        {/* <RegistrationHeader /> */}
         <div className="truckRegContainer">
           
           <div className="truckRegHeader">
@@ -122,18 +125,6 @@ class TRegistration extends Component {
         </div>
         
         </div>
-        {/* <CloudinaryContext cloudName="maglingkod">
-        {this.state.uploadedFiles.map(imageArray => imageArray.map((image, i) => {
-                 return <div key={'key' + i}>
-                        <a target="_blank" href={`https://res.cloudinary.com/maglingkod/image/upload/${image.public_id}.jpg`}>
-                        <Image publicId={image.public_id}>
-                          
-                        </Image>
-                        </a>
-                        </div>
-          })
-        )}
-        </CloudinaryContext> */}
 			</div>
 	)}
 }
@@ -142,4 +133,4 @@ function mapStateToProps(state) {
 	return {}
 }
 
-export default connect(mapStateToProps)(TRegistration)
+export default withRouter(connect(mapStateToProps)(TRegistration))

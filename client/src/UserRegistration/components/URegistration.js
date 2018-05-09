@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {registerUser} from '../actions/URegistrationActions'
-import RegistrationHeader from '../../headers/registrationHeader'
+// import RegistrationHeader from '../../headers/registrationHeader'
 import './URegistration.css'
 import {withRouter} from 'react-router'
 
@@ -50,12 +50,12 @@ class URegistration extends Component {
 							password: '',
               confirmPassword: '',
               uploadCloudinaryAvatarUrl: ''
-						})
+            })
+            this.props.history.push('/')
 					} else {window.alert('Passwords must match')}
 				} else {window.alert('Passwords must contain at least one letter and one number, and may also contain !,@,#,$,%,_,-')}
 			} else {window.alert('Please enter a valid email')}
     } else {window.alert('Usernames can only include characters A-Z, 0-9, and may use _ and - as seperators')}
-    this.props.history.push('/')
 	}
 
   uploadWidget = (e) => {

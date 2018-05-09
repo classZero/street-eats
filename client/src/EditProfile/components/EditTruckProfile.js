@@ -30,7 +30,7 @@ class EditTruckProfile extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        editTruckProfile(this.state.name, this.state.logo, this.state.aboutus, this.state.menuurl)
+        editTruckProfile(this.state.name, this.state.logo, this.state.aboutus, this.state.menuurl, this.props.username)
     }
 
     componentDidUpdate(prevprops, prevstate){
@@ -91,7 +91,8 @@ class EditTruckProfile extends Component {
 function mapStateToProps(state) {
     return {
         profile : state.tProfileReducer.profile,
-        isAuth: state.loginReducer.isAuthenticated
+        isAuth: state.loginReducer.isAuthenticated,
+        username: state.loginReducer.username
     }
 }
 
