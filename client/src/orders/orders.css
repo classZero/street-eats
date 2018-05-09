@@ -6,6 +6,7 @@
     background-color: rgb(227, 227, 227);
     color: black;
     font-family: 'Questrial', sans-serif;
+    overflow: auto;
 }
 /* header */
 .order-header-container {

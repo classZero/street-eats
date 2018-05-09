@@ -6,7 +6,6 @@ import MapViewHome from '../MapView/mapviewcomponents/MapsViewHome'
 import TruckListDropdown from '../dropdowns/homeDropdown/TruckListDropdown'
 import HomeHeader from '../headers/HomeHeader'
 
-import skyline from '../assets/images/skyline.svg'
 import './home.css'
 import '../dropdowns/homeDropdown/dropdown.css'
 
@@ -60,10 +59,11 @@ export class Home extends Component {
               {/* show list */}
               <div className="home-newsfeed-list">                               
                 {this.props.trucks.length > 0 ? this.props.trucks.map((truck, i) => {
-                  return (<div className="newtruck-list-item" key={'key' + i}><Link to={`/truckprofile/${truck.username}`}>
-                            <h3>{truck.companyname}</h3>
-                            <p>{truck.formattedAddress}</p>
-                          </Link></div>)
+                  return (<div className="newtruck-list-item" key={'key' + i}>
+                            <Link to={`/truckprofile/${truck.username}`}>
+                              <h3>{truck.companyname}</h3>
+                              <p>{truck.formattedAddress}</p>
+                            </Link></div>)
                 }) : <h3 className="newtruck-list-item">No trucks listed</h3>} 
               </div>
             </div>
@@ -75,7 +75,7 @@ export class Home extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('isAuth? ' + state.loginReducer.isAuthenticated)
+  // console.log('isAuth? ' + state.loginReducer.isAuthenticated)
   // console.log(state.homeReducer.truckData)
   return {
     isAuthenticated: state.loginReducer.isAuthenticated,

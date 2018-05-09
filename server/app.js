@@ -7,13 +7,13 @@ import cookieParser from 'cookie-parser'
 import ejwt from 'express-jwt'
 import config from 'config'
 import conn from './lib/conn'
-
 import publicRouter from './routes/public'
 import privateRouter from './routes/private'
 import clientRouter from './routes/client'
 
 const app = express()
 const server = require('http').Server(app)
+const io = require('socket.io')(server)
 // Set up Express middlewares
 // After placing favicon, uncomment favicon import and usage
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
@@ -27,6 +27,38 @@ server.listen(3001, () => {
   console.log('listening on port 3001')
 })
 
+//socket section
+io.on('connection', (socket) => {
+  console.log('starting socket.io')
+
+  socket.on('order', order => {
+    console.log('received an order of ', order)
+    socket.emit('orderPlaced', order)
+  })
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected')
+    socket.removeAllListeners('order');
+    socket.removeAllListeners('disconnect');
+    io.removeAllListeners('connection');
+  })
+})
+
+// io.on('connection', (socket) => {
+//   io.emit('order', { order: 'order received by everyone'})
+
+//   socket.on('order', (order) => {
+//     console.log('I received an order for', order)
+//   })
+
+//   socket.on('disconnect', () => {
+//     io.emit('user disconnected')
+//   })
+// })
+      
+
+
+//constinually checks for newly active trucks
 setInterval(() => {
   const sql = `
     SELECT id, timeopen, timeclose FROM trucks
