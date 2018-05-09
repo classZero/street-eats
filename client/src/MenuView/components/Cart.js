@@ -2,16 +2,15 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import {removeFromCart} from '../actions/MenuViewActions'
 
+import Checkout from 'stripe/Checkout'
 
 class Cart extends Component{
 
   total = () => {
-    const total = this.props.cart.reduce(function(total, item){
-      return {itemPrice: total.itemPrice + item.itemPrice}
-    }, {itemPrice: 0}).itemPrice.toFixed(2)
-
-    return(
-      <h3>${total}</h3>
+    return (
+      this.props.cart.reduce(function(total, item){
+        return {itemPrice: total.itemPrice + item.itemPrice}
+      }, {itemPrice: 0}).itemPrice.toFixed(2)
     )
   }
 
@@ -29,6 +28,7 @@ class Cart extends Component{
     return(
       <div className="testZone">
         <h1>Cart</h1>
+        <h2>{this.props.companyName}</h2>
         {this.props.cart.map((item, i) => {
           return(
             <div key={'cartitem-'+i}>
@@ -37,8 +37,13 @@ class Cart extends Component{
             </div>
           )}
         )}
-        {this.total()}
+        <h3>${this.total()}</h3>
         <button onClick={this.handleCheckout} >Checkout</button>
+        <Checkout 
+          name={this.props.companyName} 
+          description={'Order No: Foo'}
+          amount={this.total() * 100}
+        />
       </div>
     )
   }
@@ -46,7 +51,8 @@ class Cart extends Component{
 
 function mapStateToProps(state) {
   return {
-    cart: state.MenuViewReducer.cart
+    cart: state.MenuViewReducer.cart,
+    companyName: state.tProfileReducer.profile.companyname
   }
 }
 
