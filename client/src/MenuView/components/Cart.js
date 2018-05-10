@@ -31,23 +31,21 @@ class Cart extends Component{
         {this.props.cart.map((item, i) => {
           return(
             <div key={'cartitem-'+i} className="cart-item" >
-              {item.itemName} - ${item.itemPrice.toFixed(2)}
+              {item.itemName} <span>${item.itemPrice.toFixed(2)}</span>
               <button onClick={ e => this.handleRemove(e, i)} className="cart-remove-item-button" >-Remove From Cart</button>
             </div>
           )}
         )}
-<<<<<<< HEAD
+        <textarea className="cart-special-instructions" placeholder="Special Instructions" ></textarea>
         <h3>Total - ${this.total()}</h3>
-=======
-        <h3>${this.total()}</h3>
-        {/* <button onClick={this.handleCheckout} >Checkout</button> */}
->>>>>>> master
-        <Checkout 
-          name={this.props.companyName} 
-          description={'foo: bar'}
-          amount={this.total() * 100}
-          cart={this.props.cart}
-        />
+        <div className='checkout-button-wrapper' >
+          <Checkout 
+            name={this.props.companyName} 
+            description={'foo: bar'}
+            amount={this.total() * 100}
+            cart={this.props.cart}
+          />
+        </div>
       </div>
     )
   }

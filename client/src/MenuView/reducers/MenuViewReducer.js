@@ -12,6 +12,8 @@ export default function (state = initialState, action) {
             return {...state, activeMenu: action.payload }
         case 'ADD_TO_CART':
         	return {...state, cart: [...state.cart, action.payload]}
+        case 'TOTAL_CART':
+            return {...state, cartTotal: action.payload}
         case 'REMOVE_FROM_CART':
         	return {...state, cart: action.payload}
         case 'CLEAR_CART':
