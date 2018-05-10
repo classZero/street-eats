@@ -4734,6 +4734,10 @@ react-time-range@^1.0.2:
     style-loader "^0.20.1"
     webpack "^3.11.0"
 
+react-timeago@^4.1.9:
+  version "4.1.9"
+  resolved "https://registry.yarnpkg.com/react-timeago/-/react-timeago-4.1.9.tgz#a5dee4ac072299a9a5ca5a61f56177a80f83c1fb"
+
 react-transition-group@^2.0.0, react-transition-group@^2.2.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.3.1.tgz#31d611b33e143a5e0f2d94c348e026a0f3b474b6"

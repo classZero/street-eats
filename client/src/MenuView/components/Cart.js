@@ -36,11 +36,17 @@ class Cart extends Component{
             </div>
           )}
         )}
+<<<<<<< HEAD
         <h3>Total - ${this.total()}</h3>
+=======
+        <h3>${this.total()}</h3>
+        {/* <button onClick={this.handleCheckout} >Checkout</button> */}
+>>>>>>> master
         <Checkout 
           name={this.props.companyName} 
           description={'foo: bar'}
           amount={this.total() * 100}
+          cart={this.props.cart}
         />
       </div>
     )

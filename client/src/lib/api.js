@@ -63,7 +63,7 @@ instance.logout = function() {
 instance.registration = function (username, password, email, avatar, type, companyName, companyLogo, menu, aboutus) {
     return this.post(this.getRegisterPath(), {username, password, email, avatar, type, companyName, companyLogo, menu, aboutus})
         .then(resp => {
-            console.log('in api:', resp)
+            // console.log('in api:', resp)
             window.localStorage.setItem('token', resp.data.token)
             this.registerInterceptor = this.interceptors.request.use(config => {
               config.headers['Authorization'] = 'Bearer ' + resp.data.token
@@ -121,8 +121,8 @@ instance.changeSortView = function (sortType) {
   })
 }
 
-instance.payments = function (description, token, currency, amount) {
-  return this.post('/payments', {description, token, currency, amount}).then(resp => {
+instance.payments = function (description, token, currency, amount, cart) {
+  return this.post('/payments', {description, token, currency, amount, cart}).then(resp => {
     // console.log('api resp',resp.data)
     return resp.data
   })

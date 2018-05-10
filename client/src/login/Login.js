@@ -8,6 +8,9 @@ export class Login extends Component {
     username: '',
     password: ''
   }
+  componentDidMount = (e) => {
+    this.nameInput.focus()
+  }
   handleChange = (e) => {
     e.preventDefault()
     this.setState({
@@ -32,7 +35,8 @@ export class Login extends Component {
                  name="username" 
                  value={this.state.username}
                  placeholder="username"
-                 className="login-input"/>
+                 className="login-input"
+                 ref={(input) => { this.nameInput = input; }}/>
           <input onChange={this.handleChange} 
                  autoComplete="off"
                  type="password" 

@@ -183,4 +183,27 @@ router.post('/removelocale', (req, res, next) => {
   })
 })
 
+//payments with stripe
+const stripe = require('stripe')('sk_test_zGrjspkLXtCEX59BW1kQjVE6')
+
+router.post('/payments', (req, res, next) => {
+  console.log('public',JSON.stringify(req.body))
+  // stripe.charges.create({amount: req.body.amount,
+  //                        currency: req.body.CURRENCY,
+  //                        source: req.body.token,
+  //                        description: req.body.description}, postStripeCharge(res));
+  const charge = stripe.charges.create({
+    amount: req.body.amount,
+    currency: req.body.currency,
+    description: req.body.description,
+    source: req.body.token,
+  });
+  const cart = req.body.cart
+  res.json({
+    data: charge,
+    cart: cart
+  })
+})
+
+
 export default router

@@ -11,6 +11,16 @@ export function registerUser(username, password, email, avatar){
 		store.dispatch({
 			type: 'REGISTER_USER',
 			payload: resp.data
-		})
+    })
+    store.dispatch({
+      type: "USER_CREATED",
+      payload: resp.message
+    })
+    setTimeout(function() {
+      store.dispatch({
+        type: "USER_CREATED",
+        payload: ''
+      })
+    }, 3000)
 	})
 }
