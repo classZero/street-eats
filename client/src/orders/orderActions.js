@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 import store from '../store'
-const socket = io.connect('http://192.168.50.34:3001')
-// const socket = io.connect('http://10.68.0.239:3001')
+// const socket = io.connect('http://192.168.50.34:3001')
+const socket = io.connect('http://10.68.0.239:3001')
 
 
 // export function sendOrder(orders) {
@@ -10,12 +10,9 @@ const socket = io.connect('http://192.168.50.34:3001')
 //   socket.emit('order', {orders: ['1', '2', '3', '4'], orderedBy: orderedBy, timestamp: timestamp})
 // }
 
-
-
 export function dispatchToTruck(data) {
   console.log('big success')
   const order = data.cart
-  const timestamp = new Date()
   
   socket.emit('order', order)
 }
