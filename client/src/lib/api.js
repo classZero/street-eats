@@ -121,8 +121,8 @@ instance.changeSortView = function (sortType) {
   })
 }
 
-instance.payments = function (description, token, currency, amount) {
-  return this.post('/payments', {description, token, currency, amount}).then(resp => {
+instance.payments = function (description, token, currency, amount, cart) {
+  return this.post('/payments', {description, token, currency, amount, cart}).then(resp => {
     // console.log('api resp',resp.data)
     return resp.data
   })

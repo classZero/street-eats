@@ -19,10 +19,10 @@ class Cart extends Component{
     removeFromCart(itemIndex)
   }
 
-  handleCheckout = (e) => {
-    e.preventDefault()
-    console.log('checkout')
-  }
+  // handleCheckout = (e) => {
+  //   e.preventDefault()
+  //   console.log('checkout')
+  // }
 
   render(){
     return(
@@ -38,11 +38,12 @@ class Cart extends Component{
           )}
         )}
         <h3>${this.total()}</h3>
-        <button onClick={this.handleCheckout} >Checkout</button>
+        {/* <button onClick={this.handleCheckout} >Checkout</button> */}
         <Checkout 
           name={this.props.companyName} 
           description={'Order No: Foo'}
           amount={this.total() * 100}
+          cart={this.props.cart}
         />
       </div>
     )

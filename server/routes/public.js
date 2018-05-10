@@ -76,11 +76,10 @@ router.get('/truckdata/:sort', (req, res, next) => {
     `
   } else {
     sql = `
-    SELECT * FROM trucks
+      SELECT * FROM trucks WHERE isActive = 1 
     `
   }  
   conn.query(sql, (err, results, fields) => {
-    // console.log('truckdata sort results' , JSON.stringify(results))
     res.json({
       results
     })
@@ -132,7 +131,6 @@ router.post('/registration', (req, res, next) => {
 
                 if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
                     const token = jwt.sign({user: username, source: req.body.type, avatar: results[0].avatar}, config.get('jwt-secret'))
-                    console.log('public line 94 ' + req.body)
                     const companyname = req.body.companyName
                     const companyLogo = req.body.companyLogo
                     const menuurl = req.body.menu
@@ -214,25 +212,24 @@ router.get('/truckprofile/:username', (req, res, next) => {
             logo
         })
     })
-  
-  })
+})
 
-  router.get('/truckreviews/:username', (req, res, next) => {
-      const username = req.params.username
-      const sql = `
-      SELECT review 
-      FROM reviews 
-      WHERE truckusername = ?
-      `
+router.get('/truckreviews/:username', (req, res, next) => {
+    const username = req.params.username
+    const sql = `
+    SELECT review 
+    FROM reviews 
+    WHERE truckusername = ?
+    `
 
-      conn.query(sql, username, (err,results, fields) => {
-          const reviews = results
+    conn.query(sql, username, (err,results, fields) => {
+        const reviews = results
 
-          res.json({
-            reviews
-          })
-      })
-  })
+        res.json({
+          reviews
+        })
+    })
+})
 
 
 router.get('/userprofile/:username', (req, res, next) => {
@@ -252,74 +249,42 @@ router.get('/userprofile/:username', (req, res, next) => {
             avatar
         })
     })
-  })
+})
 
-  router.get('/userfavorites/:username', (req, res, next) => {
-      const username = req.params.username
-      const sql = `
-      SELECT t.username, t.companyname, t.companylogo 
-      FROM users u 
-      LEFT JOIN favorites f on u.username = f.username 
-      LEFT JOIN trucks t on f.truckusername = t.username WHERE u.username = ?
-      `
-
-      conn.query(sql, username, (err, results, fields) => {
-          const favorites = results
-          res.json({
-             favorites
-          })
-      })
-
-  })
-
-  router.get('/getUsersReviews/:username', (req, res, next) => {
+router.get('/userfavorites/:username', (req, res, next) => {
     const username = req.params.username
-
     const sql = `
-    SELECT t.companyname, r.review, r.id
-    From trucks t 
-    LEFT JOIN reviews r on  t.username = r.truckusername 
-    WHERE r.username = ?
+    SELECT t.username, t.companyname, t.companylogo 
+    FROM users u 
+    LEFT JOIN favorites f on u.username = f.username 
+    LEFT JOIN trucks t on f.truckusername = t.username WHERE u.username = ?
     `
 
     conn.query(sql, username, (err, results, fields) => {
-      const reviews = results
-      res.json({
-        reviews
-      })
+        const favorites = results
+        res.json({
+            favorites
+        })
     })
-  })
-
-  
-const stripe = require('stripe')('sk_test_zGrjspkLXtCEX59BW1kQjVE6')
-
-// const stripe = configureStripe('sk_test_zGrjspkLXtCEX59BW1kQjVE6');
-
-const postStripeCharge = res => (stripeErr, stripeRes) => {
-  if (stripeErr) {
-    res.status(500).send({ error: stripeErr });
-  } else {
-    res.status(200).send({ success: stripeRes });
-  }
-}
-
-router.post('/payments', (req, res, next) => {
-  console.log('public',JSON.stringify(req.body))
-  // stripe.charges.create({amount: req.body.amount,
-  //                        currency: req.body.CURRENCY,
-  //                        source: req.body.token,
-  //                        description: req.body.description}, postStripeCharge(res));
-  const charge = stripe.charges.create({
-    amount: req.body.amount,
-    currency: req.body.currency,
-    description: req.body.description,
-    source: req.body.token,
-  }, postStripeCharge(res));
-  res.json({
-    data: charge
-  })
 })
 
+router.get('/getUsersReviews/:username', (req, res, next) => {
+  const username = req.params.username
+
+  const sql = `
+  SELECT t.companyname, r.review, r.id
+  From trucks t 
+  LEFT JOIN reviews r on  t.username = r.truckusername 
+  WHERE r.username = ?
+  `
+
+  conn.query(sql, username, (err, results, fields) => {
+    const reviews = results
+    res.json({
+      reviews
+    })
+  })
+})
 
 router.get('/getmenu/:truckuser', (req,res,next) => {
   const getID = `

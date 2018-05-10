@@ -38,25 +38,11 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     console.log('user disconnected')
-    socket.removeAllListeners('order');
-    socket.removeAllListeners('disconnect');
-    io.removeAllListeners('connection');
+    // socket.removeAllListeners('order');
+    // socket.removeAllListeners('disconnect');
+    // io.removeAllListeners('connection');
   })
 })
-
-// io.on('connection', (socket) => {
-//   io.emit('order', { order: 'order received by everyone'})
-
-//   socket.on('order', (order) => {
-//     console.log('I received an order for', order)
-//   })
-
-//   socket.on('disconnect', () => {
-//     io.emit('user disconnected')
-//   })
-// })
-      
-
 
 //constinually checks for newly active trucks
 setInterval(() => {

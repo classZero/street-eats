@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
-import {sendOrder} from './orderActions'
+import {removeOrder} from './orderActions'
 import {connect} from 'react-redux'
+import TimeAgo from 'react-timeago'
 import './orders.css'
 
 export class Orders extends Component {
 
   static DefaultProps = {
     orders: []
+  }
+
+  handleRemoveOrder = (e) => {
+    e.preventDefault()
+    removeOrder()
   }
 
   render() {
@@ -16,23 +22,20 @@ export class Orders extends Component {
           <h1 className="order-header-title">Your Orders</h1>
         </div>
 
-        <div>
-          
-        </div>
-        <Child />
         <div className="order-body-container">
         {this.props.orders.map((order, i) => {
           return  <div className="order-container" key={'order' + i}>
-                    <h2>order number 23</h2>
-                    <h3>{order.timestamp}</h3>
-                    <h3>{order.orderBy}</h3>
-                    {order.orders.map((item, j, items) => {
-                      return <p key={'item' + j}>{items[j]}</p>
-                    })}
-                    <button className="order-complete-btn"> mark as done</button>
+                    <p>Truck ID: {order.truckId}</p>
+                    <p>Order age: <TimeAgo date={order.timestamp} minPeriod={10} /></p>
+                    {order.order.map((orderItem, j) => {
+                    return <div key={'key' + j}>
+                            <h2>{orderItem.itemName}</h2>
+                            
+                           </div>})}
+       
+                           <button onClick={this.handleRemoveOrder} className="order-complete-btn">Mark as done</button>
                   </div>
         })}
-
         </div>
       </div>
     )
@@ -40,41 +43,69 @@ export class Orders extends Component {
 }
 
 
-export class Child extends Component {
-  state = {
-    message: ''
-  }
-  handleAwesomeChange = (e) => {
-    e.preventDefault()
-    this.setState({
-      [e.target.name]:e.target.value
-    })
-  }
-  isAwesome = (e) => {
-    e.preventDefault()
-    sendOrder(this.state.message)
-    this.setState({
-      message: ''
-    })
-  }
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.isAwesome}>
-          <input type="text" onChange={this.handleAwesomeChange} placeholder="message" name="message" value={this.state.message}/>
-          <button type="submit">Sub it</button>
-        </form>
+// export class Child extends Component {
+//   state = {
+//     message: ''
+//   }
+//   handleAwesomeChange = (e) => {
+//     e.preventDefault()
+//     this.setState({
+//       [e.target.name]:e.target.value
+//     })
+//   }
+//   isAwesome = (e) => {
+//     e.preventDefault()
+//     // sendOrder(this.state.message)
+//     this.setState({
+//       message: ''
+//     })
+//   }
+//   render() {
+//     return (
+//       <div>
+//         <form onSubmit={this.isAwesome}>
+//           <input type="text" onChange={this.handleAwesomeChange} placeholder="message" name="message" value={this.state.message}/>
+//           <button type="submit">Sub it</button>
+//         </form>
 
-      </div>
-    )
-  }
-};
+//       </div>
+//     )
+//   }
+// };
 
 function mapStateToProps(state) {
   console.log(state)
   return {
     orders : state.ordersReducer.orders
+    
   }
 }
 
 export default connect(mapStateToProps)(Orders)
+
+// orders
+// :
+// Array(1)
+// 0
+// :
+// Array(1)
+// 0
+// :
+// ItemType
+// :
+// "entree"
+// id
+// :
+// 3
+// itemDescription
+// :
+// "Locally sourced free-range Cockroaches"
+// itemName
+// :
+// "Fried Free-Range Cockroach"
+// itemPrice
+// :
+// 10
+// itemTruckId
+// :
+// 21
