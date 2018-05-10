@@ -31,3 +31,9 @@ export function removeFromCart(itemIndex){
 		payload: newCart.filter((it, ind)=> ind !== itemIndex)
 	})
 }
+
+export function clearCart(){
+	store.dispatch({
+		type: 'CLEAR_CART'
+	})
+}

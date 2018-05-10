@@ -35,7 +35,7 @@ const Checkout = ({ name, description, amount }) =>
     stripeKey={STRIPE_PUBLISHABLE}
     token={onToken(amount, description)}
   > 
-  <button>Proceed To Checkout</button>
+  <button className="checkout-button" >Proceed To Checkout</button>
   </StripeCheckout>
 
 export default Checkout;

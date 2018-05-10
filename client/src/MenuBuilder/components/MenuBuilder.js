@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import {HomeHeader} from 'headers/HomeHeader'
+// import {HomeHeader} from 'headers/HomeHeader'
 
 import {getMenu} from 'MenuView/actions/MenuViewActions'
 import {addItem, removeItem} from '../actions/MenuBuilderActions'

@@ -4,6 +4,7 @@ const initialState = {
     cartTotal: 0
 }
 
+//not currently using cartTotal, probably remove in future
 
 export default function (state = initialState, action) {
     switch (action.type) {

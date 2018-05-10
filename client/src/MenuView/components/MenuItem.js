@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 
 import {addToCart} from '../actions/MenuViewActions'
 
@@ -24,10 +24,10 @@ class MenuItem extends Component{
   }
 }
 
-function mapStateToProps(state) {
-  return {
-  }
-}
+// function mapStateToProps(state) {
+//   return {
+//   }
+// }
 
 // export default connect(mapStateToProps)(MenuItem)
 export default MenuItem
