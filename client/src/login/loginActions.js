@@ -10,16 +10,6 @@ export function login(username, password) {
       store.dispatch({
         type:"LOGIN_ERROR",payload:err
       })
-      store.dispatch({
-        type: "LOGIN_FAILURE",
-        payload: 'Invalid username and/or password'
-      })
-      setTimeout(function() {
-        store.dispatch({
-          type: "LOGIN_FAILURE",
-          payload: ''
-        })
-      }, 3000)
       console.log('actions ' + err)
   })
 }

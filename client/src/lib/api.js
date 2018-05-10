@@ -37,11 +37,18 @@ instance.getRegisterPath = function() {
 instance.login = function (username, password) {
     return this.post(this.getTokenPath(), {username, password})
         .then(resp => {
+          console.log('api response', resp)
         window.localStorage.setItem('token', resp.data.token)
         this.tokenInterceptor = this.interceptors.request.use(config => {
           config.headers['Authorization'] = 'Bearer ' + resp.data.token
           return config
         })
+        if (resp.data.message === "Invalid Username and/or Password") {
+          store.dispatch({
+            type: "LOGIN_FAILURE",
+            payload: resp.data.message
+          })
+        }
         store.dispatch({
           type: "LOGIN_USER",
           payload: resp.data
