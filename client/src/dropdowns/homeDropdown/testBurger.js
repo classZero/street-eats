@@ -61,18 +61,18 @@ export class HomeBurger extends Component {
           <Menu right noOverlay width={270} isOpen={ this.state.showMenu }>
             <p className="logTitle">Logged in as:</p>
             <p className="uName">{this.props.username}</p>
-            <div><i class="far fa-user"></i><Link id="uProf" to={'/userprofile/' + this.props.username}>View My Profile</Link></div>
+            <div><i className="far fa-user"></i><Link id="uProf" to={'/userprofile/' + this.props.username}>View My Profile</Link></div>
             <div><div id="uLog"><Logout /></div></div>
           </Menu> :
           <Menu right noOverlay width={270} isOpen={ this.state.showMenu }>
             <p className="logTitle">Logged in as:</p>
             <p className="uName">{this.props.username}</p>
-            <div><i class="far fa-user"></i><Link id="tProf" to={'/truckprofile/' + this.props.username}>View My Profile</Link></div>
-            <div><i class="fas fa-edit"></i><Link id="eProf" to='/editprofile'>Edit Profile</Link></div>
-            <div><i class="far fa-list-alt"></i><Link id="order" to='/orders'>View orders</Link></div>
+            <div><i className="far fa-user"></i><Link id="tProf" to={'/truckprofile/' + this.props.username}>View My Profile</Link></div>
+            <div><i className="fas fa-edit"></i><Link id="eProf" to='/editprofile'>Edit Profile</Link></div>
+            <div><i className="far fa-list-alt"></i><Link id="order" to='/orders'>View orders</Link></div>
             <div><div className="update-loc-group"><i class="fas fa-map-marker"></i><button onClick={() => this.geoFindMe()}>Update my location</button>
             {this.state.response ? <img src={this.state.response} id="loading-gif" alt="loading..."/> : ''}</div></div>
-            <div><i class="far fa-minus-square"></i><button id="remBtn" onClick={this.handleRemoval}>Remove my truck</button></div>
+            <div><i className="far fa-minus-square"></i><button id="remBtn" onClick={this.handleRemoval}>Remove my truck</button></div>
             <div><div id="tLog"><Logout /></div></div>
           </Menu>
          : 
