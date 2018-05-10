@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {getProfile} from '../../truckprofile/actions/tProfileActions'
 import { connect } from 'react-redux';
 import {editTruckProfile} from '../actions/edittruckprofileaction'
-import {Redirect, Link} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import MapViewInputs from '../../MapView/mapviewcomponents/MapViewInputs';
 import './edittruckprofile.css'
 import HomeHeader from '../../headers/HomeHeader'

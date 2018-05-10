@@ -1,7 +1,8 @@
 import io from 'socket.io-client'
 import store from '../store'
 // const socket = io.connect('http://192.168.50.34:3001')
-const socket = io.connect('http://10.68.0.239:3001')
+// const socket = io.connect('http://10.68.0.239:3001')
+const socket = io.connect('http://localhost:3001')
 
 
 // export function sendOrder(orders) {

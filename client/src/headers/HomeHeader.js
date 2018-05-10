@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Login from '../login/Login'
 import {connect} from 'react-redux'
-import HomeDropdown from '../dropdowns/homeDropdown/HomeDropdown'
+// import HomeDropdown from '../dropdowns/homeDropdown/HomeDropdown'
+import HomeBurger from '../dropdowns/homeDropdown/testBurger'
 import trucksvg from 'assets/images/truck.svg'
 import {Link} from 'react-router-dom'
 
@@ -25,7 +26,10 @@ export class HomeHeader extends Component {
                                   {this.props.source === 'user' ? <img src={this.props.avatar} alt="avatar"/> :
                                                                   <img src={this.props.companyLogo} alt=""/>}
                                 </div> : ' '}
-          <HomeDropdown />
+          {/* <div className="dropdown-menu"> */}
+              {/* <HomeDropdown /> */}
+              <HomeBurger />
+          {/* </div> */}
         </div>
 
       </div>

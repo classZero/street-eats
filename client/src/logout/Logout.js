@@ -10,6 +10,7 @@ export class Logout extends Component {
     api.logout()
     this.props.history.push('/')
   }
+
   render() {
     return (
       <div>

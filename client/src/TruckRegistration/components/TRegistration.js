@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 import {registerTruck} from '../actions/TRegistrationActions'
 // import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
-import alttruck from '../../assets/images/alttruck.svg'
+// import alttruck from '../../assets/images/alttruck.svg'
 import './TRegistration.css'
 
 

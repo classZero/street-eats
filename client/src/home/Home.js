@@ -34,8 +34,6 @@ export class Home extends Component {
           
           <div className="list-wrapper">
 
-            {/* <Link to="/payments">temp payments</Link> */}
-
             <div className="home-newsfeed">
               <div className="home-newsfeed-header" >
 
@@ -53,7 +51,7 @@ export class Home extends Component {
                 this.props.sortType === 'all' ? <h1 className="content-headers">All Trucks</h1> :
                 this.props.sortType === 'alpha' ? <h1 className="content-headers">By Name</h1> :
                 this.props.sortType === 'active' ? <h1 className="content-headers">Active Trucks</h1> :
-                <h1 className="content-headers">All Trucks</h1>}
+                <h1 className="content-headers">Active Trucks</h1>}
               </div>
 
               {/* show list */}

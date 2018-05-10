@@ -58,9 +58,9 @@ router.post('/updatespecial/:user/:specialinfo', (req, res, next) => {
 router.get('/truckdata/:sort', (req, res, next) => {
   let type = req.params.sort
   let sql = ''
-  if (type === 'all') {
+  if (type === 'active') {
     sql = `
-      SELECT * FROM trucks
+      SELECT * FROM trucks WHERE isActive = 1 
     `
   } else if (type === 'new') {
     sql = `
@@ -70,13 +70,13 @@ router.get('/truckdata/:sort', (req, res, next) => {
     sql = `
       SELECT * FROM trucks ORDER BY companyname ASC
     `
-  } else if (type === 'active') {
+  } else if (type === 'all') {
     sql = `
       SELECT * FROM trucks WHERE isActive = 1 
     `
   } else {
     sql = `
-      SELECT * FROM trucks WHERE isActive = 1 
+      SELECT * FROM trucks WHERE isActive = 1
     `
   }  
   conn.query(sql, (err, results, fields) => {

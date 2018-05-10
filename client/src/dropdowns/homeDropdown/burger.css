@@ -1,0 +1,94 @@
+/* Position and sizing of burger button */
+.bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    right: 36px;
+    top: 36px;
+  }
+  
+  /* Color/shape of burger icon bars */
+  .bm-burger-bars {
+    background: #373a47;
+  }
+  
+  /* Position and sizing of clickable cross button */
+  .bm-cross-button {
+    height: 24px;
+    width: 24px;
+  }
+  
+  /* Color/shape of close button cross */
+  .bm-cross {
+    background: #bdc3c7;
+  }
+  
+  /* General sidebar styles */
+  .bm-menu {
+    background: rgb(109, 135, 142);
+    padding: 2.5em 1.5em 0;
+    font-size: 1.15em;
+  }
+
+  .bm-menu-wrap {
+      top: 0px;
+  }
+  
+  /* Morph shape necessary with bubble or elastic */
+  /* .bm-morph-shape {
+    fill: #373a47;
+  } */
+  
+  /* Wrapper for item list */
+  .bm-item-list {
+    color: #b8b7ad;
+    padding: 0.2em;
+  }
+
+  .bm-item-list div {
+    margin: 10px 0;
+  }
+  
+  /* Styling of overlay */
+  .bm-overlay {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  #uProf, #tProf, #eProf, #order, #regPage, #uLog a, #tLog a, .update-loc-group button, #remBtn {
+    font-family: 'Questrial', sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    color: rgb(208, 208, 208);
+    text-shadow: none;
+  }
+
+  #uProf:hover, #tProf:hover, #eProf:hover, #order:hover, #regPage:hover, #uLog a:hover, #tLog a:hover, .update-loc-group button:hover, #remBtn:hover {
+    color: rgb(240, 240, 240);
+  }
+
+  .update-loc-group button, #remBtn {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      padding: 0;
+  }
+
+  .update-loc-group {
+      display: flex;
+      align-items: center;
+  }
+  
+  .logTitle, .uName {
+      color: rgb(208, 208, 208);
+      font-size: 20px;
+  }
+
+  i {
+      text-shadow: none;
+      width: 20px;
+      margin-right: 5px;
+  }
+
+  #tLog, #uLog {
+      padding-top: 10px;
+  }
