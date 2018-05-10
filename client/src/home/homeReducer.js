@@ -20,6 +20,8 @@ export default function(state = initialState, action) {
         return {...state, userMessage: action.payload}
     case "LOGIN_MESSAGE":
         return {...state, userMessage: action.payload}
+    case "LOGIN_ERROR":
+        return {...state, userMessage: action.payload}
     default:
       return state
   }
