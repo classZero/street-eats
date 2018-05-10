@@ -16,7 +16,7 @@
     margin-left: 20px;
 }
 
-.uprofile-username {
+.uprofile-username, .uprofile-fav-container-header, .uprofile-fav-warning {
     margin-left: 20px;
     margin-top: 20px;
 }
@@ -45,3 +45,42 @@
     color: inherit;
     text-decoration: none;
 }
+
+.uprofile-fav {
+    display: flex;
+    text-decoration: none;
+}
+
+.uprofile-fav:hover {
+    box-shadow: inset 7px 0 9px -7px blue;
+}
+
+.uprofile-fav-container-header {
+}
+
+.uprofile-fav-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 10px;
+}
+
+.uprofile-fav-right h3 {
+    color: black;
+}
+
+.uprof-fav-img {
+    width: 80px;
+    height: 80px;
+}
+
+/* remove button */
+
+.uprofile-remove-fav {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 30px;
+}
+ 

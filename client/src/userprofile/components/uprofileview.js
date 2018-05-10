@@ -29,12 +29,19 @@ class UProfileView extends Component {
             return <div className="uprofile-container">
                 <div className="uprofile-username">Username: {this.props.profile.username}</div>
                 <div className="uprofile-email">Email: {this.props.profile.email}</div>
-                My Favorites:
+                <div className="uprofile-fav-container-header">My Favorites:</div>
                 <div className="uprofile-favcontainer">
-                {this.props.favorites.map((favorite, index) => {
-                        return <div key={'favorite' + index} ><Link to={'/truckprofile/' + favorite.username}><img src={favorite.companylogo} alt="logo"/><br/>{favorite.companyname}
-                        <RemoveFavorite truck={favorite.username} user={this.props.username} /></Link></div>
-                    })}
+                {this.props.favorites.length > 1 ? 
+                this.props.favorites.map((favorite, index) => {
+                        return  <Link to={'/truckprofile/' + favorite.username} key={'favorite' + index} className="uprofile-fav">
+                                  <div className="uprofile-fav-right">
+                                    <img src={favorite.companylogo} alt="logo" className="uprof-fav-img"/>
+                                    <h3>{favorite.companyname}</h3>
+                                    <RemoveFavorite truck={favorite.username} user={this.props.username} />
+                                  </div>
+                                </Link>
+                })
+                : <h3 className="uprofile-fav-warning">You have not favorited anything yet</h3> }
                 </div>
                 <div className="uprofile-editbutton">
                     <Link to='/editprofile'>Edit My Profile</Link>
