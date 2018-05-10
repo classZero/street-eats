@@ -18,7 +18,7 @@ export default function(state = initialState, action) {
       return {...state, message: action.payload}
     case "USER_CREATED":
         return {...state, userMessage: action.payload}
-    case "LOGIN_FAILURE":
+    case "LOGIN_MESSAGE":
         return {...state, userMessage: action.payload}
     default:
       return state

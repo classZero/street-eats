@@ -43,16 +43,20 @@ instance.login = function (username, password) {
           config.headers['Authorization'] = 'Bearer ' + resp.data.token
           return config
         })
-        if (resp.data.message === "Invalid Username and/or Password") {
-          store.dispatch({
-            type: "LOGIN_FAILURE",
-            payload: resp.data.message
-          })
-        }
         store.dispatch({
           type: "LOGIN_USER",
           payload: resp.data
         })
+        store.dispatch({
+          type: "LOGIN_MESSAGE",
+          payload: resp.data.message
+        })
+        setTimeout(function() {
+          store.dispatch({
+            type: "LOGIN_MESSAGE",
+            payload: ''
+          })
+        }, 3000)
     })
 }
 

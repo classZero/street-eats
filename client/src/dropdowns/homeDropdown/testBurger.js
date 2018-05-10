@@ -70,7 +70,7 @@ export class HomeBurger extends Component {
             <div><i className="far fa-user"></i><Link id="tProf" to={'/truckprofile/' + this.props.username}>View My Profile</Link></div>
             <div><i className="fas fa-edit"></i><Link id="eProf" to='/editprofile'>Edit Profile</Link></div>
             <div><i className="far fa-list-alt"></i><Link id="order" to='/orders'>View orders</Link></div>
-            <div><div className="update-loc-group"><i class="fas fa-map-marker"></i><button onClick={() => this.geoFindMe()}>Update my location</button>
+            <div><div className="update-loc-group"><i className="fas fa-map-marker"></i><button onClick={() => this.geoFindMe()}>Update my location</button>
             {this.state.response ? <img src={this.state.response} id="loading-gif" alt="loading..."/> : ''}</div></div>
             <div><i className="far fa-minus-square"></i><button id="remBtn" onClick={this.handleRemoval}>Remove my truck</button></div>
             <div><div id="tLog"><Logout /></div></div>
