@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 
 import {addToCart} from '../actions/MenuViewActions'
 
@@ -18,16 +18,20 @@ class MenuItem extends Component{
         <h3>${this.props.item.itemPrice}</h3>
         <h4>{this.props.item.itemType}</h4>
         <p>{this.props.item.itemDescription}</p>
-        <button onClick={this.handleAdd} className="menuview-add-to-cart-button" >+Add to cart</button>
+        { this.props.isAuthenticated && this.props.source === 'user'
+         ? <button onClick={this.handleAdd} className="menuview-add-to-cart-button" >+Add to cart</button>
+         : ''
+        }
       </div>
     )
   }
 }
 
-// function mapStateToProps(state) {
-//   return {
-//   }
-// }
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: state.loginReducer.isAuthenticated,
+    source: state.loginReducer.source
+  }
+}
 
-// export default connect(mapStateToProps)(MenuItem)
-export default MenuItem
+export default connect(mapStateToProps)(MenuItem)
