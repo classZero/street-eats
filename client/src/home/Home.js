@@ -20,7 +20,7 @@ export class Home extends Component {
   }
 
   componentDidMount() {
-    changeSortView('all')
+    changeSortView('active')
   }
 
   render() {

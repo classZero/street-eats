@@ -151,7 +151,7 @@ router.post('/registration', (req, res, next) => {
                         })
                     })
                 } else {
-                    res.json({
+                    res.status(400).json({
                         message: "Bad Request"
                     })
                 }
