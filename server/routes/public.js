@@ -99,7 +99,7 @@ router.post('/registration', (req, res, next) => {
 
         if(results.map(res => res.count).indexOf(1) !== -1){
             console.log('username taken')
-            res.status(409).json({
+            res.json({
                 message: "Username already taken"
             })
         } else {
@@ -151,7 +151,7 @@ router.post('/registration', (req, res, next) => {
                         })
                     })
                 } else {
-                    res.status(400).json({
+                    res.json({
                         message: "Bad Request"
                     })
                 }

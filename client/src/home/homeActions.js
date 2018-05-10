@@ -42,7 +42,6 @@ export function updateLocation(lat, long, username) {
 
 export function removeLocation(username) {
   api.removeLocation(username).then(resp => {
-    console.log('home actions rasp.data',resp)
     store.dispatch({
       type: "REMOVE_TRUCK",
       payload: resp

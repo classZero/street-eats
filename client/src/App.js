@@ -37,7 +37,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    message: state.homeReducer.message.message
+    message: state.homeReducer.message.message,
+    message: state.homeReducer.userMessage
   }
 }
 

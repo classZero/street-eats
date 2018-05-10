@@ -2,7 +2,8 @@ import jwt from 'jsonwebtoken'
 
 const initialState = {
   isAuthenticated: window.localStorage.getItem('token') ? true : false,
-  username: getTokenUsername(),
+  // username: getTokenUsername(),
+  username: '',
   source: getTokenSource(),
   avatar: getTokenAvatar(),
   logo: getTokenAvatar()
@@ -10,8 +11,8 @@ const initialState = {
 
 function getTokenUsername() {
   if(window.localStorage.getItem('token')) {
-    const username = jwt.decode(window.localStorage.getItem('token')).user
-    return username
+    // const username = jwt.decode(window.localStorage.getItem('token')).user
+    // return username
   } else {
     return ""
   }

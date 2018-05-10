@@ -11,7 +11,17 @@ export function registerTruck(username, password, email, companyName, companyLog
 		store.dispatch({
 			type: 'REGISTER_TRUCK',
 			payload: resp.data
-		})
+    })
+    store.dispatch({
+      type: "USER_CREATED",
+      payload: resp.message
+    })
+    setTimeout(function() {
+      store.dispatch({
+        type: "USER_CREATED",
+        payload: ''
+      })
+    }, 3000)
 	})
 }
 
