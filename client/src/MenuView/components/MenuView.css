@@ -67,7 +67,8 @@
     font-size: 35px;
     font-family: 'Paytone One';
     font-weight: bold;
-    margin: 0;
+    margin: 0 0 8px 0;
+    padding-bottom: 8px;
     text-shadow: 2px 2px grey;
     border-bottom: 1px solid white;
 }
@@ -97,10 +98,10 @@
 	font-size: .9em;
 }
 
-.testZone {
-	
-}
-
 .checkout-button-wrapper{
 	text-align: center;
+}
+
+.checkout-button{
+	font-size: 1em;
 }

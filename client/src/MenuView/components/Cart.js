@@ -25,8 +25,10 @@ class Cart extends Component{
   render(){
     if(this.props.isAuthenticated && this.props.source === 'user'){
       return(
+
         <div className="testZone">
           <p className="cart-header" >{this.props.companyName} - Cart</p>
+
           {this.props.cart.map((item, i) => {
             return(
               <div key={'cartitem-'+i} className="cart-item" >
@@ -35,17 +37,23 @@ class Cart extends Component{
               </div>
             )}
           )}
-          <textarea className="cart-special-instructions" placeholder="Special Instructions" ></textarea>
-          <h3>Total - ${this.total()}</h3>
-          <div className='checkout-button-wrapper' >
-            <Checkout 
-              name={this.props.companyName} 
-              description={'foo: bar'}
-              amount={this.total() * 100}
-              cart={this.props.cart}
-            />
+          { this.props.cart.length === 0
+          ? <div className="checkout-button-wrapper" >Your cart is currently empty</div>
+          :<div>
+            <textarea className="cart-special-instructions" placeholder="Special Instructions" ></textarea>
+            <h3>Total - ${this.total()}</h3>
+            <div className='checkout-button-wrapper' >
+              <Checkout 
+                name={this.props.companyName} 
+                description={'foo: bar'}
+                amount={this.total() * 100}
+                cart={this.props.cart}  
+              />
+            </div>
           </div>
+          }
         </div>
+
       )
     } else {
       return <div></div>
