@@ -27,7 +27,10 @@ class Cart extends Component{
       return(
 
         <div className="testZone">
-          <p className="cart-header" >{this.props.companyName} - Cart</p>
+          {this.props.cartSource 
+            ? <p className="cart-header">{this.props.cartSource} - Cart</p>
+            : <p className="cart-header">{this.props.companyName} - Cart</p>
+          }
 
           {this.props.cart.map((item, i) => {
             return(

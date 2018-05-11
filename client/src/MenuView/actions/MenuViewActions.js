@@ -13,18 +13,12 @@ export function getMenu(username){
 	})
 }
 
-function changeMessage (itemObj){
-	store.dispatch({
-		type: 'UPDATE_CART_SOURCE',
-		payload: 'foo'
-	})
+function changeMessage (itemObj, currentTruck){
+	clearCart()
+	addToCart(itemObj, currentTruck)
 	store.dispatch({
 		type: 'ALERT',
-		payload: <div>look, it worked <button onClick={closeMessageBox}>this closes this box</button></div>
-	})
-	store.dispatch({
-		type: 'ADD_TO_CART',
-		payload: itemObj
+		payload: ''
 	})
 }
 
@@ -35,9 +29,9 @@ function closeMessageBox () {
 	})
 }
 
-export function addToCart(itemObj, currentTruck = 'foo'){
+export function addToCart(itemObj, currentTruck){
 	const cartSource = store.getState().MenuViewReducer.cartSource
-	console.log(cartSource, currentTruck)
+	
 	return cartSource === '' ?
 		(
 			store.dispatch({
@@ -58,9 +52,9 @@ export function addToCart(itemObj, currentTruck = 'foo'){
 		type: 'ALERT',
 		payload: 
 			<div>
-				hello world 
-				<button onClick={closeMessageBox}>click to close without adding to cart</button>
-				<button onClick={() => changeMessage(itemObj)}>click me to add thing to cart</button>
+				Your cart contains items from another food truck. Please complete your current order or clear your cart to proceed
+				<button onClick={closeMessageBox}>Close this window</button>
+				<button onClick={() => changeMessage(itemObj, currentTruck)}>Clear cart and add item</button>
 			</div>
 		})
 }

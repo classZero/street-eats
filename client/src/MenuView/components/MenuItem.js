@@ -8,7 +8,7 @@ class MenuItem extends Component{
 
   handleAdd = (e) => {
     e.preventDefault()
-    addToCart(this.props.item)
+    addToCart(this.props.item, this.props.displayedTruck)
   }
 
   render(){
@@ -30,7 +30,8 @@ class MenuItem extends Component{
 function mapStateToProps(state) {
   return {
     isAuthenticated: state.loginReducer.isAuthenticated,
-    source: state.loginReducer.source
+    source: state.loginReducer.source,
+    displayedTruck: state.tProfileReducer.profile.companyname
   }
 }
 
