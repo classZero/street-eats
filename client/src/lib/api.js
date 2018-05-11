@@ -37,6 +37,7 @@ instance.getRegisterPath = function() {
 instance.login = function (username, password) {
     return this.post(this.getTokenPath(), {username, password})
         .then(resp => {
+          console.log('api response', resp)
         window.localStorage.setItem('token', resp.data.token)
         this.tokenInterceptor = this.interceptors.request.use(config => {
           config.headers['Authorization'] = 'Bearer ' + resp.data.token
@@ -46,6 +47,16 @@ instance.login = function (username, password) {
           type: "LOGIN_USER",
           payload: resp.data
         })
+        store.dispatch({
+          type: "LOGIN_MESSAGE",
+          payload: resp.data.message
+        })
+        setTimeout(function() {
+          store.dispatch({
+            type: "LOGIN_MESSAGE",
+            payload: ''
+          })
+        }, 3000)
     })
 }
 

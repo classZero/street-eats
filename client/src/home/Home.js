@@ -34,26 +34,21 @@ export class Home extends Component {
           
           <div className="list-wrapper">
 
-            {/* <Link to="/payments">temp payments</Link> */}
-
             <div className="home-newsfeed">
               <div className="home-newsfeed-header" >
 
                 {/* sort menu */}
                 <div className="sort-bar-wrapper">
-                  <div className="dropdown-menu">
-                    <div>
                       <TruckListDropdown />
-                    </div>
-                  </div>
                 </div>
 
                 {/* dynamic title */}
                 {this.props.sortType === 'new' ? <h1 className="content-headers">Newest Trucks</h1> :
                 this.props.sortType === 'all' ? <h1 className="content-headers">All Trucks</h1> :
-                this.props.sortType === 'alpha' ? <h1 className="content-headers">By Name</h1> :
+                this.props.sortType === 'alpha' ? <h1 className="content-headers">By Name &#9650;</h1> :
+                this.props.sortType === 'alphaDesc' ? <h1 className="content-headers">By Name &#9660;</h1> :
                 this.props.sortType === 'active' ? <h1 className="content-headers">Active Trucks</h1> :
-                <h1 className="content-headers">All Trucks</h1>}
+                <h1 className="content-headers">Active Trucks</h1>}
               </div>
 
               {/* show list */}
@@ -76,7 +71,6 @@ export class Home extends Component {
 
 function mapStateToProps(state) {
   // console.log('isAuth? ' + state.loginReducer.isAuthenticated)
-  // console.log(state.homeReducer.truckData)
   return {
     isAuthenticated: state.loginReducer.isAuthenticated,
     username: state.loginReducer.username,

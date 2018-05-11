@@ -7,19 +7,18 @@ export function login(username, password) {
   api.login(username, password).then(resp => {
     console.log('api login', resp.data)
   }).catch(err => {
+    if(err.response) {
       store.dispatch({
-        type:"LOGIN_ERROR",payload:err
-      })
-      store.dispatch({
-        type: "LOGIN_FAILURE",
-        payload: 'Invalid username and/or password'
+        type:"LOGIN_ERROR",
+        payload: err.response.data.message
       })
       setTimeout(function() {
         store.dispatch({
-          type: "LOGIN_FAILURE",
+          type:"LOGIN_ERROR",
           payload: ''
         })
-      }, 3000)
-      console.log('actions ' + err)
+      },3000)
+      console.log(err.response.data.message)
+    }
   })
 }

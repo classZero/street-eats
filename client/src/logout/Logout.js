@@ -10,6 +10,7 @@ export class Logout extends Component {
     api.logout()
     this.props.history.push('/')
   }
+
   render() {
     return (
       <div>
@@ -17,6 +18,6 @@ export class Logout extends Component {
       </div>
     )
   }
-};
+}
 
 export default withRouter(Logout)

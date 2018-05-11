@@ -4,9 +4,9 @@ import api from '../lib/api'
 import {dispatchToTruck} from '../orders/orderActions'
 import {clearCart} from 'MenuView/actions/MenuViewActions'
 
-const PAYMENT_SERVER_URL = process.env.NODE_ENV === 'production'
-  ? 'http://myapidomain.com'
-  : 'http://api/localhost:3001/payments';
+// const PAYMENT_SERVER_URL = process.env.NODE_ENV === 'production'
+//   ? 'http://myapidomain.com'
+//   : 'http://api/localhost:3001/payments';
 
 const STRIPE_PUBLISHABLE = process.env.NODE_ENV === 'production'
   ? 'pk_live_MY_PUBLISHABLE_KEY'

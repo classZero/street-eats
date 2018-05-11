@@ -46,20 +46,19 @@ class TruckListDropdown extends Component {
   }
 
   render() {
-    const classesList = this.state.showMenuList ? 'menu' : 'menu hide'
     const btnColorList = this.state.showMenuList ? 'dropmenu-btn-sort color' : 'dropmenu-btn-sort noColor'
+    const slider = this.state.showMenuList ? 'slider' : 'closed'
     return (
       <div className="dropdown-menu" ref={node => { this.nodeL = node }}>
         <div>
           <button onClick={this.handleClickList} className={btnColorList}>Sort &#9662;</button>
-          {this.state.showMenuList && (
-          <div className={classesList}  >
+          <div className={slider} >
               <button onClick={this.setSortType} value="all">Show All</button>
               <button onClick={this.setSortType} value="new">Show Newest</button>
-              <button onClick={this.setSortType} value="alpha">Show By Truck Name A-Z</button>
+              <button onClick={this.setSortType} value="alpha">Show By Truck Name &#9652;</button>
+              <button onClick={this.setSortType} value="alphaDesc">Show By Truck Name &#9662;</button>
               <button onClick={this.setSortType} value="active">Show Active Only</button>
           </div>
-          )}
         </div>
       </div>
     )

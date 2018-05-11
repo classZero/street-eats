@@ -10,18 +10,27 @@
     box-shadow: 0px 0px 8px 8px #445e69;
     font-family: Questrial;
     font-size: 25px;
+    overflow: auto;
 }
 
-.uprofile-container p {
+#uprofile-back-btn, #uprofile-edit-btn {
+    text-decoration: none;
+    font-family: 'Paytone One', sans-serif;
+    color: white;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+#uprofile-back-btn:hover, #uprofile-edit-btn:hover {
+    color: grey;
+}
+
+/* .uprofile-container p {
     margin-left: 20px;
-}
+} */
 
-.uprofile-username {
-    margin-left: 20px;
-    margin-top: 20px;
-}
-
-.uprofile-email {
+.uprofile-username, .uprofile-fav-container-header, .uprofile-fav-warning, .uprofile-email {
     margin-left: 20px;
     margin-top: 20px;
 }
@@ -36,12 +45,100 @@
     overflow-y: scroll;
 }
 
-.uprofile-editbutton {
-   margin-top: 25px;
-   margin-left: 220px;
+.uprofile-button-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 5px;
 }
 
-.uprofile-editbutton a {
-    color: inherit;
+.uprofile-fav {
+    display: flex;
     text-decoration: none;
 }
+
+.uprofile-fav:hover {
+    box-shadow: inset 7px 0 9px -7px blue;
+}
+
+.uprofile-fav-container-header {
+    margin-bottom: 20px;
+}
+
+.uprofile-fav-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 10px;
+}
+
+.uprofile-fav-right h3 {
+    color: black;
+}
+
+.uprof-fav-img {
+    width: 80px;
+    height: 80px;
+}
+
+/* remove button */
+
+.uprofile-remove-fav {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 30px;
+}
+
+/* reviews section */
+
+.uprofile-review-container {
+    margin-top: 20px;
+}
+
+.uprofile-review-container-header {
+    /* margin-bottom: 20px; */
+    margin-left: 20px;
+}
+
+.uprofile-review-items-container {
+    border: 1px solid white;
+    width: 500px;
+    margin: 20px auto;
+    height: 450px;
+    font-size: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+/* change review section */
+
+.changeReview-container {
+
+}
+
+.review-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-company-name {
+    margin: 20px 0 20px 20px;
+}
+
+.review-button-wrapper button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 16px;
+}
+
+.review-button-wrapper button:hover {
+    color: grey;
+}
+
+.review-content {
+    margin: 0 20px 0 20px;
+}
+ 

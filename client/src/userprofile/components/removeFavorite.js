@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { removeFavorite } from '../actions/uProfileActions' 
 import {getFavorites} from '../actions/uProfileActions'
 
-
+import './uprofile.css'
 
 
 class RemoveFavorite extends Component {
@@ -14,7 +14,7 @@ class RemoveFavorite extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.removeFavorite}>Remove from my Favorites</button>
+                <button onClick={this.removeFavorite} className="uprofile-remove-fav"><i className="far fa-times-circle"></i></button>
             </div>
         )
     }

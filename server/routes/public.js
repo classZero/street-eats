@@ -58,9 +58,9 @@ router.post('/updatespecial/:user/:specialinfo', (req, res, next) => {
 router.get('/truckdata/:sort', (req, res, next) => {
   let type = req.params.sort
   let sql = ''
-  if (type === 'all') {
+  if (type === 'active') {
     sql = `
-      SELECT * FROM trucks
+      SELECT * FROM trucks WHERE isActive = 1 
     `
   } else if (type === 'new') {
     sql = `
@@ -70,13 +70,17 @@ router.get('/truckdata/:sort', (req, res, next) => {
     sql = `
       SELECT * FROM trucks ORDER BY companyname ASC
     `
-  } else if (type === 'active') {
+  } else if (type === 'all') {
     sql = `
       SELECT * FROM trucks WHERE isActive = 1 
     `
+  } else if (type === 'alphaDesc') {
+    sql = `
+      SELECT * FROM trucks ORDER BY companyname DESC
+    `
   } else {
     sql = `
-      SELECT * FROM trucks WHERE isActive = 1 
+      SELECT * FROM trucks WHERE isActive = 1
     `
   }  
   conn.query(sql, (err, results, fields) => {
@@ -169,22 +173,21 @@ router.post('/login', (req, res, next) => {
                 SELECT id, username, email, avatar, Null as companyname, Null as companylogo, Null as menuurl, Null as aboutus, Null as lng, Null as lat, Null as datecreated, 'user' as Source FROM users as userInfo WHERE username = ? AND password = ?`
 
     conn.query(sql, [username, password, username, password], (err, results, fields) => {
-      console.log('login results ' + JSON.stringify(results))
+      // console.log('login results ' + JSON.stringify(results))
         if(results.length > 0) {
             console.log('username and password returned match')
-            console.log(results[0].id)
             const token = jwt.sign({user: username, source: results[0].Source, avatar: results[0].avatar, logo: results[0].companylogo}, config.get('jwt-secret'))
             res.json({
                 message: "Login Successful",
                 token: token,
-                user: username, //username also attached to token
+                user: username,
                 source: results[0].Source,
                 avatar: results[0].avatar,
                 logo: results[0].companylogo
             })
         } else {
             res.status(401).json({
-                message: "Bad Username and/or Password"
+                message: "Invalid Username and/or Password"
             })
         }
     })
@@ -192,7 +195,6 @@ router.post('/login', (req, res, next) => {
 
 
 router.get('/truckprofile/:username', (req, res, next) => {
-    // console.log(req.params.username)
     const username = req.params.username
     const sql = `
     SELECT * 
