@@ -94,7 +94,7 @@ class EditTruckProfile extends Component {
                                 <div>
                                   <img alt="menu" src={this.props.profile.menuurl} />
                                 </div>
-                                <button type='submit'>Submit</button>
+                                <button id="edit-truck-submit-button" type='submit'>Submit</button>
                             </form>
                           </div>
                         </div>

@@ -28,7 +28,8 @@
 }
 
 #update-location-back-btn:hover {
-    color: grey;
+    color: rgb(220, 220, 220);
+    text-shadow: 2px 2px black;
 }
 
 .update-location-body {
@@ -61,8 +62,9 @@
     border: none;
     background-color: inherit;
     color: white;
-    font-size: 20px;
-    margin: 25px 0;
+    font-size: 25px;
+    margin: 25px auto;
+    margin-left: -25px;
 }
 
 #update-location-submit-btn:hover {
