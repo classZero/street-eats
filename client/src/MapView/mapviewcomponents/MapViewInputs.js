@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
+import {Link} from 'react-router-dom'
 import moment from 'moment'
 import {convertAddy , postHours, postSpecial} from '../mapviewactions/mapactions'
 import TimeRange from 'react-time-range'
@@ -52,29 +53,36 @@ class MapViewInputs extends Component {
     return (
     <div className="mapinputs-container">
       
-      <header>
+      <div className="update-location-header">
+        <Link to="/" id="update-location-back-btn">Back</Link>
         <h1>Update Location</h1>
-      </header>
-      
-      <div className="timerange">
-        <TimeRange
-            minuteIncrement={30}
-            startMoment={this.state.startTime}
-            endMoment={this.state.endTime}
-            onChange={this.returnFunction}
-        />
       </div>
+      <div className="update-location-body">
+        <div className="timerange">
+          <TimeRange
+              minuteIncrement={30}
+              startMoment={this.state.startTime}
+              endMoment={this.state.endTime}
+              onChange={this.returnFunction}
+          />
+        </div>
 
-      <form onSubmit={this.handleSubmit}>
-        <h4>Update Address:</h4><input onChange={this.handleChange} name="addy" autoComplete="off" type="text" placeholder="Street Address" value={this.state.addy} />
-        <h4>Optional Fields:</h4>
-        <input onChange={this.handleChange} name="special" autoComplete="off" style={{width:'500px'}} type="text" placeholder="Special info, to be seen by customers who click on your location" value={this.state.special} />
-        <br/>
+        <form onSubmit={this.handleSubmit}>
+          <h4>Update Address:</h4>
+          <div id="update-location-address-wrapper">
+          <i className="fas fa-map-marker-alt"></i>
+            <input onChange={this.handleChange} id="update-location-address" name="addy" autoComplete="off" type="text" placeholder="Street Address" value={this.state.addy} />
+          </div>
+          <h4>Additional Info:</h4>
+          <div className="update-location-special-wrapper">
+            <i className="far fa-star"></i>
+            <input onChange={this.handleChange} id="update-location-special" name="special" autoComplete="off" style={{width:'500px'}} type="text" placeholder="Send your customers a custom message" value={this.state.special} />
+          </div>
 
-        <button type="submit">Submit</button>
+          <button type="submit" id="update-location-submit-btn">Submit</button>
 
-      </form>
-
+        </form>
+      </div>
     </div>
       
     )

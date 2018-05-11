@@ -4,69 +4,93 @@
     justify-content: space-evenly;
     margin-top: 30px;
     height: 700px;
-    color: black;
+    color: white;
 }
 
-.edittruck-container, .editmenu-container{
+.edittruck-container, .editmenu-container {
+    width: 40%;
+    height: 100%;
+    background-color: rgb(176, 199, 201);
     border: 1px solid rgb(172, 230, 255);
     border-radius: 5px;
-    width: 500px;
-    background-color: rgb(176, 199, 201);
+    color: white;
+    font-family: 'Questrial', sans-serif;
     box-shadow: 0px 0px 8px 8px #445e69;
-    overflow: hidden;
-    overflow-y: scroll;
-    font-family: Questrial;
 }
 
-.edittruck-container input {
-    width: 350px;
-    height: 30x;
-    font-size: 18px;
-    /* border: 1px solid white; */
-    margin-left: 10px;
-    margin-top: 25px;
-    color: black;
-}
-
-header h1 {
-    text-align: center;
+.edit-truck-header-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    height: 12%;
     font-family: 'Paytone One', sans-serif;
+    box-shadow: 0px 8px 8px -8px #445e69;
     text-shadow: 2px 2px grey;
 }
 
-header {
-    border-bottom: 1px solid white;
-    position: relative;
+.menubuilder-toggle {
+    position: absolute;
+	top: 10px;
+    right: 10px;
+    font-family: 'Paytone One', sans-serif;
+    font-size: 16px;
+    text-shadow: 2px 2px grey;
+    border: none; 
+    outline: none;
+    background-color: transparent;
+    color: white;
+}
+
+.edit-truck-body-wrapper {
+    margin: 0 0 20px 0;
+    font-size: 25px;
+    height: 88%;
+}
+
+.edit-truck-body-wrapper form {
+    height: 100%;
+    margin: 0 0 0 20px;
+    overflow: auto;
+}
+
+.edit-truck-body-wrapper form h4 {
+    margin: 15px 0;
+}
+
+.edittruck-container input {
+    height: 40px;
+    width: 96%;
+    line-height: 40px;
+    font-size: 1rem;
+    padding: 2px 0 2px 30px;
+    margin: 0 10px 0 0;
+    border-radius: 8px;
+    background-color: #8c9fa0;
+    color: black;
+    border: 1px solid rgb(172, 230, 255);
 }
 
 .edittruck-container img {
     border: 1px solid white;
     width: 200px;
     height: 200px;
-    margin-left: 150px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin: 15px auto;
 }
 
 .edittruck-container textarea {
     background-color: inherit;
-    border-color: white;
-    width: 400px;
     height: 100px;
-    margin-left: 50px;
-    margin-top: 15px;
-}
-
-.edittruck-container button {
-    background-color: inherit;
-    border: none;
-    color: white;
-    font-size: 20px;
-    margin-left: 215px;
-    margin-bottom: 15px;
-    cursor: pointer;
+    margin: 15px 20px 0 0;
+    width: 96%;
+    line-height: 20px;
+    font-size: 1rem;
+    padding: 2px 10px 2px 10px;
+    border-radius: 8px;
+    background-color: #8c9fa0;
+    border: 1px solid rgb(172, 230, 255);
 }
 
 .edittruck-container button:hover {
-    color: rgb(240, 208, 32);
+    text-shadow: 2px 2px white;
 }

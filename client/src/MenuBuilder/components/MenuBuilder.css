@@ -16,7 +16,7 @@
     float: right;
 }
 
-.menubuilder-remove-button, .menubuilder-toggle, .edittruck-container .menubuilder-toggle{
+.menubuilder-remove-button {
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -31,16 +31,11 @@
 #menuBuilderForm::after{
 	clear: both;
 }
+
 .menubuilder-header{
 	position: relative;
 }
-.menubuilder-toggle{
-	position: absolute;
-	top: -12px;
-	bottom: 0;
-	right: 0;
-}
 
 .menubuilder-remove-button:hover, .menubuilder-toggle:hover {
-    color: rgb(240, 208, 32);
+    color: grey;
 }

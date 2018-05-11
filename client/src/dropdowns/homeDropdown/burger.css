@@ -9,7 +9,7 @@
   
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-    background: #373a47;
+    background: rgb(55, 58, 71);
 }
   
 /* Position and sizing of clickable cross button */
@@ -41,7 +41,7 @@
   
 /* Wrapper for item list */
 .bm-item-list {
-    color: #b8b7ad;
+    color: rgb(184, 183, 173);
     padding: 0.2em;
 }
 
