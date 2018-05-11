@@ -35,20 +35,21 @@ export class Home extends Component {
           <div className="list-wrapper">
 
             <div className="home-newsfeed">
+
+              {/* dynamic title */}
+              {this.props.sortType === 'new' ? <h1 className="content-headers">Newest Trucks</h1> :
+              this.props.sortType === 'all' ? <h1 className="content-headers">All Trucks</h1> :
+              this.props.sortType === 'alpha' ? <h1 className="content-headers">By Name &#9650;</h1> :
+              this.props.sortType === 'alphaDesc' ? <h1 className="content-headers">By Name &#9660;</h1> :
+              this.props.sortType === 'active' ? <h1 className="content-headers">Active Trucks</h1> :
+              <h1 className="content-headers">Active Trucks</h1>}
+
               <div className="home-newsfeed-header" >
 
                 {/* sort menu */}
                 <div className="sort-bar-wrapper">
                       <TruckListDropdown />
                 </div>
-
-                {/* dynamic title */}
-                {this.props.sortType === 'new' ? <h1 className="content-headers">Newest Trucks</h1> :
-                this.props.sortType === 'all' ? <h1 className="content-headers">All Trucks</h1> :
-                this.props.sortType === 'alpha' ? <h1 className="content-headers">By Name &#9650;</h1> :
-                this.props.sortType === 'alphaDesc' ? <h1 className="content-headers">By Name &#9660;</h1> :
-                this.props.sortType === 'active' ? <h1 className="content-headers">Active Trucks</h1> :
-                <h1 className="content-headers">Active Trucks</h1>}
               </div>
 
               {/* show list */}

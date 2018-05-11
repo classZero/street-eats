@@ -1,13 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import EditTruckProfile from './EditTruckProfile'
 import EditUserProfile from './EditUserProfile'
 import { connect } from 'react-redux'
 import {Redirect} from 'react-router-dom'
-
-
-
-
-
 
 class EditProfile extends Component {
     

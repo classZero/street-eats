@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {getProfile} from '../../truckprofile/actions/tProfileActions'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import {editTruckProfile} from '../actions/edittruckprofileaction'
 import {Redirect} from 'react-router-dom'
-import MapViewInputs from '../../MapView/mapviewcomponents/MapViewInputs';
-import './edittruckprofile.css'
+import MapViewInputs from '../../MapView/mapviewcomponents/MapViewInputs'
 import HomeHeader from '../../headers/HomeHeader'
 import MenuBuilder from 'MenuBuilder/components/MenuBuilder'
+import './edittruckprofile.css'
 
 class EditTruckProfile extends Component {
     state = {
@@ -18,7 +18,7 @@ class EditTruckProfile extends Component {
     }
     
     componentDidMount(){
-        getProfile(this.props.username)       ///add username as argument
+        getProfile(this.props.username)
     }
 
     handleChange = (e) =>{
@@ -46,7 +46,7 @@ class EditTruckProfile extends Component {
 
     toggleProfileMenu = (e) => {
         e.preventDefault()
-        if (this.state.toggleMenuEdit !== 'menu'){
+        if (this.state.toggleMenuEdit !== 'menu') {
             this.setState({
                 toggleMenuEdit: 'menu'
             })
@@ -66,19 +66,37 @@ class EditTruckProfile extends Component {
                     <MapViewInputs />
                     { this.state.toggleMenuEdit === 'menu' ? <MenuBuilder toggle={this.toggleProfileMenu} username={this.props.username}/> :
                         <div className="edittruck-container">
-                          <header>
+                          <div className="edit-truck-header-wrapper">
                             <h1>Edit Profile</h1>
                             <button onClick={this.toggleProfileMenu} className="menubuilder-toggle">Edit Menu</button>
-                          </header>
+                          </div>
+                          <div className="edit-truck-body-wrapper">
                             <form onSubmit={this.handleSubmit}>
-                                <div>Edit Truck Name: <input onChange={this.handleChange} type='text' name='name' value={this.state.name} /> </div>
-                                <div>Edit Truck logo: <input onChange={this.handleChange} type='text' name='logo' value={this.state.logo} /> </div>
-                                <div><img  alt="logo" src={this.props.profile.logo} /></div>
-                                <div>Edit About Us: <textarea onChange={this.handleChange} name='aboutus' value={this.state.aboutus} /></div>
-                                <div>Edit Menu Url: <input onChange={this.handleChange} type='text' name='menuurl' value={this.state.menuurl} /> </div>
-                                <div><img alt="menu" src={this.props.profile.menuurl} /></div>
-                                <button type='submit'>Submit</button>
+                                <h4>Edit Truck Name:</h4>
+                                <div> 
+                                  <input onChange={this.handleChange} type='text' name='name' value={this.state.name} placeholder={this.props.profile.companyname}/> 
+                                </div>
+                                <h4>Edit Truck logo:</h4>
+                                <div>
+                                  <input onChange={this.handleChange} type='text' name='logo' value={this.state.logo} /> 
+                                </div>
+                                <div>
+                                  <img  alt="logo" src={this.props.profile.logo} />
+                                </div>
+                                <h4>Edit About Us:</h4>
+                                <div>
+                                  <textarea onChange={this.handleChange} name='aboutus' value={this.state.aboutus} />
+                                </div>
+                                <h4>Edit Menu Url:</h4>
+                                <div>
+                                  <input onChange={this.handleChange} type='text' name='menuurl' value={this.state.menuurl} /> 
+                                </div>
+                                <div>
+                                  <img alt="menu" src={this.props.profile.menuurl} />
+                                </div>
+                                <button id="edit-truck-submit-button" type='submit'>Submit</button>
                             </form>
+                          </div>
                         </div>
                     }
                   </div>
@@ -89,6 +107,7 @@ class EditTruckProfile extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
     return {
         profile : state.tProfileReducer.profile,
         isAuth: state.loginReducer.isAuthenticated,

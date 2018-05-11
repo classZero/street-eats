@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {login} from './loginActions'
+import FontAwesome from 'react-fontawesome'
 
 import './login.css'
 
@@ -28,22 +29,23 @@ export class Login extends Component {
   render() {
     return (
       <div className="home-login-container">
-        <form onSubmit={this.handleLoginSubmit} >
+        <form onSubmit={this.handleLoginSubmit} id="login-form">
           <input onChange={this.handleChange} 
                  autoComplete="off"
                  type="text" 
                  name="username" 
                  value={this.state.username}
-                 placeholder="username"
                  className="login-input"
                  ref={(input) => { this.nameInput = input; }}/>
+                 <span id="login-input-username-icon">{<i className="fas fa-user"></i>}</span>
           <input onChange={this.handleChange} 
                  autoComplete="off"
                  type="password" 
                  name="password" 
                  value={this.state.password}
-                 placeholder="password"
-                 className="login-input"/>
+                 className="login-input"
+                 id="login-input-password"/>
+                 <span id="login-input-password-icon">{<i className="fas fa-key"></i>}</span>
           <button type="submit" style={{display: 'none'}}>Hide submit button</button>
         </form>
       </div>
