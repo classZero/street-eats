@@ -6,6 +6,7 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
+  console.log(action)
   switch (action.type) {
     case "GET_TRUCK_DATA":
       return {...state, truckData: action.payload}
@@ -19,6 +20,8 @@ export default function(state = initialState, action) {
     case "USER_CREATED":
         return {...state, userMessage: action.payload}
     case "LOGIN_FAILURE":
+        return {...state, userMessage: action.payload}
+    case "ALERT" :
         return {...state, userMessage: action.payload}
     default:
       return state

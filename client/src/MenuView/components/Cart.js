@@ -64,6 +64,7 @@ class Cart extends Component{
 function mapStateToProps(state) {
   return {
     cart: state.MenuViewReducer.cart,
+    cartSource: state.MenuViewReducer.cartSource,
     companyName: state.tProfileReducer.profile.companyname,
     isAuthenticated: state.loginReducer.isAuthenticated,
     source: state.loginReducer.source

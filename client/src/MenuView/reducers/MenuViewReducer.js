@@ -1,10 +1,11 @@
 const initialState = {
     activeMenu: [],
     cart: [],
-    cartTotal: 0
+    cartTotal: 0,
+    cartSource: 'fizz'
 }
 
-//not currently using cartTotal, probably remove in future
+//not currently using cartTotal, possibly remove in future, might be useful to prevent editing of total by user though
 
 export default function (state = initialState, action) {
     switch (action.type) {
@@ -12,6 +13,8 @@ export default function (state = initialState, action) {
             return {...state, activeMenu: action.payload }
         case 'ADD_TO_CART':
         	return {...state, cart: [...state.cart, action.payload]}
+        case 'UPDATE_CART_SOURCE':
+            return {...state, cartSource: action.payload}
         case 'TOTAL_CART':
             return {...state, cartTotal: action.payload}
         case 'REMOVE_FROM_CART':
