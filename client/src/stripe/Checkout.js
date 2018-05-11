@@ -2,6 +2,7 @@ import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 import api from '../lib/api'
 import {dispatchToTruck} from '../orders/orderActions'
+import {clearCart} from 'MenuView/actions/MenuViewActions'
 
 // const PAYMENT_SERVER_URL = process.env.NODE_ENV === 'production'
 //   ? 'http://myapidomain.com'
@@ -16,7 +17,10 @@ const CURRENCY = 'USD';
 const successPayment = data => {
   console.log('data',data)
   alert('Payment Successful')
+
   dispatchToTruck(data)
+  console.log('about to clear cart')
+  clearCart()
 }
 
 const errorPayment = data => {
@@ -36,6 +40,8 @@ const Checkout = ({ name, description, amount, cart }) =>
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
     token={onToken(amount, description, cart)}
-  />
+  > 
+  <button className="checkout-button" >Proceed To Checkout</button>
+  </StripeCheckout>
 
 export default Checkout;

@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux'
 
-// import {HomeHeader} from 'headers/HomeHeader'
 import MenuItem from './MenuItem'
 import Cart from './Cart'
 
@@ -20,7 +19,7 @@ class MenuView extends Component{
 		getMenu(this.props.match.params.username).then(resp => console.log(resp))
 	}
 
-  
+
 
 	render(){
 		return(

@@ -24,6 +24,8 @@ export default function(state = initialState, action) {
         return {...state, userMessage: action.payload}
     case "LOGOUT_USER":
         return{...state, userMessage: action.payload}
+    case "ALERT" :
+        return {...state, userMessage: action.payload}
     default:
       return state
   }
