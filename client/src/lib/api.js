@@ -67,8 +67,14 @@ instance.logout = function() {
   window.localStorage.removeItem('token')
   store.dispatch({
     type: "LOGOUT_USER",
-    payload: ''
+    payload: "Thanks for checking out Street Eats"
   })
+  setTimeout(function() {
+    store.dispatch({
+      type: "LOGOUT_USER",
+      payload: ''
+    })
+  },3000)
 }
 
 instance.registration = function (username, password, email, avatar, type, companyName, companyLogo, menu, aboutus) {

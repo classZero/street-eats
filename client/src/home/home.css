@@ -45,28 +45,18 @@ body {
 
 .home-header {
     display: flex;
-    /* position: relative; */
     justify-content: flex-end;
     align-items: center;
-    /* width: 100%; */
     height: 95px;
-    /* padding: 0 80px 0 30px; */
-    /* background-color: inherit; */
     margin: 8px 50px 0 50px;
     text-shadow: 2px 2px rgba(196, 153, 150, 0.7);
 }
 
-
 .home-login-container {
-    /* position: absolute; */
-    /* top: 50%; */
     width: 70%;
 }
 
 .home-header-dropdown {
-    /* position: absolute; */
-    /* right: 100px; */
-    /* top: 50px; */
     display: flex;
     align-items: center;
     z-index:50;
@@ -88,10 +78,14 @@ body {
     font-family: 'Paytone One', sans-serif;
 }
 
+.content-headers {
+    margin-top: 0;
+}
+
 .logo-container {
     position: absolute;
     top: 8px;
-    right: 42%;
+    right: 44.5%;
     z-index: 3;
     margin: 0 auto;
 }
@@ -165,8 +159,9 @@ body {
 }
 
 .newtruck-list-item p {
-    margin: 0;
+    margin: 5px 0 0 0;
     color: black;
+    font-size: 14px;
 }
 
 .newtruck-list-item h3 {
@@ -175,6 +170,7 @@ body {
 }
 
 .newtruck-list-item:hover {
+    content: 'rrr';
     background-color: rgb(169, 169, 169);
 }
 
