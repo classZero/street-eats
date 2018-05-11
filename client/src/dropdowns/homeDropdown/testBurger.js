@@ -8,7 +8,6 @@ import loading from '../../assets/images/truck.gif'
 
 import './burger.css'
 
-
 export class HomeBurger extends Component {
   state = {
     showMenu: false,
@@ -55,7 +54,6 @@ export class HomeBurger extends Component {
   render() {
     return (
       <div>
-      {/* <Menu> */}
       {window.localStorage.getItem('token') ?
         this.props.source === 'user' ?
           <Menu right noOverlay width={270} isOpen={ this.state.showMenu }>
@@ -79,15 +77,12 @@ export class HomeBurger extends Component {
           <Menu right noOverlay width={250} isOpen={ this.state.showMenu }>
             <Link id="regPage" to="/registrationPage">Register</Link>
           </Menu>}
-        {/* <a onClick={ this.showMenu } className="menu-item--small" href="">Menu</a> */}
-      {/* </Menu> */}
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     source: state.loginReducer.source,
     username: state.loginReducer.username

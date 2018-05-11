@@ -26,16 +26,11 @@
     color: grey;
 }
 
-.uprofile-container p {
+/* .uprofile-container p {
     margin-left: 20px;
-}
+} */
 
-.uprofile-username, .uprofile-fav-container-header, .uprofile-fav-warning {
-    margin-left: 20px;
-    margin-top: 20px;
-}
-
-.uprofile-email {
+.uprofile-username, .uprofile-fav-container-header, .uprofile-fav-warning, .uprofile-email {
     margin-left: 20px;
     margin-top: 20px;
 }
@@ -93,5 +88,57 @@
     outline: none;
     background-color: transparent;
     font-size: 30px;
+}
+
+/* reviews section */
+
+.uprofile-review-container {
+    margin-top: 20px;
+}
+
+.uprofile-review-container-header {
+    /* margin-bottom: 20px; */
+    margin-left: 20px;
+}
+
+.uprofile-review-items-container {
+    border: 1px solid white;
+    width: 500px;
+    margin: 20px auto;
+    height: 450px;
+    font-size: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+/* change review section */
+
+.changeReview-container {
+
+}
+
+.review-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-company-name {
+    margin: 20px 0 20px 20px;
+}
+
+.review-button-wrapper button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 16px;
+}
+
+.review-button-wrapper button:hover {
+    color: grey;
+}
+
+.review-content {
+    margin: 0 20px 0 20px;
 }
  
