@@ -10,6 +10,20 @@
     box-shadow: 0px 0px 8px 8px #445e69;
     font-family: Questrial;
     font-size: 25px;
+    overflow: auto;
+}
+
+#uprofile-back-btn, #uprofile-edit-btn {
+    text-decoration: none;
+    font-family: 'Paytone One', sans-serif;
+    color: white;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+#uprofile-back-btn:hover, #uprofile-edit-btn:hover {
+    color: grey;
 }
 
 .uprofile-container p {
@@ -36,14 +50,10 @@
     overflow-y: scroll;
 }
 
-.uprofile-editbutton {
-   margin-top: 25px;
-   margin-left: 220px;
-}
-
-.uprofile-editbutton a {
-    color: inherit;
-    text-decoration: none;
+.uprofile-button-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 5px;
 }
 
 .uprofile-fav {
@@ -56,6 +66,7 @@
 }
 
 .uprofile-fav-container-header {
+    margin-bottom: 20px;
 }
 
 .uprofile-fav-right {

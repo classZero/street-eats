@@ -27,6 +27,10 @@ class UProfileView extends Component {
     checkUser(auth, current, user) {
         if(auth && current === user) {
             return <div className="uprofile-container">
+                <div className="uprofile-button-container">
+                    <Link to="/" id="uprofile-back-btn">Back</Link>
+                    <Link to='/editprofile' id="uprofile-edit-btn">Edit My Profile</Link>
+                </div>
                 <div className="uprofile-username">Username: {this.props.profile.username}</div>
                 <div className="uprofile-email">Email: {this.props.profile.email}</div>
                 <div className="uprofile-fav-container-header">My Favorites:</div>
@@ -43,9 +47,7 @@ class UProfileView extends Component {
                 })
                 : <h3 className="uprofile-fav-warning">You have not favorited anything yet</h3> }
                 </div>
-                <div className="uprofile-editbutton">
-                    <Link to='/editprofile'>Edit My Profile</Link>
-                </div>
+
                 <div>
                     My Reviews:
                     <div>
