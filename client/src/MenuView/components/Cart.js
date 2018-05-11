@@ -5,6 +5,9 @@ import {removeFromCart} from '../actions/MenuViewActions'
 import Checkout from 'stripe/Checkout'
 
 class Cart extends Component{
+  state ={
+    visible: false
+  }
 
   total = () => {
     return (
@@ -19,41 +22,55 @@ class Cart extends Component{
     removeFromCart(itemIndex)
   }
 
-  // handleCheckout = (e) => {
-  //   e.preventDefault()
-  //   console.log('checkout')
-  // }
-
   render(){
-    return(
-      <div className="testZone">
-        <h1>Cart</h1>
-        <h2>{this.props.companyName}</h2>
-        {this.props.cart.map((item, i) => {
-          return(
-            <div key={'cartitem-'+i}>
-              {item.itemName} - ${item.itemPrice.toFixed(2)}
-              <button onClick={ e => this.handleRemove(e, i)} >-</button>
-            </div>
+    if(this.props.isAuthenticated && this.props.source === 'user'){
+      return(
+
+        <div className="testZone">
+          {this.props.cartSource 
+            ? <p className="cart-header">{this.props.cartSource} - Cart</p>
+            : <p className="cart-header">{this.props.companyName} - Cart</p>
+          }
+
+          {this.props.cart.map((item, i) => {
+            return(
+              <div key={'cartitem-'+i} className="cart-item" >
+                {item.itemName} <span>${item.itemPrice.toFixed(2)}</span>
+                <button onClick={ e => this.handleRemove(e, i)} className="cart-remove-item-button" >-Remove From Cart</button>
+              </div>
+            )}
           )}
-        )}
-        <h3>${this.total()}</h3>
-        {/* <button onClick={this.handleCheckout} >Checkout</button> */}
-        <Checkout 
-          name={this.props.companyName} 
-          description={'Order No: Foo'}
-          amount={this.total() * 100}
-          cart={this.props.cart}
-        />
-      </div>
-    )
+          { this.props.cart.length === 0
+          ? <div className="checkout-button-wrapper" >Your cart is currently empty</div>
+          :<div>
+            <textarea className="cart-special-instructions" placeholder="Special Instructions" ></textarea>
+            <h3>Total - ${this.total()}</h3>
+            <div className='checkout-button-wrapper' >
+              <Checkout 
+                name={this.props.companyName} 
+                description={'foo: bar'}
+                amount={this.total() * 100}
+                cart={this.props.cart}  
+              />
+            </div>
+          </div>
+          }
+        </div>
+
+      )
+    } else {
+      return <div></div>
+    }
   }
 }
 
 function mapStateToProps(state) {
   return {
     cart: state.MenuViewReducer.cart,
-    companyName: state.tProfileReducer.profile.companyname
+    cartSource: state.MenuViewReducer.cartSource,
+    companyName: state.tProfileReducer.profile.companyname,
+    isAuthenticated: state.loginReducer.isAuthenticated,
+    source: state.loginReducer.source
   }
 }
 
