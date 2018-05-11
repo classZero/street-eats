@@ -130,7 +130,6 @@ body {
 .content-headers {
     display: flex;
     justify-content: space-around;
-    /* align-items: center; */
     position: absolute;
     top: 40px;
     left: 0;
@@ -152,11 +151,9 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
     display: flex;
     justify-content: space-around;
     align-items: center;
-    /* position: relative; */
     height: 170px;
     font-family: 'Paytone One', sans-serif;
     box-shadow: 0px 8px 8px -8px #445e69;
@@ -170,8 +167,6 @@ body {
 }
 
 .home-newsfeed h1 {
-    /* text-align: center; */
-    /* text-shadow: 2px 2px grey; */
     color: white;
 }
 
