@@ -18,10 +18,6 @@
 	margin: 15px 0;
 }
 
-#menuBuilderForm {
-	/* padding: 8px; */
-}
-
 #menuBuilderForm input{
     height: 40px;
     width: 96%;
@@ -40,10 +36,6 @@
 }
 
 #menubuilder-btn-wrapper select, #menubuilder-submit-btn {
-	/* position: absolute; */
-	/* top: 0; */
-	/* bottom: 0; */
-	/* right: 5px; */
 	margin-left: 20px;
 	background-color: transparent;
 	border: none;

@@ -96,6 +96,8 @@ class TProfileView extends Component {
                         <div className="tprofile-header">
                           <Link to="/" className="tprofile-back">Back</Link>
                           <p>{this.props.profile.companyname}</p>
+                          <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
+                          
                         </div>
                         <div className="tprofile-body-container">
                           <div className="tprofile-img-container"><img alt="logo" src={this.props.profile.logo} /></div>
@@ -104,7 +106,7 @@ class TProfileView extends Component {
                           <div className="tprofile-menu"><img alt="menu" src={this.props.profile.menuurl} /></div>
                           {this.favAbility(this.props.isAuth, this.props.source)}
                           {this.props.message ? <div>{this.props.message}</div>:<div></div>}
-                          <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
+                          {/* <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p> */}
                         </div>
                     </div>
 
@@ -114,10 +116,12 @@ class TProfileView extends Component {
                               <p>Reviews</p>
                               <button onClick={this.toggleReviewMenu} className="menuview-toggle">View Menu</button>
                             </div>
-                            {this.props.reviews.map((review, index) => {
+                            <div className="tprofile-review-list-container">
+                              {this.props.reviews.map((review, index) => {
                                   return <div key={'review ' + index } className="actual-review"><p>{review.review}</p></div>
                               })}
-                            {this.reviewForm(this.props.isAuth, this.props.source)}
+                              {this.reviewForm(this.props.isAuth, this.props.source)}
+                            </div>
                         </div>
                     }
                   </div>

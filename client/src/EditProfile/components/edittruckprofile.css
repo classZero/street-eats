@@ -68,7 +68,7 @@
     width: 96%;
     line-height: 40px;
     font-size: 1rem;
-    padding: 2px 0 2px 30px;
+    padding: 2px 0 2px 5px;
     margin: 0 10px 0 0;
     border-radius: 8px;
     background-color: #8c9fa0;
@@ -86,7 +86,6 @@
 .edittruck-container textarea {
     background-color: inherit;
     height: 100px;
-    margin: 15px 20px 0 0;
     width: 96%;
     line-height: 20px;
     font-size: 1rem;

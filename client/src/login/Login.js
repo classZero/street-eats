@@ -30,22 +30,26 @@ export class Login extends Component {
     return (
       <div className="home-login-container">
         <form onSubmit={this.handleLoginSubmit} id="login-form">
-          <input onChange={this.handleChange} 
-                 autoComplete="off"
-                 type="text" 
-                 name="username" 
-                 value={this.state.username}
-                 className="login-input"
-                 ref={(input) => { this.nameInput = input; }}/>
-                 <span id="login-input-username-icon">{<i className="fas fa-user"></i>}</span>
-          <input onChange={this.handleChange} 
-                 autoComplete="off"
-                 type="password" 
-                 name="password" 
-                 value={this.state.password}
-                 className="login-input"
-                 id="login-input-password"/>
-                 <span id="login-input-password-icon">{<i className="fas fa-key"></i>}</span>
+          <div className="input-icon-wrapper">
+            <input onChange={this.handleChange} 
+                  autoComplete="off"
+                  type="text" 
+                  name="username" 
+                  value={this.state.username}
+                  className="login-input"
+                  ref={(input) => { this.nameInput = input; }}/>
+                  <span id="login-input-username-icon">{<i className="fas fa-user"></i>}</span>
+          </div>
+          <div className="input-icon-wrapper">
+            <input onChange={this.handleChange} 
+                  autoComplete="off"
+                  type="password" 
+                  name="password" 
+                  value={this.state.password}
+                  className="login-input"
+                  id="login-input-password"/>
+                  <span id="login-input-password-icon">{<i className="fas fa-key"></i>}</span>
+          </div>
           <button type="submit" style={{display: 'none'}}>Hide submit button</button>
         </form>
       </div>

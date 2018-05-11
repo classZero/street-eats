@@ -53,7 +53,7 @@ class MenuBuilder extends Component{
 		return(
 			<div className="editmenu-container">
 				<div className="menubuilder-header">
-          <h1>Edit Menu</h1>
+          <h1>Add To Your Menu</h1>
           <button onClick={ e => this.props.toggle(e)} className="menubuilder-toggle">Edit Profile</button>
         </div>
         <div className="menubuilder-body">

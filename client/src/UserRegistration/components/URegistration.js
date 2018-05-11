@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {registerUser} from '../actions/URegistrationActions'
-// import RegistrationHeader from '../../headers/registrationHeader'
 import './URegistration.css'
 import {withRouter} from 'react-router'
 
@@ -65,10 +64,7 @@ class URegistration extends Component {
     window.cloudinary.openUploadWidget({ cloud_name: 'maglingkod', upload_preset: 'avwvdugz', tags:['foodtruck']},
       (error, result) => {
         data = {result, type}
-        console.log('result:', result)
-        console.log('error:', result)
         if (result && result[0].secure_url !== '') {
-          console.log('setting state')
           this.setState({
             uploadCloudinaryAvatarUrl: data.result[0].secure_url
           })
@@ -79,13 +75,11 @@ class URegistration extends Component {
 
 	render(){
 		return(
-			<div>
-        {/* <RegistrationHeader /> */}
-        <div className="userRegContainer">
+      <div className="userRegContainer">
 
-         <div className="userRegHeader">
-            <h1>Foodie</h1>
-          </div>
+        <div className="userRegHeader">
+          <h1>Foodie</h1>
+        </div>
 
         <div className="userRegForm">
 					<form onSubmit={this.handleSubmit}>
@@ -98,9 +92,9 @@ class URegistration extends Component {
 					</form>
         </div>
 
-        </div>
-			</div>
-	)}
+      </div>
+    )
+  }
 }
 
 function mapStateToProps(state) {
