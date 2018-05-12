@@ -1,11 +1,12 @@
 import store from '../../store'
 import api from 'lib/api'
+
 api.new('/api')
 
 export function getProfile(username) {
     api.getTruckProfile(username).then(resp =>{
 		store.dispatch({
-			type: 'GET_PROFILE',
+			type: "GET_PROFILE",
 			payload: resp
 		})
 	})
@@ -14,26 +15,32 @@ export function getProfile(username) {
 export function getReviews(username) {
 	api.getTruckReviews(username).then(resp => {
 		store.dispatch({
-			type: 'GET_REVIEWS',
+			type: "GET_REVIEWS",
 			payload: resp
-		})
+    })
 	})
 }
 
 export function addFavorite(username, truckuser) {
 	api.addFavorite(username, truckuser).then(resp => {
 		store.dispatch({
-			type: 'ADDED_FAVORITE',
+			type: "ADDED_FAVORITE",
 			payload: resp.message
 		})
 	})
 }
 
-export function submitReview(username, truckuser, reviewtext) {
-	api.addReview(username, truckuser, reviewtext).then(resp => {
+export function submitReview(username, truckuser, reviewtext, rating) {
+	api.addReview(username, truckuser, reviewtext, rating).then(resp => {
 		store.dispatch({
-			type: 'ADDED_REVIEW',
+			type: "ADDED_REVIEW",
 			payload: resp
-		})
+    })
+    setTimeout(function() {
+      store.dispatch({
+        type: "ADDED_REVIEW",
+        payload: ''
+      })
+    },3000)
 	})
 }

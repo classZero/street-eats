@@ -39,14 +39,6 @@
     font-family: 'Questrial', sans-serif;
 }
 
-/* .userRegForm form {
-    display: flex;
-    flex-direction: column;
-    
-    justify-content: space-around;
-    margin-left: 20px;
-} */
-
 .userRegForm input {
     height: 45px;
     width: 100%;
@@ -57,10 +49,6 @@
     border: 1px solid rgb(172, 230, 255);
     border-radius: 8px;
     background-color: #8c9fa0;
-}
-
-.userRegForm input::placeholder {
-    /* color: black; */
 }
 
 .userRegForm button {
@@ -95,4 +83,4 @@
       margin-left: 0%;
       width: 100%;
     }
-  }
+}

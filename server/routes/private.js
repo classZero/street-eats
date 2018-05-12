@@ -84,12 +84,13 @@ router.post('/addreview', (req, res, next) => {
     const username = req.body.username
     const truckuser = req.body.truckuser
     const reviewtext = req.body.reviewtext
+    const rating = req.body.rating
 
     const sql = `
-    INSERT INTO reviews (username, truckusername, review) 
-    VALUES (?, ?, ?)
+    INSERT INTO reviews (username, truckusername, review, rating) 
+    VALUES (?, ?, ?, ?)
     `
-    conn.query(sql, [username, truckuser, reviewtext], (err, results, fields) => {
+    conn.query(sql, [username, truckuser, reviewtext, rating], (err, results, fields) => {
         res.json({
             message: 'Thanks for your Feedback!'
         })
@@ -110,7 +111,6 @@ router.post('/removefavorite', (req, res, next) => {
       message : "Truck removed from your favorites"
     })
   })
-
 })
 
 router.post('/deleteReview/:id', (req, res, next) => {
@@ -125,7 +125,6 @@ router.post('/deleteReview/:id', (req, res, next) => {
       message: "Review Deleted"
     })
   })
-
 })
 
 router.post('/editReview', (req, res, next) => {

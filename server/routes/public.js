@@ -17,12 +17,11 @@ router.post('/updatelocation/:user/:lat/:lng', (req, res, next) => {
   const lat = req.params.lat
   const lng = req.params.lng
   const sql = `
-  UPDATE trucks 
-  SET lat = ?,lng = ? 
-  WHERE username = ?
+    UPDATE trucks 
+    SET lat = ?,lng = ? 
+    WHERE username = ?
   `
   conn.query(sql, [lat, lng, username], (err, results, fields) => {
-    console.log('update location results', JSON.stringify(results))
   })
 })
 
@@ -32,12 +31,11 @@ router.post('/updatehours/:user/:opentime/:closetime', (req, res, next) => {
   const open = req.params.opentime
   const close = req.params.closetime
   const sql = `
-  UPDATE trucks 
-  SET timeopen = ?,timeclose = ?
-  WHERE username = ?
+    UPDATE trucks 
+    SET timeopen = ?,timeclose = ?
+    WHERE username = ?
   `
   conn.query(sql, [open, close, username], (err, results, fields) => {
-    // console.log('update hours results',JSON.stringify(results))
   })
 })
 
@@ -45,12 +43,11 @@ router.post('/updatespecial/:user/:specialinfo', (req, res, next) => {
   const username = req.params.user
   const special = req.params.specialinfo
   const sql = `
-  UPDATE trucks
-  SET specialinfo = ?
-  WHERE username = ?
+    UPDATE trucks
+    SET specialinfo = ?
+    WHERE username = ?
   `
   conn.query(sql, [special, username], (err, results, fields) => {
-    // console.log(JSON.stringify(results))
   })
 })
 
@@ -173,7 +170,6 @@ router.post('/login', (req, res, next) => {
                 SELECT id, username, email, avatar, Null as companyname, Null as companylogo, Null as menuurl, Null as aboutus, Null as lng, Null as lat, Null as datecreated, 'user' as Source FROM users as userInfo WHERE username = ? AND password = ?`
 
     conn.query(sql, [username, password, username, password], (err, results, fields) => {
-      // console.log('login results ' + JSON.stringify(results))
         if(results.length > 0) {
             console.log('username and password returned match')
             const token = jwt.sign({user: username, source: results[0].Source, avatar: results[0].avatar, logo: results[0].companylogo}, config.get('jwt-secret'))
@@ -197,9 +193,9 @@ router.post('/login', (req, res, next) => {
 router.get('/truckprofile/:username', (req, res, next) => {
     const username = req.params.username
     const sql = `
-    SELECT * 
-    FROM trucks 
-    WHERE username = ?
+      SELECT * 
+      FROM trucks 
+      WHERE username = ?
     `
     conn.query(sql, username, (err, results, fields) => {
         const companyname = results[0].companyname
@@ -219,16 +215,15 @@ router.get('/truckprofile/:username', (req, res, next) => {
 router.get('/truckreviews/:username', (req, res, next) => {
     const username = req.params.username
     const sql = `
-    SELECT review 
-    FROM reviews 
-    WHERE truckusername = ?
+      SELECT review, rating
+      FROM reviews 
+      WHERE truckusername = ?
     `
 
     conn.query(sql, username, (err,results, fields) => {
-        const reviews = results
-
+        console.log('reviews results', results)
         res.json({
-          reviews
+          results
         })
     })
 })
@@ -237,9 +232,9 @@ router.get('/truckreviews/:username', (req, res, next) => {
 router.get('/userprofile/:username', (req, res, next) => {
     const username = req.params.username
     const sql = `
-    SELECT * 
-  FROM users 
-  WHERE username = ?
+      SELECT * 
+      FROM users 
+      WHERE username = ?
     `
     conn.query(sql, username, (err, results, fields) => {
         const username = results[0].username
@@ -256,10 +251,10 @@ router.get('/userprofile/:username', (req, res, next) => {
 router.get('/userfavorites/:username', (req, res, next) => {
     const username = req.params.username
     const sql = `
-    SELECT t.username, t.companyname, t.companylogo 
-    FROM users u 
-    LEFT JOIN favorites f on u.username = f.username 
-    LEFT JOIN trucks t on f.truckusername = t.username WHERE u.username = ?
+      SELECT t.username, t.companyname, t.companylogo 
+      FROM users u 
+      LEFT JOIN favorites f on u.username = f.username 
+      LEFT JOIN trucks t on f.truckusername = t.username WHERE u.username = ?
     `
 
     conn.query(sql, username, (err, results, fields) => {
@@ -274,10 +269,10 @@ router.get('/getUsersReviews/:username', (req, res, next) => {
   const username = req.params.username
 
   const sql = `
-  SELECT t.companyname, r.review, r.id
-  From trucks t 
-  LEFT JOIN reviews r on  t.username = r.truckusername 
-  WHERE r.username = ?
+    SELECT t.companyname, r.review, r.id
+    From trucks t 
+    LEFT JOIN reviews r on  t.username = r.truckusername 
+    WHERE r.username = ?
   `
 
   conn.query(sql, username, (err, results, fields) => {
@@ -306,8 +301,6 @@ router.get('/getmenu/:truckuser', (req,res,next) => {
       })
     })
   })
-
-
 })
 
 

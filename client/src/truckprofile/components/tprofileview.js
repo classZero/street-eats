@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getProfile } from '../actions/tProfileActions'
+import { getProfile, getReviews, addFavorite, submitReview } from '../actions/tProfileActions'
 import { Link } from 'react-router-dom'
 import star from '../../assets/images/star.svg'
-import { getReviews } from '../actions/tProfileActions'
-import { addFavorite } from '../actions/tProfileActions'
-import './tprofile.css'
 import HomeHeader from '../../headers/HomeHeader'
-import { submitReview } from '../actions/tProfileActions'
-
+import ReactStars from 'react-stars'
 import MenuView from 'MenuView/components/MenuView'
+
+import './tprofile.css'
 
 class TProfileView extends Component {
     state = {
         reviewMenuToggle: 'menu',
-        reviewtext : ''
+        reviewtext : '',
+        rating: null
     }
 
     componentDidMount(){
@@ -34,12 +33,13 @@ class TProfileView extends Component {
 
     favAbility(isAuth, source) {
         if(isAuth && source === 'user') {
-            return <div onClick={() => { this.handleFavClick(this.props.username, this.props.match.params.username) }}><img  alt='add favorite' style={{width: 50, height: 50}} src={star}/></div>
+            return  <div onClick={() => { this.handleFavClick(this.props.username, this.props.match.params.username) }}>
+                      <img  alt='add favorite' style={{width: 50, height: 50}} src={star}/>
+                    </div>
         } else {
             return <div></div>
         }
     }
-
 
     toggleReviewMenu = (e) => {
         e.preventDefault()
@@ -54,30 +54,44 @@ class TProfileView extends Component {
         }
     }
 
+    ratingChanged = (newRating) => {
+      this.setState({
+        rating:newRating
+      })
+    }
 
     reviewForm(auth, source){
         if(auth && source === 'user') {
             return <div>
-            <form onSubmit={this.handleSubmit}>
-            <div>Leave A Review: <textarea onChange={this.handleChange} name='reviewtext' value={this.state.reviewtext} /> </div>
-                <button type='submit'>Submit</button>
-            </form>
-            {this.props.reviewmessage ? <div>{this.props.reviewmessage}</div>:<div></div>}
-        </div>
+                      <form className="review-container" onSubmit={this.handleSubmit}>
+                          <div>
+                            <h4 className="review-title">Leave a review?</h4> 
+                            <textarea className="review-textarea" onChange={this.handleChange} name='reviewtext' value={this.state.reviewtext} /> 
+                          </div>
+                          <ReactStars
+                            count={5}
+                            onChange={this.ratingChanged}
+                            size={24}
+                            value={this.state.rating}
+                            color2={'#ffd700'} />
+                          <button id="submit-review" type='submit'>Submit</button>
+                      </form>
+                   </div>
         } else if(auth === false) {
             return <div><p>Login or create account to leave a review</p></div>
         }
     }
 
     handleSubmit = (e) => {
-        e.preventDefault()
-        submitReview(this.props.username, this.props.match.params.username,this.state.reviewtext)
+        e.preventDefault()  //rating going in
+        submitReview(this.props.username, this.props.match.params.username, this.state.reviewtext, this.state.rating)
         this.setState({
-            reviewtext : ''
+            reviewtext : '',
+            rating: ''
         })
         getReviews(this.props.match.params.username)
-
     }
+
     handleChange = (e) => {
         e.preventDefault()
         this.setState({
@@ -88,42 +102,49 @@ class TProfileView extends Component {
     render() {
         return (
               <div>
+
                   <HomeHeader />
 
                   <div className="biggestContainer">
+                      <div className="tprofile-container">
+                          <div className="tprofile-header">
+                            <Link to="/" className="tprofile-back">Back</Link>
+                            <p>{this.props.profile.companyname}</p>
+                            <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
+                            {this.favAbility(this.props.isAuth, this.props.source)}
+                          </div>
+                          <div className="tprofile-body-container">
+                            <div className="tprofile-img-container"><img alt="logo" src={this.props.profile.logo} /></div>
+                            <div className="tprofile-about-header">ABOUT US</div>
+                            <div className="tprofile-about">{this.props.profile.aboutus}</div>
+                            <div className="tprofile-menu"><img alt="menu" src={this.props.profile.menuurl} /></div>
+                            {/* {this.favAbility(this.props.isAuth, this.props.source)} */}
+                            {this.props.message ? <div>{this.props.message}</div>:<div></div>}
+                          </div>
+                      </div>
 
-                    <div className="tprofile-container">
-                        <div className="tprofile-header">
-                          <Link to="/" className="tprofile-back">Back</Link>
-                          <p>{this.props.profile.companyname}</p>
-                          <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
-                          
-                        </div>
-                        <div className="tprofile-body-container">
-                          <div className="tprofile-img-container"><img alt="logo" src={this.props.profile.logo} /></div>
-                          <div className="tprofile-about-header">ABOUT US</div>
-                          <div className="tprofile-about">{this.props.profile.aboutus}</div>
-                          <div className="tprofile-menu"><img alt="menu" src={this.props.profile.menuurl} /></div>
-                          {this.favAbility(this.props.isAuth, this.props.source)}
-                          {this.props.message ? <div>{this.props.message}</div>:<div></div>}
-                          {/* <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p> */}
-                        </div>
-                    </div>
-
-                    { this.state.reviewMenuToggle === 'menu' ? <MenuView toggle={this.toggleReviewMenu} /> :
-                        <div className="tprofile-review-container">
-                            <div className="tprofile-header menuview-header">
-                              <p>Reviews</p>
-                              <button onClick={this.toggleReviewMenu} className="menuview-toggle">View Menu</button>
-                            </div>
-                            <div className="tprofile-review-list-container">
-                              {this.props.reviews.map((review, index) => {
-                                  return <div key={'review ' + index } className="actual-review"><p>{review.review}</p></div>
-                              })}
-                              {this.reviewForm(this.props.isAuth, this.props.source)}
-                            </div>
-                        </div>
-                    }
+                      {this.state.reviewMenuToggle === 'menu' ? <MenuView toggle={this.toggleReviewMenu} /> :
+                          <div className="tprofile-review-container">
+                              <div className="tprofile-header menuview-header">
+                                <p>Reviews</p>
+                                <button onClick={this.toggleReviewMenu} className="menuview-toggle">View Menu</button>
+                              </div>
+                              <div className="tprofile-review-list-container">
+                                {this.reviewForm(this.props.isAuth, this.props.source)}
+                                {this.props.reviews.map((review, index) => {
+                                    return <div key={'review ' + index } className="actual-review">
+                                             <p>{review.review}</p>
+                                             <ReactStars
+                                                count={5}
+                                                onChange={this.ratingChanged}
+                                                edit={false}
+                                                value={review.rating}
+                                                size={24}
+                                                color2={'#ffd700'} />
+                                           </div>
+                                })}
+                              </div>
+                          </div>}
                   </div>
             </div>
         )
@@ -138,7 +159,6 @@ function mapStateToProps(state) {
         reviews: state.tProfileReducer.reviews,
         source : state.loginReducer.source,
         message : state.tProfileReducer.message,
-        reviewmessage : state.tProfileReducer.reviewmessage
     }
 }
 

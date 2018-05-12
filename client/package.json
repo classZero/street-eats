@@ -22,6 +22,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
+    "react-stars": "^2.2.5",
     "react-stripe-checkout": "^2.6.3",
     "react-stripe-elements": "^1.6.0",
     "react-time-range": "^1.0.2",

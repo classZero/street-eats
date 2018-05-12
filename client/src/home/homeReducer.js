@@ -26,6 +26,8 @@ export default function(state = initialState, action) {
         return {...state, userMessage: action.payload}
     case "ALERT":
         return {...state, userMessage: action.payload}
+    case "ADDED_REVIEW":
+        return {...state, userMessage: action.payload}
     default:
       return state
   }

@@ -100,7 +100,7 @@ instance.getTruckProfile = function (username) {
 instance.getTruckReviews = function(username) {
   return this.get('/truckreviews/' + username)
   .then(resp => {
-    return resp.data.reviews
+    return resp.data
   })
 }
 
@@ -145,8 +145,8 @@ instance.payments = function (description, token, currency, amount, cart) {
   })
 }
 
-instance.addReview = function (username, truckuser, reviewtext) {
-  return this.post('/addreview', {username, truckuser, reviewtext}).then(resp => {
+instance.addReview = function (username, truckuser, reviewtext, rating) {
+  return this.post('/addreview', {username, truckuser, reviewtext, rating}).then(resp => {
     return resp.data.message
   })
 }

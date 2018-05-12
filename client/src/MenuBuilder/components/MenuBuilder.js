@@ -78,12 +78,12 @@ class MenuBuilder extends Component{
         </div>
 				{this.props.menu.map((item, i) => (
 						<div key={"menuitem-" + i} className="menuview-menu-item">
-        					<h3>{item.itemName}</h3>
-        					<h3>${item.itemPrice}</h3>
-        					<h4>{item.itemType}</h4>
-        					<p>{item.itemDescription}</p>
-        					<button onClick={ e => this.handleRemove(e, item.id)} className="menubuilder-remove-button">X</button>
-        				</div>	
+              <h3>{item.itemName}</h3>
+              <h3>${item.itemPrice}</h3>
+              <h4>{item.itemType}</h4>
+              <p>{item.itemDescription}</p>
+              <button onClick={ e => this.handleRemove(e, item.id)} className="menubuilder-remove-button">X</button>
+            </div>	
 					)
 				)}
 			</div>
