@@ -64,6 +64,13 @@
     text-shadow: 2px 2px black;
 }
 
+.star-container {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: yellow;
+}
+
 .tprofile-edit {
     position: absolute;
     font-size: 15px;

@@ -113,15 +113,19 @@ instance.getUserProfile = function (username) {
 }
 
 instance.getFavorites = function(username) {
-  return this.get('/userfavorites/' + username)
-  .then(resp => {
+  return this.get('/userfavorites/' + username).then(resp => {
     return resp.data
   })
 }
 
 instance.addFavorite = function(username, truckuser) {
-  return this.post('/addfavorite/', {username, truckuser})
-  .then(resp => {
+  return this.post('/addfavorite/', {username, truckuser}).then(resp => {
+    return resp.data
+  })
+}
+
+instance.removeFavorite = function(username, truckuser) {
+  return this.post('/removefavorite/', {username, truckuser}).then(resp => {
     return resp.data
   })
 }

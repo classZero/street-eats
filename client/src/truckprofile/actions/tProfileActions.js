@@ -26,8 +26,29 @@ export function addFavorite(username, truckuser) {
 		store.dispatch({
 			type: "ADDED_FAVORITE",
 			payload: resp.message
-		})
+    })
+    setTimeout(function() {
+      store.dispatch({
+        type: "ADDED_FAVORITE",
+        payload: ''
+      })
+    },3000)
 	})
+}
+
+export function removeFavorite(username, truckuser) {
+  api.removeFavorite(username, truckuser).then(resp => {
+    store.dispatch({
+      type: "REMOVED_FAVORITE",
+      payload: resp
+    })
+    setTimeout(function() {
+      store.dispatch({
+        type: "REMOVED_FAVORITE",
+        payload: ''
+      })
+    },3000)
+  })
 }
 
 export function submitReview(username, truckuser, reviewtext, rating) {

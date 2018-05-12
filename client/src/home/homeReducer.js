@@ -28,6 +28,10 @@ export default function(state = initialState, action) {
         return {...state, userMessage: action.payload}
     case "ADDED_REVIEW":
         return {...state, userMessage: action.payload}
+    case "ADDED_FAVORITE":
+        return {...state, userMessage: action.payload}
+    case "REMOVED_FAVORITE":
+        return {...state, userMessage: action.payload}
     default:
       return state
   }

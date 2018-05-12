@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getProfile, getReviews, addFavorite, submitReview } from '../actions/tProfileActions'
+import { getProfile, getReviews, addFavorite, removeFavorite, submitReview } from '../actions/tProfileActions'
 import { Link } from 'react-router-dom'
 import star from '../../assets/images/star.svg'
 import HomeHeader from '../../headers/HomeHeader'
@@ -13,12 +13,20 @@ class TProfileView extends Component {
     state = {
         reviewMenuToggle: 'menu',
         reviewtext : '',
-        rating: null
+		    rating: null,
+		    starToggle: <i className="far fa-star"></i>
     }
 
     componentDidMount(){
         getProfile(this.props.match.params.username)
         getReviews(this.props.match.params.username)
+    }
+
+    handleChange = (e) => {
+        e.preventDefault()
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
 
     editTruckProfile(username) {
@@ -28,39 +36,38 @@ class TProfileView extends Component {
     }
 
     handleFavClick = (username, truckuser) => {
-        addFavorite(username, truckuser)
-    }
-
-    favAbility(isAuth, source) {
-        if(isAuth && source === 'user') {
-            return  <div onClick={() => { this.handleFavClick(this.props.username, this.props.match.params.username) }}>
-                      <img  alt='add favorite' style={{width: 50, height: 50}} src={star}/>
-                    </div>
+        if (this.state.starToggle.props.className === "far fa-star") {
+            this.setState({
+                starToggle: <i className="fas fa-star"></i>
+            }) 
+            addFavorite(username, truckuser)
         } else {
-            return <div></div>
+            this.setState({
+                starToggle: <i className="far fa-star"></i>
+            })
+            removeFavorite(username, truckuser)
         }
     }
 
     toggleReviewMenu = (e) => {
         e.preventDefault()
-        if (this.state.reviewMenuToggle !== 'menu'){
+        this.state.reviewMenuToggle !== 'menu' ?
             this.setState({
                 reviewMenuToggle: 'menu'
-            })
-        } else {
+            }) :
             this.setState({
                 reviewMenuToggle: 'review'
             })
-        }
+        
     }
 
     ratingChanged = (newRating) => {
-      this.setState({
-        rating:newRating
-      })
+        this.setState({
+            rating:newRating
+        })
     }
 
-    reviewForm(auth, source){
+    reviewForm(auth, source) {
         if(auth && source === 'user') {
             return <div>
                       <form className="review-container" onSubmit={this.handleSubmit}>
@@ -92,13 +99,6 @@ class TProfileView extends Component {
         getReviews(this.props.match.params.username)
     }
 
-    handleChange = (e) => {
-        e.preventDefault()
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
-
     render() {
         return (
               <div>
@@ -108,18 +108,20 @@ class TProfileView extends Component {
                   <div className="biggestContainer">
                       <div className="tprofile-container">
                           <div className="tprofile-header">
-                            <Link to="/" className="tprofile-back">Back</Link>
-                            <p>{this.props.profile.companyname}</p>
-                            <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
-                            {this.favAbility(this.props.isAuth, this.props.source)}
+                              <Link to="/" className="tprofile-back">Back</Link>
+                              <p>{this.props.profile.companyname}</p>
+                              <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
+                              {this.props.isAuth && this.props.source === 'user' ?
+            					            <div className="star-container" onClick={() => this.handleFavClick(this.props.username, this.props.match.params.username)}>
+									                    {this.state.starToggle}
+								                  </div> : ''}
                           </div>
                           <div className="tprofile-body-container">
                             <div className="tprofile-img-container"><img alt="logo" src={this.props.profile.logo} /></div>
                             <div className="tprofile-about-header">ABOUT US</div>
                             <div className="tprofile-about">{this.props.profile.aboutus}</div>
                             <div className="tprofile-menu"><img alt="menu" src={this.props.profile.menuurl} /></div>
-                            {/* {this.favAbility(this.props.isAuth, this.props.source)} */}
-                            {this.props.message ? <div>{this.props.message}</div>:<div></div>}
+                            {this.props.message ? <div>{this.props.message}</div> : ''}
                           </div>
                       </div>
 
