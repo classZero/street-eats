@@ -30,7 +30,11 @@ export class HomeBurger extends Component {
     this.setState({
       response: loading
     })
-    navigator.geolocation.getCurrentPosition(this.success, this.error)
+    navigator.geolocation.getCurrentPosition(this.success, this.error, {
+      enableHighAccuracy: true,
+      timeout: 7000,
+      maximumAge: 500000
+    })
   }
   success = (position) => {
     var latitude  = position.coords.latitude
@@ -38,7 +42,7 @@ export class HomeBurger extends Component {
     this.setState({
       response: ''
     })
-    updateLocation(latitude, longitude, this.props.username)
+    updateLocation(latitude, longitude, this.props.username, this.props.id)
   }
   error = () => {
     this.setState({
@@ -83,9 +87,11 @@ export class HomeBurger extends Component {
 }
 
 function mapStateToProps(state) {
+  // console.log('testburger', state)
   return {
     source: state.loginReducer.source,
-    username: state.loginReducer.username
+    username: state.loginReducer.username,
+    id: state.loginReducer.id
   }
 }
 

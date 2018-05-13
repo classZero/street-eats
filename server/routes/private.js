@@ -140,62 +140,63 @@ router.post('/editReview', (req, res, next) => {
     })
 })
 
-router.post('/uplocale', (req, res, next) => {
-    const lat = req.body.lat
-    const long = req.body.long
-    const username = req.body.username
+// router.post('/uplocale', (req, res, next) => {
+//     const lat = req.body.lat
+//     const long = req.body.long
+//     const username = req.body.username
 
-    const sqlGetActiveStatus = `SELECT isActive FROM trucks WHERE username = ? `
-    const sqlUpdateLocOnly = `UPDATE trucks SET lat = ?, lng = ? WHERE username = ? `
-    const sqlUpdateLocAndActive = `UPDATE trucks SET lat = ?, lng = ?, isActive = ? WHERE username = ?`
+//     const sqlGetActiveStatus = `SELECT isActive FROM trucks WHERE username = ? `
+//     const sqlUpdateLocOnly = `UPDATE trucks SET lat = ?, lng = ? WHERE username = ? `
+//     const sqlUpdateLocAndActive = `UPDATE trucks SET lat = ?, lng = ?, isActive = ? WHERE username = ?`
 
-    //check if currently active
-    conn.query(sqlGetActiveStatus, username, (err, results, fields) => {
-        //if active, update location only
-        if (results[0].isActive === 1) {
-            conn.query(sqlUpdateLocOnly, [lat, long, username], (err2, results2, fields2) => {
-                res.json({
-                    message: 'Location Updated'
-                })
-            })
-        } else {
-            //update location and activate
-            conn.query(sqlUpdateLocAndActive, [lat, long, 1, username], (err3, results3, fields3) => {
-                res.json({
-                    message: 'Location updated. You can set a time in your profile'
-                })
-            })
-        }
-    })                             
-})
+//     //check if currently active
+//     conn.query(sqlGetActiveStatus, username, (err, results, fields) => {
+//         //if active, update location only
+//         if (results[0].isActive === 1) {
+//           console.log('private 156 working')
+//             conn.query(sqlUpdateLocOnly, [lat, long, username], (err2, results2, fields2) => {
+//                 res.json({
+//                     message: 'Location Updated'
+//                 })
+//             })
+//         } else {
+//             //update location and activate
+//             conn.query(sqlUpdateLocAndActive, [lat, long, 1, username], (err3, results3, fields3) => {
+//                 res.json({
+//                     message: 'Location updated. You can set a time in your profile'
+//                 })
+//             })
+//         }
+//     })                             
+// })
 
-//remove trucks current location and make inactive
-router.post('/removelocale', (req, res, next) => {
-    const username = req.body.username
-    const sqlRemoveLoc = `UPDATE trucks SET lat = DEFAULT, lng = DEFAULT, isActive = DEFAULT, timeopen = DEFAULT, timeclose = DEFAULT WHERE username = ?`
-    conn.query(sqlRemoveLoc, [username], (err, results, fields) => {
-        res.json({
-            message: 'Closing up shop'
-         })
-    })
-})
+// //remove trucks current location and make inactive
+// router.post('/removelocale', (req, res, next) => {
+//     const username = req.body.username
+//     const sqlRemoveLoc = `UPDATE trucks SET lat = DEFAULT, lng = DEFAULT, timeopen = DEFAULT, timeclose = DEFAULT isActive = DEFAULT WHERE username = ?`
+//     conn.query(sqlRemoveLoc, [username], (err, results, fields) => {
+//         res.json({
+//             message: 'Closing up shop'
+//          })
+//     })
+// })
 
-//payments with stripe
-const stripe = require('stripe')('sk_test_zGrjspkLXtCEX59BW1kQjVE6')
+// //payments with stripe
+// const stripe = require('stripe')('sk_test_zGrjspkLXtCEX59BW1kQjVE6')
 
-router.post('/payments', (req, res, next) => {
-    const charge = stripe.charges.create({
-        amount: req.body.amount,
-        currency: req.body.currency,
-        description: req.body.description,
-        source: req.body.token,
-    })
-    const cart = req.body.cart
-    res.json({
-        data: charge,
-        cart: cart
-    })
-})
+// router.post('/payments', (req, res, next) => {
+//     const charge = stripe.charges.create({
+//         amount: req.body.amount,
+//         currency: req.body.currency,
+//         description: req.body.description,
+//         source: req.body.token,
+//     })
+//     const cart = req.body.cart
+//     res.json({
+//         data: charge,
+//         cart: cart
+//     })
+// })
 
 
 export default router

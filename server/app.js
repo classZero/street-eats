@@ -28,12 +28,46 @@ server.listen(3001, () => {
 })
 
 //socket section
-io.on('connection', (socket) => {
-  console.log('starting socket.io')
 
+// let namespace = io.of('/orders')
+let idList = []
+let emitAuth = false
+
+io.on('connection', (socket) => {
+ 
   socket.on('order', order => {
-    console.log('received an order of ', order)
-    socket.emit('orderPlaced', order)
+    console.log('idList',idList)
+    console.log('received order of',order.cart)
+    // const truckId = order[0].itemTruckId
+    // idList.filter(listItem => listItem.id == order.cart[0].itemTruckId)
+    idList.map((id, i) => {
+      if (id.id == order.cart[0].itemTruckId) {
+
+        console.log("Socket Connected, sent through socket : " +id.socketId)
+        // io.sockets.connected[id.socketId].emit('order', {order, emitAuth})
+        socket.broadcast.to(id.socketId).emit('order', {order, emitAuth})
+        io.to(id.socketId).emit('order', {order, emitAuth})
+        socket.to(id.socketId).emit('order', {order, emitAuth})
+        socket.emit('order', order)
+        // io.sockets.sockets(id.socketId).emit('order', {order, emitAuth})
+
+        const sql=`
+          INSERT INTO  orders (userId, itemName, itemPrice, itemType, itemDescription, truckId)
+          VALUES (?, ?, ?, ?, ?, ?)
+        `
+        conn.query(sql, [order.cart[i].id, order.cart[i].itemName, order.cart[i].itemPrice, order.cart[i].ItemType, order.cart[i].itemDescription, order.cart[i].itemTruckId, order.cart[i].truckUserName], (err, results, fields) => {
+
+        })
+      } else {
+        emitAuth = false
+        console.log('failed to emit')
+      }
+    })
+  })
+  socket.on('create truck', id => {
+    id.socketId = socket.id //name has truck id and socket.id
+    console.log('creating truck: ',id)
+    idList.push(id)
   })
 
   socket.on('disconnect', () => {
@@ -43,6 +77,7 @@ io.on('connection', (socket) => {
     // io.removeAllListeners('connection');
   })
 })
+
 
 //constinually checks for newly active trucks
 setInterval(() => {
@@ -57,7 +92,6 @@ setInterval(() => {
       if(truck.timeopen !== null) {
         var timeopen = new Date(truck.timeopen)
         var timeclose = new Date(truck.timeclose)
-        // console.log(timeopen, timeclose, rightNow)
         if (timeopen < rightNow && timeclose > rightNow) {
           const sqlUpdate = `
             UPDATE trucks SET isActive = ? WHERE id = ?
@@ -66,7 +100,6 @@ setInterval(() => {
 
           })
         } else {
-          // console.log('closing')
           const sqlUpdate = `
             UPDATE trucks SET isActive = ? WHERE id = ?
           `

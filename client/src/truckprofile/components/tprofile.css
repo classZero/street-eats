@@ -95,6 +95,12 @@
     height: 90%;
 }
 
+.rating-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .tprofile-about-header {
     text-align: center;
     font-size: 25px;

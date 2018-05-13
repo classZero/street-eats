@@ -15,11 +15,11 @@ const STRIPE_PUBLISHABLE = process.env.NODE_ENV === 'production'
 const CURRENCY = 'USD';
 
 const successPayment = data => {
-  console.log('data',data)
+  // console.log('data',data)
   alert('Payment Successful')
 
   dispatchToTruck(data)
-  console.log('about to clear cart')
+  // console.log('about to clear cart data', data)
   clearCart()
 }
 

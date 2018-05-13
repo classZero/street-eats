@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {login} from './loginActions'
-import FontAwesome from 'react-fontawesome'
 
 import './login.css'
 

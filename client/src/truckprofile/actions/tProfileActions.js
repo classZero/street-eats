@@ -14,6 +14,7 @@ export function getProfile(username) {
 
 export function getReviews(username) {
 	api.getTruckReviews(username).then(resp => {
+    console.log('resp',resp)
 		store.dispatch({
 			type: "GET_REVIEWS",
 			payload: resp

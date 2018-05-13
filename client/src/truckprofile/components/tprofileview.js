@@ -101,64 +101,81 @@ class TProfileView extends Component {
 
     render() {
         return (
-              <div>
+            <div>
 
-                  <HomeHeader />
+                <HomeHeader />
 
-                  <div className="biggestContainer">
-                      <div className="tprofile-container">
-                          <div className="tprofile-header">
-                              <Link to="/" className="tprofile-back">Back</Link>
-                              <p>{this.props.profile.companyname}</p>
-                              <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
-                              {this.props.isAuth && this.props.source === 'user' ?
-            					            <div className="star-container" onClick={() => this.handleFavClick(this.props.username, this.props.match.params.username)}>
-									                    {this.state.starToggle}
-								                  </div> : ''}
-                          </div>
-                          <div className="tprofile-body-container">
-                            <div className="tprofile-img-container"><img alt="logo" src={this.props.profile.logo} /></div>
+                <div className="biggestContainer">
+                    <div className="tprofile-container">
+
+                        <div className="tprofile-header">
+                            <Link to="/" className="tprofile-back">Back</Link>
+                                <p>{this.props.profile.companyname}</p>
+                                <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
+                                {this.props.isAuth && this.props.source === 'user' ?
+            					              <div className="star-container" onClick={() => this.handleFavClick(this.props.username, this.props.match.params.username)}>
+									                      {this.state.starToggle}
+                                </div> : ''}
+                        </div>
+
+                        <div className="tprofile-body-container">
+                            <div className="tprofile-img-container">
+                                <img alt="logo" src={this.props.profile.logo} />
+                                <div className="rating-container">
+                                    <p>Average Rating</p>
+                                    <ReactStars
+                                        count={5}
+                                        onChange={this.ratingChanged}
+                                        edit={false}
+                                        value={this.props.average}
+                                        size={24}
+                                        color2={'#ffd700'} />
+                                </div>
+                            </div>
                             <div className="tprofile-about-header">ABOUT US</div>
                             <div className="tprofile-about">{this.props.profile.aboutus}</div>
                             <div className="tprofile-menu"><img alt="menu" src={this.props.profile.menuurl} /></div>
                             {this.props.message ? <div>{this.props.message}</div> : ''}
-                          </div>
-                      </div>
+                        </div>
+                    </div>
 
-                      {this.state.reviewMenuToggle === 'menu' ? <MenuView toggle={this.toggleReviewMenu} /> :
-                          <div className="tprofile-review-container">
-                              <div className="tprofile-header menuview-header">
+                    {this.state.reviewMenuToggle === 'menu' ? <MenuView toggle={this.toggleReviewMenu} /> :
+                        <div className="tprofile-review-container">
+                            <div className="tprofile-header menuview-header">
                                 <p>Reviews</p>
                                 <button onClick={this.toggleReviewMenu} className="menuview-toggle">View Menu</button>
-                              </div>
-                              <div className="tprofile-review-list-container">
+                            </div>
+                            <div className="tprofile-review-list-container">
                                 {this.reviewForm(this.props.isAuth, this.props.source)}
                                 {this.props.reviews.map((review, index) => {
                                     return <div key={'review ' + index } className="actual-review">
-                                             <p>{review.review}</p>
-                                             <ReactStars
-                                                count={5}
-                                                onChange={this.ratingChanged}
-                                                edit={false}
-                                                value={review.rating}
-                                                size={24}
-                                                color2={'#ffd700'} />
-                                           </div>
+                                               <p>{review.review}</p>
+                                               <ReactStars
+                                                    count={5}
+                                                    onChange={this.ratingChanged}
+                                                    edit={false}
+                                                    value={review.rating}
+                                                    size={24}
+                                                    color2={'#ffd700'} />
+                                            </div>
                                 })}
-                              </div>
-                          </div>}
-                  </div>
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
         )
     }
 }
 
 function mapStateToProps(state) {
+  console.log(state.tProfileReducer.average.average)
     return {
         profile : state.tProfileReducer.profile,
-        username: state.loginReducer.username,
-        isAuth: state.loginReducer.isAuthenticated,
-        reviews: state.tProfileReducer.reviews,
+        username : state.loginReducer.username,
+        isAuth : state.loginReducer.isAuthenticated,
+        reviews : state.tProfileReducer.reviews,
+        average : state.tProfileReducer.average.average,
         source : state.loginReducer.source,
         message : state.tProfileReducer.message,
     }
