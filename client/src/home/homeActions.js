@@ -1,10 +1,8 @@
 import store from '../store'
 import api from '../lib/api'
 import Geocode from 'react-geocode'
-import io from 'socket.io-client'
+import socket from '../lib/socket'
 
-
-const socket = io.connect('http://192.168.50.34:3001')
 
 api.new('/api')
 
