@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getProfile, getReviews, addFavorite, removeFavorite, submitReview } from '../actions/tProfileActions'
+import { getProfile, getReviews, addFavorite, removeFavorite, submitReview, getIsFavorite } from '../actions/tProfileActions'
 import { Link } from 'react-router-dom'
 import star from '../../assets/images/star.svg'
 import HomeHeader from '../../headers/HomeHeader'
@@ -21,6 +21,7 @@ class TProfileView extends Component {
     componentDidMount(){
         getProfile(this.props.match.params.username)
         getReviews(this.props.match.params.username)
+        getIsFavorite(this.props.match.params.username, this.props.username)
     }
 
 
@@ -43,11 +44,13 @@ class TProfileView extends Component {
                 starToggle: <i className="fas fa-star"></i>
             }) 
             addFavorite(username, truckuser)
+            getIsFavorite(this.props.match.params.username, this.props.username)
         } else {
             this.setState({
                 starToggle: <i className="far fa-star"></i>
             })
             removeFavorite(username, truckuser)
+            getIsFavorite(this.props.match.params.username, this.props.username)
         }
     }
 
@@ -120,7 +123,8 @@ class TProfileView extends Component {
                                 <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
                                 {this.props.isAuth && this.props.source === 'user' ?
             					              <div className="star-container" onClick={() => this.handleFavClick(this.props.username, this.props.match.params.username)}>
-									                      {this.state.starToggle}
+                                        {/* {this.state.starToggle} */}
+                                        {this.props.isFavorite ? <i className="fas fa-star"></i> : <i className="far fa-star"></i>}
                                 </div> : ''}
                         </div>
 
@@ -175,7 +179,7 @@ class TProfileView extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state.tProfileReducer.average.average)
+  // console.log(state.tProfileReducer.average.average)
     return {
         profile : state.tProfileReducer.profile,
         username : state.loginReducer.username,
@@ -184,6 +188,7 @@ function mapStateToProps(state) {
         average : state.tProfileReducer.average.average,
         source : state.loginReducer.source,
         message : state.tProfileReducer.message,
+        isFavorite : state.tProfileReducer.isFavorite
     }
 }
 

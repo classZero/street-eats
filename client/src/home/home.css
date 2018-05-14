@@ -192,7 +192,7 @@ body {
 
 .newtruck-list-item:hover {
     content: 'rrr';
-    background-color: rgb(169, 169, 169);
+    background-color: rgba(169, 169, 169, 0.5);
 }
 
 /* map styles */

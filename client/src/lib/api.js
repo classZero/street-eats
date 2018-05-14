@@ -98,15 +98,18 @@ instance.getTruckProfile = function (username) {
 }
 
 instance.getTruckReviews = function(username) {
-  return this.get('/truckreviews/' + username)
-  .then(resp => {
+  return this.get('/truckreviews/' + username).then(resp => {
     return resp.data
   })
 }
 
+instance.getIsFavorite = function(truck, user) {
+  return this.get(`/isfavorite/${truck}/${user}`).then(resp => {
+    return resp.data
+  })
+}
 
 instance.getUserProfile = function (username) {
-  // console.log(username)
   return this.get('/userprofile/' + username).then(resp => {
     return resp.data
   })
