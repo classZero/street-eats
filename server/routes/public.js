@@ -69,7 +69,7 @@ router.get('/truckdata/:sort', (req, res, next) => {
     `
   } else if (type === 'all') {
     sql = `
-      SELECT * FROM trucks WHERE isActive = 1 
+      SELECT * FROM trucks 
     `
   } else if (type === 'alphaDesc') {
     sql = `
@@ -346,8 +346,9 @@ router.post('/uplocale', (req, res, next) => {
 //remove trucks current location and make inactive
 router.post('/removelocale', (req, res, next) => {
   const username = req.body.username
-  const sqlRemoveLoc = `UPDATE trucks SET lat = DEFAULT, lng = DEFAULT, timeopen = DEFAULT, timeclose = DEFAULT isActive = DEFAULT WHERE username = ?`
+  const sqlRemoveLoc = `UPDATE trucks SET lat = DEFAULT, lng = DEFAULT, timeopen = DEFAULT, timeclose = DEFAULT, isActive = DEFAULT WHERE username = ?`
   conn.query(sqlRemoveLoc, [username], (err, results, fields) => {
+    console.log('working')
       res.json({
           message: 'Closing up shop'
        })

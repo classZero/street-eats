@@ -170,11 +170,12 @@ router.post('/editReview', (req, res, next) => {
 //     })                             
 // })
 
-// //remove trucks current location and make inactive
+// // remove trucks current location and make inactive
 // router.post('/removelocale', (req, res, next) => {
 //     const username = req.body.username
-//     const sqlRemoveLoc = `UPDATE trucks SET lat = DEFAULT, lng = DEFAULT, timeopen = DEFAULT, timeclose = DEFAULT isActive = DEFAULT WHERE username = ?`
+//     const sqlRemoveLoc = `UPDATE trucks SET lat = DEFAULT, lng = DEFAULT, timeopen = DEFAULT, timeclose = DEFAULT, isActive = DEFAULT WHERE username = ?`
 //     conn.query(sqlRemoveLoc, [username], (err, results, fields) => {
+//       console.log('query')
 //         res.json({
 //             message: 'Closing up shop'
 //          })
