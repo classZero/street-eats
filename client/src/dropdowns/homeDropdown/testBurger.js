@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
+import {withRouter} from 'react-router'
 import {connect} from 'react-redux'
 import { slide as Menu } from 'react-burger-menu'
 import Logout from '../../logout/Logout'
@@ -53,6 +54,9 @@ export class HomeBurger extends Component {
   //remove truck from map and close hours
   handleRemoval = () => {
     removeLocation(this.props.username)
+    this.setState({
+      showMenu: false
+    })
   }
 
   render() {
@@ -87,7 +91,6 @@ export class HomeBurger extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log('testburger', state)
   return {
     source: state.loginReducer.source,
     username: state.loginReducer.username,
@@ -95,4 +98,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(HomeBurger)
+export default withRouter(connect(mapStateToProps)(HomeBurger))

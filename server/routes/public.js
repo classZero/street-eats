@@ -348,6 +348,7 @@ router.post('/removelocale', (req, res, next) => {
   const username = req.body.username
   const sqlRemoveLoc = `UPDATE trucks SET lat = DEFAULT, lng = DEFAULT, timeopen = DEFAULT, timeclose = DEFAULT, isActive = DEFAULT WHERE username = ?`
   conn.query(sqlRemoveLoc, [username], (err, results, fields) => {
+    console.log('working')
       res.json({
           message: 'Closing up shop'
        })
