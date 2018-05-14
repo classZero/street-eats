@@ -59,17 +59,34 @@
     margin-left: -25px;
 }
 
+#menubuilder-submit-btn:hover{
+    color: grey;
+}
+
 #menuBuilderForm::after{
 	clear: both;
 }
+.menubuilder-remove-button{
+    position: absolute;
+    font-size: 16px;
+    right: 5px;
+    top: 0;
+    bottom: 0;
+    background: none;
+    border: none;
 
-.menubuilder-remove-button:hover, .menubuilder-toggle:hover {
+}
+.menubuilder-remove-button:hover{
+    color: white;
+    cursor: pointer;
+}
+.menubuilder-toggle:hover {
     color: grey;
 }
 .editmenu-container{
     overflow: hidden;
 }
 .menubuilder-body-container{
-    height: 100%;
+    height: 91%;
     overflow: scroll;
 }
