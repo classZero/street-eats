@@ -69,7 +69,7 @@ router.get('/truckdata/:sort', (req, res, next) => {
     `
   } else if (type === 'all') {
     sql = `
-      SELECT * FROM trucks WHERE isActive = 1 
+      SELECT * FROM trucks 
     `
   } else if (type === 'alphaDesc') {
     sql = `
