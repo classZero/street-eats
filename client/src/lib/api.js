@@ -186,13 +186,15 @@ instance.editUserReview = function(id, text) {
 
 instance.updateLocation = function (lat, long, username) {
   return this.post('/uplocale', {lat, long, username}).then(resp => {
-    // console.log('resp in api', resp.data)
+    console.log('resp in api updatelocation', resp.data)
     return resp.data
   })
 }
 
 instance.removeLocation = function (username) {
   return this.post('/removelocale', {username}).then(resp => {
+    console.log('resp in api removelocation', resp.data)
+    
     return resp.data
   })
 }
