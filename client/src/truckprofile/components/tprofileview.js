@@ -29,7 +29,6 @@ class TProfileView extends Component {
         hideCart()
         console.log('truck unmounting')
         
-        alert('this is an alert')
     }
 
     editTruckProfile(username) {
@@ -95,6 +94,10 @@ class TProfileView extends Component {
         })
     }
 
+    cartHider(){
+        hideCart()
+    }
+
     render() {
         return (
               <div>
@@ -104,7 +107,7 @@ class TProfileView extends Component {
 
                     <div className="tprofile-container">
                         <div className="tprofile-header">
-                          <Link to="/" className="tprofile-back">Back</Link>
+                          <Link to="/" className="tprofile-back" onClick={this.cartHider}>Back</Link>
                           <p>{this.props.profile.companyname}</p>
                         </div>
                         <div className="tprofile-body-container">
