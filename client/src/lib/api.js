@@ -67,8 +67,14 @@ instance.logout = function() {
   window.localStorage.removeItem('token')
   store.dispatch({
     type: "LOGOUT_USER",
-    payload: ''
+    payload: "Thanks for checking out Street Eats"
   })
+  setTimeout(function() {
+    store.dispatch({
+      type: "LOGOUT_USER",
+      payload: ''
+    })
+  },3000)
 }
 
 instance.registration = function (username, password, email, avatar, type, companyName, companyLogo, menu, aboutus) {
@@ -94,7 +100,7 @@ instance.getTruckProfile = function (username) {
 instance.getTruckReviews = function(username) {
   return this.get('/truckreviews/' + username)
   .then(resp => {
-    return resp.data.reviews
+    return resp.data
   })
 }
 
@@ -107,15 +113,19 @@ instance.getUserProfile = function (username) {
 }
 
 instance.getFavorites = function(username) {
-  return this.get('/userfavorites/' + username)
-  .then(resp => {
+  return this.get('/userfavorites/' + username).then(resp => {
     return resp.data
   })
 }
 
 instance.addFavorite = function(username, truckuser) {
-  return this.post('/addfavorite/', {username, truckuser})
-  .then(resp => {
+  return this.post('/addfavorite/', {username, truckuser}).then(resp => {
+    return resp.data
+  })
+}
+
+instance.removeFavorite = function(username, truckuser) {
+  return this.post('/removefavorite/', {username, truckuser}).then(resp => {
     return resp.data
   })
 }
@@ -139,8 +149,8 @@ instance.payments = function (description, token, currency, amount, cart) {
   })
 }
 
-instance.addReview = function (username, truckuser, reviewtext) {
-  return this.post('/addreview', {username, truckuser, reviewtext}).then(resp => {
+instance.addReview = function (username, truckuser, reviewtext, rating) {
+  return this.post('/addreview', {username, truckuser, reviewtext, rating}).then(resp => {
     return resp.data.message
   })
 }

@@ -1,14 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
+import {Link} from 'react-router-dom'
 import {registerTruck} from '../actions/TRegistrationActions'
 // import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
-// import alttruck from '../../assets/images/alttruck.svg'
 import './TRegistration.css'
 
-
 let images = []
-
 
 class TRegistration extends Component {
 	state = {
@@ -32,7 +30,6 @@ class TRegistration extends Component {
 
 	handleSubmit = (e) =>{
 		e.preventDefault()
-
 
 		const userRegExp = /^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/
 		const passRegExp = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%_-]{2,}$/
@@ -78,8 +75,6 @@ class TRegistration extends Component {
     window.cloudinary.openUploadWidget({ cloud_name: 'maglingkod', upload_preset: 'avwvdugz', tags:['foodtruck']},
       (error, result) => {
         data = {result, type}
-        console.log('result:', result)
-        console.log('error:', result)
         images.push(data)    //not currently using images array
         if (result && result[0].secure_url !== '') {
           if (type === 'logo') {
@@ -99,34 +94,32 @@ class TRegistration extends Component {
 
 	render(){
 		return(
-			<div>
-        <div className="truckRegContainer">
-          
-          <div className="truckRegHeader">
-            <h1>Truck</h1>
-          </div>
-
-          <div className="truckRegForm">
-					<form onSubmit={this.handleSubmit} encType="multipart/form-data">
-						<input onChange={this.handleChange} type="text" name="username" value={this.state.username}  placeholder="USERNAME"/>
-						<input onChange={this.handleChange} type="text" name="companyName" value={this.state.companyName} placeholder="TRUCK NAME" />
-						<input onChange={this.handleChange} type="text" name="email" value={this.state.email} placeholder="EMAIL"/>
-						<textarea onChange={this.handleChange} name="aboutus" value={this.state.aboutus} placeholder="ABOUT YOUR TRUCK" ></textarea>
-						<input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="PASSWORD"/>
-						<input onChange={this.handleChange} type="password" name="confirmPassword" value={this.state.confirmPassword} placeholder="CONFIRM PASSWORD"/>
-			            <div className="add-image-container">
-			            </div>
-				<div className="submitButtons">	
-        <button onClick={this.uploadWidget} value="logo" name="logo" className="upload-button">Upload Logo</button>
-        <button onClick={this.uploadWidget} value="menu" name="menu" className="upload-button">Upload Menu</button>
-        <button className="submitBold" type="submit">REGISTER</button>
-        </div>
-        </form>
-        </div>
+      <div className="truckRegContainer">
         
+        <div className="truckRegHeader">
+          <Link to="/">Back</Link>
+          <h1>Truck</h1>
         </div>
-			</div>
-	)}
+
+        <div className="truckRegForm">
+          <form onSubmit={this.handleSubmit} encType="multipart/form-data">
+            <input onChange={this.handleChange} type="text" name="username" value={this.state.username}  placeholder="USERNAME"/>
+            <input onChange={this.handleChange} type="text" name="companyName" value={this.state.companyName} placeholder="TRUCK NAME" />
+            <input onChange={this.handleChange} type="text" name="email" value={this.state.email} placeholder="EMAIL"/>
+            <textarea onChange={this.handleChange} name="aboutus" value={this.state.aboutus} placeholder="ABOUT YOUR TRUCK" ></textarea>
+            <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="PASSWORD"/>
+            <input onChange={this.handleChange} type="password" name="confirmPassword" value={this.state.confirmPassword} placeholder="CONFIRM PASSWORD"/>
+            <div className="add-image-container">    </div>
+            <div className="submitButtons">	
+              <button onClick={this.uploadWidget} value="logo" name="logo" className="upload-button">Upload Logo</button>
+              <button onClick={this.uploadWidget} value="menu" name="menu" className="upload-button">Upload Menu</button>
+              <button className="submitBold" type="submit">REGISTER</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    )
+  }
 }
 
 function mapStateToProps(state) {

@@ -16,14 +16,13 @@ class registrationPage extends Component {
     return (
       <div>
         <div className="registrationHeader">
-          <Link to="/">Back</Link>
           <h1>Are You A ...</h1>
         </div>
 
-      <div className="twoRegContainer">
-        <TRegistration />
-        <URegistration />
-      </div>
+        <div className="twoRegContainer">
+          <TRegistration />
+          <URegistration />
+        </div>
 
       </div>
     )

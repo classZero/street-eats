@@ -17,12 +17,11 @@ router.post('/updatelocation/:user/:lat/:lng', (req, res, next) => {
   const lat = req.params.lat
   const lng = req.params.lng
   const sql = `
-  UPDATE trucks 
-  SET lat = ?,lng = ? 
-  WHERE username = ?
+    UPDATE trucks 
+    SET lat = ?,lng = ? 
+    WHERE username = ?
   `
   conn.query(sql, [lat, lng, username], (err, results, fields) => {
-    console.log('update location results', JSON.stringify(results))
   })
 })
 
@@ -32,12 +31,11 @@ router.post('/updatehours/:user/:opentime/:closetime', (req, res, next) => {
   const open = req.params.opentime
   const close = req.params.closetime
   const sql = `
-  UPDATE trucks 
-  SET timeopen = ?,timeclose = ?
-  WHERE username = ?
+    UPDATE trucks 
+    SET timeopen = ?,timeclose = ?
+    WHERE username = ?
   `
   conn.query(sql, [open, close, username], (err, results, fields) => {
-    // console.log('update hours results',JSON.stringify(results))
   })
 })
 
@@ -45,12 +43,11 @@ router.post('/updatespecial/:user/:specialinfo', (req, res, next) => {
   const username = req.params.user
   const special = req.params.specialinfo
   const sql = `
-  UPDATE trucks
-  SET specialinfo = ?
-  WHERE username = ?
+    UPDATE trucks
+    SET specialinfo = ?
+    WHERE username = ?
   `
   conn.query(sql, [special, username], (err, results, fields) => {
-    // console.log(JSON.stringify(results))
   })
 })
 
@@ -102,7 +99,7 @@ router.post('/registration', (req, res, next) => {
     conn.query(sql, [username,username], (err, results, fields) => {
 
         if(results.map(res => res.count).indexOf(1) !== -1){
-            console.log('username taken')
+            // console.log('username taken')
             res.json({
                 message: "Username already taken"
             })
@@ -111,7 +108,7 @@ router.post('/registration', (req, res, next) => {
             if (req.body.type === "user") {
               const avatar = req.body.avatar
                 if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
-                    const token = jwt.sign({user: username, source: req.body.type, avatar: results[0].avatar}, config.get('jwt-secret'))
+                    const token = jwt.sign({user: username, source: req.body.type, avatar: results[0].avatar, id: results[0].id}, config.get('jwt-secret'))
 
                     const insertSql = `
                         INSERT INTO users (username, password, email, avatar) VALUES (?,?,?,?)
@@ -134,7 +131,7 @@ router.post('/registration', (req, res, next) => {
             if (req.body.type === "truck"){
 
                 if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
-                    const token = jwt.sign({user: username, source: req.body.type, avatar: results[0].avatar}, config.get('jwt-secret'))
+                    const token = jwt.sign({user: username, source: req.body.type, avatar: results[0].avatar, id: results[0].id}, config.get('jwt-secret'))
                     const companyname = req.body.companyName
                     const companyLogo = req.body.companyLogo
                     const menuurl = req.body.menu
@@ -173,17 +170,17 @@ router.post('/login', (req, res, next) => {
                 SELECT id, username, email, avatar, Null as companyname, Null as companylogo, Null as menuurl, Null as aboutus, Null as lng, Null as lat, Null as datecreated, 'user' as Source FROM users as userInfo WHERE username = ? AND password = ?`
 
     conn.query(sql, [username, password, username, password], (err, results, fields) => {
-      // console.log('login results ' + JSON.stringify(results))
         if(results.length > 0) {
-            console.log('username and password returned match')
-            const token = jwt.sign({user: username, source: results[0].Source, avatar: results[0].avatar, logo: results[0].companylogo}, config.get('jwt-secret'))
+            // console.log('username and password returned match')
+            const token = jwt.sign({user: username, source: results[0].Source, avatar: results[0].avatar, logo: results[0].companylogo, id: results[0].id}, config.get('jwt-secret'))
             res.json({
                 message: "Login Successful",
                 token: token,
                 user: username,
                 source: results[0].Source,
                 avatar: results[0].avatar,
-                logo: results[0].companylogo
+                logo: results[0].companylogo,
+                id: results[0].id
             })
         } else {
             res.status(401).json({
@@ -197,9 +194,9 @@ router.post('/login', (req, res, next) => {
 router.get('/truckprofile/:username', (req, res, next) => {
     const username = req.params.username
     const sql = `
-    SELECT * 
-    FROM trucks 
-    WHERE username = ?
+      SELECT * 
+      FROM trucks 
+      WHERE username = ?
     `
     conn.query(sql, username, (err, results, fields) => {
         const companyname = results[0].companyname
@@ -218,17 +215,27 @@ router.get('/truckprofile/:username', (req, res, next) => {
 
 router.get('/truckreviews/:username', (req, res, next) => {
     const username = req.params.username
-    const sql = `
-    SELECT review 
-    FROM reviews 
-    WHERE truckusername = ?
+    const sqlRatings = `
+      SELECT review, rating
+      FROM reviews 
+      WHERE truckusername = ?
+    `
+    const sqlAvg = `
+      SELECT AVG(rating) AS average
+      FROM reviews
+      WHERE truckusername = ?
     `
 
-    conn.query(sql, username, (err,results, fields) => {
-        const reviews = results
-
-        res.json({
-          reviews
+    conn.query(sqlRatings, username, (err,results, fields) => {
+      conn.query(sqlAvg, username, (err2, results2, fields2) => {
+        console.log('results',results)
+        console.log('avg',results2[0])
+        let reviews = results
+        let avgReview = results2[0]
+            res.json({
+              reviews,
+              avgReview
+            })
         })
     })
 })
@@ -237,9 +244,9 @@ router.get('/truckreviews/:username', (req, res, next) => {
 router.get('/userprofile/:username', (req, res, next) => {
     const username = req.params.username
     const sql = `
-    SELECT * 
-  FROM users 
-  WHERE username = ?
+      SELECT * 
+      FROM users 
+      WHERE username = ?
     `
     conn.query(sql, username, (err, results, fields) => {
         const username = results[0].username
@@ -256,10 +263,10 @@ router.get('/userprofile/:username', (req, res, next) => {
 router.get('/userfavorites/:username', (req, res, next) => {
     const username = req.params.username
     const sql = `
-    SELECT t.username, t.companyname, t.companylogo 
-    FROM users u 
-    LEFT JOIN favorites f on u.username = f.username 
-    LEFT JOIN trucks t on f.truckusername = t.username WHERE u.username = ?
+      SELECT t.username, t.companyname, t.companylogo 
+      FROM users u 
+      LEFT JOIN favorites f on u.username = f.username 
+      LEFT JOIN trucks t on f.truckusername = t.username WHERE u.username = ?
     `
 
     conn.query(sql, username, (err, results, fields) => {
@@ -274,10 +281,10 @@ router.get('/getUsersReviews/:username', (req, res, next) => {
   const username = req.params.username
 
   const sql = `
-  SELECT t.companyname, r.review, r.id
-  From trucks t 
-  LEFT JOIN reviews r on  t.username = r.truckusername 
-  WHERE r.username = ?
+    SELECT t.companyname, r.review, r.id
+    From trucks t 
+    LEFT JOIN reviews r on  t.username = r.truckusername 
+    WHERE r.username = ?
   `
 
   conn.query(sql, username, (err, results, fields) => {
@@ -294,20 +301,74 @@ router.get('/getmenu/:truckuser', (req,res,next) => {
   `
 
   conn.query(getID, req.params.truckuser, (err, results, next) => {
-    console.log('getmenu: ', results)
-
     const sql = `
       SELECT * FROM menu WHERE itemTruckId = ?
     `
     conn.query(sql, results[0].truckid, (err2, results2, fields2) => {
-      console.log(results)
       res.json({
         menu: results2
       })
     })
   })
+})
 
 
+router.post('/uplocale', (req, res, next) => {
+  const lat = req.body.lat
+  const long = req.body.long
+  const username = req.body.username
+
+  const sqlGetActiveStatus = `SELECT isActive FROM trucks WHERE username = ? `
+  const sqlUpdateLocOnly = `UPDATE trucks SET lat = ?, lng = ? WHERE username = ? `
+  const sqlUpdateLocAndActive = `UPDATE trucks SET lat = ?, lng = ?, isActive = ? WHERE username = ?`
+
+  //check if currently active
+  conn.query(sqlGetActiveStatus, username, (err, results, fields) => {
+      //if active, update location only
+      if (results[0].isActive === 1) {
+        console.log('private 156 working')
+          conn.query(sqlUpdateLocOnly, [lat, long, username], (err2, results2, fields2) => {
+              res.json({
+                  message: 'Location Updated'
+              })
+          })
+      } else {
+          //update location and activate
+          conn.query(sqlUpdateLocAndActive, [lat, long, 1, username], (err3, results3, fields3) => {
+              res.json({
+                  message: 'Location updated. You can set a time in your profile'
+              })
+          })
+      }
+  })                             
+})
+
+//remove trucks current location and make inactive
+router.post('/removelocale', (req, res, next) => {
+  const username = req.body.username
+  const sqlRemoveLoc = `UPDATE trucks SET lat = DEFAULT, lng = DEFAULT, timeopen = DEFAULT, timeclose = DEFAULT isActive = DEFAULT WHERE username = ?`
+  conn.query(sqlRemoveLoc, [username], (err, results, fields) => {
+      res.json({
+          message: 'Closing up shop'
+       })
+  })
+})
+
+//payments with stripe
+const stripe = require('stripe')('sk_test_zGrjspkLXtCEX59BW1kQjVE6')
+
+router.post('/payments', (req, res, next) => {
+    const charge = stripe.charges.create({
+        amount: req.body.amount,
+        currency: req.body.currency,
+        description: req.body.description,
+        source: req.body.token,
+    })
+    const cart = req.body.cart
+    res.json({
+        data: charge,
+        cart: cart
+    })
 })
 
 

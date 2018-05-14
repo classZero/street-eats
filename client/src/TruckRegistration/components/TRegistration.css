@@ -1,16 +1,85 @@
 .truckRegContainer {
     display: flex;
     flex-direction: column;
-    width: 500px;
-    height: 700px;
+    width: 40%;
+    height: 90%;
     border: 1px solid rgb(172, 230, 255);
     border-radius: 5px;
-    margin: 0 auto;
-    margin-top: 50px;
+    margin: 50px 20px 0 20px;
     background-color: rgb(176, 199, 201);
     box-shadow: 0px 0px 8px 8px #445e69;
-    color: black;
-    overflow: hidden;
+}
+
+.truckRegHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    height: 90px;
+    box-shadow: 0px 8px 8px -8px #445e69;
+    text-align: center;
+    font-family: 'Paytone One', sans-serif;
+    text-shadow: 2px 2px grey;
+    font-size: 20px;
+    background-image: url('../../assets/images/alttruck.svg');
+    background-repeat: no-repeat;
+    background-size: 40% 205%;
+    background-position: 50% 30%;
+    color: white;
+    animation-duration: 2s;
+    animation-name: comein;
+}
+
+.truckRegHeader a {
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    text-decoration: none;
+    color: white;
+}
+
+.truckRegHeader a:hover {
+    color:rgb(220, 220, 220);
+    text-shadow: 2px 2px black;
+}
+
+.truckRegHeader h1 {
+    margin: 0;
+}
+
+.truckRegForm {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    font-family: 'Questrial', sans-serif;
+}
+
+.truckRegForm input {
+    height: 45px;
+    width: 100%;
+    line-height: 40px;
+    font-size: 1rem;
+    padding: 2px 0 2px 5px;
+    margin: 10px 0;
+    border: 1px solid rgb(172, 230, 255);
+    border-radius: 8px;
+    background-color: #8c9fa0;
+}
+
+.truckRegForm input::placeholder, .truckRegForm textarea::placeholder {
+    color: white;
+}
+
+.truckRegForm textarea {
+    height: 90px;
+    width: 100%;
+    line-height: 40px;
+    font-size: 1rem;
+    padding: 2px 0 2px 5px;
+    margin: 10px 0;
+    border: 1px solid rgb(172, 230, 255);
+    border-radius: 8px;
+    background-color: #8c9fa0;
 }
 
 .submitButtons {
@@ -18,91 +87,29 @@
     flex-direction: column;
 }
 
-.truckRegContainer textarea {
-    background-color: inherit;
-    outline: none;
-    color: black;
-    border: 1px solid #697778;
-    margin-left: 70px;
-    margin-top: 25px;
-    width: 350px;
-    height: 75px;
-    font-size:15px;
-    padding-left: 10px;
-    padding-top: 5px;
-}
-
-.truckRegContainer textarea::placeholder {
-    color: black;
-    font-family: 'Questrial', sans-serif;
-}
-
-.truckRegHeader {
-    border-bottom: 1px solid #697778;
-    text-align: center;
-    font-family: 'Paytone One', sans-serif;
-    text-shadow: 2px 2px grey;
-    background-image: url('../../assets/images/alttruck.svg');
-    background-repeat: no-repeat;
-    background-size: 35%;
-    background-position: 50% 35%;
-    color: white;
-    animation-duration: 2s;
-    animation-name: comein;
-}
-
-.truckRegForm {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Questrial', sans-serif;
-}
-
-.truckRegForm input {
-    font-family: 'Questrial', sans-serif;
-    border:1px solid #697778;
-    border-radius: 5px;
-    width: 350px;
-    height: 50px;
-    background-color: #8c9fa0;
-    margin-left: 70px;
-    margin-top: 20px;
-    font-size: 15px;
-    padding-left: 10px;
-    color: black;
-}
-
-.truckRegForm input::placeholder {
-    color: black;
-}
-
-.truckRegForm textarea {
-    border-radius: 5px;
-    background-color: #8c9fa0;
-}
-
 .truckRegForm button {
     font-family: 'Questrial', sans-serif;
     border: none;
     background-color: inherit;
-    color: black;
     outline: none;
     margin-top: 25px;
 }
 
 .truckRegForm button:hover {
-    color:#445e69;
+    color:grey;
     cursor: pointer;
 }
 
 .upload-button {
     font-size: 16px;
+    color: white;
 }
 
 .submitBold {
     font-weight: bold;
     font-size: 20px;
+    color: white;
 }
-
 
 
 @keyframes comein {

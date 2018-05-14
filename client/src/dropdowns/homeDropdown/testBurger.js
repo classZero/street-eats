@@ -30,7 +30,11 @@ export class HomeBurger extends Component {
     this.setState({
       response: loading
     })
-    navigator.geolocation.getCurrentPosition(this.success, this.error)
+    navigator.geolocation.getCurrentPosition(this.success, this.error, {
+      enableHighAccuracy: true,
+      timeout: 7000,
+      maximumAge: 500000
+    })
   }
   success = (position) => {
     var latitude  = position.coords.latitude
@@ -38,7 +42,7 @@ export class HomeBurger extends Component {
     this.setState({
       response: ''
     })
-    updateLocation(latitude, longitude, this.props.username)
+    updateLocation(latitude, longitude, this.props.username, this.props.id)
   }
   error = () => {
     this.setState({
@@ -68,7 +72,7 @@ export class HomeBurger extends Component {
             <div><i className="far fa-user"></i><Link id="tProf" to={'/truckprofile/' + this.props.username}>View My Profile</Link></div>
             <div><i className="fas fa-edit"></i><Link id="eProf" to='/editprofile'>Edit Profile</Link></div>
             <div><i className="far fa-list-alt"></i><Link id="order" to='/orders'>View orders</Link></div>
-            <div><div className="update-loc-group"><i className="fas fa-map-marker"></i><button onClick={() => this.geoFindMe()}>Update my location</button>
+            <div><div className="update-loc-group"><i className="fas fa-map-marker-alt"></i><button onClick={() => this.geoFindMe()}>Update my location</button>
             {this.state.response ? <img src={this.state.response} id="loading-gif" alt="loading..."/> : ''}</div></div>
             <div><i className="far fa-minus-square"></i><button id="remBtn" onClick={this.handleRemoval}>Remove my truck</button></div>
             <div><div id="tLog"><Logout /></div></div>
@@ -83,9 +87,11 @@ export class HomeBurger extends Component {
 }
 
 function mapStateToProps(state) {
+  // console.log('testburger', state)
   return {
     source: state.loginReducer.source,
-    username: state.loginReducer.username
+    username: state.loginReducer.username,
+    id: state.loginReducer.id
   }
 }
 

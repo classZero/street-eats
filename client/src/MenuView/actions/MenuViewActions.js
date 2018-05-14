@@ -29,9 +29,9 @@ function closeMessageBox () {
 	})
 }
 
-export function addToCart(itemObj, currentTruck){
+export function addToCart(itemObj, currentTruck, truckUserName){
 	const cartSource = store.getState().MenuViewReducer.cartSource
-	
+	itemObj.truckUserName = truckUserName
 	return cartSource === '' ?
 		(
 			store.dispatch({

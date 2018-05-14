@@ -13,22 +13,34 @@
     overflow: auto;
 }
 
+.uprofile-button-container {
+    position: relative;
+    height: 30px;
+    width: 100%;
+}
+
 #uprofile-back-btn, #uprofile-edit-btn {
+    position: absolute;
+    top: 10px;
     text-decoration: none;
-    font-family: 'Paytone One', sans-serif;
+    text-shadow: 2px 2px grey;
     color: white;
+    font-family: 'Paytone One', sans-serif;
     font-size: 16px;
-    margin-top: 5px;
-    margin-left: 5px;
+}
+
+#uprofile-back-btn {
+    left: 10px;
+}
+
+#uprofile-edit-btn {
+    right: 10px;
 }
 
 #uprofile-back-btn:hover, #uprofile-edit-btn:hover {
-    color: grey;
+    color: rgb(220, 220, 220);
+    text-shadow: 2px 2px black;
 }
-
-/* .uprofile-container p {
-    margin-left: 20px;
-} */
 
 .uprofile-username, .uprofile-fav-container-header, .uprofile-fav-warning, .uprofile-email {
     margin-left: 20px;
@@ -43,12 +55,6 @@
     font-size: 20px;
     overflow: hidden;
     overflow-y: scroll;
-}
-
-.uprofile-button-container {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 5px;
 }
 
 .uprofile-fav {
@@ -97,7 +103,6 @@
 }
 
 .uprofile-review-container-header {
-    /* margin-bottom: 20px; */
     margin-left: 20px;
 }
 

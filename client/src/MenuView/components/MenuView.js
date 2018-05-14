@@ -25,7 +25,7 @@ class MenuView extends Component{
         
 				<div className="tprofile-header menuview-header">
       		<p>Menu</p>
-      		<button onClick={ e => this.props.toggle(e)} className="menuview-toggle">View Reviews</button>
+      		<button onClick={ e => this.props.toggle(e)} className="menuview-toggle">See Reviews</button>
         </div>
         {this.props.menu.map((item, i) => (
     				<MenuItem key={"menuitem-" + i} item={item}/>
@@ -38,7 +38,7 @@ class MenuView extends Component{
 
 function mapStateToProps(state) {
   return {
-  	menu: state.MenuViewReducer.activeMenu,
+  	menu: state.MenuViewReducer.activeMenu
   }
 }
 

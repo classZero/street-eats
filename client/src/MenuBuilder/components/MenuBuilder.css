@@ -1,46 +1,68 @@
-#menuBuilderForm {
-	padding: 8px;
+.menubuilder-header{
+	display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    height: 12%;
+    font-family: 'Paytone One', sans-serif;
+    box-shadow: 0px 8px 8px -8px #445e69;
+    text-shadow: 2px 2px grey;
 }
 
-#menuBuilderForm label{
-	display: block;
-	margin: 5px 0;
+.menubuilder-body {
+	margin: 0 0 20px 20px;
+    font-size: 25px;
+}
+
+.menubuilder-body h4 {
+	margin: 15px 0;
 }
 
 #menuBuilderForm input{
-    width: 70%;
-    padding: 2px 0 2px 4px;
-    margin: 0 10px;
+    height: 40px;
+    width: 96%;
+    line-height: 40px;
+    font-size: 1rem;
+    padding: 2px 0 2px 30px;
+    margin: 0 10px 0 0;
     border-radius: 8px;
-    background-color: rgb(174, 50, 50);
-    float: right;
+    background-color: #8c9fa0;
+    color: black;
+    border: 1px solid rgb(172, 230, 255);
 }
 
-.menubuilder-remove-button, .menubuilder-toggle, .edittruck-container .menubuilder-toggle{
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	right: 5px;
-	background-color: inherit;
-    border: none;
+#menubuilder-btn-wrapper {
+	display: flex;
+}
+
+#menubuilder-btn-wrapper select, #menubuilder-submit-btn {
+	margin-left: 20px;
+	background-color: transparent;
+	border: none;
+	outline: none;
     color: white;
     font-size: 15px;
     cursor: pointer;
 }
 
+#menubuilder-submit-btn {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background-color: inherit;
+    color: white;
+    font-size: 25px;
+    margin: 25px auto;
+    margin-left: -25px;
+}
+
 #menuBuilderForm::after{
 	clear: both;
 }
-.menubuilder-header{
-	position: relative;
-}
-.menubuilder-toggle{
-	position: absolute;
-	top: -12px;
-	bottom: 0;
-	right: 0;
-}
 
 .menubuilder-remove-button:hover, .menubuilder-toggle:hover {
-    color: rgb(240, 208, 32);
+    color: grey;
 }

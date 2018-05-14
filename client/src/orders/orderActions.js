@@ -1,32 +1,25 @@
 import io from 'socket.io-client'
 import store from '../store'
-// const socket = io.connect('http://192.168.50.34:3001')
+const socket = io.connect('http://192.168.50.34:3001')
 // const socket = io.connect('http://10.68.0.239:3001')
-const socket = io.connect('http://localhost:3001')
+// const socket = io.connect('http://localhost:3001')
 
+// const socket = io('/orders')
 
-// export function sendOrder(orders) {
-//   console.log('ordering',orders)
-//   const orderedBy = 'kevin'
-//   socket.emit('order', {orders: ['1', '2', '3', '4'], orderedBy: orderedBy, timestamp: timestamp})
-// }
-
-export function dispatchToTruck(data) {
-  console.log('big success')
-  const order = data.cart
-  
+export function dispatchToTruck(order) {
   socket.emit('order', order)
 }
 
-socket.on('orderPlaced', (order) => {
-  console.log('actions', order)
-  const truckIdOrderedFrom = order[0].itemTruckId
+socket.on('order', order => {
+  console.log('order received', order.cart)
+  const truckIdOrderedFrom = order.cart[0].itemTruckId
   const timestamp = new Date()
   store.dispatch({
     type: "SEND_ORDER",
-    payload:{order: order, truckId: truckIdOrderedFrom , timestamp: timestamp}
+    payload: order.cart
   })
 })
+
 
 export function removeOrder() {
 

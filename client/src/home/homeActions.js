@@ -1,6 +1,10 @@
 import store from '../store'
 import api from '../lib/api'
 import Geocode from 'react-geocode'
+import io from 'socket.io-client'
+
+
+const socket = io.connect('http://192.168.50.34:3001')
 
 api.new('/api')
 
@@ -25,7 +29,10 @@ export function changeSortView(type) {
   })
 }
 
-export function updateLocation(lat, long, username) {
+export function updateLocation(lat, long, username, id) {
+
+  socket.emit('create truck', {id})
+
   api.updateLocation(lat, long, username).then(resp => {
     store.dispatch({
       type: "UPDATE_LOCATION",
