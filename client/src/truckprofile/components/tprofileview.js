@@ -101,7 +101,7 @@ class TProfileView extends Component {
         getReviews(this.props.match.params.username)
     }
 
-    cartHider(){
+    handleCartHide(){
         hideCart()
     }
 
@@ -115,10 +115,8 @@ class TProfileView extends Component {
                     <div className="tprofile-container">
 
                         <div className="tprofile-header">
-                          <Link to="/" className="tprofile-back" onClick={this.cartHider}>Back</Link>
+                          <Link to="/" className="tprofile-back" onClick={this.handleCartHide}>Back</Link>
                           <p>{this.props.profile.companyname}</p>
-                            <Link to="/" className="tprofile-back">Back</Link>
-                                <p>{this.props.profile.companyname}</p>
                                 <p className="tprofile-edit">{this.editTruckProfile(this.props.username)}</p>
                                 {this.props.isAuth && this.props.source === 'user' ?
             					              <div className="star-container" onClick={() => this.handleFavClick(this.props.username, this.props.match.params.username)}>

@@ -11,6 +11,7 @@
 	display: inline-block;
 	text-align: right;
 }
+
 .menuview-menu-item p {
 	margin-right: 75px;
 }
@@ -49,50 +50,38 @@
 }
 
 /*cart*/
-/*.testZone{
-	border: 2px dashed rgba(255, 0, 255, .8);
-	background-color: rgba(0,0,0, .6);
-	color: #fff;
-	position: absolute;
-	left: 100px;
-	width: 500px;
-	padding: 8px;
-	max-height: 700px;
-	overflow-y: scroll;
-}*/
-
-.testZone * {
-	font-family: 'Questrial';
-}
-
 .cart-sidebar {
 	position: absolute;
 	top: 0;
 	left: 0;
 }
 
+.cart-container * {
+	font-family: 'Questrial', sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    color: rgb(208, 208, 208);
+    text-shadow: none;
+}
+
 .cart-header {
-    text-align: center;
-    font-size: 35px;
-    font-family: 'Paytone One';
-    font-weight: bold;
-    margin: 0 0 8px 0;
-    padding-bottom: 8px;
-    text-shadow: 2px 2px grey;
-    border-bottom: 1px solid white;
+	font-size: 35px;
+	text-align: center;
+	margin: 0 0 8px 0;
 }
-.cart-item{
-	font-size: 1.1em;
-	position: relative;
+
+.cart-item {
 	margin: 3px 0;
-	border-bottom: 1px solid white
+	position: relative;
 }
-.cart-item > span{
+
+.cart-item > span {
 	float: right;
-	margin-right: 125px;
+	margin-right: 110px;
 }
 .cart-remove-item-button{
 	position: absolute;
+	font-size: 16px;
 	right: 0;
 	top: 0;
 	bottom: 0;
@@ -100,17 +89,48 @@
 	border: none;
 	color: #fff;
 }
-.cart-special-instructions{
-	width: 100%;
-	resize: vertical;
-	background-color: rgba(255,255,255, .8);
-	font-size: .9em;
-}
 
 .checkout-button-wrapper{
 	text-align: center;
 }
 
 .checkout-button{
-	font-size: 1em;
+	font-size: 1.2em;
+	background: none;
+	border: none;
+	color: #eee;
 }
+
+.checkout-button:hover{
+	color: #fff;
+}
+
+.cart-special-instructions{
+    width: 100%;
+    line-height: 40px;
+    font-size: 1rem;
+    padding: 2px 0 2px 5px;
+    margin: 0 10px 0 0;
+    border-radius: 8px;
+    background-color: #8c9fa0;
+    color: black;
+    border: 1px solid rgb(172, 230, 255);
+    resize: vertical;
+}
+/*
+
+.cart-header {
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Questrial';
+    color: rgb(208, 208, 208);
+    text-shadow: none;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    padding-bottom: 8px;
+    text-shadow: 2px 2px grey;
+    border-bottom: 1px solid white;
+
+}
+
+*/

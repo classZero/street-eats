@@ -92,7 +92,6 @@ export function viewCart(){
 }
 
 export function hideCart(){
-	console.log('dispatching HIDE_CART')
 	store.dispatch({
 		type: 'HIDE_CART'
 	})

@@ -3,9 +3,8 @@ import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import MenuItem from './MenuItem'
-import Cart from './Cart'
 
-import {getMenu, hideCart} from '../actions/MenuViewActions'
+import {getMenu} from '../actions/MenuViewActions'
 import './MenuView.css'
 
 class MenuView extends Component{
@@ -16,7 +15,7 @@ class MenuView extends Component{
   }
 
 	componentDidMount(){
-		getMenu(this.props.match.params.username).then(resp => console.log('got menu'))
+		getMenu(this.props.match.params.username).then(resp => '')
 	}
 
 	render(){

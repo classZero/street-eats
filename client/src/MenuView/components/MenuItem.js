@@ -16,7 +16,7 @@ class MenuItem extends Component{
     return(
       <div className="menuview-menu-item">
         <h3>{this.props.item.itemName}</h3>
-        <h3>${this.props.item.itemPrice}</h3>
+        <h3 className="menuview-menu-item-price">${this.props.item.itemPrice.toFixed(2)}</h3>
         <h4>{this.props.item.itemType}</h4>
         <p>{this.props.item.itemDescription}</p>
         { this.props.isAuthenticated && this.props.source === 'user'

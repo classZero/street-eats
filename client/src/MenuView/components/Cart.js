@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { slide as Menu } from 'react-burger-menu'
-import {removeFromCart, viewCart, hideCart} from 'MenuView/actions/MenuViewActions'
+import {removeFromCart, viewCart} from 'MenuView/actions/MenuViewActions'
 
 import Checkout from 'stripe/Checkout'
 
@@ -15,21 +15,6 @@ class Cart extends Component{
   
   state ={
     isVisible: false
-  }
-
-  componentDidMount(){
-    console.log('cart mounted')
-  }
-
-  // static getDerivedStateFromProps(nextProps, prevState){
-  //   console.log('nextProps cartview: ', nextProps.cartView)
-  //   return {
-  //     ...prevState,
-  //     isVisible: nextProps.cartView
-  //   }
-  // }
-  componentWillReceiveProps(nextProps){
-    console.log('next',nextProps.cartView, 'current',this.props.cartView)
   }
 
   total = () => {
@@ -52,18 +37,13 @@ class Cart extends Component{
     removeFromCart(itemIndex)
 
   }
-
-  componentWillUnmount(){
-    console.log('cart unmounting')
-    // hideCart()
-  }
   
 
   render(){
     if(this.props.isAuthenticated && this.props.source === 'user'){
       return(
         <Menu noOverlay width={500} isOpen={ this.props.cartView } styles={cartStyles} customBurgerIcon={ <img src={cartsvg} alt="cart"/> } className={ "cart-sidebar" }>
-          <div className="testZone">
+          <div className="cart-container">
             {this.props.cartSource 
               ? <p className="cart-header">{this.props.cartSource} - Cart</p>
               : <p className="cart-header">{this.props.companyName} - Cart</p>
@@ -73,7 +53,7 @@ class Cart extends Component{
               return(
                 <div key={'cartitem-'+i} className="cart-item" >
                   {item.itemName} <span>${item.itemPrice.toFixed(2)}</span>
-                  <button onClick={ e => this.handleRemove(e, i)} className="cart-remove-item-button" >-Remove From Cart</button>
+                  <button onClick={ e => this.handleRemove(e, i)} className="cart-remove-item-button" >-Remove Item</button>
                 </div>
               )}
             )}
