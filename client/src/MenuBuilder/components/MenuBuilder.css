@@ -66,3 +66,10 @@
 .menubuilder-remove-button:hover, .menubuilder-toggle:hover {
     color: grey;
 }
+.editmenu-container{
+    overflow: hidden;
+}
+.menubuilder-body-container{
+    height: 100%;
+    overflow: scroll;
+}
