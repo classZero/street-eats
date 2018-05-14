@@ -45,10 +45,10 @@ io.on('connection', (socket) => {
 
         console.log("Socket Connected, sent through socket : " +id.socketId)
         // io.sockets.connected[id.socketId].emit('order', {order, emitAuth})
-        socket.broadcast.to(id.socketId).emit('order', {order, emitAuth})
-        io.to(id.socketId).emit('order', {order, emitAuth})
-        socket.to(id.socketId).emit('order', {order, emitAuth})
-        socket.emit('order', order)
+        // socket.broadcast.to(id.socketId).emit('order', {order, emitAuth})
+        // io.to(id.socketId).emit('order', {order, emitAuth})
+        socket.to(id.socketId).emit('order', order)
+        // socket.emit('order', order)
         // io.sockets.sockets(id.socketId).emit('order', {order, emitAuth})
 
         const sql=`
