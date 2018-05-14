@@ -70,10 +70,30 @@ export function removeFromCart(itemIndex){
 		type: 'REMOVE_FROM_CART',
 		payload: newCart.filter((it, ind)=> ind !== itemIndex)
 	})
+
+	if(newCart.filter((it,ind) => ind !== itemIndex).length === 0){
+		store.dispatch({
+			type: 'UPDATE_CART_SOURCE',
+			payload: ''
+		})
+	}
 }
 
 export function clearCart(){
 	store.dispatch({
 		type: 'CLEAR_CART'
+	})
+}
+
+export function viewCart(){
+	store.dispatch({
+		type: 'VIEW_CART'
+	})
+}
+
+export function hideCart(){
+	console.log('dispatching HIDE_CART')
+	store.dispatch({
+		type: 'HIDE_CART'
 	})
 }

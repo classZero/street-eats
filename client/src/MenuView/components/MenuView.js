@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import MenuItem from './MenuItem'
 import Cart from './Cart'
 
-import {getMenu} from '../actions/MenuViewActions'
+import {getMenu, hideCart} from '../actions/MenuViewActions'
 import './MenuView.css'
 
 class MenuView extends Component{
@@ -16,15 +16,13 @@ class MenuView extends Component{
   }
 
 	componentDidMount(){
-		getMenu(this.props.match.params.username).then(resp => console.log(resp))
+		getMenu(this.props.match.params.username).then(resp => console.log('got menu'))
 	}
-
-
 
 	render(){
 		return(
 			<div className="tprofile-menu-container">
-        <Cart/>
+        
 				<div className="tprofile-header menuview-header">
       		<p>Menu</p>
       		<button onClick={ e => this.props.toggle(e)} className="menuview-toggle">View Reviews</button>

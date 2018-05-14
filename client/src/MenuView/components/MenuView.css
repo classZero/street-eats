@@ -48,7 +48,7 @@
 }
 
 /*cart*/
-.testZone{
+/*.testZone{
 	border: 2px dashed rgba(255, 0, 255, .8);
 	background-color: rgba(0,0,0, .6);
 	color: #fff;
@@ -58,10 +58,16 @@
 	padding: 8px;
 	max-height: 700px;
 	overflow-y: scroll;
-}
+}*/
 
 .testZone * {
 	font-family: 'Questrial';
+}
+
+.cart-sidebar {
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 .cart-header {

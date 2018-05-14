@@ -6,6 +6,8 @@ import MapViewHome from '../MapView/mapviewcomponents/MapsViewHome'
 import TruckListDropdown from '../dropdowns/homeDropdown/TruckListDropdown'
 import HomeHeader from '../headers/HomeHeader'
 
+import { hideCart} from 'MenuView/actions/MenuViewActions'
+
 import './home.css'
 import '../dropdowns/homeDropdown/dropdown.css'
 
@@ -20,7 +22,13 @@ export class Home extends Component {
   }
 
   componentDidMount() {
-    changeSortView('active')
+    hideCart()
+    console.log('home mounted')
+    changeSortView('active')    
+  }
+  componentWillUnmount(){
+    console.log('home unmounting')
+    hideCart()
   }
 
   render() {

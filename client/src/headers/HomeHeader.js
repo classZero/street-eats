@@ -3,12 +3,25 @@ import Login from '../login/Login'
 import {connect} from 'react-redux'
 // import HomeDropdown from '../dropdowns/homeDropdown/HomeDropdown'
 import HomeBurger from '../dropdowns/homeDropdown/testBurger'
+import Cart from 'MenuView/components/Cart'
 import trucksvg from 'assets/images/truck.svg'
 import {Link} from 'react-router-dom'
+
+import {hideCart} from 'MenuView/actions/MenuViewActions'
 
 import './homeHeader.css'
 
 export class HomeHeader extends Component {
+
+  componentDidMount(){
+    console.log('header mounted')
+  }
+  
+  componentWillUnmount(){
+    console.log('header unmount')
+    // hideCart()
+  }
+
   render() {
     return (
       <div className="home-header">
@@ -31,7 +44,7 @@ export class HomeHeader extends Component {
               <HomeBurger />
           {/* </div> */}
         </div>
-
+        <Cart />
       </div>
     )
   }
@@ -43,7 +56,8 @@ function mapStateToProps(state) {
     username: state.loginReducer.username,
     avatar: state.loginReducer.avatar,
     source: state.loginReducer.source,
-    companyLogo: state.loginReducer.logo
+    companyLogo: state.loginReducer.logo,
+    cartView: state.MenuViewReducer.cartView
   }
 }
 

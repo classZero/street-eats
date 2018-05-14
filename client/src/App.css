@@ -5,7 +5,7 @@
     position: absolute;
     top: 7%;
     right: 15%;
-    height: 8%;
+    min-height: 8%;
     width: 20%;
     border: 1px solid white;
     border-radius: 5px;

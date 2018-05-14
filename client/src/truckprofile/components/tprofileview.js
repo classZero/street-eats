@@ -11,6 +11,8 @@ import { submitReview } from '../actions/tProfileActions'
 
 import MenuView from 'MenuView/components/MenuView'
 
+import {hideCart} from 'MenuView/actions/MenuViewActions'
+
 class TProfileView extends Component {
     state = {
         reviewMenuToggle: 'menu',
@@ -18,8 +20,16 @@ class TProfileView extends Component {
     }
 
     componentDidMount(){
+        console.log('truck mounted')
         getProfile(this.props.match.params.username)
         getReviews(this.props.match.params.username)
+    }
+
+    componentWillUnmount(){
+        hideCart()
+        console.log('truck unmounting')
+        
+        alert('this is an alert')
     }
 
     editTruckProfile(username) {

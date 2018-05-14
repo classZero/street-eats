@@ -2,7 +2,8 @@ const initialState = {
     activeMenu: [],
     cart: [],
     cartTotal: 0,
-    cartSource: ''
+    cartSource: '',
+    cartView: false
 }
 
 //not currently using cartTotal, possibly remove in future, might be useful to prevent editing of total by user though
@@ -22,6 +23,10 @@ export default function (state = initialState, action) {
         	return {...state, cart: action.payload}
         case 'CLEAR_CART':
         	return {...state, cart: [], cartTotal: 0, cartSource: ''}
+        case 'VIEW_CART':
+            return {...state, cartView: true}
+        case 'HIDE_CART':
+            return {...state, cartView: false}
         default:
             return state
     }

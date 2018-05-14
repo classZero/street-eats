@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
-import {addToCart} from '../actions/MenuViewActions'
+import {addToCart, viewCart} from '../actions/MenuViewActions'
 
 class MenuItem extends Component{
   state = {}
@@ -9,6 +9,7 @@ class MenuItem extends Component{
   handleAdd = (e) => {
     e.preventDefault()
     addToCart(this.props.item, this.props.displayedTruck)
+    viewCart()
   }
 
   render(){
