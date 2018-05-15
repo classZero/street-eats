@@ -8,7 +8,6 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    overflow: hidden;
 }
 
 *, *:before, *:after {
@@ -40,28 +39,35 @@ body {
 .home-header-login p {
     padding-right: 10px;
     text-shadow: none;
-    font-family: Questrial;
+    font-family: 'Questrial', sans-serif;
 }
 
 .home-header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    position: relative;
+    /* align-items: center; */
     height: 95px;
     margin: 8px 50px 0 50px;
     text-shadow: 2px 2px rgba(196, 153, 150, 0.7);
 }
 
 .home-login-container {
-    width:100%;
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    width:40%;
 }
 
 .home-header-dropdown {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 40px;
     z-index:50;
-    margin-left: 50%;
-    width: 200px;
+    width: 40%;
 }
 
 .dropmenu-btn.sort {
@@ -107,9 +113,11 @@ body {
 }
 
 /* truck list section */
+
 .list-wrapper {
     width: 35%;
 }
+
 .home-newsfeed {
     display: flex;
     flex-direction: column;
@@ -172,6 +180,8 @@ body {
 .newtruck-list-item {
     padding: 8px;
     font-family: 'Questrial', sans-serif;
+    font-size: 20px;
+    color: white;
 }
 
 .newtruck-list-item a{
@@ -181,26 +191,20 @@ body {
 
 .newtruck-list-item p {
     margin: 5px 0 0 0;
-    color: black;
     font-size: 14px;
 }
 
 .newtruck-list-item h3 {
     margin: 0;
-    color: black;
 }
 
 .newtruck-list-item:hover {
     content: 'rrr';
     background-color: rgba(169, 169, 169, 0.5);
-    box-shadow: inset 7px 0 9px -7px blue, inset -7px 0 9px -7px blue;
+    box-shadow: inset 7px 0 9px -7px blue, inset -7px 0 9px -7px blue, 0px 8px 8px -8px #445e69;
 }
 
 /* map styles */
-
-.maptestcontainer {
-    /* height: 100%; */
-}
 
 .map-wrapper {
     box-shadow: 0px 0px 8px 8px #445e69;

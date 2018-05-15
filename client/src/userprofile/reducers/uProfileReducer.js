@@ -1,6 +1,6 @@
 const initialState = {
     profile : {},
-    favorites: [],
+    favorites: [{username: null}],
     reviews: []
 }
 

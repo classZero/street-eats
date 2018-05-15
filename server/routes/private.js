@@ -54,10 +54,10 @@ router.post('/removefavorite', (req, res, next) => {
     const id = req.body.id
     const sql = `
         DELETE FROM favorites 
-        WHERE truckusername = ? AND username = ? AND id = ?
+        WHERE truckusername = ? AND username = ? AND id = ? OR (truckusername = ? AND username = ?)
     `
 
-    conn.query(sql, [truck, user, id], (err, results, fields) => {
+    conn.query(sql, [truck, user, id, truck, user], (err, results, fields) => {
         res.json({
             message : "Truck removed from your favorites"
         })

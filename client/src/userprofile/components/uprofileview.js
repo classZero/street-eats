@@ -13,7 +13,7 @@ import ChangeReview from './changeReview'
 
 class UProfileView extends Component {
     static defaultProps = {
-      favorites: []
+      favorites: [{username: null}]
     }
 
     componentDidMount(){
@@ -36,7 +36,7 @@ class UProfileView extends Component {
                       <div className="uprofile-container-body">
                           <div className="uprofile-fav-container-header">My Favorites:</div>
                           <div className="uprofile-favcontainer">
-                          {this.props.favorites.length > 1 ? 
+                          {this.props.favorites[0].username !== null ? 
                           this.props.favorites.map((favorite, index) => {
                                   return  <Link to={'/truckprofile/' + favorite.username} key={'favorite' + index} className="uprofile-fav">
                                             <div className="uprofile-fav-right">
