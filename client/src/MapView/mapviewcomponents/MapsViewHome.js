@@ -106,7 +106,7 @@ class Modal extends Component {
       left: '50%',
       transform: 'translate(-50%, -50%)',
       zIndex: '9999',
-      background: 'rgb(227, 127, 227)',
+      background: 'rgb(102, 140, 201)',
       borderRadius: '5px'
     }
 

@@ -7,6 +7,8 @@
 
 .modal-wrapper {
     padding: 5px;
+    font-family: 'Questrial';
+    border: 1px solid #fff;
 }
 
 .modal-wrapper a {

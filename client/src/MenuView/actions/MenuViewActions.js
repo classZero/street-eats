@@ -52,9 +52,9 @@ export function addToCart(itemObj, currentTruck, truckUserName){
 		type: 'ALERT',
 		payload: 
 			<div>
-				Your cart contains items from another food truck. Please complete your current order or clear your cart to proceed
-				<button onClick={closeMessageBox}>Close this window</button>
-				<button onClick={() => changeMessage(itemObj, currentTruck)}>Clear cart and add item</button>
+				<div className="alert-message">Your cart contains items from another food truck. Please complete your current order or clear your cart to proceed.</div>
+				<button onClick={closeMessageBox} className="alert-button-one">Close this window</button>
+				<button onClick={() => changeMessage(itemObj, currentTruck)} className="alert-button-two">Clear cart and add item</button>
 			</div>
 		})
 }
