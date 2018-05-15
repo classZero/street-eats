@@ -62,12 +62,13 @@ body {
 
 .home-header-dropdown {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     position: absolute;
     top: 20px;
-    right: 30px;
+    right: 40px;
     z-index:50;
-    width: 200px;
+    width: 40%;
 }
 
 .dropmenu-btn.sort {
