@@ -67,7 +67,7 @@ class TProfileView extends Component {
 
     reviewForm(auth, source) {
         if(auth && source === 'user') {
-            return <div>
+            return <div className="submit-form-wrapper">
                       <form className="review-container" onSubmit={this.handleSubmit}>
                           <div>
                             <h4 className="review-title">Leave a review?</h4> 
@@ -171,7 +171,6 @@ class TProfileView extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log(state.tProfileReducer.average.average)
     return {
         profile : state.tProfileReducer.profile,
         username : state.loginReducer.username,
