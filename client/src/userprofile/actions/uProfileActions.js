@@ -21,8 +21,8 @@ export function getFavorites(username) {
 	})
 }
 
-export function removeFavorite(user, truck) {
-	api.removeFavorite(user, truck).then(resp => {
+export function removeFavorite(user, truck, id) {
+	api.removeFavorite(user, truck, id).then(resp => {
 		store.dispatch({
 			type: 'REMOVE_FAVORITE',
 			payload: resp

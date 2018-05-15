@@ -11,8 +11,6 @@ import RemoveFavorite from './removeFavorite'
 import ChangeReview from './changeReview'
 
 
-
-
 class UProfileView extends Component {
     static defaultProps = {
       favorites: []
@@ -27,13 +25,16 @@ class UProfileView extends Component {
     checkUser(auth, current, user) {
         if(auth && current === user) {
             return <div className="uprofile-container">
-                      <div className="uprofile-button-container">
-                          <Link to="/" id="uprofile-back-btn">Back</Link>
-                          <Link to='/editprofile' id="uprofile-edit-btn">Edit My Profile</Link>
+                      <div className="uprofile-container-header">
+                          <div className="uprofile-button-container">
+                              <Link to="/" id="uprofile-back-btn">Back</Link>
+                              <Link to='/editprofile' id="uprofile-edit-btn">Edit My Profile</Link>
+                          </div>
+                          <div className="uprofile-username">Username: {this.props.profile.username}</div>
+                          <div className="uprofile-email">Email: {this.props.profile.email}</div>
                       </div>
-                      <div className="uprofile-username">Username: {this.props.profile.username}</div>
-                      <div className="uprofile-email">Email: {this.props.profile.email}</div>
-                      <div className="uprofile-fav-container-header">My Favorites:</div>
+                      <div className="uprofile-container-body">
+                          <div className="uprofile-fav-container-header">My Favorites:</div>
                           <div className="uprofile-favcontainer">
                           {this.props.favorites.length > 1 ? 
                           this.props.favorites.map((favorite, index) => {
@@ -41,21 +42,22 @@ class UProfileView extends Component {
                                             <div className="uprofile-fav-right">
                                               <img src={favorite.companylogo} alt="logo" className="uprof-fav-img"/>
                                               <h3>{favorite.companyname}</h3>
-                                              <RemoveFavorite truck={favorite.username} user={this.props.username} />
+                                              <RemoveFavorite truck={favorite.username} user={this.props.username} id={favorite.id}/>
                                             </div>
                                           </Link>
                           })
                           : <h3 className="uprofile-fav-warning">You have not favorited anything yet</h3> }
                           </div>
 
-                      <div className="uprofile-review-container">
-                          <div className="uprofile-review-container-header">My Reviews:</div>
-                          <div className="uprofile-review-items-container">
-                              {this.props.reviews.map((review, index) => {
-                                  return <ChangeReview key={'review' + index} companyname={review.companyname} review={review.review} id={review.id} username={this.props.username}/>
-                              })}
-                          </div>
+                          <div className="uprofile-review-container">
+                              <div className="uprofile-review-container-header">My Reviews:</div>
+                              <div className="uprofile-review-items-container">
+                                  {this.props.reviews.map((review, index) => {
+                                      return <ChangeReview key={'review' + index} companyname={review.companyname} review={review.review} id={review.id} username={this.props.username}/>
+                                  })}
+                              </div>
 
+                          </div>
                       </div>
                   </div>
         } else {

@@ -13,9 +13,9 @@ export default function(state = initialState, action) {
       return {...state, truckData: action.payload.values,
                         sortType: action.payload.type}
     case "REMOVE_TRUCK":
-      return {...state, message: action.payload}
+      return {...state, userMessage: action.payload}
     case "UPDATE_LOCATION":
-      return {...state, message: action.payload}
+      return {...state, userMessage: action.payload}
     case "USER_CREATED":
         return {...state, userMessage: action.payload}
     case "LOGIN_MESSAGE":

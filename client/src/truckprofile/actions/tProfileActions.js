@@ -14,7 +14,6 @@ export function getProfile(username) {
 
 export function getReviews(username) {
 	api.getTruckReviews(username).then(resp => {
-    console.log('resp',resp)
 		store.dispatch({
 			type: "GET_REVIEWS",
 			payload: resp
@@ -49,6 +48,15 @@ export function removeFavorite(username, truckuser) {
         payload: ''
       })
     },3000)
+  })
+}
+
+export function getIsFavorite(truckUsername, userUsername) {
+  api.getIsFavorite(truckUsername, userUsername).then(resp => {
+    store.dispatch({
+      type: "IS_FAVORITE",
+      payload: resp.isFavorite
+    })
   })
 }
 

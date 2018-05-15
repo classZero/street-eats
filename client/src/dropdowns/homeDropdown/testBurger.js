@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
+import {withRouter} from 'react-router'
 import {connect} from 'react-redux'
 import { slide as Menu } from 'react-burger-menu'
 import Logout from '../../logout/Logout'
@@ -28,7 +29,8 @@ export class HomeBurger extends Component {
       return
     }
     this.setState({
-      response: loading
+      response: loading,
+      showMenu: true
     })
     navigator.geolocation.getCurrentPosition(this.success, this.error, {
       enableHighAccuracy: true,
@@ -40,7 +42,8 @@ export class HomeBurger extends Component {
     var latitude  = position.coords.latitude
     var longitude = position.coords.longitude
     this.setState({
-      response: ''
+      response: '',
+      showMenu: false
     })
     updateLocation(latitude, longitude, this.props.username, this.props.id)
   }
@@ -53,6 +56,9 @@ export class HomeBurger extends Component {
   //remove truck from map and close hours
   handleRemoval = () => {
     removeLocation(this.props.username)
+    this.setState({
+      showMenu: false
+    })
   }
 
   render() {
@@ -67,13 +73,19 @@ export class HomeBurger extends Component {
             <div><div id="uLog"><Logout /></div></div>
           </Menu> :
           <Menu right noOverlay width={270} isOpen={ this.state.showMenu }>
+            {this.state.response ? <img src={this.state.response} id="loading-gif" alt="loading..."/> : <div>&nbsp;</div>}
             <p className="logTitle">Logged in as:</p>
             <p className="uName">{this.props.username}</p>
             <div><i className="far fa-user"></i><Link id="tProf" to={'/truckprofile/' + this.props.username}>View My Profile</Link></div>
             <div><i className="fas fa-edit"></i><Link id="eProf" to='/editprofile'>Edit Profile</Link></div>
             <div><i className="far fa-list-alt"></i><Link id="order" to='/orders'>View orders</Link></div>
-            <div><div className="update-loc-group"><i className="fas fa-map-marker-alt"></i><button onClick={() => this.geoFindMe()}>Update my location</button>
-            {this.state.response ? <img src={this.state.response} id="loading-gif" alt="loading..."/> : ''}</div></div>
+            <div>
+              <div className="update-loc-group">
+                <i className="fas fa-map-marker-alt"></i>
+                <button onClick={() => this.geoFindMe()}>Update my location</button>
+                {/* {this.state.response ? <img src={this.state.response} id="loading-gif" alt="loading..."/> : ''} */}
+              </div>
+            </div>
             <div><i className="far fa-minus-square"></i><button id="remBtn" onClick={this.handleRemoval}>Remove my truck</button></div>
             <div><div id="tLog"><Logout /></div></div>
           </Menu>
@@ -87,7 +99,6 @@ export class HomeBurger extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log('testburger', state)
   return {
     source: state.loginReducer.source,
     username: state.loginReducer.username,
@@ -95,4 +106,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(HomeBurger)
+export default withRouter(connect(mapStateToProps)(HomeBurger))

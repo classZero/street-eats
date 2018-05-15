@@ -34,7 +34,7 @@ export function updateLocation(lat, long, username, id) {
   api.updateLocation(lat, long, username).then(resp => {
     store.dispatch({
       type: "UPDATE_LOCATION",
-      payload: resp
+      payload: resp.message
     })
     setTimeout(function() {
       store.dispatch({
@@ -49,7 +49,7 @@ export function removeLocation(username) {
   api.removeLocation(username).then(resp => {
     store.dispatch({
       type: "REMOVE_TRUCK",
-      payload: resp
+      payload: resp.message
     })
     setTimeout(function() {
       store.dispatch({

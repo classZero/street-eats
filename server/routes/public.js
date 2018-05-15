@@ -228,8 +228,6 @@ router.get('/truckreviews/:username', (req, res, next) => {
 
     conn.query(sqlRatings, username, (err,results, fields) => {
       conn.query(sqlAvg, username, (err2, results2, fields2) => {
-        console.log('results',results)
-        console.log('avg',results2[0])
         let reviews = results
         let avgReview = results2[0]
             res.json({
@@ -240,6 +238,28 @@ router.get('/truckreviews/:username', (req, res, next) => {
     })
 })
 
+router.get('/isfavorite/:truck/:user', (req, res, next) => {
+  const username = req.params.user
+  const truckUsername = req.params.truck
+
+  const sql = `
+    SELECT * 
+    FROM favorites
+    WHERE username = ? 
+    AND truckusername = ?
+  `
+  conn.query(sql, [username, truckUsername], (err, results, fields) => {
+    if(results.length) {
+      res.json({
+        isFavorite: true
+      })
+    } else {
+      res.json({
+        isFavorite: false
+      })
+    }
+  })
+})
 
 router.get('/userprofile/:username', (req, res, next) => {
     const username = req.params.username
@@ -263,7 +283,7 @@ router.get('/userprofile/:username', (req, res, next) => {
 router.get('/userfavorites/:username', (req, res, next) => {
     const username = req.params.username
     const sql = `
-      SELECT t.username, t.companyname, t.companylogo 
+      SELECT t.username, t.companyname, t.companylogo, f.id
       FROM users u 
       LEFT JOIN favorites f on u.username = f.username 
       LEFT JOIN trucks t on f.truckusername = t.username WHERE u.username = ?
