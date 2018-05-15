@@ -86,6 +86,10 @@ instance.registration = function (username, password, email, avatar, type, compa
               config.headers['Authorization'] = 'Bearer ' + resp.data.token
               return config
             })
+            store.dispatch({
+              type: "LOGIN_USER",
+              payload: resp.data
+            })
             return resp.data
         }
     )

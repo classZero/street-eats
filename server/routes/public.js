@@ -107,18 +107,24 @@ router.post('/registration', (req, res, next) => {
 
             if (req.body.type === "user") {
               const avatar = req.body.avatar
-                if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
-                    const token = jwt.sign({user: username, source: req.body.type, avatar: results[0].avatar, id: results[0].id}, config.get('jwt-secret'))
 
+                if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
                     const insertSql = `
                         INSERT INTO users (username, password, email, avatar) VALUES (?,?,?,?)
                     `
                     conn.query(insertSql, [username, password, email, avatar], (err2, results2, fields2) =>{
+                      console.log('results2: ', results2.insertId)
+
+                      const token = jwt.sign({user: username, source: req.body.type, avatar: avatar, logo: null, id: results2.insertId}, config.get('jwt-secret'))
+
                         res.json({
                             message: "User Created",
                             token: token,
                             user: username,
-                            email: email
+                            source: 'user',
+                            avatar: avatar,
+                            logo: '',
+                            id: results2.insertId
                         })
                     })
                 } else {
@@ -131,7 +137,6 @@ router.post('/registration', (req, res, next) => {
             if (req.body.type === "truck"){
 
                 if(testUsername(username) && testPassword(req.body.password) && testEmail(email)){
-                    const token = jwt.sign({user: username, source: req.body.type, avatar: results[0].avatar, id: results[0].id}, config.get('jwt-secret'))
                     const companyname = req.body.companyName
                     const companyLogo = req.body.companyLogo
                     const menuurl = req.body.menu
@@ -142,13 +147,18 @@ router.post('/registration', (req, res, next) => {
                     `
 
                     conn.query(insertSql, [username, password, email, companyname, companyLogo, menuurl, aboutus], (err2, results2, fields2) =>{
+                      console.log('results2: ', results2)
+
+                      const token = jwt.sign({user: username, source: req.body.type, avatar: null, logo: companyLogo, id: results2.insertId}, config.get('jwt-secret'))
+
                         res.json({
                             message: "Truck Created",
                             token: token,
                             user: username,
-                            email: email,
-                            companyLogo: companyLogo,
-                            menuurl: menuurl
+                            source: 'truck',
+                            avatar: '',
+                            logo: companyLogo,
+                            id: results2.insertId
                         })
                     })
                 } else {
