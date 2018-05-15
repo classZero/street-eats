@@ -8,7 +8,7 @@ import './uprofile.css'
 class RemoveFavorite extends Component {
     removeFavorite = (e) => {
         e.preventDefault()
-        removeFavorite(this.props.user, this.props.truck)
+        removeFavorite(this.props.user, this.props.truck, this.props.id)
         getFavorites(this.props.user)
     }
     render() {

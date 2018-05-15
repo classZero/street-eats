@@ -127,8 +127,9 @@ instance.addFavorite = function(username, truckuser) {
   })
 }
 
-instance.removeFavorite = function(username, truckuser) {
-  return this.post('/removefavorite/', {username, truckuser}).then(resp => {
+instance.removeFavorite = function(username, truckuser, id) {
+  console.log('api', username, truckuser, id)
+  return this.post('/removefavorite/', {username, truckuser, id}).then(resp => {
     return resp.data
   })
 }
@@ -158,24 +159,21 @@ instance.addReview = function (username, truckuser, reviewtext, rating) {
   })
 }
 
-instance.removeFavorite = function (user, truck) {
-  return this.post('/removefavorite', {user, truck})
-  .then(resp => {
-    return resp.data.message
-  })
-}
+// instance.removeFavorite = function (user, truck) {
+//   return this.post('/removefavorite', {user, truck}).then(resp => {
+//     return resp.data.message
+//   })
+// }
 
 instance.getUsersReviews = function(username) {
   // console.log(username)
-  return this.get('/getUsersReviews/' + username)
-  .then(resp => {
+  return this.get('/getUsersReviews/' + username).then(resp => {
     return resp.data.reviews
   })
 }
 
 instance.deleteReview = function(id) {
-  return this.post('/deleteReview/' + id)
-  .then(resp => {
+  return this.post('/deleteReview/' + id).then(resp => {
     return resp.message
   })
 }

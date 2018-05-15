@@ -41,7 +41,7 @@ class UProfileView extends Component {
                                             <div className="uprofile-fav-right">
                                               <img src={favorite.companylogo} alt="logo" className="uprof-fav-img"/>
                                               <h3>{favorite.companyname}</h3>
-                                              <RemoveFavorite truck={favorite.username} user={this.props.username} />
+                                              <RemoveFavorite truck={favorite.username} user={this.props.username} id={favorite.id}/>
                                             </div>
                                           </Link>
                           })
