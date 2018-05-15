@@ -1,6 +1,7 @@
 .header-user-info {
     display: flex;
     align-items: center;
+    font-size: 25px;
     padding-right: 30px;
 }
 

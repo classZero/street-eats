@@ -40,7 +40,7 @@ body {
 .home-header-login p {
     padding-right: 10px;
     text-shadow: none;
-    font-family: Questrial;
+    font-family: 'Questrial', sans-serif;
 }
 
 .home-header {
@@ -107,9 +107,11 @@ body {
 }
 
 /* truck list section */
+
 .list-wrapper {
     width: 35%;
 }
+
 .home-newsfeed {
     display: flex;
     flex-direction: column;
@@ -172,6 +174,8 @@ body {
 .newtruck-list-item {
     padding: 8px;
     font-family: 'Questrial', sans-serif;
+    font-size: 20px;
+    color: white;
 }
 
 .newtruck-list-item a{
@@ -181,26 +185,20 @@ body {
 
 .newtruck-list-item p {
     margin: 5px 0 0 0;
-    color: black;
     font-size: 14px;
 }
 
 .newtruck-list-item h3 {
     margin: 0;
-    color: black;
 }
 
 .newtruck-list-item:hover {
     content: 'rrr';
     background-color: rgba(169, 169, 169, 0.5);
-    box-shadow: inset 7px 0 9px -7px blue, inset -7px 0 9px -7px blue;
+    box-shadow: inset 7px 0 9px -7px blue, inset -7px 0 9px -7px blue, 0px 8px 8px -8px #445e69;
 }
 
 /* map styles */
-
-.maptestcontainer {
-    /* height: 100%; */
-}
 
 .map-wrapper {
     box-shadow: 0px 0px 8px 8px #445e69;
