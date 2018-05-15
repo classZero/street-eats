@@ -80,7 +80,6 @@ instance.logout = function() {
 instance.registration = function (username, password, email, avatar, type, companyName, companyLogo, menu, aboutus) {
     return this.post(this.getRegisterPath(), {username, password, email, avatar, type, companyName, companyLogo, menu, aboutus})
         .then(resp => {
-            // console.log('in api:', resp)
             window.localStorage.setItem('token', resp.data.token)
             this.registerInterceptor = this.interceptors.request.use(config => {
               config.headers['Authorization'] = 'Bearer ' + resp.data.token
@@ -128,7 +127,6 @@ instance.addFavorite = function(username, truckuser) {
 }
 
 instance.removeFavorite = function(username, truckuser, id) {
-  console.log('api', username, truckuser, id)
   return this.post('/removefavorite/', {username, truckuser, id}).then(resp => {
     return resp.data
   })
@@ -148,7 +146,6 @@ instance.changeSortView = function (sortType) {
 
 instance.payments = function (description, token, currency, amount, cart) {
   return this.post('/payments', {description, token, currency, amount, cart}).then(resp => {
-    // console.log('api resp',resp.data)
     return resp.data
   })
 }
@@ -159,14 +156,7 @@ instance.addReview = function (username, truckuser, reviewtext, rating) {
   })
 }
 
-// instance.removeFavorite = function (user, truck) {
-//   return this.post('/removefavorite', {user, truck}).then(resp => {
-//     return resp.data.message
-//   })
-// }
-
 instance.getUsersReviews = function(username) {
-  // console.log(username)
   return this.get('/getUsersReviews/' + username).then(resp => {
     return resp.data.reviews
   })
@@ -179,23 +169,19 @@ instance.deleteReview = function(id) {
 }
 
 instance.editUserReview = function(id, text) {
-  return this.post('/editReview', {id, text})
-  .then(resp => {
+  return this.post('/editReview', {id, text}).then(resp => {
     return resp.message
   })
 }
 
 instance.updateLocation = function (lat, long, username) {
   return this.post('/uplocale', {lat, long, username}).then(resp => {
-    console.log('resp in api updatelocation', resp.data)
     return resp.data
   })
 }
 
 instance.removeLocation = function (username) {
   return this.post('/removelocale', {username}).then(resp => {
-    console.log('resp in api removelocation', resp.data)
-    
     return resp.data
   })
 }

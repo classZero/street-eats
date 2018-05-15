@@ -36,11 +36,11 @@ export function addFavorite(username, truckuser) {
 	})
 }
 
-export function removeFavorite(username, truckuser) {
-  api.removeFavorite(username, truckuser).then(resp => {
+export function removeFavorite(username, truckuser, id) {
+  api.removeFavorite(username, truckuser, id).then(resp => {
     store.dispatch({
       type: "REMOVED_FAVORITE",
-      payload: resp
+      payload: resp.message
     })
     setTimeout(function() {
       store.dispatch({

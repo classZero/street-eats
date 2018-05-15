@@ -5,7 +5,6 @@ api.new('/api')
 
 export function login(username, password) {
   api.login(username, password).then(resp => {
-    console.log('api login', resp.data)
   }).catch(err => {
     if(err.response) {
       store.dispatch({
