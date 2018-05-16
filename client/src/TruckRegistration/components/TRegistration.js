@@ -70,6 +70,7 @@ class TRegistration extends Component {
 	}
 
   uploadWidget = (e) => {
+    e.preventDefault()
     let type = e.target.value
     let data = {result: [{}]}
     window.cloudinary.openUploadWidget({ cloud_name: 'maglingkod', upload_preset: 'avwvdugz', tags:['foodtruck']},

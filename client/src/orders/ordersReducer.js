@@ -7,6 +7,7 @@ export default function(state = initialState, action) {
     case "SEND_ORDER":
       console.log('payload',action.payload)
       return {...state, orders: [...state.orders, action.payload]}
+                       
     default:
       return state
   }

@@ -39,7 +39,7 @@ class TProfileView extends Component {
 
     handleFavClick = (username, truckuser) => {
           if (this.props.isFavorite) {
-            removeFavorite(username, truckuser)
+            removeFavorite(username, truckuser, this.props.id)
             getIsFavorite(this.props.match.params.username, this.props.username)
         } else {
             addFavorite(username, truckuser)
@@ -179,7 +179,8 @@ function mapStateToProps(state) {
         average : state.tProfileReducer.average.average,
         source : state.loginReducer.source,
         message : state.tProfileReducer.message,
-        isFavorite : state.tProfileReducer.isFavorite
+        isFavorite : state.tProfileReducer.isFavorite,
+        id : state.loginReducer.id
     }
 }
 
