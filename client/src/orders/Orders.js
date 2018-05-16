@@ -25,9 +25,9 @@ export class Orders extends Component {
         <div className="order-body-container">
         {this.props.orders.map((order, i) => {
           return  <div className="order-container" key={'order' + i}>
-                    <p>Truck ID: {order.truckId}</p>
+                    <span>Ordered By: {order.orderedBy}</span>
                     <p>Order age: <TimeAgo date={order.timestamp} minPeriod={10} /></p>
-                    {order.map((orderItem, j) => {
+                    {order.cart.map((orderItem, j) => {
                     return <div key={'key' + j}>
                             <h2>{orderItem.itemName}</h2>
                             
@@ -43,7 +43,6 @@ export class Orders extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     orders : state.ordersReducer.orders
     

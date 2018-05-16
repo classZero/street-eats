@@ -11,10 +11,11 @@ export function dispatchToTruck(order) {
 socket.on('order', order => {
   console.log('order received', order.cart)
   order.truckId = order.cart[0].itemTruckId
+  order.orderedBy = order.cart[0].truckUserName
   order.timestamp = new Date()
   store.dispatch({
     type: "SEND_ORDER",
-    payload: order.cart
+    payload: order
   })
 })
 
