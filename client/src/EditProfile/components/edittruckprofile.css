@@ -78,8 +78,8 @@
 
 .edittruck-container img {
     border: 1px solid white;
-    width: 200px;
-    height: 200px;
+    max-width: 400px;
+    max-height: 200px;
     margin: 15px auto;
 }
 
