@@ -6,6 +6,7 @@ import { slide as Menu } from 'react-burger-menu'
 import Logout from '../../logout/Logout'
 import {updateLocation, removeLocation} from '../../home/homeActions'
 import loading from '../../assets/images/truck.gif'
+import {hideCart} from 'MenuView/actions/MenuViewActions'
 
 import './burger.css'
 
@@ -20,6 +21,10 @@ export class HomeBurger extends Component {
     this.setState({
       showMenu: false
     })
+  }
+
+  handleCartHide(){
+    hideCart()
   }
 
   //location update functions
@@ -69,7 +74,7 @@ export class HomeBurger extends Component {
           <Menu right noOverlay width={270} isOpen={ this.state.showMenu }>
             <p className="logTitle">Logged in as:</p>
             <p className="uName">{this.props.username}</p>
-            <div><i className="far fa-user"></i><Link id="uProf" to={'/userprofile/' + this.props.username}>View My Profile</Link></div>
+            <div onClick={this.handleCartHide}><i className="far fa-user"></i><Link id="uProf" to={'/userprofile/' + this.props.username}>View My Profile</Link></div>
             <div><div id="uLog"><Logout /></div></div>
           </Menu> :
           <Menu right noOverlay width={270} isOpen={ this.state.showMenu }>
