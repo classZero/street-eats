@@ -65,7 +65,7 @@ class Cart extends Component{
               <div className='checkout-button-wrapper' >
                 <Checkout 
                   name={this.props.cartSource} 
-                  description={'foo: bar'}
+                  description={'Order No: 234576289'}
                   amount={this.total() * 100}
                   cart={this.props.cart}  
                 />

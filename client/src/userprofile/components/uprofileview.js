@@ -28,7 +28,7 @@ class UProfileView extends Component {
                       <div className="uprofile-container-header">
                           <div className="uprofile-button-container">
                               <Link to="/" id="uprofile-back-btn">Back</Link>
-                              <Link to='/editprofile' id="uprofile-edit-btn">Edit My Profile</Link>
+                              {/* <Link to='/editprofile' id="uprofile-edit-btn">Edit My Profile</Link> */}
                           </div>
                           <div className="uprofile-username">Username: {this.props.profile.username}</div>
                           <div className="uprofile-email">Email: {this.props.profile.email}</div>
