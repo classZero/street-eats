@@ -8,4 +8,4 @@ Chris Steinle https://github.com/csteinle75 <br>
 Kevin Jossendal https://github.com/Balintataw
 
 # Example
-![](https://media.giphy.com/media/8rEB11ggg0WucvWi9v/giphy.gif)
+![](https://media.giphy.com/media/8rEB11ggg0WucvWi9v/200w_d.gif)
