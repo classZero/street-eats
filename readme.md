@@ -8,4 +8,4 @@ Chris Steinle https://github.com/csteinle75 <br>
 Kevin Jossendal https://github.com/Balintataw
 
 # Example
-![Imgur](https://i.imgur.com/9AE6ggoh.gif)
+![](https://i.imgur.com/9AE6ggo.gif)
