@@ -7,5 +7,5 @@ Kevin McGahey https://github.com/thekevinm <br>
 Chris Steinle https://github.com/csteinle75 <br>
 Kevin Jossendal https://github.com/Balintataw
 
-# Short Demo
-
+# Example
+<a href="https://imgur.com/9AE6ggo"><img src="https://i.imgur.com/9AE6ggo.gif" title="source: imgur.com" /></a>
