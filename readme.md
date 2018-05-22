@@ -8,4 +8,4 @@ Chris Steinle https://github.com/csteinle75 <br>
 Kevin Jossendal https://github.com/Balintataw
 
 # Example
-<a href="https://imgur.com/9AE6ggo"><img src="https://i.imgur.com/9AE6ggo.gif" title="source: imgur.com" /></a>
+![Imgur](https://i.imgur.com/9AE6ggom.gif)
