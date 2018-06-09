@@ -140,6 +140,34 @@ router.post('/editReview', (req, res, next) => {
     })
 })
 
+router.post('/addOrderToUserHistory', (req, res, next) => {
+
+    const sql = `
+        INSERT INTO orders (itemName, itemPrice, itemType, itemDescription, itemid) 
+        VALUES (?, ?, ?, ?, ?)
+    `
+    req.body.cart.forEach(item => {
+        console.log('item', item)
+        conn.query(sql, [item.itemName, item.itemPrice, item.itemType, item.itemDescription, item.id], (err, results, fields) => {
+            res.json({
+                results
+            })
+        })
+
+    })
+})
+
+router.get('/getOrders', (req, res, next) => {
+    const sql = `
+        SELECT * FROM orders
+    `
+    conn.query(sql, (err, results, fields) => {
+        res.json({
+            results
+        })
+    })
+})
+
 // router.post('/uplocale', (req, res, next) => {
 //     const lat = req.body.lat
 //     const long = req.body.long

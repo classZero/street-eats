@@ -1,7 +1,7 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 import api from '../lib/api'
-import {dispatchToTruck} from '../orders/orderActions'
+import {dispatchToTruck, addOrderToUserHistory} from '../orders/orderActions'
 import {clearCart} from 'MenuView/actions/MenuViewActions'
 
 // const PAYMENT_SERVER_URL = process.env.NODE_ENV === 'production'
@@ -15,10 +15,11 @@ const STRIPE_PUBLISHABLE = process.env.NODE_ENV === 'production'
 const CURRENCY = 'USD';
 
 const successPayment = data => {
-  // console.log('data',data)
+  console.log('data',data)
   alert('Payment Successful')
 
   dispatchToTruck(data)
+  addOrderToUserHistory(data.cart)
   // console.log('about to clear cart data', data)
   clearCart()
 }

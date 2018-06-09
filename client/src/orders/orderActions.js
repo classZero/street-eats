@@ -1,6 +1,8 @@
 import io from 'socket.io-client'
 import store from '../store'
 import socket from '../lib/socket'
+import api from 'lib/api'
+api.new('/api')
 
 // const socket = io('/orders')
 
@@ -19,6 +21,11 @@ socket.on('order', order => {
   })
 })
 
+export function addOrderToUserHistory(cart) {
+  api.addOrderToUserHistory(cart).then(resp => {
+    console.log('orderactions resp', resp)
+  })
+}
 
 export function removeOrder() {
 

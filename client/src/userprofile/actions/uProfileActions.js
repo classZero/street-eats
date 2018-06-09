@@ -56,3 +56,12 @@ export function editUserReview(id, text) {
 		})
 	})
 }
+
+export function getOrders(username) {
+	api.getOrders(username).then(resp => {
+		store.dispatch({
+			type: 'GET_ORDERS',
+			payload: resp
+		})
+	})
+}

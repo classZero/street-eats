@@ -190,4 +190,18 @@ instance.removeLocation = function (username) {
   })
 }
 
+instance.addOrderToUserHistory = function (cart) {
+  return this.post('/addOrderToUserHistory', {cart}).then(resp => {
+    // console.log('resp in api', resp.data)
+    return resp.data
+  })
+}
+
+instance.getOrders = function (username) {
+  return this.get('/getOrders', {username}).then(resp => {
+    // console.log('rdatatatatatat',resp.data)
+    return resp.data
+  })
+}
+
 export default instance
