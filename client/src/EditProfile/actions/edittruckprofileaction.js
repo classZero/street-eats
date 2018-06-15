@@ -1,4 +1,4 @@
-import api from 'lib/api'
+import api from '../../lib/api'
 api.new('/api')
 
 export function editTruckProfile(name, logo, aboutus, menuurl, username) {

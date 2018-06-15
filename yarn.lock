@@ -4675,10 +4675,6 @@ react-dom@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-geocode@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/react-geocode/-/react-geocode-0.0.7.tgz#68d4703b4c921b40182e2918c180c77e4044df3a"
-
 react-html-attributes@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/react-html-attributes/-/react-html-attributes-1.4.2.tgz#0d2ccf134fc79b2d3543837dc1591d32b7b903f9"

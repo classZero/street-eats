@@ -5,7 +5,7 @@ import loginReducer from './login/loginReducer'
 import tProfileReducer from './truckprofile/reducers/tProfileReducer'
 import mapreducer from './MapView/mapviewreducers/mapreducers'
 import uProfileReducer from './userprofile/reducers/uProfileReducer'
-import MenuViewReducer from 'MenuView/reducers/MenuViewReducer'
+import MenuViewReducer from './MenuView/reducers/MenuViewReducer'
 import ordersReducer from './orders/ordersReducer'
 
 //import reducer here

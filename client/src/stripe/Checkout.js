@@ -2,7 +2,7 @@ import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 import api from '../lib/api'
 import {dispatchToTruck, addOrderToUserHistory} from '../orders/orderActions'
-import {clearCart} from 'MenuView/actions/MenuViewActions'
+import {clearCart} from '../MenuView/actions/MenuViewActions'
 
 // const PAYMENT_SERVER_URL = process.env.NODE_ENV === 'production'
 //   ? 'http://myapidomain.com'

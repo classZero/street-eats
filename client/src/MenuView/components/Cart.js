@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { slide as Menu } from 'react-burger-menu'
-import {removeFromCart, viewCart} from 'MenuView/actions/MenuViewActions'
+import {removeFromCart, viewCart} from '../actions/MenuViewActions'
 
-import Checkout from 'stripe/Checkout'
+import Checkout from '../../stripe/Checkout'
 
 import {styles as cartStyles} from './cartMenuStyles'
-import cartsvg from 'assets/images/cart.svg'
+import cartsvg from '../../assets/images/cart.svg'
 
 class Cart extends Component{
   static defaultProps = {

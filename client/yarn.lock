@@ -6681,9 +6681,9 @@ react-fontawesome@^1.6.1:
   dependencies:
     prop-types "^15.5.6"
 
-react-geocode@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/react-geocode/-/react-geocode-0.0.7.tgz#68d4703b4c921b40182e2918c180c77e4044df3a"
+react-geocode@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/react-geocode/-/react-geocode-0.0.9.tgz#e2c805a680e6809330715aa506c8a2bcf411a41c"
 
 react-html-attributes@^1.4.2:
   version "1.4.2"

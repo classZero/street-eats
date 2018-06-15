@@ -19,6 +19,7 @@ class MenuItem extends Component{
         <h3 className="menuview-menu-item-price">${this.props.item.itemPrice.toFixed(2)}</h3>
         <h4>{this.props.item.itemType}</h4>
         <p>{this.props.item.itemDescription}</p>
+        {/* and truck is active */}
         { this.props.isAuthenticated && this.props.source === 'user'
          ? <button onClick={this.handleAdd} className="menuview-add-to-cart-button" >+Add to cart</button>
          : ''

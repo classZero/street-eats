@@ -5,7 +5,7 @@ import {editTruckProfile} from '../actions/edittruckprofileaction'
 import {Redirect} from 'react-router-dom'
 import MapViewInputs from '../../MapView/mapviewcomponents/MapViewInputs'
 import HomeHeader from '../../headers/HomeHeader'
-import MenuBuilder from 'MenuBuilder/components/MenuBuilder'
+import MenuBuilder from '../../MenuBuilder/components/MenuBuilder'
 import './edittruckprofile.css'
 
 class EditTruckProfile extends Component {

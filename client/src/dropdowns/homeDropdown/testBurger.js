@@ -6,7 +6,7 @@ import { slide as Menu } from 'react-burger-menu'
 import Logout from '../../logout/Logout'
 import {updateLocation, removeLocation} from '../../home/homeActions'
 import loading from '../../assets/images/truck.gif'
-import {hideCart} from 'MenuView/actions/MenuViewActions'
+import {hideCart} from '../../MenuView/actions/MenuViewActions'
 
 import './burger.css'
 

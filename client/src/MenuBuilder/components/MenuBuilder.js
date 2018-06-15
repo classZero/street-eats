@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import {getMenu} from 'MenuView/actions/MenuViewActions'
+import {getMenu} from '../../MenuView/actions/MenuViewActions'
 import {addItem, removeItem} from '../actions/MenuBuilderActions'
 import './MenuBuilder.css'
 

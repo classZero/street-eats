@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 import store from '../store'
 import socket from '../lib/socket'
-import api from 'lib/api'
+import api from '../lib/api'
 api.new('/api')
 
 // const socket = io('/orders')

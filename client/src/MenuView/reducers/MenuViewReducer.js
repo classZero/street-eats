@@ -6,8 +6,6 @@ const initialState = {
     cartView: false
 }
 
-//not currently using cartTotal, possibly remove in future, might be useful to prevent editing of total by user though
-
 export default function (state = initialState, action) {
     
     switch (action.type) {

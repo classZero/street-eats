@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import './mapviewhomestyles.css'
-// import Geocode from 'react-geocode'
 import moment from 'moment'
 import {connect} from 'react-redux'
 

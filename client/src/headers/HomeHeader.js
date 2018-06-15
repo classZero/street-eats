@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import Login from '../login/Login'
 import {connect} from 'react-redux'
-// import HomeDropdown from '../dropdowns/homeDropdown/HomeDropdown'
 import HomeBurger from '../dropdowns/homeDropdown/testBurger'
-import Cart from 'MenuView/components/Cart'
-import trucksvg from 'assets/images/truck.svg'
+import Cart from '../MenuView/components/Cart'
+import trucksvg from '../assets/images/truck.svg'
 import {Link} from 'react-router-dom'
 
-import {hideCart} from 'MenuView/actions/MenuViewActions'
+import {hideCart} from '../MenuView/actions/MenuViewActions'
 
 import './homeHeader.css'
 

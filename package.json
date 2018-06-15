@@ -43,7 +43,6 @@
     "moment": "^2.22.1",
     "react-bootstrap": "^0.32.1",
     "react-bootstrap-time-picker": "^1.0.3",
-    "react-geocode": "^0.0.7",
     "react-redux": "^5.0.7",
     "react-stripe-checkout": "^2.6.3",
     "react-time-range": "^1.0.2",

@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 import star from '../../assets/images/star.svg'
 import HomeHeader from '../../headers/HomeHeader'
 import ReactStars from 'react-stars'
-import MenuView from 'MenuView/components/MenuView'
+import MenuView from '../../MenuView/components/MenuView'
 
-import {hideCart} from 'MenuView/actions/MenuViewActions'
+import {hideCart} from '../../MenuView/actions/MenuViewActions'
 import './tprofile.css'
 
 class TProfileView extends Component {
