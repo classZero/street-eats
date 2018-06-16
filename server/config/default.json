@@ -1,7 +1,7 @@
 {
   "db": {
-      "user": "truckster",
-      "password": "truckster",
+      "user": "root",
+      "password": "root",
       "hostname": "localhost",
       "database": "food_truck"
   },

@@ -22,7 +22,6 @@ export class Home extends Component {
   componentDidMount() {
     changeSortView('active')    
   }
-  
 
   render() {
     return (
