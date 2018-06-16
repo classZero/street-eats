@@ -35,48 +35,48 @@ let emitAuth = false
 
 io.on('connection', (socket) => {
  
-//   socket.on('order', order => {
-//     console.log('idList',idList)
-//     console.log('received order of',order.cart)
-//     // const truckId = order[0].itemTruckId
-//     // idList.filter(listItem => listItem.id == order.cart[0].itemTruckId)
-//     idList.map((id, i) => {
-//       if (id.id == order.cart[0].itemTruckId) {
+  socket.on('order', order => {
+    console.log('idList',idList)
+    console.log('received order of',order.cart)
+    // const truckId = order[0].itemTruckId
+    // idList.filter(listItem => listItem.id == order.cart[0].itemTruckId)
+    idList.map((id, i) => {
+      if (id.id == order.cart[0].itemTruckId) {
 
-//         console.log("Socket Connected, sent through socket : " +id.socketId)
-//         // io.sockets.connected[id.socketId].emit('order', {order, emitAuth})
-//         // socket.broadcast.to(id.socketId).emit('order', {order, emitAuth})
-//         // io.to(id.socketId).emit('order', {order, emitAuth})
-//         socket.to(id.socketId).emit('order', order)
-//         // socket.emit('order', order)
-//         // io.sockets.sockets(id.socketId).emit('order', {order, emitAuth})
+        console.log("Socket Connected, sent through socket : " +id.socketId)
+        // io.sockets.connected[id.socketId].emit('order', {order, emitAuth})
+        // socket.broadcast.to(id.socketId).emit('order', {order, emitAuth})
+        // io.to(id.socketId).emit('order', {order, emitAuth})
+        socket.to(id.socketId).emit('order', order)
+        // socket.emit('order', order)
+        // io.sockets.sockets(id.socketId).emit('order', {order, emitAuth})
 
-//         const sql=`
-//           INSERT INTO  orders (userId, itemName, itemPrice, itemType, itemDescription, truckId)
-//           VALUES (?, ?, ?, ?, ?, ?)
-//         `
-//         conn.query(sql, [order.cart[i].id, order.cart[i].itemName, order.cart[i].itemPrice, order.cart[i].ItemType, order.cart[i].itemDescription, order.cart[i].itemTruckId, order.cart[i].truckUserName], (err, results, fields) => {
+        const sql=`
+          INSERT INTO  orders (userId, itemName, itemPrice, itemType, itemDescription, truckId)
+          VALUES (?, ?, ?, ?, ?, ?)
+        `
+        conn.query(sql, [order.cart[i].id, order.cart[i].itemName, order.cart[i].itemPrice, order.cart[i].ItemType, order.cart[i].itemDescription, order.cart[i].itemTruckId, order.cart[i].truckUserName], (err, results, fields) => {
 
-//         })
-//       } else {
-//         emitAuth = false
-//         console.log('failed to emit')
-//       }
-//     })
-//   })
-//   socket.on('create truck', id => {
-//     id.socketId = socket.id //name has truck id and socket.id
-//     console.log('creating truck: ',id)
-//     idList.push(id)
-//   })
+        })
+      } else {
+        emitAuth = false
+        console.log('failed to emit')
+      }
+    })
+  })
+  socket.on('create truck', id => {
+    id.socketId = socket.id //name has truck id and socket.id
+    console.log('creating truck: ',id)
+    idList.push(id)
+  })
 
-//   socket.on('disconnect', () => {
-//     console.log('user disconnected')
-//     // socket.removeAllListeners('order');
-//     // socket.removeAllListeners('disconnect');
-//     // io.removeAllListeners('connection');
-//   })
-// })
+  socket.on('disconnect', () => {
+    console.log('user disconnected')
+    // socket.removeAllListeners('order');
+    // socket.removeAllListeners('disconnect');
+    // io.removeAllListeners('connection');
+  })
+})
 
 
 //constinually checks for newly active trucks
