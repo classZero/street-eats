@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 // import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import TRegistration from '../TruckRegistration/components/TRegistration'
 // import glamorous from 'glamorous'
 // import Login from '../login/Login'
