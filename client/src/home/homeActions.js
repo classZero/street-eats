@@ -29,7 +29,7 @@ export function changeSortView(type) {
 
 export function updateLocation(lat, long, username, id) {
 
-  socket.emit('create truck', {id})
+  //socket.emit('create truck', {id})
 
   api.updateLocation(lat, long, username).then(resp => {
     store.dispatch({
