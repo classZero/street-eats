@@ -33,9 +33,9 @@ server.listen(3001, () => {
 let idList = []
 let emitAuth = false
 
-io.on('connection', (socket) => {
+// io.on('connection', (socket) => {
  
-  
+
 //   socket.on('order', order => {
 //     console.log('idList',idList)
 //     console.log('received order of',order.cart)
