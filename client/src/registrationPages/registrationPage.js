@@ -6,7 +6,6 @@ import TRegistration from '../TruckRegistration/components/TRegistration'
 // import {getTruckData} from './homeActions'
 // import MapViewHome from '../MapView/mapviewcomponents/MapsViewHome'
 // import HomeDropdown from '../dropdowns/homeDropdown/HomeDropdown'
-// import trucksvg from 'assets/images/truck.svg'
 import './registrationPage.css'
 import URegistration from '../UserRegistration/components/URegistration'
 

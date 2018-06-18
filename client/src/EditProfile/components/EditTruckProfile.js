@@ -107,7 +107,6 @@ class EditTruckProfile extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
     return {
         profile : state.tProfileReducer.profile,
         isAuth: state.loginReducer.isAuthenticated,

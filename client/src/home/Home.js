@@ -71,7 +71,6 @@ export class Home extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('isAuth? ' + state.loginReducer.isAuthenticated)
   return {
     isAuthenticated: state.loginReducer.isAuthenticated,
     username: state.loginReducer.username,

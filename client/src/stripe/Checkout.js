@@ -15,7 +15,6 @@ const STRIPE_PUBLISHABLE = process.env.NODE_ENV === 'production'
 const CURRENCY = 'USD';
 
 const successPayment = data => {
-  console.log('data',data)
   alert('Payment Successful')
 
   dispatchToTruck(data)

@@ -36,7 +36,6 @@ class TRegistration extends Component {
 		// eslint-disable-next-line
 		const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 		
-    	console.log(this.state.uploadCloudinaryLogoUrl)
 
 		if(this.state.username && userRegExp.test(this.state.username)){
 			if(this.state.email && emailRegExp.test(this.state.email)){

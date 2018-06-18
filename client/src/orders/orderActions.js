@@ -23,7 +23,6 @@ export function dispatchToTruck(order) {
 
 export function addOrderToUserHistory(cart) {
   api.addOrderToUserHistory(cart).then(resp => {
-    console.log('orderactions resp', resp)
   })
 }
 
