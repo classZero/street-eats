@@ -1,0 +1,169 @@
+.uprofile-container {
+    background-color: rgb(176, 199, 201);
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    height: 700px;
+    box-shadow: 0px 0px 8px 8px #445e69;
+    font-family: Questrial;
+    font-size: 25px;
+}
+
+.uprofile-container-header {
+    height: 20%;
+    box-shadow: 0px 8px 8px -8px #445e69;
+}
+
+.uprofile-container-body {
+    height: 80%;
+    overflow: auto;
+}
+
+.uprofile-button-container {
+    position: relative;
+    height: 30px;
+    width: 100%;
+}
+
+#uprofile-back-btn, #uprofile-edit-btn {
+    position: absolute;
+    top: 10px;
+    text-decoration: none;
+    text-shadow: 2px 2px grey;
+    color: white;
+    font-family: 'Paytone One', sans-serif;
+    font-size: 16px;
+}
+
+#uprofile-back-btn {
+    left: 10px;
+}
+
+#uprofile-edit-btn {
+    right: 10px;
+}
+
+#uprofile-back-btn:hover, #uprofile-edit-btn:hover {
+    color: rgb(220, 220, 220);
+    text-shadow: 2px 2px black;
+}
+
+.uprofile-username, .uprofile-fav-container-header, .uprofile-fav-warning, .uprofile-email {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.uprofile-favcontainer {
+    border: 1px solid white;
+    width: 500px;
+    margin: auto;
+    height: 450px;
+    font-size: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.uprofile-fav {
+    display: flex;
+    text-decoration: none;
+}
+
+.uprofile-fav:hover {
+    background-color: rgba(169, 169, 169, 0.5);
+    box-shadow: inset 7px 0 9px -7px blue, inset -7px 0 9px -7px blue;
+}
+
+.uprofile-fav-container-header {
+    margin-bottom: 20px;
+}
+
+.uprofile-fav-right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 10px;
+}
+
+.uprofile-fav-right h3 {
+    color: white;
+}
+
+.uprof-fav-img {
+    width: 80px;
+    height: 80px;
+}
+
+/* remove button */
+
+.uprofile-remove-fav {
+    margin: 0 auto;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.uprofile-remove-fav:hover {
+    color: rgb(171, 26, 0);
+}
+
+/* reviews section */
+
+.uprofile-review-container {
+    margin-top: 20px;
+}
+
+.uprofile-review-container-header {
+    margin-left: 20px;
+}
+
+.uprofile-review-items-container {
+    border: 1px solid white;
+    width: 500px;
+    margin: 20px auto;
+    height: 450px;
+    font-size: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+/* change review section */
+
+.changeReview-container:hover {
+    box-shadow: inset 7px 0 9px -7px blue, inset -7px 0 9px -7px blue;
+}
+
+.fas.fa-edit:hover {
+    color: green;
+}
+
+.far.fa-times-circle:hover {
+    color: rgb(171, 26, 0);
+}
+
+.review-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-company-name {
+    margin: 20px 0 20px 20px;
+}
+
+.review-button-wrapper button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 16px;
+}
+
+.review-content {
+    margin: 0 20px 0 20px;
+}
+ 

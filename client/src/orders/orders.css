@@ -1,0 +1,49 @@
+.order-view-container {
+    position: relative;
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+    background-color: rgb(227, 227, 227);
+    color: black;
+    font-family: 'Questrial', sans-serif;
+    /* overflow: auto; */
+}
+/* header */
+.order-header-container {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 3px solid black;
+}
+
+.order-header-title {
+
+}
+
+/* orders */
+.order-body-container {
+    display: flex;
+    height: 900px;
+    overflow: auto;
+}
+
+.order-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 500px;
+    min-width: 300px;
+    padding: 20px;
+    overflow: auto;
+    border-bottom: 1px solid black;
+}
+
+.order-container:nth-child(odd) {
+    border-right: 2px solid black;
+}
+
+.order-complete-btn {
+    width: 50%;
+    height: 60px;
+    border-radius: 8px;
+}
+

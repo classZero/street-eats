@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Questrial|Paytone+One');
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    background: url("https://las-vegas-real-estate-authority.com/wp-content/uploads/2016/12/Las-Vegas-Homes-Strip-View.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: auto;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+input {
+    background-color: inherit;
+    border: none;
+    color: white;
+    outline: none;
+}
+
+input::placeholder {
+    color: white;
+}
+
+body {
+    color: white;
+    background-color: rgb(227, 227, 227);
+}
+
+.home-header-login {
+    display: flex;
+    align-items: center;
+    width: 45%;
+}
+
+.home-header-login p {
+    padding-right: 10px;
+    text-shadow: none;
+    font-family: 'Questrial', sans-serif;
+}
+
+.home-header {
+    /* display: flex; */
+    /* justify-content: space-between; */
+    position: relative;
+    /* align-items: center; */
+    height: 95px;
+    margin: 8px 50px 0 50px;
+    text-shadow: 2px 2px rgba(196, 153, 150, 0.7);
+}
+
+.home-login-container {
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    width:40%;
+}
+
+.home-header-dropdown {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    z-index:50;
+    width: 40%;
+}
+
+.dropmenu-btn.sort {
+    color: black;
+}
+
+.home-header-dropdown p {
+    padding-right: 10px;
+    text-shadow: none;
+    font-family: 'Questrial', sans-serif;
+}
+
+.logo-container {
+    position: absolute;
+    top: 8px;
+    right: 44.5%;
+    z-index: 3;
+    margin: 0 auto;
+}
+
+.home-new-trucks {
+    font-family: 'Questrial', sans-serif;
+    padding: 0 10px;
+}
+
+.logo-icon {
+    position: absolute;
+    top: -40px;
+    z-index: -1;
+    animation-duration: 4s;
+    animation-name: slidein;
+}
+
+.home-container {
+    height: 50vw;
+}
+
+.home-body-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+}
+
+/* truck list section */
+
+.list-wrapper {
+    width: 35%;
+}
+
+.home-newsfeed {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 600px;
+    width: 100%;
+    border: 1px solid rgb(172, 230, 255);
+    border-radius: 5px;
+    background-color: rgb(176, 199, 201);
+    color: black;
+    box-shadow: 0px 0px 8px 8px #445e69;
+}
+
+.content-headers, .content-headers-title {
+    font-family: 'Paytone One', sans-serif;
+}
+
+.content-headers {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    width: 100%;
+    height: 18%;
+    top: 40px;
+    left: 0;
+    margin: 0;
+    font-size: 40px;
+    text-shadow: 2px 2px grey;
+}
+
+.home-newsfeed-list {
+    overflow: auto;
+    height: 100%;
+}
+
+.home-newsfeed-header {
+    background-image: url('../assets/images/skyline.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 170px;
+    font-family: 'Paytone One', sans-serif;
+    box-shadow: 0px 8px 8px -8px #445e69;
+    text-shadow: 2px 2px grey;
+}
+
+.sort-bar-wrapper {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.home-newsfeed h1 {
+    color: white;
+}
+
+.newtruck-list-item {
+    padding: 8px;
+    font-family: 'Questrial', sans-serif;
+    font-size: 20px;
+    color: white;
+}
+
+.newtruck-list-item a{
+    color: white;
+    text-decoration: none;
+}
+
+.newtruck-list-item p {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+}
+
+.newtruck-list-item h3 {
+    margin: 0;
+}
+
+.newtruck-list-item:hover {
+    content: 'rrr';
+    background-color: rgba(169, 169, 169, 0.5);
+    box-shadow: inset 7px 0 9px -7px blue, inset -7px 0 9px -7px blue, 0px 8px 8px -8px #445e69;
+}
+
+/* map styles */
+
+.map-wrapper {
+    box-shadow: 0px 0px 8px 8px #445e69;
+    width: 50%;
+    height: 600px;
+    position: relative; 
+    z-index: 5;
+}
+
+/* scrollbar  */
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+/* media queries */
+
+@media only screen and (max-width: 1200px) {
+    .home-header-login p {
+        display: none;
+    }
+}
+
+@keyframes slidein {
+    from {
+      margin-left: 525%;
+      width: 100%; 
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+}
+
+
+

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Questrial|Paytone+One');
+
+.registrationHeader {
+    height: 85px;
+    display: inline-block;
+    width: 100%;
+    background-color: inherit;
+    font-family: 'Paytone One', sans-serif;
+    animation-duration: 1s;
+    animation-name: dropin;
+}
+
+.registrationHeader h1 {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    text-shadow: 2px 2px rgba(196, 153, 150, 0.7);
+}
+
+.registrationHeader a {
+    padding-left: 25px;
+    color: white;
+    text-decoration: none;
+}
+
+.registrationHeader a:hover {
+    color: #c9c9c9;
+}
+
+.twoRegContainer {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 25px;
+    width: 100%;
+    height: 100%;
+}
+
+
+@keyframes dropin {
+    from {
+      margin-top: 15%;
+      width: 25%; 
+    }
+  
+    to {
+      margin-top: 0%;
+      width: 100%;
+    }
+  }

@@ -1,0 +1,74 @@
+.slider {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 170px;
+    max-height: 500px;
+    background: rgb(240, 238, 228);
+    border: 1px solid black;
+    font-family: 'Questrial', sans-serif;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    opacity: 1;
+	transition-property: all;
+	transition-duration: 1s;
+    transition-timing-function: cubic-bezier(0.5, 1, 0.5, 1);
+    z-index: 50;
+}
+
+.closed {
+    max-height: 0;
+    opacity: 0
+}
+
+.slider button:first-child {
+    border-top-right-radius: 5px;
+}
+
+.slider button:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.slider button {
+    border: none;
+    outline: none;
+    padding: 10px 0;
+    width: 100%;
+    font-size: 14px;
+    background-color: rgb(240, 238, 228);
+}
+
+.slider button:hover {
+    background-color: rgb(211, 208, 193);
+}
+
+.dropmenu-btn {
+    height: 25px;
+    border: none;
+    outline: none;
+    border-top-left-radius: 5px;
+    font-size: 1rem;
+    color: white;
+}
+
+.dropmenu-btn-sort {
+    height: 25px;
+    border: none;
+    outline: none;
+    border-top-left-radius: 5px;
+    font-size: 1rem;
+    color: black;
+}
+
+.color {
+    background-color: rgb(193, 191, 181);
+    border-right: 1px solid black;
+}
+
+.noColor {
+    background-color: transparent;
+}
+
+
+

@@ -1,0 +1,55 @@
+{
+  "name": "street-eats",
+  "version": "1.0.0",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chalk-cli": "^4.0.0",
+    "concurrently": "^3.5.1",
+    "cross-env": "^5.1.4",
+    "rimraf": "^2.6.2",
+    "standard": "^10.0.3"
+  },
+  "scripts": {
+    "start": "concurrently \"yarn run server\" \"yarn run client\"",
+    "client": "cd client && yarn start",
+    "server": "cd server && yarn start",
+    "build": "rimraf server/public/* && cd client && yarn build && cd ../server && yarn build",
+    "prelint": "chalk cyan bold 'Running Linter'",
+    "lint": "standard",
+    "postlint": "chalk cyan bold 'Linter Finished'"
+  },
+  "standard": {
+    "ignore": [
+      "dist",
+      "client/build",
+      "server/public"
+    ]
+  },
+  "boilerplate": {
+    "name": "best-food-truck-app",
+    "version": "1.0.0",
+    "description": "",
+    "author": "",
+    "license": "ISC"
+  },
+  "description": "",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "file-loader": "^1.1.11",
+    "glamor": "^2.20.40",
+    "glamorous": "^4.12.5",
+    "image-webpack-loader": "^4.2.0",
+    "jsonwebtoken": "^8.2.1",
+    "moment": "^2.22.1",
+    "react-bootstrap": "^0.32.1",
+    "react-bootstrap-time-picker": "^1.0.3",
+    "react-redux": "^5.0.7",
+    "react-stripe-checkout": "^2.6.3",
+    "react-time-range": "^1.0.2",
+    "react-timeago": "^4.1.9",
+    "redux": "^4.0.0",
+    "stripe": "^5.8.0"
+  },
+  "proxy": "http://localhost:3001"
+}
