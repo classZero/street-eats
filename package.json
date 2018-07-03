@@ -1,5 +1,5 @@
 {
-  "name": "street-eats",
+  "name": "best-food-truck-app",
   "version": "1.0.0",
   "author": "",
   "license": "ISC",
@@ -27,11 +27,10 @@
     ]
   },
   "boilerplate": {
-    "name": "best-food-truck-app",
-    "version": "1.0.0",
-    "description": "",
-    "author": "",
-    "license": "ISC"
+    "name": "client-server-boilerplate",
+    "version": "0.0.0",
+    "author": "Michael Sweeney <jfmike@gmail.com> (https://github.com/overthemike)",
+    "license": "MIT"
   },
   "description": "",
   "dependencies": {

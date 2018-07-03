@@ -1,0 +1,9 @@
+{
+  "db": {
+      "user": "truckster",
+      "password": "Truckst3r#",
+      "hostname": "localhost",
+      "database": "food_truck"
+  },
+  "jwt-secret": "ac429114-45d3-11d3-812s-0td5n89f713a"
+}

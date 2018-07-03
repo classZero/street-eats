@@ -37,7 +37,6 @@ instance.getRegisterPath = function() {
 instance.login = function (username, password) {
     return this.post(this.getTokenPath(), {username, password})
         .then(resp => {
-          console.log('api response', resp)
         window.localStorage.setItem('token', resp.data.token)
         this.tokenInterceptor = this.interceptors.request.use(config => {
           config.headers['Authorization'] = 'Bearer ' + resp.data.token
@@ -192,14 +191,12 @@ instance.removeLocation = function (username) {
 
 instance.addOrderToUserHistory = function (cart) {
   return this.post('/addOrderToUserHistory', {cart}).then(resp => {
-    // console.log('resp in api', resp.data)
     return resp.data
   })
 }
 
 instance.getOrders = function (username) {
   return this.get('/getOrders', {username}).then(resp => {
-    // console.log('rdatatatatatat',resp.data)
     return resp.data
   })
 }

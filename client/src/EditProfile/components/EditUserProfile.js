@@ -27,7 +27,6 @@ class EditUserProfile extends Component {
 
 
 function mapStateToProps(state) {
-  console.log('editUserProfile state', state)
     return {
         profile : state.uProfileReducer.profile,
         username : state.loginReducer.username,

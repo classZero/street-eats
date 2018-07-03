@@ -18,7 +18,6 @@ export class RegistrationHeader extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     username: state.loginReducer.username,
     avatar: state.loginReducer.avatar

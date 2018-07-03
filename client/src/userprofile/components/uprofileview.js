@@ -98,7 +98,6 @@ class UProfileView extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state.uProfileReducer.orders)
     return {
         profile : state.uProfileReducer.profile,
         username : state.loginReducer.username,
